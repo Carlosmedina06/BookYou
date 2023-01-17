@@ -19,7 +19,12 @@ const UserSchema = new moongose.Schema({
     enum: ['user', 'admin'],
     default: 'user',
   },
-  books: [],
+  books: [
+    {
+      type: moongose.Schema.Types.ObjectId,
+      ref: 'Book',
+    },
+  ],
 })
 
 UserSchema.set('toJSON', {
