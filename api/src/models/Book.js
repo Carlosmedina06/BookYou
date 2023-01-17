@@ -3,6 +3,7 @@ import moongose from 'mongoose'
 const BookSchema = new moongose.Schema({
   title: String,
   description: String,
+  content: String,
   img: String,
   createdAt: {
     type: Date,
