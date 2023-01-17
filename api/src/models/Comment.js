@@ -24,6 +24,6 @@ CommentSchema.set('toJSON', {
   },
 })
 
-const newComment = mongoose.model('Comment', CommentSchema)
+const Comment = mongoose.model('Comment', CommentSchema)
 
-export default newComment
+export default Comment
