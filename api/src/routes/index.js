@@ -25,7 +25,7 @@ router.get('/books', getAllBooks)
 router.get('/book/:id', getBookById)
 router.put('/book/update/:id', bookUpdate)
 router.delete('/book/delete/:id', bookDelete)
-router.post('/user/create', bookPost)
+router.post('/book/create', bookPost)
 //= ======================Comments Routes=============================
 
 // No hecho ninguna ruta sobre los Commentarios aun porque nose como vamos a manejar eso aun
