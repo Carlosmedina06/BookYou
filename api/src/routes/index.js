@@ -1,5 +1,7 @@
 import { Router } from 'express'
 
+import { errorHandler } from '../middlewares/errorHandler.js'
+
 //= =======================Users Controllers==========================
 import getAllUsers from './controllers/Users/getAllUsers.js'
 import getUserById from './controllers/Users/getUserById.js'
@@ -28,5 +30,6 @@ router.delete('/book/delete/:id', bookDelete)
 router.post('/book/create', bookPost)
 //= ======================Comments Routes=============================
 
-// No hecho ninguna ruta sobre los Commentarios aun porque nose como vamos a manejar eso aun
+// Middlewares
+router.use(errorHandler)
 export default router
