@@ -11,7 +11,7 @@ const BookSchema = new moongose.Schema({
   },
   subscription: {
     type: String,
-    enum: ['free', 'bronce', 'silver', 'gold'],
+    enum: ['free', 'premium'],
     default: 'free',
   },
   user: {
@@ -34,6 +34,6 @@ BookSchema.set('toJSON', {
   },
 })
 
-const newBook = moongose.model('Book', BookSchema)
+const Book = moongose.model('Book', BookSchema)
 
-export default newBook
+export default Book
