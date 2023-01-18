@@ -21,6 +21,7 @@ import deleteComment from './controllers/Comments/deleteComment.js'
 import CreateCommentUser from './controllers/Comments/createCommentUser.js'
 import getCommentsBook from './controllers/Comments/getCommentsBook.js'
 import getCommentsUser from './controllers/Comments/getCommentsUser.js'
+import getAllComments from './controllers/Comments/getAllComments.js'
 //= ======================Login Controllers================================
 import loginRouter from './controllers/Login/Login.js'
 
@@ -39,12 +40,13 @@ router.put('/book/update/:id', bookUpdate)
 router.delete('/book/delete/:id', bookDelete)
 router.post('/book/create', bookPost)
 //= =====================Comments Routes=============================
-router.post('/comment/create/book/:id', createCommentBook)
+router.post('/comment/create/book', createCommentBook)
 router.put('/comment/update/:id', updateComment)
 router.delete('/comment/delete/:id', deleteComment)
-router.post('/comment/create/user/:id', CreateCommentUser)
+router.post('/comment/create/user', CreateCommentUser)
 router.get('/comment/book/:id', getCommentsBook)
 router.get('/comment/user/:id', getCommentsUser)
+router.get('/allComents', getAllComments)
 //= =====================Login Routes================================
 router.post('/login', loginRouter)
 
