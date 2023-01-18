@@ -12,6 +12,7 @@ const userPost = async (req, res) => {
     password: passwordHash,
     name,
     books: [],
+    comment: [],
   })
 
   const savedUser = await user.save()
