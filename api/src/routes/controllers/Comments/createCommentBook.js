@@ -1,16 +1,39 @@
+import jwt from 'jsonwebtoken'
+
+import Book from '../../../models/Book.js'
 import Comment from '../../../models/Comment.js'
+import User from '../../../models/User.js'
 
 const createCommentBook = async (req, res) => {
   try {
-    const { comment, book } = req.body
+    const { comment, id } = req.body
 
-    if (!comment || !book) res.status(400).send('comment and book is required')
+    const authorization = req.get('authorization')
 
-    const newComment = new Comment({ comment, book })
+    if (authorization && authorization.toLowerCase().startsWith('bearer ')) {
+      const token = authorization.substring(7)
+      const decodedToken = jwt.verify(token, process.env.SECRET)
 
-    await newComment.save()
+      if (!token || !decodedToken.id) {
+        return res.status(401).json({ error: 'token missing or invalid' })
+      }
 
-    res.status(200).send('Created book comment')
+      const user = await User.findById(decodedToken.id)
+
+      if (!comment) res.status(400).send('comment content is required')
+
+      const book = await Book.findById(id)
+
+      const newComment = new Comment({ comment, book: book._id, user: user._id })
+
+      await newComment.save()
+      book.comment = book.comment.concat(newComment._id)
+      user.comment = user.comment.concat(newComment._id)
+      await user.save()
+      await book.save()
+
+      res.status(200).send('Created book comment')
+    }
   } catch (error) {
     res.status(404).send(error.message)
   }
