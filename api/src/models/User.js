@@ -25,6 +25,12 @@ const UserSchema = new moongose.Schema({
       ref: 'Book',
     },
   ],
+  comment: [
+    {
+      type: moongose.Schema.Types.ObjectId,
+      ref: 'Comment',
+    },
+  ],
 })
 
 UserSchema.set('toJSON', {
