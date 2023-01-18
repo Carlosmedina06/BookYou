@@ -11,6 +11,7 @@ const userPost = async (req, res) => {
     email,
     password: passwordHash,
     name,
+    books: [],
   })
 
   const savedUser = await user.save()
