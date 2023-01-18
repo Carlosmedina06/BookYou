@@ -1,5 +1,5 @@
-const getCommentUser = (req, res) => {
+const getCommentsUser = (req, res) => {
   res.send('getCommentUser')
 }
 
-export default getCommentUser
+export default getCommentsUser
