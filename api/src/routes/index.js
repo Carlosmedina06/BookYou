@@ -14,11 +14,14 @@ import getBookById from './controllers/books/getBookById.js'
 import bookUpdate from './controllers/books/bookUpdate.js'
 import bookDelete from './controllers/books/bookDelete.js'
 import bookPost from './controllers/books/bookPost.js'
-//=======================Comments Controllers==========================
+//= ======================Comments Controllers==========================
 import createCommentBook from './controllers/Comments/createCommentBook.js'
 import updateComment from './controllers/Comments/updateComment.js'
 import deleteComment from './controllers/Comments/deleteComment.js'
-//=======================Login Controllers================================
+import CreateCommentUser from './controllers/Comments/createCommentUser.js'
+import getCommentsBook from './controllers/Comments/getCommentsBook.js'
+import getCommentsUser from './controllers/Comments/getCommentsUser.js'
+//= ======================Login Controllers================================
 import loginRouter from './controllers/Login/Login.js'
 
 const router = Router()
@@ -35,11 +38,14 @@ router.get('/book/:id', getBookById)
 router.put('/book/update/:id', bookUpdate)
 router.delete('/book/delete/:id', bookDelete)
 router.post('/book/create', bookPost)
-//======================Comments Routes=============================
-router.post('/comment/create/book', createCommentBook)
+//= =====================Comments Routes=============================
+router.post('/comment/create/book/:id', createCommentBook)
 router.put('/comment/update/:id', updateComment)
 router.delete('/comment/delete/:id', deleteComment)
-//======================Login Routes================================
+router.post('/comment/create/user/:id', CreateCommentUser)
+router.get('/comment/book/:id', getCommentsBook)
+router.get('/comment/user/:id', getCommentsUser)
+//= =====================Login Routes================================
 router.post('/login', loginRouter)
 
 // Middlewares
