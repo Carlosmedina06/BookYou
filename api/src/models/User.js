@@ -11,7 +11,7 @@ const UserSchema = new moongose.Schema({
   },
   subscription: {
     type: String,
-    enum: ['free', 'bronce', 'silver', 'gold'],
+    enum: ['free', 'premium'],
     default: 'free',
   },
   role: {
@@ -25,6 +25,12 @@ const UserSchema = new moongose.Schema({
       ref: 'Book',
     },
   ],
+  comment: [
+    {
+      type: moongose.Schema.Types.ObjectId,
+      ref: 'Comment',
+    },
+  ],
 })
 
 UserSchema.set('toJSON', {
@@ -32,9 +38,11 @@ UserSchema.set('toJSON', {
     returnedObject.id = returnedObject._id.toString()
     delete returnedObject._id
     delete returnedObject.__v
+
+    delete returnedObject.password
   },
 })
 
-const newUser = moongose.model('User', UserSchema)
+const User = moongose.model('User', UserSchema)
 
-export default newUser
+export default User
