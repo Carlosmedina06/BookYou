@@ -8,11 +8,11 @@ function App() {
     <div className="App">
       <h1>PF-HENRY</h1>
       <Routes>
-        <Route path='/'>
-          <Home/>
+        <Route path='/' element={<Home/>}>
+          
         </Route>
-        <Route path='dashBoard'>
-          <DashBoard/>
+        <Route path='/dashBoard' element={<DashBoard/>}>
+          
         </Route>
       </Routes>
     </div>
