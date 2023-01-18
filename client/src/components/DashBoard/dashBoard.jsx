@@ -9,7 +9,6 @@ export const DashBoard = () => {
 
       <div className={style.contenedor}>
         <div className={style.Usuario}>
-          {' '}
           BookYou
           <div className={style.Solapas}>
             <div> USUARIO </div>
@@ -17,7 +16,9 @@ export const DashBoard = () => {
               <NavLink to="/home"> Inicio </NavLink>
             </button>
             <button> Registro de Usuarios </button>
-            <button> Balance de actividad </button>
+            <button> Estadísticas </button>
+            <button> Cerrar sesión </button>
+            
           </div>
         </div>
         <div className={style.datos}> Resto de la info</div>
