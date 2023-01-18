@@ -14,6 +14,10 @@ import getBookById from './controllers/books/getBookById.js'
 import bookUpdate from './controllers/books/bookUpdate.js'
 import bookDelete from './controllers/books/bookDelete.js'
 import bookPost from './controllers/books/bookPost.js'
+//= =======================Comments Controllers==========================
+import createCommentBook from './controllers/Comments/createCommentBook.js'
+import updateComment from './controllers/Comments/updateComment.js'
+import deleteComment from './controllers/Comments/deleteComment.js'
 const router = Router()
 
 //= ======================Users Routes================================
@@ -29,7 +33,9 @@ router.put('/book/update/:id', bookUpdate)
 router.delete('/book/delete/:id', bookDelete)
 router.post('/book/create', bookPost)
 //= ======================Comments Routes=============================
-
+router.post('/comment/create/book', createCommentBook)
+router.put('/comment/update/:id', updateComment)
+router.delete('/comment/delete/:id', deleteComment)
 // Middlewares
 router.use(errorHandler)
 export default router
