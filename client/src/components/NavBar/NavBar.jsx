@@ -2,21 +2,24 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 const NavBar = () =>{
 return(
-<div>
-    <div>
-        <img src="https://res.cloudinary.com/dn8jxsqka/image/upload/v1674004061/logo_bookyou_e4pt1y.png" alt="BOOKYOU Logo" />
-    </div>
-    <div>
-        <NavLink to="/home">Inicio</NavLink>
-        <NavLink to="/home">Mis Libros</NavLink>
-        <NavLink to="/home">Perfil</NavLink>
-        <NavLink to="/home">Mis publicaciones</NavLink>
-        <h1>Tailwind</h1>
-        <h2>CSS</h2>
+<div className="fixed bg-black h-screen ">
+<div className="text-4xl font-extrabold my-14 mx-5">
+  <span className="text-white">
+    BOOKYOU
+  </span>
+</div>
+
+    <div className="text-white text-xl my-20 mx-10 flex-col place-content-center">
+        <div className="my-3"><NavLink to="/home">Inicio</NavLink></div>
+        <div  className="my-3"><NavLink to="/home">Mis Libros</NavLink></div>
+        <div  className="my-3"><NavLink to="/home">Perfil</NavLink></div>
+        <div  className="my-3"><NavLink to="/home">Mis publicaciones</NavLink></div>
+        
        
     </div>
-   
-    <button className="btn btn-blue">Boton</button>
+   <div className="flex justify-center mt-36" >
+   <div> <button className="bg-transparent text-white hover:bg-black text-white font-semibold hover:text-white py-2 px-4 border border-white-500  rounded">Dark/ligth mode</button></div>
+    </div>
 </div>
 )}
 
