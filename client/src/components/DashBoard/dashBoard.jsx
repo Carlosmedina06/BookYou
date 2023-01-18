@@ -1,7 +1,27 @@
-export const DashBoard = ()=>{
-    return(
-        <div>
-            <h1>This is the DashBoard</h1>
+import { NavLink } from 'react-router-dom'
+
+import style from '../components/Dashboard.module.css'
+
+export const DashBoard = () => {
+  return (
+    <div>
+      <h1>Dashboard Administrador</h1>
+
+      <div className={style.contenedor}>
+        <div className={style.Usuario}>
+          {' '}
+          BookYou
+          <div className={style.Solapas}>
+            <div> USUARIO </div>
+            <button>
+              <NavLink to="/home"> Inicio </NavLink>
+            </button>
+            <button> Registro de Usuarios </button>
+            <button> Balance de actividad </button>
+          </div>
         </div>
-    )
+        <div className={style.datos}> Resto de la info</div>
+      </div>
+    </div>
+  )
 }
