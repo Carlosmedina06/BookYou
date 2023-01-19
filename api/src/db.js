@@ -1,7 +1,6 @@
 import mongoose from 'mongoose'
 import dotenv from 'dotenv'
 dotenv.config()
-
 const { DB_PASSWORD } = process.env
 
 const connectionString = `mongodb+srv://carlosmedina06:${DB_PASSWORD}@carlosdb.9aqig43.mongodb.net/test`
