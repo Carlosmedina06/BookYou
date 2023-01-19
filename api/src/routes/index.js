@@ -2,6 +2,7 @@ import { Router } from 'express'
 
 import { errorHandler } from '../middlewares/errorHandler.js'
 
+
 import userRouter from './User/User.routes.js'
 import bookRouter from './Book/Book.routes.js'
 import commentRouter from './Comment/Comment.routes.js'
@@ -26,10 +27,13 @@ router.use('/category', categoryRouter)
 //= =====================Login Routes================================
 router.use('/login', loginRouter)
 
+
 //= =====================Checkout Routes================================
 router.use('/checkout', checkOutRouter)
 
 //= =====================Error Middlewares================================
+=======
+
 router.use(errorHandler)
 
 export default router
