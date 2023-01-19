@@ -20,7 +20,8 @@
     "express-fileupload": "^1.4.0",
     "jsonwebtoken": "^9.0.0",
     "mongoose": "^6.8.3",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "stripe": "^11.6.0"
   },
   "devDependencies": {
     "eslint": "^8.32.0",
