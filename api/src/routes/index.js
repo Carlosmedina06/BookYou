@@ -21,6 +21,8 @@ import deleteComment from './controllers/Comments/deleteComment.js'
 import getCommentsUser from './controllers/Comments/getCommentsUser.js'
 //= ======================Login Controllers================================
 import loginRouter from './controllers/Login/Login.js'
+import getAllCategorys from './controllers/Categorys/getAllCategorys.js'
+import postCategory from './controllers/Categorys/postCategory.js'
 
 const router = Router()
 
@@ -43,6 +45,8 @@ router.delete('/comment/delete/:id', deleteComment)
 router.get('/comment/user/:id', getCommentsUser)
 //= =====================Login Routes================================
 router.post('/login', loginRouter)
+router.get('/category', getAllCategorys)
+router.post('/category', postCategory)
 
 // Middlewares
 router.use(errorHandler)
