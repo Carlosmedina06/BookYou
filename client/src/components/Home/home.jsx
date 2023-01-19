@@ -1,7 +1,8 @@
 import { useSelector, useDispatch } from 'react-redux'
 import { useEffect } from 'react'
 
-import { getBooks, getCategory } from '../../redux/actions/index'
+import { getBooks, getCategorys } from '../../redux/actions/index'
+import FiltradoGenero from '../FiltradoGenero/filtradoGenero'
 
 /* import NavBar from '../NavBar/NavBar' */
 export const Home = () => {
@@ -14,13 +15,14 @@ export const Home = () => {
 
   useEffect(() => {
     dispatch(getBooks())
-    dispatch(getCategory())
+    dispatch(getCategorys())
   }, [dispatch])
 
   return (
     <div>
       {/* <NavBar /> */}
       <h1>This is Home</h1>
+      <FiltradoGenero />
     </div>
   )
 }
