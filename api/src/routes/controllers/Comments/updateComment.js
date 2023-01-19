@@ -23,7 +23,7 @@ const updateComment = async (req, res, next) => {
       }
       const user = await User.findById(decodedToken.id)
 
-      if (parseInt(user.id) === parseInt(targetComment.user)) {
+      if (user.id.toString() === targetComment.user.toString()) {
         targetComment.comment = comment
         targetComment.save()
         res.status(200).json('comentario actualizado ')
