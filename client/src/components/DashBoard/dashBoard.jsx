@@ -1,6 +1,6 @@
 import { NavLink } from 'react-router-dom'
 
-import style from '../components/Dashboard.module.css'
+import style from '../DashBoard/Dashboard.module.css'
 
 export const DashBoard = () => {
   return (
@@ -18,7 +18,7 @@ export const DashBoard = () => {
             <button> Registro de Usuarios </button>
             <button> Estadísticas </button>
             <button> Cerrar sesión </button>
-            </div>
+          </div>
         </div>
         <div className={style.datos}> Resto de la info</div>
       </div>
