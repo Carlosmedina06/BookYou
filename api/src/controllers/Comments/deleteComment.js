@@ -1,4 +1,4 @@
-import Comment from '../../../models/Comment.js'
+import Comment from '../../models/Comment.js'
 const deleteComment = async (req, res, next) => {
   try {
     const { id } = req.params

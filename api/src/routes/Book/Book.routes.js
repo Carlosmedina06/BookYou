@@ -1,10 +1,10 @@
 import { Router } from 'express'
 
-import bookPost from '../../controllers/books/bookPost'
-import getBookById from '../../controllers/books/getBookById'
-import bookDelete from '../controllers/books/bookDelete'
-import bookUpdate from '../controllers/books/bookUpdate'
-import getAllBooks from '../controllers/books/getAllBooks'
+import getAllBooks from '../../controllers/books/getAllBooks.js'
+import getBookById from '../../controllers/books/getBookById.js'
+import bookUpdate from '../../controllers/books/bookUpdate.js'
+import bookDelete from '../../controllers/books/bookDelete.js'
+import bookPost from '../../controllers/books/bookPost.js'
 
 const bookRouter = Router()
 

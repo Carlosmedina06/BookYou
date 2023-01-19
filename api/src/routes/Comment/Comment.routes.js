@@ -1,9 +1,9 @@
 import { Router } from 'express'
 
-import createCommentBook from '../../controllers/Comments/createCommentBook'
-import deleteComment from '../../controllers/Comments/deleteComment'
-import getCommentsUser from '../../controllers/Comments/getCommentsUser'
-import updateComment from '../../controllers/Comments/updateComment'
+import createCommentBook from '../../controllers/Comments/createCommentBook.js'
+import updateComment from '../../controllers/Comments/updateComment.js'
+import deleteComment from '../../controllers/Comments/deleteComment.js'
+import getCommentsUser from '../../controllers/Comments/getCommentsUser.js'
 
 const commentRouter = Router()
 
