@@ -2,7 +2,7 @@ import React from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import getBookById from "../../../../api/src/routes/controllers/books/getBookById";
+//import getBookById from "../../../../api/src/routes/controllers/books/getBookById";
 import NavBar from "../NavBar/NavBar";
 
 
@@ -13,7 +13,7 @@ const {id} = useParams()
 const details = useSelector(state => state.detail)
 useEffect(()=>{
     
-dispatch(getBookById(id))
+//dispatch(getBookById(id))
 
 })
 

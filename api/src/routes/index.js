@@ -32,7 +32,7 @@ router.use('/login', loginRouter)
 router.use('/checkout', checkOutRouter)
 
 //= =====================Error Middlewares================================
-=======
+
 
 router.use(errorHandler)
 
