@@ -1,6 +1,7 @@
 import axios from 'axios'
 /* ACA ESTA TODA LA CONEXION BACK Y FRONT!! */
-
+export const GET_USERS='GET_USERS'
+export const ERROR='ERROR'
 /* ----------------GET BOOKS-------------- */
 export const getBooks = () => async (dispatch) => {
   try {
@@ -15,17 +16,39 @@ export const getBooks = () => async (dispatch) => {
   }
 }
 
-export const getCategory = () => async (dispatch) => {
+export const getCategorys = () => async (dispatch) => {
   try {
-    const info = await axios.get('http://localhost:3001/books')
-    let category = info.data.map((i) => i.category)
+    const info = await axios.get('http://localhost:3001/category')
 
     return dispatch({
-      type: 'GET_GENERO',
-      payload: category,
+      type: 'GET_ALL_GENEROS',
+      payload: info.data,
     })
   } catch (error) {
     dispatch(error)
+  }
+}
+
+export const filterCategorys = (payload) => {
+  return {
+    type: 'FILTER_CATEGORY',
+    payload,
+  }
+}
+
+export const getUsers = () => async (dispatch) => {
+  try {
+    const info = await axios.get('http://localhost:3001/users')
+
+    return dispatch({
+      type: GET_USERS,
+      payload: info.data,
+    })
+  } catch (error) {
+    dispatch({
+      type: ERROR,
+      payload: error.message
+    })
   }
 }
 /* -------------GET BOOKS BY ID------------- */

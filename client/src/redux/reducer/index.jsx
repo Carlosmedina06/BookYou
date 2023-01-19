@@ -1,12 +1,20 @@
+import { ERROR, GET_USERS } from "../actions"
 const initialState = {
   books: [],
-  allBooks: [], //copia del estado de todos los perros
+  allBooks: [],
   detail: [],
   category: [],
-  //se puede guardar filtro.
+  users: [],
+  error: [],
 }
 
 function rootReducer(state = initialState, action) {
+  let allCateg = state.allBooks
+  let categFilter =
+    action.payload === 'todos'
+      ? allCateg
+      : allCateg.filter((c) => c.category?.includes(action.payload))
+
   switch (action.type) {
     case 'GET_BOOKS':
       return {
@@ -14,12 +22,26 @@ function rootReducer(state = initialState, action) {
         books: action.payload,
         allBooks: action.payload,
       }
-    case 'GET_GENERO':
+    case 'GET_ALL_GENEROS':
       return {
         ...state,
         category: action.payload,
       }
-
+    case 'FILTER_CATEGORY':
+      return {
+        ...state,
+        books: categFilter,
+      }
+      case GET_USERS:
+        return {
+          ...state,
+          users: action.payload
+        }
+      case ERROR:
+        return {
+          ...state,
+          error: action.payload
+        }
     default:
       return state
   }
