@@ -11,8 +11,8 @@ const bookUpdate = async (req, res, next) => {
     if (authorization.length <= 7) {
       res.status(401).json('token missing')
     }
-    if (!content || !description || !title || !img) {
-      res.status(400).json('Campos incompletos')
+    if (!content || !description || !title) {
+      res.status(400).json('Los campos obligatorios no pueden estar vacíos')
     }
     if (authorization && authorization.toLowerCase().startsWith('bearer ')) {
       const token = authorization.substring(7)
@@ -23,11 +23,8 @@ const bookUpdate = async (req, res, next) => {
       }
       const modifiedBook = await Book.findById(id)
 
-      if (modifiedBook.user.id === decodedToken.id) {
-        modifiedBook.title = title
-        modifiedBook.content = content
-        modifiedBook.description = description
-        modifiedBook.img = img
+      if (parseInt(modifiedBook.user) === parseInt(decodedToken.id)) {
+        await Book.findByIdAndUpdate(id, { content, description, title, img })
         res.status(200).json(`El libro fue modificado con éxito`)
       } else {
         res.status(401).json('Acción no permitida')
