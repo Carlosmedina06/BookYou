@@ -1,7 +1,7 @@
 import axios from 'axios'
 /* ACA ESTA TODA LA CONEXION BACK Y FRONT!! */
-export const GET_USERS='GET_USERS'
-export const ERROR='ERROR'
+export const GET_USERS = 'GET_USERS'
+export const ERROR = 'ERROR'
 /* ----------------GET BOOKS-------------- */
 export const getBooks = () => async (dispatch) => {
   try {
@@ -47,7 +47,7 @@ export const getUsers = () => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: ERROR,
-      payload: error.message
+      payload: error.message,
     })
   }
 }
