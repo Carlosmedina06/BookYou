@@ -1,14 +1,13 @@
 import jwt from 'jsonwebtoken'
 
-import Book from '../../../models/Book.js'
 import Comment from '../../../models/Comment.js'
+import User from '../../../models/User.js'
 
-const bookDelete = async (req, res, next) => {
+const updateComment = async (req, res, next) => {
   try {
     const { id } = req.params
-
-    if (!id) res.status(400).json('ID required')
-
+    const { comment } = req.body
+    const targetComment = await Comment.findById(id)
     const authorization = req.get('authorization')
 
     if (authorization.length <= 7) {
@@ -16,26 +15,27 @@ const bookDelete = async (req, res, next) => {
     }
     if (authorization && authorization.toLowerCase().startsWith('bearer ')) {
       const token = authorization.substring(7)
+
       const decodedToken = jwt.verify(token, process.env.SECRET)
 
       if (!token || !decodedToken.id) {
         return res.status(401).json({ error: 'token missing or invalid' })
       }
-      const book = await Book.findById(id)
+      const user = await User.findById(decodedToken.id)
 
-      if (book.user.toString() === decodedToken.id.toString()) {
-        await Comment.deleteMany({ _id: { $in: book.comment } })
-
-        const deletedBook = await Book.findByIdAndDelete(id)
-
-        res.status(200).json(`The workbook  ${deletedBook.title} was deleted`)
+      if (user.id.toString() === targetComment.user.toString()) {
+        targetComment.comment = comment
+        targetComment.save()
+        res.status(200).json('comentario actualizado ')
       } else {
-        res.status(401).json('Unauthorized')
+        res.status(400).json('no tienes permisos')
       }
     }
+
+    // const targetComment = await Comment.findByIdAndUpdate(id, { comment }
   } catch (error) {
     next(error)
   }
 }
 
-export default bookDelete
+export default updateComment

@@ -1,20 +1,20 @@
+
 import {Routes, Route } from 'react-router-dom'
 import Bookdetail from './components/Bookdetail/Bookdetail'
-import Test from './components/Bookdetail/test'
 import { DashBoard } from './components/DashBoard/dashBoard'
 import { Home } from './components/Home/home'
-
+import { Routes, Route } from 'react-router-dom'
 
 function App() {
   return (
     <div className="App">
-      
       <Routes>
-        <Route path='/' element={<Home/>}/>
+        <Route element={<Home />} path="/" />
         <Route path='/dashBoard' element={<DashBoard/>}/>
         <Route path='/bookdetail/:id'  element={<Bookdetail/>} />
-        <Route path="/test" element={<Test/>} />
        </Routes>
+      </Routes>
+
     </div>
   )
 }

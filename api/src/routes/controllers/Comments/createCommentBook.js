@@ -2,12 +2,11 @@ import jwt from 'jsonwebtoken'
 
 import Book from '../../../models/Book.js'
 import Comment from '../../../models/Comment.js'
+import User from '../../../models/User.js'
 
-const bookDelete = async (req, res, next) => {
+const createCommentBook = async (req, res) => {
   try {
-    const { id } = req.params
-
-    if (!id) res.status(400).json('ID required')
+    const { comment, id } = req.body
 
     const authorization = req.get('authorization')
 
@@ -21,21 +20,26 @@ const bookDelete = async (req, res, next) => {
       if (!token || !decodedToken.id) {
         return res.status(401).json({ error: 'token missing or invalid' })
       }
+
+      const user = await User.findById(decodedToken.id)
+
+      if (!comment) res.status(400).send('comment content is required')
+
       const book = await Book.findById(id)
 
-      if (book.user.toString() === decodedToken.id.toString()) {
-        await Comment.deleteMany({ _id: { $in: book.comment } })
+      const newComment = new Comment({ comment, book: book._id, user: user._id })
 
-        const deletedBook = await Book.findByIdAndDelete(id)
+      await newComment.save()
+      book.comment = book.comment.concat(newComment._id)
+      user.comment = user.comment.concat(newComment._id)
+      await user.save()
+      await book.save()
 
-        res.status(200).json(`The workbook  ${deletedBook.title} was deleted`)
-      } else {
-        res.status(401).json('Unauthorized')
-      }
+      res.status(200).send('Created book comment')
     }
   } catch (error) {
-    next(error)
+    res.status(404).send(error.message)
   }
 }
 
-export default bookDelete
+export default createCommentBook
