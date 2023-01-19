@@ -1,3 +1,4 @@
+import { ERROR, GET_USERS } from "../actions"
 const initialState = {
   books: [],
   allBooks: [],
@@ -31,7 +32,16 @@ function rootReducer(state = initialState, action) {
         ...state,
         books: categFilter,
       }
-
+      case GET_USERS:
+        return {
+          ...state,
+          users: action.payload
+        }
+      case ERROR:
+        return {
+          ...state,
+          error: action.payload
+        }
     default:
       return state
   }
