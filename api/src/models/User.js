@@ -19,6 +19,10 @@ const UserSchema = new moongose.Schema({
     enum: ['user', 'admin'],
     default: 'user',
   },
+  disabled: {
+    type: Boolean,
+    default: false,
+  },
   books: [
     {
       type: moongose.Schema.Types.ObjectId,

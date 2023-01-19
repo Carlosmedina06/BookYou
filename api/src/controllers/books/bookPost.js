@@ -2,8 +2,8 @@ import jwt from 'jsonwebtoken'
 
 import Book from '../../../models/Book.js'
 import User from '../../../models/User.js'
+import cloudinary from '../../../utils/cloudinary.js'
 
-import cloudinary from './Cloudinary.js'
 const bookPost = async (req, res) => {
   try {
     const { description, title, img, subscription, category } = req.body
