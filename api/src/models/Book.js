@@ -5,7 +5,6 @@ const BookSchema = new moongose.Schema({
   description: String,
   content: String,
   img: String,
-  bookUrl: String,
   createdAt: {
     type: Date,
     default: Date.now,
@@ -26,7 +25,8 @@ const BookSchema = new moongose.Schema({
     },
   ],
   category: {
-    type: String,
+    type: moongose.Schema.Types.ObjectId,
+    ref: 'Category',
     enum: [
       'Arte',
       'Biografías, Literaturas Y Estudios Literarios',
