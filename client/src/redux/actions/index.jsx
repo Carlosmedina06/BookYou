@@ -36,6 +36,13 @@ export const filterCategorys = (payload) => {
   }
 }
 
+export const orderAlf = (payload) => {
+  return {
+    type: 'ORDER_ALF',
+    payload,
+  }
+}
+
 export const getUsers = () => async (dispatch) => {
   try {
     const info = await axios.get('http://localhost:3001/users')

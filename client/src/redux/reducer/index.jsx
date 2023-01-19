@@ -1,4 +1,4 @@
-import { ERROR, GET_USERS } from "../actions"
+import { ERROR, GET_USERS } from '../actions'
 const initialState = {
   books: [],
   allBooks: [],
@@ -14,6 +14,11 @@ function rootReducer(state = initialState, action) {
     action.payload === 'todos'
       ? allCateg
       : allCateg.filter((c) => c.category?.includes(action.payload))
+
+  let bookSort =
+    action.payload === 'asc'
+      ? state.books.sort((a, b) => (a.title > b.title ? 1 : a.title < b.title ? -1 : 0))
+      : state.books.sort((a, b) => (a.title > b.title ? -1 : a.title < b.title ? 1 : 0))
 
   switch (action.type) {
     case 'GET_BOOKS':
@@ -32,16 +37,21 @@ function rootReducer(state = initialState, action) {
         ...state,
         books: categFilter,
       }
-      case GET_USERS:
-        return {
-          ...state,
-          users: action.payload
-        }
-      case ERROR:
-        return {
-          ...state,
-          error: action.payload
-        }
+    case 'ORDER_ALF':
+      return {
+        ...state,
+        books: bookSort,
+      }
+    case GET_USERS:
+      return {
+        ...state,
+        users: action.payload,
+      }
+    case ERROR:
+      return {
+        ...state,
+        error: action.payload,
+      }
     default:
       return state
   }
