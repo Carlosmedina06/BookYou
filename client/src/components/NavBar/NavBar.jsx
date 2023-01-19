@@ -18,7 +18,7 @@ return(
        
     </div>
    <div className="flex justify-center mt-36" >
-   <div> <button className="bg-transparent text-white hover:bg-black text-white font-semibold hover:text-white py-2 px-4 border border-white-500  rounded">Dark/ligth mode</button></div>
+   <div> <button className="bg-transparent text-white hover:bg-black text-white font-semibold hover:text-white py-2 px-4 border border-white-500  rounded">Suscribirse</button></div>
     </div>
 </div>
 )}
