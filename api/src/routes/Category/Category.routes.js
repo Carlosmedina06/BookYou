@@ -5,7 +5,7 @@ import postCategory from '../../controllers/categorys/postCategory.js'
 
 const categoryRouter = Router()
 
-categoryRouter.get('/category', geAllCategorys)
-categoryRouter.post('/category', postCategory)
+categoryRouter.get('/', geAllCategorys)
+categoryRouter.post('/', postCategory)
 
 export default categoryRouter
