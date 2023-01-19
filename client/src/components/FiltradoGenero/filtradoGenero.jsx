@@ -15,3 +15,5 @@ export const FiltradoGenero = () => {
     </div>
   )
 }
+
+export default FiltradoGenero

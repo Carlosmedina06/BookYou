@@ -18,8 +18,7 @@ export const DashBoard = () => {
             <button> Registro de Usuarios </button>
             <button> Estadísticas </button>
             <button> Cerrar sesión </button>
-            
-          </div>
+            </div>
         </div>
         <div className={style.datos}> Resto de la info</div>
       </div>
