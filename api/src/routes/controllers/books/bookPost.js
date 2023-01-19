@@ -6,7 +6,7 @@ import User from '../../../models/User.js'
 import cloudinary from './Cloudinary.js'
 const bookPost = async (req, res) => {
   try {
-    const { description, title, img } = req.body
+    const { description, title, img, subscription, category } = req.body
     const file = await cloudinary(req.files.content.tempFilePath)
     const authorization = req.get('authorization')
 
@@ -25,10 +25,12 @@ const bookPost = async (req, res) => {
       if (!description || !title) res.status(400).send('Missing Submit Properties')
       const book = new Book({
         title,
-        content: file.secure_url || '',
         description,
+        content: file.secure_url || '',
         img: img || 'https://www.esstudioediciones.com/blog/escribir-libro-editorial-publicar.jpg',
         user: user._id,
+        subscription: subscription || ['free'],
+        category: category || ['Arte'],
         comments: [],
       })
 
