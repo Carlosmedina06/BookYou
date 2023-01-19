@@ -1,10 +1,32 @@
 import Stripe from 'stripe'
+import dotenv from 'dotenv'
+dotenv.config()
 
-const stripe = Stripe(process.env.STRIPE_SECRET_KEY)
+const stripe = Stripe(process.env.STRIPE)
 
 const stripeCheckout = async (req, res) => {
-  console.log(stripe)
-  res.status(200).json({ message: 'Working Stripe Checkout' })
+  const { amount, id, email } = req.body
+
+  try {
+    const paymentIntent = await stripe.paymentIntents.create({
+      amount,
+      currency: 'USD',
+      customer: id,
+      payment_method_types: ['card'],
+      receipt_email: email,
+    })
+
+    const subscriptions = await stripe.subscriptions.create({
+      customer: id,
+      items: [{ price: paymentIntent.amount }],
+      paymentIntent: paymentIntent.id,
+    })
+
+    console.log(subscriptions)
+    console.log(paymentIntent)
+  } catch (error) {
+    res.json({ error: error.message })
+  }
 }
 
 export default stripeCheckout
