@@ -18,6 +18,8 @@ const loginRouter = async (req, res) => {
     username: user.username,
     id: user._id,
     name: user.name,
+    role: user.role,
+    subscription: user.subscription,
   }
   const token = jwt.sign(userForToken, process.env.SECRET)
 
