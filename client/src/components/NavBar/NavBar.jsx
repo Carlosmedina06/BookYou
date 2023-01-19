@@ -7,16 +7,17 @@ return(
   <span className="text-white">
     BOOKYOU
   </span>
-</div>
+</div >
 
-    <div className="text-white text-xl my-20 mx-10 flex-col place-content-center">
-        <div className="my-3"><NavLink to="/home">Inicio</NavLink></div>
-        <div  className="my-3"><NavLink to="/home">Mis Libros</NavLink></div>
-        <div  className="my-3"><NavLink to="/home">Perfil</NavLink></div>
-        <div  className="my-3"><NavLink to="/home">Mis publicaciones</NavLink></div>
-        
+    <nav className="text-white text-xl my-20 mx-10 flex-col place-content-center">
+       <ul>
+        <li className="my-3"><NavLink to="/home">Inicio</NavLink></li>
+        <li className="my-3"><NavLink to="/home">Mis Libros</NavLink></li>
+        <li  className="my-3"><NavLink to="/home">Perfil</NavLink></li>
+        <li className="my-3"><NavLink to="/home">Mis publicaciones</NavLink></li>
+        </ul>
        
-    </div>
+    </nav>
    <div className="flex justify-center mt-36" >
    <div> <button className="bg-transparent text-white hover:bg-black text-white font-semibold hover:text-white py-2 px-4 border border-white-500  rounded">Suscribirse</button></div>
     </div>
