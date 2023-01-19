@@ -1,6 +1,7 @@
 import axios from 'axios'
 /* ACA ESTA TODA LA CONEXION BACK Y FRONT!! */
-
+export const GET_USERS='GET_USERS'
+export const ERROR='ERROR'
 /* ----------------GET BOOKS-------------- */
 export const getBooks = () => async (dispatch) => {
   try {
@@ -35,6 +36,21 @@ export const filterCategorys = (payload) => {
   }
 }
 
+export const getUsers = () => async (dispatch) => {
+  try {
+    const info = await axios.get('http://localhost:3001/users')
+
+    return dispatch({
+      type: GET_USERS,
+      payload: info.data,
+    })
+  } catch (error) {
+    dispatch({
+      type: ERROR,
+      payload: error.message
+    })
+  }
+}
 /* -------------GET BOOKS BY ID------------- */
 /* export const getUserId = (id) => async (dispatch) => {
   try {
