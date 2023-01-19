@@ -6,7 +6,7 @@
   gap:5px;
   }
   
-  .Usuario{
+.Usuario{
   background-color: black ;
   color: white;
   display:grid;
@@ -15,14 +15,14 @@
   
   }
   
-  .Solapas{
+.Solapas{
    height:100%;
    display: flex;
    flex-direction: column;
    justify-content: space-between;
   }
   
-  .datos{
+.datos{
   text-align: center;
   background-color: beige;
   display:grid;
