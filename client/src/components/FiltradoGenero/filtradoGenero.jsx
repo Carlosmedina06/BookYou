@@ -1,17 +1,26 @@
-/* import { filterGeneros } from '../../redux/bookActions'
+import { useDispatch, useSelector } from 'react-redux'
+
+import { filterCategorys } from '../../redux/actions/index'
 
 export const FiltradoGenero = () => {
-  function handleFilterStatus(e) {
-    dispatch(filterGeneros(e.target.value))
+  const dispatch = useDispatch()
+
+  const allGeneros = useSelector((state) => state.category)
+
+  function handleFilterCategorys(e) {
+    dispatch(filterCategorys(e.target.value))
   }
 
   return (
     <div>
-      <select onChange={(e) => handleFilterStatus(e)}>
-        <option value="todos">Todos</option>
+      <select onChange={(e) => handleFilterCategorys(e)}>
+        <option value="todos"> Géneros </option>
+        {allGeneros?.map((c) => (
+          <option key={c.id}> {c.category} </option>
+        ))}
       </select>
     </div>
   )
 }
 
-export default FiltradoGenero */
+export default FiltradoGenero
