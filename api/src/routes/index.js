@@ -23,6 +23,9 @@ import getCommentsUser from './controllers/Comments/getCommentsUser.js'
 import loginRouter from './controllers/Login/Login.js'
 import getAllCategorys from './controllers/Categorys/getAllCategorys.js'
 import postCategory from './controllers/Categorys/postCategory.js'
+//= ======================Stripe Controllers================================
+import stripeCheckout from './controllers/stripe/stripeCheckout.js'
+
 
 const router = Router()
 
@@ -47,6 +50,9 @@ router.get('/comment/user/:id', getCommentsUser)
 router.post('/login', loginRouter)
 router.get('/category', getAllCategorys)
 router.post('/category', postCategory)
+//= =====================Stripe Routes================================
+router.post('/checkout', stripeCheckout)
+
 
 // Middlewares
 router.use(errorHandler)
