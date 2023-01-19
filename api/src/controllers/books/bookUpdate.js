@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken'
 
-import Book from '../../../models/Book.js'
+import Book from '../../models/Book.js'
 
 const bookUpdate = async (req, res, next) => {
   try {

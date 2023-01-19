@@ -1,4 +1,4 @@
-import Categorys from '../../../models/Category.js'
+import Categorys from '../../models/Category.js'
 const postCategory = async (req, res) => {
   try {
     const { categorys } = req.body

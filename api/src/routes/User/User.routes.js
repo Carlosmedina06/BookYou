@@ -1,10 +1,10 @@
 import { Router } from 'express'
 
-import getAllUsers from '../controllers/Users/getAllUsers'
-import getUserById from '../controllers/Users/getUserById'
-import userDelete from '../controllers/Users/userDelete'
-import userPost from '../controllers/Users/userPost'
-import userUpdate from '../controllers/Users/userUpdate'
+import getAllUsers from '../../controllers/Users/getAllUsers.js'
+import getUserById from '../../controllers/Users/getUserById.js'
+import userDelete from '../../controllers/Users/userDelete.js'
+import userPost from '../../controllers/Users/userPost.js'
+import userUpdate from '../../controllers/Users/userUpdate.js'
 
 const userRouter = Router()
 

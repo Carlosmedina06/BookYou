@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken'
 
-import Book from '../../../models/Book.js'
-import Comment from '../../../models/Comment.js'
+import Book from '../../models/Book.js'
+import Comment from '../../models/Comment.js'
 
 const bookDelete = async (req, res, next) => {
   try {
