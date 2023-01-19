@@ -1,17 +1,24 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { useEffect } from 'react'
 
-import { getUsers } from '../../redux/userActions'
-import { getBooks } from '../../redux/bookActions'
+import { getBooks, getUsers } from '../../redux/actions'
+
 export const Landing = () => {
-  const users = useSelector((state) => state.users.users)
+  const users = useSelector((state) => state.users)
 
-  const books = useSelector((state) => state.books.books)
+  const books = useSelector((state) => state.books)
 
   const dispatch = useDispatch()
 
-  if (users.length < 1) dispatch(getUsers())
-  if (books.length < 1) dispatch(getBooks())
+  useEffect(() => {
+    dispatch(getUsers())
+    dispatch(getBooks())
+  }, [])
+
+  //==== si no hay datos en db las dos lineas de abajo generan un loop complicado ======
+  // if(users.length<1) dispatch(getUsers())
+  // if(books.length<1) dispatch(getBooks())
 
   return (
     <div>

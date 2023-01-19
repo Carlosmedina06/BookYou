@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
 .btn {
     @apply py-2 px-4 rounded;
 }
@@ -19,3 +18,17 @@
     @apply rounded overflow-hidden shadow-lg;
 }
 
+.imgdescription{
+
+    width: 300px;
+    height: auto;
+}
+
+
+
+.inputField input{
+
+display: none;
+
+
+}
