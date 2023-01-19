@@ -15,19 +15,26 @@ export const getBooks = () => async (dispatch) => {
   }
 }
 
-export const getCategory = () => async (dispatch) => {
+export const getCategorys = () => async (dispatch) => {
   try {
-    const info = await axios.get('http://localhost:3001/books')
-    let category = info.data.map((i) => i.category)
+    const info = await axios.get('http://localhost:3001/category')
 
     return dispatch({
-      type: 'GET_GENERO',
-      payload: category,
+      type: 'GET_ALL_GENEROS',
+      payload: info.data,
     })
   } catch (error) {
     dispatch(error)
   }
 }
+
+export const filterCategorys = (payload) => {
+  return {
+    type: 'FILTER_CATEGORY',
+    payload,
+  }
+}
+
 /* -------------GET BOOKS BY ID------------- */
 /* export const getUserId = (id) => async (dispatch) => {
   try {

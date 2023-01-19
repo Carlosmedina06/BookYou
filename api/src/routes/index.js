@@ -26,7 +26,6 @@ import postCategory from './controllers/Categorys/postCategory.js'
 //= ======================Stripe Controllers================================
 import stripeCheckout from './controllers/stripe/stripeCheckout.js'
 
-
 const router = Router()
 
 //= ======================Users Routes================================
@@ -52,7 +51,6 @@ router.get('/category', getAllCategorys)
 router.post('/category', postCategory)
 //= =====================Stripe Routes================================
 router.post('/checkout', stripeCheckout)
-
 
 // Middlewares
 router.use(errorHandler)
