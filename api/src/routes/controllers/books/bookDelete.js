@@ -1,4 +1,4 @@
-import { jwt } from 'jsonwebtoken'
+import jwt from 'jsonwebtoken'
 
 import Book from '../../../models/Book.js'
 import Comment from '../../../models/Comment.js'
