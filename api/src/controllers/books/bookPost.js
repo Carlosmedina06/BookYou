@@ -6,7 +6,7 @@ import cloudinary from '../../utils/Cloudinary.js'
 
 const bookPost = async (req, res) => {
   try {
-    const { description, title, img, subscription, category } = req.body
+    const { description, title, img, subscription, category, author } = req.body
 
     if (!req.files) return res.status(400).json('content missing')
     const file = await cloudinary(req.files.content.tempFilePath)
@@ -31,6 +31,7 @@ const bookPost = async (req, res) => {
       description,
       content: file.secure_url || '',
       img: img || 'https://www.esstudioediciones.com/blog/escribir-libro-editorial-publicar.jpg',
+      author: author || 'Anónimo',
       // user: user._id,
       subscription: subscription || 'free',
       category: category || 'Arte',

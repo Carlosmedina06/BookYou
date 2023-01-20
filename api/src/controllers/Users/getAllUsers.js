@@ -2,7 +2,7 @@ import User from '../../models/User.js'
 
 const getAllUsers = async (req, res) => {
   try {
-    const users = await User.find({}).populate('books', {
+    const users = await User.find({ available: { $eq: true } }).populate('books', {
       title: 1,
       description: 1,
       img: 1,
