@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import style from "./Card.module.css";
 import { NavLink } from "react-router-dom";
-import cover from './Cover.jpg';
+
 
 export default function Card ({name,id, autor,img,estado,comentarios  }) {
     const [position, setPosition] = useState(0);
@@ -12,17 +12,17 @@ export default function Card ({name,id, autor,img,estado,comentarios  }) {
     return <div className={style.todo}>
 
     <div className={style.card}>
+    
+        <NavLink to = {`/bookdetail/${id}`}> 
         
-        <NavLink to = {`/book/${id}`}> 
-        
-        <img src = {cover} alt="icon" className= {style.imagen}/>
+        <img src = {img} alt="icon" className= {style.imagen}/>
         
             <div className={style.rectangulo}>
 
         <div className={style.texto} >
-            <h4 style={{ fontSize: "15px" }}> {name}</h4>
-            <p style={{ fontSize: "13px" }}>titulo{name}</p>
-            <h3 style={{ fontSize: "13px" }}>autor: {autor}</h3>
+            
+            <p style={{ fontSize: "13px" }}>Titulo: {name}</p>
+            <h3 style={{ fontSize: "13px" }}>Autor: {autor}</h3>
             <p style={{ fontSize: "13px" }}>Estado: {estado}</p>
             <p style={{ fontSize: "13px" }}>{comentarios} comentarios</p>
         </div>

@@ -1,111 +1,17 @@
 import React, { useState } from 'react';
 
-import Card from "./Card";
+import Card from "../Card/Card";
 import style from "./Carousel.module.css";
+
+import { useSelector } from 'react-redux'
+
 
 
 const Carousel = () => {
+    
+    const libros = useSelector((state) => state.allBooks)
     const [currentIndex, setCurrentIndex] = useState(0);
-    const libros = [
-        {
-            estado:"concluido",
-            comentarios:26,
-            id:2,
-            autor:"choque",
-            name: "El señor de los anillos",
-          
-        },
-        {
-            estado:"concluido",
-            comentarios:246,
-            id:1,
-            autor:"choque",
-            name: "Harry Potter y la piedra filosofal",
-        },
-        {
-            estado:"sin terminar",
-            comentarios:266,
-            id:2,
-            autor:"choque",
-            name: "El señor de los anillos",
-          
-        },
-        {
-            estado:"concluido",
-            comentarios:46,
-            id:1,
-            autor:"choque",
-            name: "Harry Potter y la piedra filosofal",
-        },
-        {
-            estado:"concluido",
-            comentarios:24,
-            id:2,
-            autor:"choque",
-            name: "El señor de los anillos",
-          
-        },
-        {
-            estado:"sin terminar",
-            comentarios:246,
-            id:1,
-            autor:"",
-            name: "Harry Potter y la piedra filosofal",
-        },
-        {
-            estado:"concluido",
-            comentarios:246,
-            id:2,
-            autor:"choque",
-            name: "El señor de los anillos",
-          
-        },
-        {
-            estado:"sin terminar",
-            comentarios:246,
-            id:1,
-            autor:"",
-            name: "Harry Potter y la piedra filosofal",
-        },
-        {
-            estado:"sin terminar",
-            comentarios:246,
-            id:2,
-            autor:"choque",
-            name: "El señor de los anillos",
-          
-        },
-        {
-            estado:"concluido",
-            comentarios:246,
-            id:1,
-            autor:"choque",
-            name: "Harry Potter y la piedra filosofal",
-        },
-        {
-            estado:"sin terminar",
-            comentarios:246,
-            id:1,
-            autor:"choque",
-            name: "Harry Potter y la piedra filosofal",
-        },
-        {
-            estado:"concluido",
-            comentarios:246,
-            id:2,
-            autor:"choque",
-            name: "El señor de los anillos",
-          
-        },
-        {
-            estado:"concluido",
-            comentarios:246,
-            id:1,
-            autor:"choque",
-            name: "Harry Potter y la piedra filosofal",
-        },
-        // agrega más libros aquí
-      ];
+    console.log(libros);
       
     const librosPorPagina = 5;
     const librosAMostrar = libros.slice(currentIndex * librosPorPagina, currentIndex * librosPorPagina + librosPorPagina);
@@ -141,41 +47,40 @@ const Carousel = () => {
     const allLibros = [...prevLibros, ...currentLibros, ...nextLibros];
     //-----------------------
 
-      console.log(allLibros);
+      
     return (
         <div className={style.todo1}>
 
-        <div className={style.librocarousel}>
-        <div class={style.titulo}>
-            <h3>Libros recomendados</h3>
+            <div className={style.librocarousel}>
+                <div class={style.titulo}>
+                    <h3>Libros recomendados</h3>
+                </div>
+                <div className={style.contenedorprincipal}>
+                    <button onClick={handleLeftArrowClick} className={style.izquierda}>
+                        A
+                    </button>
+                    <div className={style.contenedorcarousel}>
 
-        </div>
-        <div className={style.contenedorprincipal}>
-
-            <button onClick={handleLeftArrowClick} className={style.izquierda}>
-                A
-            </button>
-            <div className={style.contenedorcarousel}>
-
-            <div className={style.carousel}>
-                {librosAMostrarCompletos.map((libro, index) => (
-                    <Card
-                    estado={libro.estado}
-                    comentarios = {libro.comentarios}
-                    autor = {libro.autor}
-                    id= {libro.id}
-                    key={index}
-                    name={libro.titulo}
-                    />
-                    ))}
-            </div>
-            </div>
-            <button onClick={handleRightArrowClick} className={style.derecha}>
-                Z
-            </button>
-                    </div>
-        </div>
+                        <div className={style.carousel}>
+                            {librosAMostrarCompletos.map((libro, index) => (
+                            <Card
+                            img = {libro.img  }
+                            estado={libro.subscription}
+                            comentarios = {libro.content}
+                            autor = {libro.autor}
+                            id= {libro.id}
+                            key={index}
+                            name={libro.title}
+                            />
+                            ))}
                         </div>
+                    </div>
+                    <button onClick={handleRightArrowClick} className={style.derecha}>
+                        Z
+                    </button>
+                </div>
+            </div>
+        </div>
     );
 }
 
