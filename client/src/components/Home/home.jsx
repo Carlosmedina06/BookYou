@@ -5,29 +5,13 @@ import { getBooks, getCategorys } from '../../redux/actions/index'
 import FiltradoGenero from '../FiltradoGenero/filtradoGenero'
 import OrdAlfabetico from '../OrderAlfab/orderAlfabetico'
 
+import NavBar from '../NavBar/NavBar'
+import { Paginated } from '../Paginated/paginated'
 import Carousel from '../CarouselRecomendados/Carousel'
 import CarouselPV from '../CarouselParaVos/Carousel'
 import CarouselN from '../CarouselNuevos/Carousel'
 
- import NavBar from '../NavBar/NavBar' 
-import { Paginated } from '../Paginated/paginated'
 
-//la variable data es hardcodeado para probar la paginacion y que la pagina no se rompa
-//puedemn borrarla y pasarle la data de los libros 
-const data = [
-  {
-    "id": 1,
-    "title": "Post 1"
-  },
-  {
-    "id": 2,
-    "title": "Post 2"
-  },
-  {
-    "id": 3,
-    "title": "Post 3"
-  }
-]
 export const Home = () => {
   const dispatch = useDispatch()
   /*   const allBooks = useSelector((state) => state.books)

@@ -118,7 +118,7 @@ if((response)!==''){
         <div className=" grid col-span-3">
         <NavBar/>
         </div>
-        <div className="grid  mt-16 ml-16 col-span-7 px-32 pt-10">
+        <div className="grid bg-white mt-16 ml-16 col-span-7 px-32 pt-10">
             
         <form clasName=" grid  place-content-center grid px-16  bg-black "onSubmit={handleSubmit}>
             <div>
@@ -175,7 +175,7 @@ if((response)!==''){
             </div>
                         
            <br></br>
-           <div className=" flex flex-row px-14">
+           <div className=" flex flex-row px-14  mb-12">
             <button className="bg-transparent border border-black text-black font-bold py-2 px-4 rounded mx-3" type='button' 
                  
                 onClick={(e)=>handleReset(e)}>RESET</button>
