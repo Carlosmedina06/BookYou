@@ -3,13 +3,16 @@
 import Book from '../../models/Book.js'
 // import User from '../../models/User.js'
 import cloudinary from '../../utils/Cloudinary.js'
+import cloudinaryImg from '../../utils/CloudinaryImg.js'
 
 const bookPost = async (req, res) => {
   try {
-    const { description, title, img, subscription, category } = req.body
+    const { description, title, subscription, category, author } = req.body
 
-    if (!req.files) return res.status(400).json('content missing')
+    if (!req.files) return res.status(400).json('missing files')
+    if (!req.files.content || !req.files.img) return res.status(400).json('content or img missing')
     const file = await cloudinary(req.files.content.tempFilePath)
+    const img = await cloudinaryImg(req.files.img.tempFilePath)
 
     // const authorization = req.get('authorization')
 
@@ -30,7 +33,10 @@ const bookPost = async (req, res) => {
       title,
       description,
       content: file.secure_url || '',
-      img: img || 'https://www.esstudioediciones.com/blog/escribir-libro-editorial-publicar.jpg',
+      img:
+        img.secure_url ||
+        'https://www.esstudioediciones.com/blog/escribir-libro-editorial-publicar.jpg',
+      author: author || 'Anónimo',
       // user: user._id,
       subscription: subscription || 'free',
       category: category || 'Arte',
