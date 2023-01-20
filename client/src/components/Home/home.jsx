@@ -4,6 +4,7 @@ import { useEffect } from 'react'
 import { getBooks, getCategorys } from '../../redux/actions/index'
 import FiltradoGenero from '../FiltradoGenero/filtradoGenero'
 import OrdAlfabetico from '../OrderAlfab/orderAlfabetico'
+
 import NavBar from '../NavBar/NavBar'
 import { Paginated } from '../Paginated/paginated'
 import Carousel from '../CarouselRecomendados/Carousel'
@@ -55,6 +56,7 @@ export const Home = () => {
           <FiltradoGenero />
           <OrdAlfabetico />
         </div>
+
       </div>
     </div>
   )

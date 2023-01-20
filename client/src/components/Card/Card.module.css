@@ -1,4 +1,5 @@
 .todo {
+
   display: flex;
   
   justify-content: space-around;
@@ -9,7 +10,18 @@
 .card {
   margin-left: 20px;
   
+    display: flex;
+    
+    justify-content: space-around;
+    border-radius: 10px;
+    
+    
+}
+.card {
+    margin-left: 20px;
+    
 } 
+
 
 
 
@@ -50,3 +62,4 @@
   border-bottom-right-radius: 20px;
   border-bottom-left-radius: 20px;
 }
+

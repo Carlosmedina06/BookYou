@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 
@@ -29,3 +30,4 @@ export default function Card({ name, id, autor, img, estado, comentarios }) {
     </div>
   )
 }
+
