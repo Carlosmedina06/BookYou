@@ -2,7 +2,7 @@
 
 import Book from '../../models/Book.js'
 // import User from '../../models/User.js'
-import cloudinary from '../../utils/cloudinary.js'
+import cloudinary from '../../utils/Cloudinary.js'
 
 const bookPost = async (req, res) => {
   try {
