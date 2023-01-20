@@ -31,7 +31,6 @@ router.use('/checkout', checkOutRouter)
 
 //= =====================Error Middlewares================================
 
-
 router.use(errorHandler)
 
 export default router

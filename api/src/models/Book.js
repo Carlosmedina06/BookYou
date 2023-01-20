@@ -5,9 +5,14 @@ const BookSchema = new moongose.Schema({
   description: String,
   content: String,
   img: String,
+  author: String,
   createdAt: {
     type: Date,
     default: Date.now,
+  },
+  available: {
+    type: Boolean,
+    default: true,
   },
   subscription: {
     type: String,

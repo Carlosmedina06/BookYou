@@ -22,7 +22,9 @@ const stripeCheckout = async (req, res) => {
       paymentIntent: paymentIntent.id,
     })
 
+    // eslint-disable-next-line no-console
     console.log(subscriptions)
+    // eslint-disable-next-line no-console
     console.log(paymentIntent)
   } catch (error) {
     res.json({ error: error.message })

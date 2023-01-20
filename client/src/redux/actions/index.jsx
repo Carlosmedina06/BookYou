@@ -2,6 +2,7 @@ import axios from 'axios'
 /* ACA ESTA TODA LA CONEXION BACK Y FRONT!! */
 export const GET_USERS = 'GET_USERS'
 export const ERROR = 'ERROR'
+export const GET_BOOKBY_ID = "GET_BOOKBY_ID"
 /* ----------------GET BOOKS-------------- */
 export const getBooks = () => async (dispatch) => {
   try {
@@ -59,15 +60,25 @@ export const getUsers = () => async (dispatch) => {
   }
 }
 /* -------------GET BOOKS BY ID------------- */
-/* export const getUserId = (id) => async (dispatch) => {
+//  export const getUserId = (id) => async (dispatch) => {
+//   try {
+//     const info = await axios.get('http://localhost:3001/book/' + id)
+
+//     dispatch(getBookById(info.data))
+//   } catch (error) {
+//     dispatch(userError(error))
+//   }
+// }
+
+export const getBookById = (id) => async (dispatch) => {
   try {
     const info = await axios.get('http://localhost:3001/book/' + id)
 
-    dispatch(getBookById(info.data))
+    dispatch({type: GET_BOOKBY_ID, payload: info.data})
   } catch (error) {
     dispatch(userError(error))
   }
-} */
+} 
 
 /* export const getUsers = () => async (dispatch) => {
   try {
