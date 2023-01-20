@@ -1,0 +1,177 @@
+
+/* ---- ----- ----- Pelicula Principal ----- ----- ----- */
+.todo1 {
+	font-size: 16px;
+	
+	color: #fff;
+	
+	background-size: cover;
+	margin-bottom: 3.12em;
+	display: flex;
+	align-items: end;
+
+	margin: 0 auto;
+	
+    position: absolute;
+    left: 270px;
+    top: 480px;
+    
+}
+
+.todo .titulo {
+	font-weight: 600;
+	font-size: 3.12em;
+	margin-bottom: 0.4em;
+}
+
+.todo .descripcion {
+	font-weight: normal;
+	font-size: 1em;
+	line-height: 1.75em;
+	max-width: 50%;
+	margin-bottom: 1.25em;
+}
+
+.todo .boton {
+	background: rgba(0,0,0, 0.5);
+	border: none;
+	border-radius: 0.31em;
+	padding: 0.93em 1.87em;
+	color: #fff;
+	margin-right: 1.25em;
+	cursor: pointer;
+	transition: .3s ease all;
+	font-size: 1.12em;
+}
+
+.todo .boton:hover {
+	background: #fff;
+	color: #000;
+}
+
+.todo .boton i {
+	margin-right: 1.25em;
+}
+/* ---- ----- ----- contenedor-titulo-controles----- ----- ----- */
+
+.titulo {
+	display: flex;
+	justify-content: space-between;
+	align-items: end;
+
+	color: rgb(0, 0, 0);
+	font-size: 30px;
+
+}
+
+.titulo .indicadores button {
+	background: #fff;
+	height: 3px;
+	width:  102px;
+	cursor: pointer;
+	border: none;
+	margin-right: 2px;
+}
+.titulo .indicadores button:hover,
+.titulo .indicadores button.activo {
+	background: red;
+}
+/* ---- ----- ----- contenedor principal ----- ----- ----- */
+
+.librocarousel .contenedorprincipal {
+	margin-bottom: 7px;
+
+	display: flex;
+	align-items: center	;
+	position: relative;
+
+}
+
+.izquierda , .derecha {
+	
+	border: none;
+	background:rgba(0, 0, 0, 0.3);
+	font-size: 40px;
+	height: 40%;
+	top:20%;
+	line-height: 40px;
+	width: 50px;
+	color: #fff;
+	cursor: pointer;
+	z-index: 500;
+	transition: .2s ease all ;
+}
+
+.izquierda:hover , .derecha:hover  {
+	background:rgba(0, 0, 0, 0.7);
+
+}
+
+
+.librocarousel .izquierda {
+    position: absolute;
+	left: 0;
+}
+.librocarousel .derecha {
+    position: absolute;
+	right: -65px;
+}
+/* ---- ----- ----- carousel ----- ----- ----- */
+
+.librocarousel .carousel {
+	width: 100%;
+	padding: 20px 0;
+	scroll-behavior: smooth; 
+}
+
+.librocarousel .contenedorcarousel .carousel {
+	display: flex;
+	flex-wrap: nowrap;
+}
+
+
+.librocarousel .contenedorcarousel .carousel .pelicula {
+	min-width: 20%;
+	transition: .3s ease all;
+	box-shadow: 5px 5px 10px rgba(0, 0, 0, .3);
+}
+
+.librocarousel .contenedorcarousel .carousel .pelicula.hover {
+	transform: scale(1.3);
+	transform-origin: center;
+}
+
+.librocarousel .contenedorcarousel .carousel .pelicula img {
+	width: 100%;
+	vertical-align: top;
+}
+
+
+
+/* ---- ----- ----- Media Queries ----- ----- ----- */
+@media screen and (max-width: 800px) {
+	
+
+	.pelicula-principal {
+		font-size: 14px;
+	}
+
+	.pelicula-principal .descripcion {
+		max-width: 100%;
+	}
+
+	.peliculas-recomendadas .contenedor-carousel {
+		overflow: visible;
+	}
+	.peliculas-recomendadas .contenedor-carousel .carousel {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 20px;
+	}
+
+	.peliculas-recomendadas .indicadores,
+	.peliculas-recomendadas .flecha-derecha,
+	.peliculas-recomendadas .flecha-izquierda {
+		display: none;
+	}
+}
