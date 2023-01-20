@@ -1,14 +1,14 @@
-/* import React, { useState } from 'react' */
+import React, { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 
 import style from './Card.module.css'
 
 export default function Card({ name, id, autor, img, estado, comentarios }) {
-  /*  const [position, setPosition] = useState(0) */
+  const [position, setPosition] = useState(0)
 
-  /*   function handleClick() {
+  function handleClick() {
     setPosition((position + 1) % totalCards)
-  } */
+  }
 
   return (
     <div className={style.todo}>
