@@ -2,7 +2,8 @@ import axios from 'axios'
 /* ACA ESTA TODA LA CONEXION BACK Y FRONT!! */
 export const GET_USERS = 'GET_USERS'
 export const ERROR = 'ERROR'
-export const GET_BOOKBY_ID = "GET_BOOKBY_ID"
+export const GET_BOOKBY_ID = 'GET_BOOKBY_ID'
+
 /* ----------------GET BOOKS-------------- */
 export const getBooks = () => async (dispatch) => {
   try {
@@ -13,37 +14,14 @@ export const getBooks = () => async (dispatch) => {
       payload: info.data,
     })
   } catch (error) {
-    dispatch(error)
-  }
-}
-
-export const getCategorys = () => async (dispatch) => {
-  try {
-    const info = await axios.get('http://localhost:3001/category')
-
-    return dispatch({
-      type: 'GET_ALL_GENEROS',
-      payload: info.data,
+    dispatch({
+      type: ERROR,
+      payload: error.message,
     })
-  } catch (error) {
-    dispatch(error)
   }
 }
 
-export const filterCategorys = (payload) => {
-  return {
-    type: 'FILTER_CATEGORY',
-    payload,
-  }
-}
-
-export const orderAlf = (payload) => {
-  return {
-    type: 'ORDER_ALF',
-    payload,
-  }
-}
-
+/* -------------------- GET USUARIOS ----------------- */
 export const getUsers = () => async (dispatch) => {
   try {
     const info = await axios.get('http://localhost:3001/user')
@@ -59,42 +37,51 @@ export const getUsers = () => async (dispatch) => {
     })
   }
 }
-/* -------------GET BOOKS BY ID------------- */
-//  export const getUserId = (id) => async (dispatch) => {
-//   try {
-//     const info = await axios.get('http://localhost:3001/book/' + id)
 
-//     dispatch(getBookById(info.data))
-//   } catch (error) {
-//     dispatch(userError(error))
-//   }
-// }
+/* ------------------GET BOOKS POR ID ------------------- */
 
 export const getBookById = (id) => async (dispatch) => {
   try {
     const info = await axios.get('http://localhost:3001/book/' + id)
 
-    dispatch({type: GET_BOOKBY_ID, payload: info.data})
+    dispatch({ type: GET_BOOKBY_ID, payload: info.data })
   } catch (error) {
-    dispatch(userError(error))
-  }
-} 
-
-/* export const getUsers = () => async (dispatch) => {
-  try {
-    const info = await axios.get('http://localhost:3001/users')
-
-    dispatch(getAllUsers(info.data))
-  } catch (error) {
-    dispatch(userError(error))
+    dispatch({
+      type: ERROR,
+      payload: error.message,
+    })
   }
 }
-export const getUserId = (id) => async (dispatch) => {
-  try {
-    const info = await axios.get('http://localhost:3001/user/' + id)
 
-    dispatch(getUserById(info.data))
+/* ---------------GET GÉNEROS LITERARIOS------------------ */
+export const getCategorys = () => async (dispatch) => {
+  try {
+    const info = await axios.get('http://localhost:3001/category')
+
+    return dispatch({
+      type: 'GET_ALL_GENEROS',
+      payload: info.data,
+    })
   } catch (error) {
-    dispatch(userError(error))
+    dispatch({
+      type: ERROR,
+      payload: error.message,
+    })
   }
-} */
+}
+
+/* ------------- FILTRO POR GÉNERO LITERARIO -------------------- */
+export const filterCategorys = (payload) => {
+  return {
+    type: 'FILTER_CATEGORY',
+    payload,
+  }
+}
+
+/* ----------------- ORDENAR GÉNEROS POR ORDEN ALFABETICO----------------- */
+export const orderAlf = (payload) => {
+  return {
+    type: 'ORDER_ALF',
+    payload,
+  }
+}
