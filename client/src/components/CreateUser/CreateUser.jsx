@@ -114,57 +114,72 @@ if((response)!==''){
     }
 } else {
     return(
-        <div >
-        <form onSubmit={handleSubmit}>
+        <div className=" grid h-56 bg-lime place-items-center bg mt-12 w-view h-view">
+            <div className=" bg-gray align-middle  w-96  rounded-md">
+        <form clasName="grid place-items-center"onSubmit={handleSubmit}>
             <div>
-                <div><h1>Register new User</h1></div>
-            <label >Name:  </label>
-            <input 
+                <div className="flex  text-lg font-bold  self-center"><h1>Register new User</h1></div>
+                <div className="w-24 bg-whit flex flex-row">
+            <label className="ml-1" >Name</label>
+            </div>
+            <input  
+                className="w-8/12 border-lg  border border-black rounded"
                 name='name' 
                 value={user.name}
                 type= 'text' 
                 onChange={(e)=>handleChange(e)} 
-                placeholder='Name is required' /> 
+                placeholder=' Name is required' /> 
                 {errorForm.name? (<h5><small>{errorForm.name}</small></h5>) : false}
             </div>
             <div>
-            <label >UserName:  </label>
+            <div className="w-24 bg-whit flex flex-row">
+            <label className="ml-1" >Username</label>
+            </div>
+            
             <input 
+                 className="w-8/12 border-lg  border border-black rounded"
                 name='username' 
                 value={user.username} 
                 onChange={(e)=>handleChange(e)} 
-                placeholder='Pick an alias' />
+                placeholder='  Pick an alias' />
                 {errorForm.username? (<h5><small>{errorForm.username}</small></h5>) : false} 
             </div>
             <div>
-            <label >Email:  </label>
+            <div className="w-24 bg-whit flex flex-row">
+            <label className="ml-1" >Email</label>
+            </div>
             <input 
+                className="w-8/12 border-lg  border border-black rounded"
                 name='email' 
                 value={user.email} 
                 onChange={(e)=>handleChange(e)} 
-                placeholder='jhon@doe.com' />
+                placeholder=' jhon@doe.com' />
                 {errorForm.email? (<h5><small>{errorForm.email}</small></h5>) : false} 
             </div>
             <div>
-            <label >Password:  </label>
+            <div className="w-24 bg-whit flex flex-row">
+            <label className="ml-1" >Password</label>
+            </div>
             <input 
+                className="w-8/12 border-lg  border border-black rounded"
                 name='password' 
                 value={user.password} 
                 type='password'
                 onChange={(e)=>handleChange(e)} 
-                placeholder='Password here' />
+                placeholder=' Password here' />
                 {errorForm.password? (<h5><small>{errorForm.password}</small></h5>) : false}
             </div>
                         
            <br></br>
-            <button type='button' 
+            <button className="bg-transparent border border-black text-black font-bold py-2 px-4 rounded mx-3" type='button' 
                  
                 onClick={(e)=>handleReset(e)}>RESET</button>
             <button type='submit' 
+            className="bg-black border border-black hover:bg-gray-700 text-white font-bold py-2 px-4 rounded mx-3"
                 disabled={errorButton} 
                 onSubmit={(e)=>handleSubmit(e)}>CREATE!</button>
         </form>
-            
+        </div>
         </div>
     )}
 }
