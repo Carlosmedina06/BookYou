@@ -1,4 +1,4 @@
-import { ERROR, GET_BOOKBY_ID, GET_USERS } from '../actions'
+import { ERROR, GET_BOOKBY_ID, GET_USERS, GET_SEARCH_BOOK } from '../actions';
 const initialState = {
   books: [],
   allBooks: [],
@@ -6,19 +6,23 @@ const initialState = {
   category: [],
   users: [],
   error: [],
-}
+};
 
 function rootReducer(state = initialState, action) {
-  let allCateg = state.allBooks
+  let allCateg = state.allBooks;
   let categFilter =
     action.payload === 'todos'
       ? allCateg
-      : allCateg.filter((c) => c.category?.includes(action.payload))
+      : allCateg.filter(c => c.category?.includes(action.payload));
 
   let bookSort =
     action.payload === 'asc'
-      ? state.books.sort((a, b) => (a.title > b.title ? 1 : a.title < b.title ? -1 : 0))
-      : state.books.sort((a, b) => (a.title > b.title ? -1 : a.title < b.title ? 1 : 0))
+      ? state.books.sort((a, b) =>
+          a.title > b.title ? 1 : a.title < b.title ? -1 : 0
+        )
+      : state.books.sort((a, b) =>
+          a.title > b.title ? -1 : a.title < b.title ? 1 : 0
+        );
 
   switch (action.type) {
     case 'GET_BOOKS':
@@ -26,44 +30,48 @@ function rootReducer(state = initialState, action) {
         ...state,
         books: action.payload,
         allBooks: action.payload,
-      }
+      };
+    case 'GET_SEARCH_BOOK':
+      return {
+        ...state,
+        books: action.payload,
+      };
     case 'GET_ALL_GENEROS':
       return {
         ...state,
         category: action.payload,
-      }
+      };
     case 'FILTER_CATEGORY':
       return {
         ...state,
         books: categFilter,
-      }
+      };
     case 'ORDER_ALF':
       return {
         ...state,
         books: bookSort,
-      }
+      };
     case GET_USERS:
       return {
         ...state,
         users: action.payload,
-      }
+      };
     case ERROR:
       return {
         ...state,
         error: action.payload,
-      }
-      case GET_BOOKBY_ID:
-        return{
-         ...state,
-         detail: action.payload
-
-        }
+      };
+    case GET_BOOKBY_ID:
+      return {
+        ...state,
+        detail: action.payload,
+      };
     default:
-      return state
+      return state;
   }
 }
 
-export default rootReducer
+export default rootReducer;
 
 /* export const usersSlice = createSlice({
   name: 'users',
