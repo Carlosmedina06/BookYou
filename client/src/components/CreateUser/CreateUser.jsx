@@ -118,7 +118,7 @@ if((response)!==''){
         <div className=" grid col-span-3">
         <NavBar/>
         </div>
-        <div className="grid bg-white mt-16 ml-16 col-span-7 px-32 pt-10">
+        <div className="grid bg-white mt-16 ml-16 col-span-7 px-32 pt-10 rounded">
             
         <form clasName=" grid  place-content-center grid px-16  bg-black "onSubmit={handleSubmit}>
             <div>
