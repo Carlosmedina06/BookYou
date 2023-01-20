@@ -1,7 +1,12 @@
 
 import { useState } from "react"
 import { useSelector } from "react-redux"
-export const Paginated = ([data, itemsPerPage])=>{
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faUserGraduate ,faChevronRight,faChevronLeft} from '@fortawesome/free-solid-svg-icons';
+library.add(
+    faUserGraduate)
+export const Paginated = ({data, itemsPerPage})=>{
 
     // const data = useSelector(state=>state.books.books)    
     // const itemsPerPage = 3
@@ -79,25 +84,30 @@ function display(){
 return(
     
     <>
+    
         <div >
-        <button value='first' onClick={handleFirst}>First</button>
-        <button type='click' value='previous' onClick={(e)=>handleClick(e)}>̣Prev</button>
-        
-       {
-        
-            pages.map(el=>{
-                return <button  id={el} value={el} key={el} onClick={handlePage}>{el}</button>
-            })
-        }
-        
-        <button  type='click' value= 'next' onClick={(e)=>handleClick(e)}>Next</button>
-        <button  value='last' onClick={handleFirst}>Last</button>
+        <div className=" h-screen w-100 bg-lime-300">
         <h4> Page {currentPage}</h4>
-        </div>
         {/*================== aca es donde se renderizan ==================== */}
         <section>{
             display()
         }</section>
+        </div>
+        <button className="bg-transparent font-semibold text-black border border-black rounded px-5" value='first' onClick={handleFirst}>First</button>
+        <button className="mx-3" type='click' value='previous' onClick={(e)=>handleClick(e)}><FontAwesomeIcon icon={faChevronLeft} /></button>
+         
+       {
+        
+            pages.map(el=>{
+                return <button className="border border-black rounded-full mx-1 px-1"id={el} value={el} key={el} onClick={handlePage}>{el}</button>
+            })
+        }
+        
+        <button className="mx-3" type='click' value= 'next' onClick={(e)=>handleClick(e)}><FontAwesomeIcon icon={faChevronRight} /></button>
+        <button className="bg-transparent font-semibold text-black border border-black rounded px-5" value='last' onClick={handleFirst}>Last</button>
+        
+        </div>
+        
         
     </>
 )

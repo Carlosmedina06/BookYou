@@ -5,6 +5,21 @@ import { getBooks, getCategorys } from '../../redux/actions/index'
 import FiltradoGenero from '../FiltradoGenero/filtradoGenero'
 
  import NavBar from '../NavBar/NavBar' 
+import { Paginated } from '../Paginated/paginated'
+const data = [
+  {
+    "id": 1,
+    "title": "Post 1"
+  },
+  {
+    "id": 2,
+    "title": "Post 2"
+  },
+  {
+    "id": 3,
+    "title": "Post 3"
+  }
+]
 export const Home = () => {
   const dispatch = useDispatch()
   const allBooks = useSelector((state) => state.books)
@@ -24,7 +39,12 @@ export const Home = () => {
     <NavBar/>
     </div>
     <div className="grid bg-gray col-span-9 pt-10">
+      
       <h1>This is Home</h1>
+   
+      < div className=' place-self-center'>
+      <Paginated data={data} itemsPerPage={2}/>
+      </div>
       <FiltradoGenero />
     </div>
     </div>
