@@ -5,7 +5,9 @@ import { getBooks, getCategorys } from '../../redux/actions/index'
 import FiltradoGenero from '../FiltradoGenero/filtradoGenero'
 import OrdAlfabetico from '../OrderAlfab/orderAlfabetico'
 
-
+import Carousel from '../CarouselRecomendados/Carousel'
+import CarouselPV from '../CarouselParaVos/Carousel'
+import CarouselN from '../CarouselNuevos/Carousel'
 
  import NavBar from '../NavBar/NavBar' 
 import { Paginated } from '../Paginated/paginated'
@@ -44,7 +46,9 @@ export const Home = () => {
     <div className="grid bg-gray col-span-9 pt-10">
       
       
-
+      <Carousel/>
+      <CarouselPV/>
+      <CarouselN/>
    
       < div className=' place-self-center'>
       <Paginated data={data} itemsPerPage={2}/>
