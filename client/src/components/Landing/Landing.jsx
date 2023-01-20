@@ -44,8 +44,4 @@ export const Landing = () => {
     )
 }
 
-  
 
-  //==== si no hay datos en db las dos lineas de abajo generan un loop complicado ======
-  // if(users.length<1) dispatch(getUsers())
-  // if(books.length<1) dispatch(getBooks())
