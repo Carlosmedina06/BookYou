@@ -5,7 +5,7 @@ export const ERROR = 'ERROR'
 /* ----------------GET BOOKS-------------- */
 export const getBooks = () => async (dispatch) => {
   try {
-    const info = await axios.get('http://localhost:3001/books')
+    const info = await axios.get('http://localhost:3001/book')
 
     return dispatch({
       type: 'GET_BOOKS',
@@ -45,7 +45,7 @@ export const orderAlf = (payload) => {
 
 export const getUsers = () => async (dispatch) => {
   try {
-    const info = await axios.get('http://localhost:3001/users')
+    const info = await axios.get('http://localhost:3001/user')
 
     return dispatch({
       type: GET_USERS,
