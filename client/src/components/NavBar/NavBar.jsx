@@ -13,9 +13,8 @@ return(
     <nav className="text-white text-xl my-20 mx-10 flex-col place-content-center">
        <ul>
         <li className="my-3"><NavLink to="/home">Inicio</NavLink></li>
-        <li className="my-3"><NavLink to="/home">Mis Libros</NavLink></li>
-        <li  className="my-3"><NavLink to="/home">Perfil</NavLink></li>
-        <li className="my-3"><NavLink to="/home">Mis publicaciones</NavLink></li>
+        <li className="my-3"><NavLink to="/home">Crear Libro</NavLink></li>
+      
         </ul>
        
     </nav>

@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { getUsers } from "../../redux/actions"
 import { validate, check } from "./utils"
 import axios from 'axios'
-
+import NavBar from "../NavBar/NavBar"
 export const CreateUser = ()=>{
 
 const dispatch = useDispatch()
@@ -114,16 +114,20 @@ if((response)!==''){
     }
 } else {
     return(
-        <div className=" grid h-56 bg-lime place-items-center bg mt-12 w-view h-view">
-            <div className=" bg-gray align-middle  w-96  rounded-md">
-        <form clasName="grid place-items-center"onSubmit={handleSubmit}>
+        <div className="grid grid-cols-12">
+        <div className=" grid col-span-3">
+        <NavBar/>
+        </div>
+        <div className="grid  mt-16 ml-16 col-span-7 px-32 pt-10">
+            
+        <form clasName=" grid  place-content-center grid px-16  bg-black "onSubmit={handleSubmit}>
             <div>
                 <div className="flex  text-lg font-bold  self-center"><h1>Register new User</h1></div>
                 <div className="w-24 bg-whit flex flex-row">
             <label className="ml-1" >Name</label>
             </div>
             <input  
-                className="w-8/12 border-lg  border border-black rounded"
+                className="w-4/5 border-lg  border border-black rounded"
                 name='name' 
                 value={user.name}
                 type= 'text' 
@@ -132,12 +136,12 @@ if((response)!==''){
                 {errorForm.name? (<h5><small>{errorForm.name}</small></h5>) : false}
             </div>
             <div>
-            <div className="w-24 bg-whit flex flex-row">
+            <div className="w-24  flex flex-row">
             <label className="ml-1" >Username</label>
             </div>
             
             <input 
-                 className="w-8/12 border-lg  border border-black rounded"
+                 className="w-4/5 border-lg  border border-black rounded"
                 name='username' 
                 value={user.username} 
                 onChange={(e)=>handleChange(e)} 
@@ -145,11 +149,11 @@ if((response)!==''){
                 {errorForm.username? (<h5><small>{errorForm.username}</small></h5>) : false} 
             </div>
             <div>
-            <div className="w-24 bg-whit flex flex-row">
+            <div className="w-24  flex flex-row">
             <label className="ml-1" >Email</label>
             </div>
             <input 
-                className="w-8/12 border-lg  border border-black rounded"
+                className="w-4/5 border-lg  border border-black rounded"
                 name='email' 
                 value={user.email} 
                 onChange={(e)=>handleChange(e)} 
@@ -157,11 +161,11 @@ if((response)!==''){
                 {errorForm.email? (<h5><small>{errorForm.email}</small></h5>) : false} 
             </div>
             <div>
-            <div className="w-24 bg-whit flex flex-row">
+            <div className="w-24  flex flex-row">
             <label className="ml-1" >Password</label>
             </div>
             <input 
-                className="w-8/12 border-lg  border border-black rounded"
+                className="w-4/5 border-lg  border border-black rounded"
                 name='password' 
                 value={user.password} 
                 type='password'
@@ -171,6 +175,7 @@ if((response)!==''){
             </div>
                         
            <br></br>
+           <div className=" flex flex-row px-14">
             <button className="bg-transparent border border-black text-black font-bold py-2 px-4 rounded mx-3" type='button' 
                  
                 onClick={(e)=>handleReset(e)}>RESET</button>
@@ -178,8 +183,10 @@ if((response)!==''){
             className="bg-black border border-black hover:bg-gray-700 text-white font-bold py-2 px-4 rounded mx-3"
                 disabled={errorButton} 
                 onSubmit={(e)=>handleSubmit(e)}>CREATE!</button>
+                </div>
         </form>
         </div>
         </div>
+       
     )}
 }

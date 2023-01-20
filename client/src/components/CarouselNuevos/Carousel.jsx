@@ -13,7 +13,7 @@ const Carousel = () => {
     const [currentIndex, setCurrentIndex] = useState(0);
     console.log(libros);
       
-    const librosPorPagina = 5;
+    const librosPorPagina = 4;
     const librosAMostrar = libros.slice(currentIndex * librosPorPagina, currentIndex * librosPorPagina + librosPorPagina);
     const librosFaltantes = librosPorPagina - librosAMostrar.length;
     const librosAMostrarCompletos = librosAMostrar.concat(libros.slice(0, librosFaltantes));

@@ -50,9 +50,7 @@ export const Home = () => {
       <CarouselPV/>
       <CarouselN/>
    
-      < div className=' place-self-center'>
-      <Paginated data={data} itemsPerPage={2}/>
-      </div>
+      
       <FiltradoGenero />
       <OrdAlfabetico />
     </div>
