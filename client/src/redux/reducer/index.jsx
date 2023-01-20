@@ -1,4 +1,4 @@
-import { ERROR, GET_USERS } from '../actions'
+import { ERROR, GET_BOOKBY_ID, GET_USERS } from '../actions'
 const initialState = {
   books: [],
   allBooks: [],
@@ -52,6 +52,12 @@ function rootReducer(state = initialState, action) {
         ...state,
         error: action.payload,
       }
+      case GET_BOOKBY_ID:
+        return{
+         ...state,
+         detail: action.payload
+
+        }
     default:
       return state
   }
