@@ -1,4 +1,4 @@
-import { useSelector, useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { useEffect } from 'react'
 
 import { getBooks, getCategorys } from '../../redux/actions/index'
@@ -8,11 +8,8 @@ import OrdAlfabetico from '../OrderAlfab/orderAlfabetico'
 /* import NavBar from '../NavBar/NavBar' */
 export const Home = () => {
   const dispatch = useDispatch()
-  const allBooks = useSelector((state) => state.books)
-  const allGeneros = useSelector((state) => state.category)
-
-  console.log('Esto es Books:', allBooks)
-  console.log('Esto es Category:', allGeneros)
+  /*   const allBooks = useSelector((state) => state.books)
+  const allGeneros = useSelector((state) => state.category) */
 
   useEffect(() => {
     dispatch(getBooks())
