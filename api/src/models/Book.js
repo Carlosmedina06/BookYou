@@ -25,8 +25,7 @@ const BookSchema = new moongose.Schema({
     },
   ],
   category: {
-    type: moongose.Schema.Types.ObjectId,
-    ref: 'Category',
+    type: String,
     enum: [
       'Arte',
       'Biografías, Literaturas Y Estudios Literarios',
@@ -55,7 +54,7 @@ const BookSchema = new moongose.Schema({
       'Calificadores De Lengua',
       'Calificadores De Periodo De Tiempo',
     ],
-    default: 'Arte',
+    default: 'arte',
   },
 })
 

@@ -1,11 +1,11 @@
 import { Router } from 'express'
 
-import getAllCategorys from '../../controllers/Categorys/getAllCategorys'
-import postCategory from '../../controllers/Categorys/postCategory'
+import geAllCategorys from '../../controllers/categorys/getAllCategorys.js'
+import postCategory from '../../controllers/categorys/postCategory.js'
 
 const categoryRouter = Router()
 
-categoryRouter.get('/category', getAllCategorys)
-categoryRouter.post('/category', postCategory)
+categoryRouter.get('/', geAllCategorys)
+categoryRouter.post('/', postCategory)
 
 export default categoryRouter

@@ -1,4 +1,4 @@
-import Book from '../../../models/Book.js'
+import Book from '../../models/Book.js'
 const getAllBooks = async (req, res) => {
   try {
     const allBooks = await Book.find({}).populate('user', { username: 1 })

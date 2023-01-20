@@ -3,6 +3,7 @@ import { useEffect } from 'react'
 
 import { getBooks, getCategorys } from '../../redux/actions/index'
 import FiltradoGenero from '../FiltradoGenero/filtradoGenero'
+import OrdAlfabetico from '../OrderAlfab/orderAlfabetico'
 
  import NavBar from '../NavBar/NavBar' 
 export const Home = () => {
@@ -26,6 +27,7 @@ export const Home = () => {
     <div className="grid bg-gray col-span-9 pt-10">
       <h1>This is Home</h1>
       <FiltradoGenero />
+      <OrdAlfabetico />
     </div>
     </div>
   )

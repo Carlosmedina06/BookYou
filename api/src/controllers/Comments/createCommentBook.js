@@ -1,8 +1,8 @@
 import jwt from 'jsonwebtoken'
 
-import Book from '../../../models/Book.js'
-import Comment from '../../../models/Comment.js'
-import User from '../../../models/User.js'
+import Book from '../../models/Book.js'
+import Comment from '../../models/Comment.js'
+import User from '../../models/User.js'
 
 const createCommentBook = async (req, res) => {
   try {
