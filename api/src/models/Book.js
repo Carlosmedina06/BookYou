@@ -9,6 +9,10 @@ const BookSchema = new moongose.Schema({
     type: Date,
     default: Date.now,
   },
+  available: {
+    type: Boolean,
+    default: true,
+  },
   subscription: {
     type: String,
     enum: ['free', 'premium'],
