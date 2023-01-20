@@ -39,7 +39,7 @@ export const Home = () => {
   }, [dispatch])
 
   return (
-    <div className="grid grid-cols-12">
+    <div className="  grid grid-cols-12">
     <div className=" grid col-span-3">
     <NavBar/>
     </div>
