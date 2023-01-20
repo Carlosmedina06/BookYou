@@ -3,9 +3,13 @@ import { useEffect } from 'react'
 
 import { getBooks, getCategorys } from '../../redux/actions/index'
 import FiltradoGenero from '../FiltradoGenero/filtradoGenero'
+import OrdAlfabetico from '../OrderAlfab/orderAlfabetico'
 
  import NavBar from '../NavBar/NavBar' 
 import { Paginated } from '../Paginated/paginated'
+
+//la variable data es hardcodeado para probar la paginacion y que la pagina no se rompa
+//puedemn borrarla y pasarle la data de los libros 
 const data = [
   {
     "id": 1,
@@ -46,6 +50,7 @@ export const Home = () => {
       <Paginated data={data} itemsPerPage={2}/>
       </div>
       <FiltradoGenero />
+      <OrdAlfabetico />
     </div>
     </div>
   )
