@@ -6,7 +6,7 @@ const bookUpdate = async (req, res, next) => {
   try {
     const { id } = req.params
     // const authorization = req.get('authorization')
-    const { content, description, title, img } = req.body
+    const { content, description, title, img, category } = req.body
 
     // if (authorization.length <= 7) {
     //   res.status(401).json('token missing')
@@ -24,7 +24,7 @@ const bookUpdate = async (req, res, next) => {
     // const modifiedBook = await Book.findById(id)
 
     // if (modifiedBook.user.toString() === decodedToken.id.toString()) {
-    await Book.findByIdAndUpdate(id, { content, description, title, img })
+    await Book.findByIdAndUpdate(id, { content, description, title, img, category })
     res.status(200).json(`El libro fue modificado con éxito`)
     //   } else {
     //     res.status(401).json('Acción no permitida')
