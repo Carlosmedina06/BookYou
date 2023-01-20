@@ -12,7 +12,7 @@ const Carousel = () => {
 
   console.log(libros)
 
-  const librosPorPagina = 5
+  const librosPorPagina = 4
   const librosAMostrar = libros.slice(
     currentIndex * librosPorPagina,
     currentIndex * librosPorPagina + librosPorPagina,
