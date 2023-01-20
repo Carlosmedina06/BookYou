@@ -12,22 +12,7 @@ import CarouselPV from '../CarouselParaVos/Carousel';
 import CarouselN from '../CarouselNuevos/Carousel';
 import SearchBar from '../SearchBar/SearchBar';
 
-//la variable data es hardcodeado para probar la paginacion y que la pagina no se rompa
-//puedemn borrarla y pasarle la data de los libros
-const data = [
-  {
-    id: 1,
-    title: 'Post 1',
-  },
-  {
-    id: 2,
-    title: 'Post 2',
-  },
-  {
-    id: 3,
-    title: 'Post 3',
-  },
-];
+
 
 export const Home = () => {
   const dispatch = useDispatch();
@@ -40,6 +25,7 @@ export const Home = () => {
   }, [dispatch]);
 
   return (
+
     <div className="grid grid-cols-12">
       <div className=" grid col-span-3">
         <NavBar />
@@ -62,6 +48,7 @@ export const Home = () => {
           <OrdAlfabetico />
         </div>
       </div>
+ 
     </div>
   );
 };
