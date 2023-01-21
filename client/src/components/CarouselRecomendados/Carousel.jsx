@@ -10,8 +10,6 @@ const Carousel = () => {
   const libros = useSelector((state) => state.allBooks)
   const [currentIndex, setCurrentIndex] = useState(0)
 
-  console.log(libros)
-
   const librosPorPagina = 4
   const librosAMostrar = libros.slice(
     currentIndex * librosPorPagina,

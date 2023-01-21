@@ -1,10 +1,14 @@
 
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 
 const NavBar = () =>{
+const handleSuscribe = (e) =>{
+e.preventDefault()
+window.open("/pageonconstruction")
 
+}
 return(
 <div className="fixed bg-black h-screen ">
 <div className="text-4xl font-extrabold mt-36 mx-5">
@@ -22,7 +26,7 @@ return(
        
     </nav>
    <div className="flex justify-center mt-44" >
-   <div> <button className="bg-transparent text-white hover:bg-black text-white font-semibold hover:text-white py-2 px-4 border border-white-500  rounded">Suscribirse</button></div>
+   <div> <button onClick={handleSuscribe} className="bg-transparent text-white hover:bg-black text-white font-semibold hover:text-white py-2 px-4 border border-white-500  rounded">Suscribirse</button></div>
     </div>
     </div>
   )
