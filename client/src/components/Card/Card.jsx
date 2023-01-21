@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 
@@ -22,7 +21,6 @@ export default function Card({ name, id, autor, img, estado, comentarios }) {
               <p style={{ fontSize: '13px' }}>Titulo: {name}</p>
               <h3 style={{ fontSize: '13px' }}>Autor: {autor}</h3>
               <p style={{ fontSize: '13px' }}>Estado: {estado}</p>
-              <p style={{ fontSize: '13px' }}>{comentarios} comentarios</p>
             </div>
           </div>
         </NavLink>
@@ -30,4 +28,3 @@ export default function Card({ name, id, autor, img, estado, comentarios }) {
     </div>
   )
 }
-
