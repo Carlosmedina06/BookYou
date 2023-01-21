@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getSearchBook } from '../../redux/actions/index';
-import { Paginated } from '../Paginated/paginated';
-import Card from '../Card/Card';
+import { getSearchBook } from '../../../redux/actions/index';
+import { Paginated } from '../paginated';
+import Card from '../../Card/Card';
 
-function SearchBar({setShowCarousels}) {
+function SearchBar({ setShowCarousels }) {
   const [bookInput, setBookInput] = useState('');
   const [message, setMessage] = useState('');
   const books = useSelector(state => state.books)
@@ -29,28 +29,28 @@ function SearchBar({setShowCarousels}) {
   };
 
   const filteredResults = books.filter(book => book.title.toLowerCase().includes(bookInput.toLowerCase()))
-  if( bookInput !== ''){
+  if (bookInput !== '') {
     setShowCarousels(false);
-  }else if(bookInput === ''){
+  } else if (bookInput === '') {
     setShowCarousels(true);
   }
-  
+
   return (
     <form
-      className="top-1/4 w-full my-3.5 m-auto grid col-span-12"
+
       onSubmit={handleSubmit}
     >
       <label
         htmlFor="default-search"
-        className="mb-2 text-sm font-medium	text-gray-900 sr-only dark:text-white"
+
       >
         Search
       </label>
-      <div className="relative">
-        <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+      <div >
+        <div >
           <svg
             aria-hidden="true"
-            className="w-5 h-5 text-gray-500 dark:text-gray-400"
+
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -67,12 +67,11 @@ function SearchBar({setShowCarousels}) {
         <input
           type="search"
           id="default-search"
-          className="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           placeholder="Libros, Textos, Artículos..."
           required
           onChange={handleInputChange}
         />
-         <div>
+        <div>
           {bookInput === '' ? (
             <p></p>
           ) : filteredResults.length > 0 ? (
@@ -86,14 +85,14 @@ function SearchBar({setShowCarousels}) {
                 name={book.title}
               />
             ))
-          ) 
-          : (
-            <p>No tenemos ningún texto con ese nombre :C</p>
-          )}
+          )
+            : (
+              <p>No tenemos ningún texto con ese nombre :C</p>
+            )}
         </div>
 
 
-        <div className=" place-self-center">
+        <div >
           {bookInput === '' ? (
             <p></p>
           ) : filteredResults.length > 0 ? (

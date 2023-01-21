@@ -1,115 +1,111 @@
 
 import { useState } from "react"
 import { useSelector } from "react-redux"
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faUserGraduate ,faChevronRight,faChevronLeft} from '@fortawesome/free-solid-svg-icons';
-library.add(
-    faUserGraduate)
-export const Paginated = ({data, itemsPerPage})=>{
 
-    // const data = useSelector(state=>state.books.books)    
-    // const itemsPerPage = 3
-    
-    const pagesTotal = Math.ceil(data.length/itemsPerPage)
+export const Paginated = ({ data, itemsPerPage }) => {
 
-    const [currentPage, setCurrentPage] = useState(1)
-    
-    const firstItem = (currentPage*itemsPerPage)-itemsPerPage
-    const lastItem = (currentPage*itemsPerPage)-1
-   
-    //================= Estas lineas sirven para llevar al user a la pagina uno cuando 
-    //cambia algun filtro ==========================
-    
-    // const filterOn = useSelector(state=>state.filterOn)
-    
-    // useEffect(()=>{
-        
-    //     setCurrentPage(1)
-    // },[filterOn])
+  // const data = useSelector(state=>state.books.books)    
+  // const itemsPerPage = 3
 
-    function  handleClick (e) {
-        if(e.target.value==='next'&& currentPage!==pagesTotal){
-        
-         const next = currentPage+1
-         setCurrentPage(next)
-        }
-        if(e.target.value ==='previous' && currentPage!==1){
-         const back = currentPage-1
-         setCurrentPage(back)
-         }
-     }
-     function handlePage (e) {
-         setCurrentPage(parseInt(e.target.value))
-     }
-     function handleFirst (e) {
-         if(e.target.value ==='first'){
-             setCurrentPage(1)
-         }else{
-             setCurrentPage(pagesTotal)
-         }
-     }
+  const pagesTotal = Math.ceil(data.length / itemsPerPage)
 
-     const pages=[]
-     for(let i=1; i<=pagesTotal;i++){
-         pages.push(i)
-     }
+  const [currentPage, setCurrentPage] = useState(1)
 
-     let itemsDisplay=[]
+  const firstItem = (currentPage * itemsPerPage) - itemsPerPage
+  const lastItem = (currentPage * itemsPerPage) - 1
 
-function display(){
+  //================= Estas lineas sirven para llevar al user a la pagina uno cuando 
+  //cambia algun filtro ==========================
 
-    for(let i=firstItem; i<=lastItem; i++){
-   if(data.length<1){
-    return(<div>
-                <h3>No data to show</h3>
-            </div>)
-   } 
-   if( typeof(data[i]) != 'undefined'){              
-   itemsDisplay.push(
+  // const filterOn = useSelector(state=>state.filterOn)
 
-    //================== aca se generan los elementos a mostrar =====================
-        <section key={data[i].id}>
-    
-            <h1>{data[i].title}</h1>
-         
-        </section>)
-        }
-    else {
-        
+  // useEffect(()=>{
+
+  //     setCurrentPage(1)
+  // },[filterOn])
+
+  function handleClick(e) {
+    if (e.target.value === 'next' && currentPage !== pagesTotal) {
+
+      const next = currentPage + 1
+      setCurrentPage(next)
     }
-} return itemsDisplay
+    if (e.target.value === 'previous' && currentPage !== 1) {
+      const back = currentPage - 1
+      setCurrentPage(back)
+    }
+  }
+  function handlePage(e) {
+    setCurrentPage(parseInt(e.target.value))
+  }
+  function handleFirst(e) {
+    if (e.target.value === 'first') {
+      setCurrentPage(1)
+    } else {
+      setCurrentPage(pagesTotal)
+    }
+  }
 
-}
-return(
-    
+  const pages = []
+  for (let i = 1; i <= pagesTotal; i++) {
+    pages.push(i)
+  }
+
+  let itemsDisplay = []
+
+  function display() {
+
+    for (let i = firstItem; i <= lastItem; i++) {
+      if (data.length < 1) {
+        return (<div>
+          <h3>No data to show</h3>
+        </div>)
+      }
+      if (typeof (data[i]) != 'undefined') {
+        itemsDisplay.push(
+
+          //================== aca se generan los elementos a mostrar =====================
+          <section key={data[i].id}>
+
+            <h1>{data[i].title}</h1>
+
+          </section>)
+      }
+      else {
+
+      }
+    } return itemsDisplay
+
+  }
+  return (
+
     <>
-    
+
+      <div >
         <div >
-        <div className=" h-screen w-100 bg-lime-300">
-        <h4> Page {currentPage}</h4>
-        {/*================== aca es donde se renderizan ==================== */}
-        <section>{
+          <h4> Page {currentPage}</h4>
+          {/*================== aca es donde se renderizan ==================== */}
+          <section>{
             display()
-        }</section>
+          }</section>
         </div>
-        <button className="bg-transparent font-semibold text-black border border-black rounded px-5" value='first' onClick={handleFirst}>First</button>
-        <button className="mx-3" type='click' value='previous' onClick={(e)=>handleClick(e)}><FontAwesomeIcon icon={faChevronLeft} /></button>
-         
-       {
-        
-            pages.map(el=>{
-                return <button className="border border-black rounded-full mx-1 px-1"id={el} value={el} key={el} onClick={handlePage}>{el}</button>
-            })
+        <button value='first' onClick={handleFirst}>First</button>
+        <button type='click' value='previous' onClick={(e) => handleClick(e)}></button>
+
+        {
+
+          pages.map(el => {
+            return <button id={el} value={el} key={el} onClick={handlePage}>{el}</button>
+          })
         }
-        
-        <button className="mx-3" type='click' value= 'next' onClick={(e)=>handleClick(e)}><FontAwesomeIcon icon={faChevronRight} /></button>
-        <button className="bg-transparent font-semibold text-black border border-black rounded px-5" value='last' onClick={handleFirst}>Last</button>
-        
-        </div>
-        
-        
+
+        <button value='next' onClick={(e) => handleClick(e)}></button>
+        <button value='last' onClick={handleFirst}>Last</button>
+
+      </div>
+
+
     </>
-)
-    
+  )
+
 }
