@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getSearchBook } from '../../redux/actions/index';
+import { Paginated } from '../Paginated/paginated';
 import Card from '../Card/Card';
 
 function SearchBar({setShowCarousels}) {
@@ -85,6 +86,37 @@ function SearchBar({setShowCarousels}) {
                 name={book.title}
               />
             ))
+          ) 
+          : (
+            <p>No tenemos ningún texto con ese nombre :C</p>
+          )}
+        </div>
+
+        <div>
+          {bookInput === '' ? (
+            <p>Este campo no debe estar vacío</p>
+          ) : filteredResults.length > 0 ? (
+            filteredResults.map(book => (
+              <Card
+                autor={book.autor}
+                comentarios={book.content}
+                estado={book.subscription}
+                id={book.id}
+                img={book.img}
+                name={book.title}
+              />
+            ))
+          ) 
+          : (
+            <p>No tenemos ningún texto con ese nombre :C</p>
+          )}
+        </div>
+
+        <div className=" place-self-center">
+          {bookInput === '' ? (
+            <p>Este campo no debe estar vacío</p>
+          ) : filteredResults.length > 0 ? (
+            <Paginated data={filteredResults} itemsPerPage={2} />
           ) : (
             <p>No tenemos ningún texto con ese nombre :C</p>
           )}
