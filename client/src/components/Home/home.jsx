@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 import { getBooks, getCategorys } from '../../redux/actions/index';
 import FiltradoGenero from '../FiltradoGenero/filtradoGenero';
@@ -16,6 +16,7 @@ import SearchBar from '../SearchBar/SearchBar';
 
 export const Home = () => {
   const dispatch = useDispatch();
+  const [showCarousels, setShowCarousels] = useState(true);
   /*   const allBooks = useSelector((state) => state.books)
   const allGeneros = useSelector((state) => state.category) */
 
@@ -23,7 +24,7 @@ export const Home = () => {
     dispatch(getBooks());
     dispatch(getCategorys());
   }, [dispatch]);
-
+console.log(showCarousels);
   return (
 
     <div className="grid grid-cols-12">
@@ -31,14 +32,19 @@ export const Home = () => {
         <NavBar />
       </div>
       <div className="w-9/12">
-        <SearchBar />
+        <SearchBar setShowCarousels={setShowCarousels}/>
       </div>
       <div className="grid bg-gray col-span-9 pt-10">
         <h1>This is Home</h1>
-        {/* <SearchBar /> */}
-        
 
-        
+        {showCarousels && (
+          <>
+            <Carousel />
+            <CarouselPV />
+            <CarouselN />
+          </>
+        )}
+
         <div className="text-center">
           <FiltradoGenero />
           <OrdAlfabetico />

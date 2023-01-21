@@ -3,11 +3,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getSearchBook } from '../../redux/actions/index';
 import Card from '../Card/Card';
 
-function SearchBar() {
+function SearchBar({setShowCarousels}) {
   const [bookInput, setBookInput] = useState('');
   const [message, setMessage] = useState('');
   const books = useSelector(state => state.books)
- console.log(books);
   const dispatch = useDispatch();
 
   const handleInputChange = e => {
@@ -29,7 +28,12 @@ function SearchBar() {
   };
 
   const filteredResults = books.filter(book => book.title.toLowerCase().includes(bookInput.toLowerCase()))
-console.log(filteredResults);
+  if( bookInput !== ''){
+    setShowCarousels(false);
+  }else if(bookInput === ''){
+    setShowCarousels(true);
+  }
+  
   return (
     <form
       className="top-1/4 w-full my-3.5 m-auto grid col-span-12"
@@ -67,8 +71,10 @@ console.log(filteredResults);
           required
           onChange={handleInputChange}
         />
-        <div>
-          {filteredResults.length > 0 ? (
+         <div>
+          {bookInput === '' ? (
+            <p>Este campo no debe estar vacío</p>
+          ) : filteredResults.length > 0 ? (
             filteredResults.map(book => (
               <Card
                 autor={book.autor}
