@@ -36,13 +36,9 @@ export const Home = () => {
       <div className="grid bg-gray col-span-9 pt-10">
         <h1>This is Home</h1>
         {/* <SearchBar /> */}
-        <Carousel />
-        <CarouselPV />
-        <CarouselN />
+        
 
-        <div className=" place-self-center">
-          <Paginated data={data} itemsPerPage={2} />
-        </div>
+        
         <div className="text-center">
           <FiltradoGenero />
           <OrdAlfabetico />
