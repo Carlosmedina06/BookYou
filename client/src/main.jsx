@@ -6,9 +6,8 @@ import { Provider } from 'react-redux'
 import store from '../src/redux/store/index.jsx'
 
 import App from './App'
-import './index.css'
-
 import './assets/main.css'
+import './index.css'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <Provider store={store}>
