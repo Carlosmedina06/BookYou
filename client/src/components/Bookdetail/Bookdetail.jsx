@@ -5,6 +5,8 @@ import { useParams } from "react-router-dom";
 import { getBookById } from "../../redux/actions";
 
 import NavBar from "../NavBar/NavBar";
+import Reviews from "./Reviews";
+import Review from "./Reviews";
 
 
 
@@ -25,11 +27,11 @@ const handleReadButton = (e) =>{
  }
 
 return(
-   <div className="grid grid-cols-12">
+   <div className="grid bg-white grid-cols-12">
     <div className=" grid col-span-3">
     <NavBar/>
     </div>
-    <div className="grid bg-gray col-span-9 pt-10">
+    <div className="grid bg-white col-span-9 pt-10 px-5">
       <div className="flex flex-row">
         <div className="w-8/12">
             <img className="w-48" src={details.img}  alt="" />  
@@ -52,6 +54,7 @@ return(
                 </div>
             </div>
         </div>
+        <Reviews/>
     </div>
     </div>
 )
