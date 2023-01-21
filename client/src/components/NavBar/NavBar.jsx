@@ -26,7 +26,7 @@ return(
        
     </nav>
    <div className="flex justify-center mt-44" >
-   <div> <button onClick={handleSuscribe} onClick={handleSuscribe}className="bg-transparent text-white hover:bg-black text-white font-semibold hover:text-white py-2 px-4 border border-white-500  rounded">Suscribirse</button></div>
+   <div> <button onClick={handleSuscribe} className="bg-transparent text-white hover:bg-black text-white font-semibold hover:text-white py-2 px-4 border border-white-500  rounded">Suscribirse</button></div>
     </div>
     </div>
   )
