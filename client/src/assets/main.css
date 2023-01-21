@@ -716,6 +716,9 @@ video {
 .justify-center {
   justify-content: center;
 }
+.place-self-center {
+  place-self: center;
+}
 .self-center {
   align-self: center;
 }
