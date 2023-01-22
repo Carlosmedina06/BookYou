@@ -7,6 +7,65 @@
 
 
 }
+
+.card {
+  margin-left: 20px;
+
+  display: flex;
+
+  justify-content: space-around;
+  border-radius: 10px;
+
+
+}
+
+.card {
+  margin-left: 20px;
+
+}
+
+
+
+
+
+.imagen {
+  position: relative;
+  height: 210px;
+  width: 130px;
+  display: flex;
+  margin-left: 45px;
+
+  justify-content: center;
+  align-items: center;
+  background-color: #8f8c8c;
+  border-radius: 10px;
+  transition: border-radius cubic-bezier(0.075, 0.82, 0.165, 1) 1.5s,
+    transform cubic-bezier(0.075, 0.82, 0.165, 1) 1.5s;
+
+  box-shadow: 4px 8px 19px -3px rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+
+}
+
+.imagen:hover {
+  border-bottom-right-radius: 30px;
+  border-top-left-radius: 30px;
+  transform: scale(1.2);
+}
+
+.texto {
+  margin-left: 10px;
+  margin-top: 110px;
+}
+.todo {
+
+  display: flex;
+
+  justify-content: space-around;
+  border-radius: 10px;
+
+
+}
 .card {
   margin-left: 20px;
 
@@ -42,23 +101,3 @@
 
   box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.4);
   overflow: hidden;
-
- }
- .imagen:hover {
-  border-bottom-right-radius: 30px;
-  border-top-left-radius: 30px;
-  transform: scale(1.2);
- }
-.texto {
-  margin-left:10px;
-  margin-top:110px;
-}
-.rectangulo {
-  margin-top:-110px;
-  margin-left:45px;
-  width: 130px;
-  height: 100px;
-  background-color: #7c7c7c;
-  border-bottom-right-radius: 20px;
-  border-bottom-left-radius: 20px;
-}

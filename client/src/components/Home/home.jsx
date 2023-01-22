@@ -8,7 +8,7 @@ import NavBar from '../NavBar/NavBar'
 import Carousel from '../CarouselRecomendados/Carousel'
 import CarouselPV from '../CarouselParaVos/Carousel'
 import CarouselN from '../CarouselNuevos/Carousel'
-import SearchBar from '../SearchBar/SearchBar'
+import SearchBar from '../Paginated/SearchBar/SearchBar'
 
 export const Home = () => {
   const dispatch = useDispatch()
