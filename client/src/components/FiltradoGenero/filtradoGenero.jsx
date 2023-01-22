@@ -6,43 +6,35 @@ import style from '../FiltradoGenero/filtradoGenero.module.css'
 import Card from '../Card/Card'
 import Pagination from '../Pagination/Pagination'
 
-
-export const FiltradoGenero = (
-  { setShowFilterGenero, 
-    setBooks, 
-    books,
-    bookInputtodos, 
-    setBookInputtodos,
-    setBookInput,
-    bookInput,
-    clearFilters }) => {
+export const FiltradoGenero = ({
+  setShowFilterGenero,
+  setBooks,
+  books,
+  bookInputtodos,
+  setBookInputtodos,
+  setBookInput,
+  bookInput,
+  clearFilters,
+}) => {
   const dispatch = useDispatch()
-  
 
-  const [currentPage, setCurrentPage] = useState(0);
+  const [currentPage, setCurrentPage] = useState(0)
   const [book, setBook] = useState([])
-  
 
   const allGeneros = useSelector((state) => state.category)
-  
+
   let allBooks = useSelector((state) => state.books)
   /*  const [books, setBooks] = useState(useSelector((state) => state.books)) */
 
   //seteo
 
-
-
   //seteo
-
-
 
   function handleFilterCategorys(e) {
     dispatch(filterCategorys(e.target.value))
     setBookInputtodos(e.target.value)
     setBooks(!books)
-    setBookInput("")
-    
-    
+    setBookInput('')
   }
   if (bookInputtodos !== 'todos') {
     setShowFilterGenero(false)
@@ -50,72 +42,72 @@ export const FiltradoGenero = (
     setShowFilterGenero(true)
   }
 
-  
-
-
   //data pagination-----------------------
   const totalPages = Math.ceil(allBooks.length / 5)
   const filterBooks = () => {
     const filtered = allBooks.slice(currentPage * 5, currentPage * 5 + 5)
+
     return filtered
   }
-console.log(filterBooks());
+
   //Pagina Anterior
   const prevPage = () => {
     if (currentPage > 0) setCurrentPage(currentPage - 1)
   }
   //Pagina siguiente
   const nextPage = () => {
-    if (currentPage < totalPages && allBooks.length-5 > currentPage*5) {
-        setCurrentPage(currentPage + 1)
+    if (currentPage < totalPages && allBooks.length - 5 > currentPage * 5) {
+      setCurrentPage(currentPage + 1)
     }
-}
-return (
+  }
+
+  return (
     <div className={style.contenedor}>
       <select className={style.select} onChange={(e) => handleFilterCategorys(e)}>
         <option className={style.titulo} value="todos">
           {' '}
           Géneros{' '}
         </option>
-        <option className={style.titulo} value="todos">
+        {/*         <option className={style.titulo} value="todos">
           {' '}
           Por defecto{' '}
-        </option>
+        </option> */}
         {allGeneros?.map((c) => (
           <option key={c.id}> {c.category} </option>
         ))}
       </select>
 
       <div className={style.mover1}>
-         <div className={style.mover}>
-        {bookInputtodos === 'todos' ? (
-          <p />
-        ) : (
-          filterBooks().map((book) => (
-            <Card
-              key={book.id}
-              autor={book.autor}
-              comentarios={book.content}
-              estado={book.subscription}
-              id={book.id}
-              img={book.img}
-              name={book.title}
-            />
-          ))
-        )}
-      </div>
+        <div className={style.mover}>
+          {bookInputtodos === 'todos' ? (
+            <p />
+          ) : (
+            filterBooks().map((book) => (
+              <Card
+                key={book.id}
+                autor={book.autor}
+                comentarios={book.content}
+                estado={book.subscription}
+                id={book.id}
+                img={book.img}
+                name={book.title}
+              />
+            ))
+          )}
+        </div>
       </div>
 
-      <div>         
-        {bookInputtodos === 'todos' ? (           
-        <p />         
-        ) : 
+      <div>
+        {bookInputtodos === 'todos' ? (
+          <p />
+        ) : allBooks.length > 0 ? (
           <div className={style.paginado}>
-            <Pagination prevPage={prevPage} nextPage={nextPage} totalPages={currentPage+1} />
-          </div>       
-        }       
-        </div>
-      
+            <Pagination nextPage={nextPage} prevPage={prevPage} totalPages={currentPage + 1} />
+          </div>
+        ) : (
+          <p className={style.p}>No hay libros con este género</p>
+        )}
+      </div>
     </div>
   )
 }

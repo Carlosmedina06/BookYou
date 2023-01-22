@@ -27,11 +27,9 @@
     margin-top: 50px;
 }
 
-
 .mover1 {
-    display: flex;
-    position: absolute;
-    right: -125px;
+  display: flex;
+  position: absolute;
 }
 
 .todo {
@@ -39,4 +37,12 @@
   top: 450px;
   left: 600px;
   display: flex;
+}
+
+.p{
+  margin-top: 5rem;
+  margin-left: -25rem;
+  font-size: 1.2em;
+  font-style: italic;
+  color: white;
 }
