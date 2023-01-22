@@ -5,12 +5,10 @@ import { getBooks, getCategorys } from '../../redux/actions/index'
 import FiltradoGenero from '../FiltradoGenero/filtradoGenero'
 import OrdAlfabetico from '../OrderAlfab/orderAlfabetico'
 import NavBar from '../NavBar/NavBar'
-/* import { Paginated } from '../Paginated/paginated' */
 import Carousel from '../CarouselRecomendados/Carousel'
 import CarouselPV from '../CarouselParaVos/Carousel'
 import CarouselN from '../CarouselNuevos/Carousel'
 import SearchBar from '../SearchBar/SearchBar'
-import style from '../Home/home.module.css'
 
 export const Home = () => {
   const dispatch = useDispatch()
@@ -31,7 +29,7 @@ export const Home = () => {
         <NavBar />
       </div>
       <div>
-        <SearchBar className={style.searchbar} setShowCarousels={setShowCarousels} />
+        <SearchBar setShowCarousels={setShowCarousels} />
       </div>
       <div>
         <FiltradoGenero
