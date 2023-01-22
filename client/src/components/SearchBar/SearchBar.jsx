@@ -79,6 +79,7 @@ function SearchBar({ setShowCarousels }) {
           ) : filteredResults.length > 0 ? (
             filteredResults.map((book) => (
               <Card
+                key={book.id}
                 autor={book.autor}
                 comentarios={book.content}
                 estado={book.subscription}
