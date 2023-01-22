@@ -38,3 +38,11 @@
   left: 600px;
   display: flex;
 }
+
+.p{
+  margin-top: 5rem;
+  margin-left: -25rem;
+  font-size: 1.2em;
+  font-style: italic;
+  color: white;
+}
