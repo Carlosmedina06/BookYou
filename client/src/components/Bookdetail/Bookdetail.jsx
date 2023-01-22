@@ -5,9 +5,7 @@ import { useParams } from "react-router-dom";
 import { getBookById } from "../../redux/actions";
 
 import NavBar from "../NavBar/NavBar";
-import Reviews from "./Reviews";
-import Review from "./Reviews";
-
+import style from "../Bookdetail/Bookdetail.module.css"
 
 
 const Bookdetail = () =>{
@@ -27,34 +25,34 @@ const handleReadButton = (e) =>{
  }
 
 return(
-   <div className="grid bg-white grid-cols-12">
-    <div className=" grid col-span-3">
+   <div className={style.mainGridContainer}>
+    <div >
     <NavBar/>
     </div>
-    <div className="grid bg-white col-span-9 pt-10 px-5">
-      <div className="flex flex-row">
-        <div className="w-8/12">
-            <img className="w-48" src={details.img}  alt="" />  
+    <div>
+      <div className={style.Bookdetails}>
+        <div className={style.bookImage}>
+            <img  src={details.img}  alt="" />  
         </div>
-            <div>
-                <div className="w-6/12 mx-16">
-                    <h1 className="font-bold text-2xl">{details.title}</h1>
+            <div className={style.bookTextDetail}>
+                <div >
+                    <h1 >{(details.title).charAt(0).toUpperCase()}{ (details.title).slice(1)}</h1>
                 </div>
-                <div className="w-7/12 mx-16 mt-8">
-                    <h2 className="font-medium text-2xl mt-8 mb-2">Acerca del libro</h2>
+                <div >
+                    <h2>Acerca del libro</h2>
                     <p>{details.description}</p>
                 </div>
-                <div className="my-4 mx-16">
-                    <button className="bg-transparent font-semibold text-sm text-black  py-1 px-3 border border-black  rounded-full mx-1">{details.category}</button>
+                <div className={style.buttonCategorycontainer}>
+                    <button className={style.buttonCategory}>{details.category}</button>
                    
 
                 </div >
-                <div className="my-5 mx-16">
-                <button onClick={handleReadButton}className="bg-black font-bold  text-lg text-white py-2 px-4 border border-black  rounded mx-1">Leer libro</button>
+                <div className={style.readBookButtonContainer} >
+                <button onClick={handleReadButton}className={style.readBookButton}>Leer libro</button>
                 </div>
             </div>
         </div>
-        <Reviews/>
+      
     </div>
     </div>
 )
