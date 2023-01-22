@@ -4,6 +4,17 @@
     margin-top: 50px;
 }
 
+.svgConteiner{
+    position: absolute;
+    width: 35px;
+    margin-top: 12px ;
+    margin-left: 350px;
+    color:white
+}
+
+.svg{
+    margin-left: 10px;
+}
 
 .mover1 {
     display: flex;
