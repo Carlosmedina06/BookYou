@@ -112,7 +112,7 @@ function SearchBar({ setShowCarousels, bookInput, setBookInput, setBookInputtodo
                   />
                 ))
               ) : (
-                <p className={style.p}>No tenemos ningún texto con ese nombre :C</p>
+                <p className={style.p}>No tenemos ningún texto con ese nombre</p>
               )}
             </div>
           </div>
