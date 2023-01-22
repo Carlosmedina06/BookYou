@@ -19,7 +19,7 @@ export const FiltradoGenero = (
   const dispatch = useDispatch()
   
 
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(0);
   const [book, setBook] = useState([])
   
 
@@ -54,19 +54,19 @@ export const FiltradoGenero = (
 
 
   //data pagination-----------------------
-  const totalPages = Math.ceil(allBooks.length / 6)
+  const totalPages = Math.ceil(allBooks.length / 5)
   const filterBooks = () => {
-    const filtered = allBooks.slice(currentPage * 6, currentPage * 6 + 6)
+    const filtered = allBooks.slice(currentPage * 5, currentPage * 5 + 5)
     return filtered
   }
 console.log(filterBooks());
   //Pagina Anterior
   const prevPage = () => {
-    if (currentPage >= 1) setCurrentPage(currentPage - 1)
+    if (currentPage > 0) setCurrentPage(currentPage - 1)
   }
   //Pagina siguiente
   const nextPage = () => {
-    if (currentPage < totalPages && filteredResults.length-5 > currentPage*6) {
+    if (currentPage < totalPages && allBooks.length-5 > currentPage*5) {
         setCurrentPage(currentPage + 1)
     }
 }
@@ -106,12 +106,11 @@ return (
       <div>         
         {bookInputtodos === 'todos' ? (           
         <p />         
-        ) : allBooks.length > 0 ? (   
+        ) : 
                
           <Pagination prevPage={prevPage} nextPage={nextPage} totalPages={currentPage+1} />        
-        ) : (           
-        <p>No hay libros con este género</p>         
-        )}       
+                  
+        }       
         </div>
       
     </div>

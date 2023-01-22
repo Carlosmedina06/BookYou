@@ -9,31 +9,13 @@
     position: absolute;
 }
 
-.block {
-    width: 50%;
-    padding: 4px;
-    padding-left: 10px;
-    font-size: 0.8rem;
-    color: gray;
-    border: 1px solid gray-300;
-    border-radius: 5px;
-    background-color: gray-50;
+.input {
+    position: absolute;
+    top: 20px;
+    left: 270px;
 }
-
-.block:focus {
-    outline: none;
-    border-color: blue-500;
-    box-shadow: 0 0 0 3px blue-500;
-}
-
-.dark {
-    background-color: gray-700;
-    border-color: gray-600;
+.p {
     color: white;
-    
-}
-
-.dark:focus {
-    border-color: blue-500;
-    box-shadow: 0 0 0 3px blue-500;
+    font-size: 1.2em;
+    margin-top: 10%;
 }

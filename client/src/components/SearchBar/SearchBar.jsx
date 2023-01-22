@@ -35,9 +35,9 @@ function SearchBar({setShowCarousels,bookInput, setBookInput,setBookInputtodos,c
   }
 
   //data pagination-----------------------
-  const totalPages = Math.ceil(filteredResults.length / 6)
+  const totalPages = Math.ceil(filteredResults.length / 5)
   const filterBooks = () => {
-    const filtered = filteredResults.slice(currentPage * 6, currentPage * 6 + 6)
+    const filtered = filteredResults.slice(currentPage * 5, currentPage * 5 + 5)
     return filtered
   }
 
@@ -47,7 +47,7 @@ function SearchBar({setShowCarousels,bookInput, setBookInput,setBookInputtodos,c
   }
   //Pagina siguiente
   const nextPage = () => {
-    if (currentPage < totalPages && filteredResults.length-6 > currentPage*6) {
+    if (currentPage < totalPages && filteredResults.length-5 > currentPage*5) {
         setCurrentPage(currentPage + 1)
     }
 }
@@ -58,6 +58,7 @@ console.log(filteredResults.length);
       className="top-1/4 w-full my-3.5 m-auto grid col-span-12"
       
     >
+      <div className={style.input}>
       <label
         htmlFor="default-search"
         className="mb-2 text-sm font-medium	text-gray-900 sr-only dark:text-white"
@@ -82,14 +83,17 @@ console.log(filteredResults.length);
             ></path>
           </svg>
         </div>
+
         <input
           type="search"
           id="default-search"
-          className="block w-2/4 p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          className="block w-2/5 p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           placeholder="Libros, Textos, Artículos..."
           required
           onChange={handleInputChange}
-        />
+          />
+          </div>
+          
         <div className={style.mover1}>
          <div className={style.mover}>
           {bookInput === '' ? (
@@ -108,7 +112,7 @@ console.log(filteredResults.length);
             ))
           ) 
           : (
-            <p>No tenemos ningún texto con ese nombre :C</p>
+            <p className={style.p}>No tenemos ningún texto con ese nombre :C</p>
           )}
         </div>
               </div>
@@ -117,11 +121,9 @@ console.log(filteredResults.length);
         <div className=" place-self-center">
           {bookInput === '' ? (
             <p></p>
-          ) : filteredResults.length > 0 ? (
+          ) :
             <Pagination prevPage={prevPage} nextPage={nextPage} totalPages={currentPage+1} />
-          ) : (
-            <p>No tenemos ningún texto con ese nombre :C</p>
-            )}
+}
         </div>
       </div>
     </div>

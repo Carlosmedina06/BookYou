@@ -15,12 +15,13 @@ export const OrdAlfabetico = ({ books, setBooks }) => {
     setBooks(!books)
     setOrdAlf(`Ordenando ${e.target.value}`)
   }
-
+ 
+  
   return (
     <div className={style.contenedor}>
       <select className={style.select} onChange={(e) => handleSortBooks(e)}>
-        <option value="asc"> A-Z </option>
-        <option value="desc"> Z-A </option>
+        <option value="asc" className={style.roundedSelect}> A-Z </option>
+        <option value="desc" className={style.roundedSelect}> Z-A </option>
       </select>
     </div>
   )

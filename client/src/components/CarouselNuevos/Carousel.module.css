@@ -146,7 +146,9 @@
 	vertical-align: top;
 }
 
-
+.h3 {
+	color: white;
+}
 
 /* ---- ----- ----- Media Queries ----- ----- ----- */
 @media screen and (max-width: 800px) {

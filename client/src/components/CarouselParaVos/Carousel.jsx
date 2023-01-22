@@ -13,7 +13,7 @@ const Carousel = () => {
       
     const librosPorPagina = 4;
     const librosAMostrar = libros.slice(currentIndex * librosPorPagina, currentIndex * librosPorPagina + librosPorPagina);
-    const librosFaltantes = librosPorPagina - librosAMostrar.length;
+    const librosFaltantes = librosPorPagina - librosAMostrar.length ;
     const librosAMostrarCompletos = librosAMostrar.concat(libros.slice(0, librosFaltantes));
       
   
@@ -52,7 +52,7 @@ const Carousel = () => {
     <div className={style.todo1}>
       <div className={style.librocarousel}>
         <div className={style.titulo}>
-          <h3>Para Vos</h3>
+          <h3 style={{ fontSize: '30px', color:'white'    }}>Para Vos</h3>
         </div>
         <div className={style.contenedorprincipal}>
           <button className={style.izquierda} onClick={handleLeftArrowClick}>

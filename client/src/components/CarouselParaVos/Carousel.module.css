@@ -8,7 +8,7 @@
 	background-size: cover;
 	margin-bottom: 3.12em;
 	display: flex;
-	align-items: end;
+	
 
 	margin: 0 auto;
     position: absolute;
@@ -56,7 +56,7 @@
 .titulo {
 	display: flex;
 	justify-content: space-between;
-	align-items: end;
+	
 
 	color: rgb(0, 0, 0);
 	font-size: 30px;
@@ -145,7 +145,9 @@
 	vertical-align: top;
 }
 
-
+.h3 {
+	color: white;
+}
 
 /* ---- ----- ----- Media Queries ----- ----- ----- */
 @media screen and (max-width: 800px) {

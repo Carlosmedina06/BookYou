@@ -52,7 +52,7 @@ const Carousel = () => {
     <div className={style.todo1}>
       <div className={style.librocarousel}>
         <div className={style.titulo}>
-          <h3>Nuevo</h3>
+          <h3 className={style.h3}>Nuevo</h3>
         </div>
         <div className={style.contenedorprincipal}>
           <button className={style.izquierda} onClick={handleLeftArrowClick}>
