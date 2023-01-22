@@ -1,0 +1,81 @@
+
+
+
+.mainGridContainer{
+
+display: grid;
+grid-template-columns: 15rem auto
+
+
+
+}
+
+.Bookdetails{
+    padding: 2rem 2rem 2rem 2rem;
+    margin-top: 2rem;
+    margin-left: 2rem;
+display: flex;
+flex-direction: row;
+width: 90%;
+
+
+}
+.bookImage  img{
+background-color: blueviolet;
+    width: 15rem;
+    margin-top: 1rem;
+ 
+    }
+
+
+.bookTextDetail{
+    color: white;
+display: flex;
+flex-direction: column;
+justify-items: left;
+margin-top: 1rem;
+width: 70%;
+margin-left: 2rem;
+}
+
+.bookTextDetail h1{
+font-size: 2rem;
+font-weight: 700;
+margin-bottom: 1rem;
+}
+.bookTextDetail h2{
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    }
+    
+.buttonCategory{
+background-color: transparent;
+color:white;
+font-weight: 600;
+font-size: 0.8rem;
+padding: 0.2rem 0.8rem 0.2rem 0.8rem;
+border: 1px solid white ;
+border-radius: 15px;
+}
+
+.buttonCategorycontainer{
+margin-left: 1rem;
+margin-top: 1rem;
+}
+
+
+.readBookButtonContainer{
+margin-left: 0.2rem;
+margin-top: 2rem;
+}
+
+.readBookButton{
+background-color: black;
+font-size: 1.4rem;
+padding: 0.5rem 1rem 0.5rem 1rem;
+border-radius: 3px;
+
+
+}
