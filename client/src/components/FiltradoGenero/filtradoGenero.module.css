@@ -1,0 +1,19 @@
+.contenedor{
+    margin-left: 45rem;
+   margin-top: -2rem;
+  }
+  
+  .select{
+    padding: 6px;
+    border-radius: 20px;
+    width: 400px;
+  }
+  
+  .cardConteiner{
+    gap:30px;
+    display: flex;
+    margin-top: 5rem;
+    margin-left: -25rem;
+    flex-wrap: wrap;
+  
+  }
