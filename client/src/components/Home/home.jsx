@@ -6,7 +6,7 @@ import FiltradoGenero from '../FiltradoGenero/filtradoGenero';
 import OrdAlfabetico from '../OrderAlfab/orderAlfabetico';
 
 import NavBar from '../NavBar/NavBar';
-import { Paginated } from '../Paginated/paginated';
+
 import Carousel from '../CarouselRecomendados/Carousel';
 import CarouselPV from '../CarouselParaVos/Carousel';
 import CarouselN from '../CarouselNuevos/Carousel';

@@ -1,32 +1,27 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getSearchBook } from '../../redux/actions/index';
-import { Paginated } from '../Paginated/paginated';
+
 import Card from '../Card/Card';
+import Pagination from '../Pagination/Pagination'
+import style from './SearchBar.module.css'
 
 function SearchBar({setShowCarousels}) {
-  const [bookInput, setBookInput] = useState('');
-  const [message, setMessage] = useState('');
+ 
   const books = useSelector(state => state.books)
+  const [book, setBook] = useState([])
   const dispatch = useDispatch();
+  
+  const [currentPage, setCurrentPage] = useState(1);
+  const [bookInput, setBookInput] = useState('');
+  
 
   const handleInputChange = e => {
     setBookInput(e.target.value);
     console.log(bookInput);
   };
 
-  const handleSubmit = e => {
-    e.preventDefault();
-    setMessage('');
 
-    if (!bookInput) {
-      setMessage('Este campo no debe estar vacío');
-    }
-
-    dispatch(getSearchBook(bookInput));
-
-    setBookInput('');
-  };
 
   const filteredResults = books.filter(book => book.title.toLowerCase().includes(bookInput.toLowerCase()))
   if( bookInput !== ''){
@@ -34,11 +29,37 @@ function SearchBar({setShowCarousels}) {
   }else if(bookInput === ''){
     setShowCarousels(true);
   }
+
+  //data pagination-----------------------
+  const totalPages = Math.ceil(currentPage / 9 + 1)
+  const filterBooks = () => {
+    if (!bookInput) {
+      return book.slice(currentPage, currentPage + 9)
+    }
+    const filtered = book.filter((c) => c.title.toLowerCase().includes(bookInput.toLocaleLowerCase()))
+
+    return filtered.slice(currentPage, currentPage + 9)
+  }
+  //Pagina Anterior
+  const prevPage = () => {
+    if (currentPage > 0) setCurrentPage(currentPage - 9)
+  }
+  //Pagina siguiente
+  const nextPage = () => {
+    if (book.filter((c) => c.title.includes(bookInput)).length > currentPage + 9)
+      setCurrentPage(currentPage + 9)
+  }
+
+    const countrysPerPage = 9;
+    const indexLastCountry = currentPage * countrysPerPage ;
+    const indexFirstCountry = indexLastCountry - countrysPerPage ;
+    const countrysCurrentPage = books.slice(indexFirstCountry, indexLastCountry); 
   
   return (
-    <form
+    <>
+    <div
       className="top-1/4 w-full my-3.5 m-auto grid col-span-12"
-      onSubmit={handleSubmit}
+      
     >
       <label
         htmlFor="default-search"
@@ -72,14 +93,16 @@ function SearchBar({setShowCarousels}) {
           required
           onChange={handleInputChange}
         />
-         <div>
+        <div className={style.mover1}>
+
+         <div className={style.mover}>
           {bookInput === '' ? (
             <p></p>
           ) : filteredResults.length > 0 ? (
             filteredResults.map(book => (
               <Card
-                autor={book.autor}
-                comentarios={book.content}
+              autor={book.autor}
+              comentarios={book.content}
                 estado={book.subscription}
                 id={book.id}
                 img={book.img}
@@ -91,19 +114,21 @@ function SearchBar({setShowCarousels}) {
             <p>No tenemos ningún texto con ese nombre :C</p>
           )}
         </div>
+              </div>
 
 
         <div className=" place-self-center">
           {bookInput === '' ? (
             <p></p>
           ) : filteredResults.length > 0 ? (
-            <Paginated data={filteredResults} itemsPerPage={2} />
+            <Pagination nextPage={nextPage} prevPage={prevPage} totalPages={totalPages} />
           ) : (
             <p>No tenemos ningún texto con ese nombre :C</p>
-          )}
+            )}
         </div>
       </div>
-    </form>
+    </div>
+    </>
   );
 }
 
