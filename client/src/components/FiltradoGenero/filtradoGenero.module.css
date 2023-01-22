@@ -1,0 +1,42 @@
+.contenedor{
+    margin-left: 45rem;
+   margin-top: -2rem;
+  }
+  
+  .select{
+    padding: 6px;
+    border-radius: 20px;
+    border: 1px solid rgb(156, 163, 175);
+    height: 50px;
+    width: 400px;
+    color: rgb(156, 163, 175);
+    background-color:rgb(55, 65, 81);
+  }
+  
+  .cardConteiner{
+    gap:30px;
+    display: flex;
+    margin-top: 5rem;
+    margin-left: -25rem;
+    flex-wrap: wrap;
+  
+  }
+  .mover {
+   
+    display: flex;
+    margin-top: 50px;
+}
+
+
+.mover1 {
+    display: flex;
+    position: absolute;
+    right: -125px;
+}
+
+.todo {
+  position: absolute;
+  top: 450px;
+  left: 600px;
+  display: flex;
+}
