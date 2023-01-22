@@ -14,7 +14,21 @@ export const Home = () => {
   const dispatch = useDispatch()
   const [showCarousels, setShowCarousels] = useState(true)
   const [showFilterGenero, setShowFilterGenero] = useState(true)
+
+  const [showSearchFilter, setShowSearchFilter] = useState(true)
   const [books, setBooks] = useState(true)
+
+//----------------------------------------------------------------
+  const [bookInput, setBookInput] = useState('');
+  const [bookInputtodos, setBookInputtodos] = useState('todos')
+//----------------------------------------------------------------
+
+const clearFilters = () => {
+  setBookInput('');
+  setBookInputtodos('todos');
+  setCurrentPage(1);
+}
+
   /*   const allBooks = useSelector((state) => state.books)
   const allGeneros = useSelector((state) => state.category) */
 
@@ -29,7 +43,13 @@ export const Home = () => {
         <NavBar />
       </div>
       <div>
-        <SearchBar setShowCarousels={setShowCarousels} />
+        <SearchBar 
+        setShowCarousels={setShowCarousels} 
+        bookInput= {bookInput}
+        setBookInput= {setBookInput}
+        setBookInputtodos = {setBookInputtodos}
+        clearFilters={clearFilters}
+        />
       </div>
       <div>
         <FiltradoGenero
@@ -37,6 +57,11 @@ export const Home = () => {
           setBooks={setBooks}
           setShowFilterGenero={setShowFilterGenero}
           showFilterGenero={showFilterGenero}
+          bookInputtodos= {bookInputtodos}
+          setBookInputtodos = {setBookInputtodos}
+          setBookInput= {setBookInput}
+          bookInput= {bookInput}
+          clearFilters={clearFilters}
         />
       </div>
       <div>

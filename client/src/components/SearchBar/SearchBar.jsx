@@ -1,27 +1,31 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getSearchBook } from '../../redux/actions/index';
-
 import Card from '../Card/Card';
 import Pagination from '../Pagination/Pagination'
 import style from './SearchBar.module.css'
 
-function SearchBar({setShowCarousels}) {
+function SearchBar({setShowCarousels,bookInput, setBookInput,setBookInputtodos,clearFilters }) {
  
   const books = useSelector(state => state.books)
   const [book, setBook] = useState([])
   const dispatch = useDispatch();
   
   const [currentPage, setCurrentPage] = useState(1);
-  const [bookInput, setBookInput] = useState('');
+  
+
+  //seteo
+
+
+  
+   //seteo
   
 
   const handleInputChange = e => {
     setBookInput(e.target.value);
-    console.log(bookInput);
+    setBookInputtodos('todos');
+    setCurrentPage(0);
   };
-
-
 
   const filteredResults = books.filter(book => book.title.toLowerCase().includes(bookInput.toLowerCase()))
   if( bookInput !== ''){
@@ -31,30 +35,23 @@ function SearchBar({setShowCarousels}) {
   }
 
   //data pagination-----------------------
-  const totalPages = Math.ceil(currentPage / 9 + 1)
+  const totalPages = Math.ceil(filteredResults.length / 6)
   const filterBooks = () => {
-    if (!bookInput) {
-      return book.slice(currentPage, currentPage + 9)
-    }
-    const filtered = book.filter((c) => c.title.toLowerCase().includes(bookInput.toLocaleLowerCase()))
-
-    return filtered.slice(currentPage, currentPage + 9)
+    const filtered = filteredResults.slice(currentPage * 6, currentPage * 6 + 6)
+    return filtered
   }
+
   //Pagina Anterior
   const prevPage = () => {
-    if (currentPage > 0) setCurrentPage(currentPage - 9)
+    if (currentPage >= 1) setCurrentPage(currentPage - 1)
   }
   //Pagina siguiente
   const nextPage = () => {
-    if (book.filter((c) => c.title.includes(bookInput)).length > currentPage + 9)
-      setCurrentPage(currentPage + 9)
-  }
-
-    const countrysPerPage = 9;
-    const indexLastCountry = currentPage * countrysPerPage ;
-    const indexFirstCountry = indexLastCountry - countrysPerPage ;
-    const countrysCurrentPage = books.slice(indexFirstCountry, indexLastCountry); 
-  
+    if (currentPage < totalPages && filteredResults.length-6 > currentPage*6) {
+        setCurrentPage(currentPage + 1)
+    }
+}
+console.log(filteredResults.length);
   return (
     <>
     <div
@@ -94,13 +91,13 @@ function SearchBar({setShowCarousels}) {
           onChange={handleInputChange}
         />
         <div className={style.mover1}>
-
          <div className={style.mover}>
           {bookInput === '' ? (
             <p></p>
           ) : filteredResults.length > 0 ? (
-            filteredResults.map(book => (
+            filterBooks().map((book,i) => (
               <Card
+              key={i}
               autor={book.autor}
               comentarios={book.content}
                 estado={book.subscription}
@@ -121,7 +118,7 @@ function SearchBar({setShowCarousels}) {
           {bookInput === '' ? (
             <p></p>
           ) : filteredResults.length > 0 ? (
-            <Pagination nextPage={nextPage} prevPage={prevPage} totalPages={totalPages} />
+            <Pagination prevPage={prevPage} nextPage={nextPage} totalPages={currentPage+1} />
           ) : (
             <p>No tenemos ningún texto con ese nombre :C</p>
             )}

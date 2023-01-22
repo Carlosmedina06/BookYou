@@ -2,9 +2,9 @@ import React from 'react'
 
 import style from './Pagination.module.css'
 
-const Pagination = ({ prevPage, nextPage, totalPages }) => {
+export default function Pagination  ({ prevPage, nextPage, totalPages })  {
   return (
-    <div>
+    <div className={style.todo}>
 
       <button onClick={prevPage} className={style.BtnPag}>⟵ prev page</button>
       <p>{totalPages}</p>
@@ -14,4 +14,3 @@ const Pagination = ({ prevPage, nextPage, totalPages }) => {
   )
 }
 
-export default Pagination

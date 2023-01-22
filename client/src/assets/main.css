@@ -689,6 +689,9 @@ video {
 .w-5 {
   width: 1.25rem;
 }
+.w-2\/4 {
+  width: 50%;
+}
 .grid-cols-12 {
   grid-template-columns: repeat(12, minmax(0, 1fr));
 }
