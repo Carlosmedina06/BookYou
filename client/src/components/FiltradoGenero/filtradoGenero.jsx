@@ -68,10 +68,10 @@ export const FiltradoGenero = ({
           {' '}
           Géneros{' '}
         </option>
-        <option className={style.titulo} value="todos">
+        {/*         <option className={style.titulo} value="todos">
           {' '}
           Por defecto{' '}
-        </option>
+        </option> */}
         {allGeneros?.map((c) => (
           <option key={c.id}> {c.category} </option>
         ))}
@@ -100,10 +100,12 @@ export const FiltradoGenero = ({
       <div>
         {bookInputtodos === 'todos' ? (
           <p />
-        ) : (
+        ) : allBooks.length > 0 ? (
           <div className={style.paginado}>
             <Pagination nextPage={nextPage} prevPage={prevPage} totalPages={currentPage + 1} />
           </div>
+        ) : (
+          <p className={style.p}>No hay libros con este género</p>
         )}
       </div>
     </div>
