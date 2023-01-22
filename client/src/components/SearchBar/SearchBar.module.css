@@ -1,11 +1,12 @@
 .mover {
    
     display: flex;
+    margin-top: 50px;
 }
 
 
 .mover1 {
-    
+    display: flex;
     position: absolute;
 }
 
@@ -19,3 +20,10 @@
     font-size: 1.2em;
     margin-top: 10%;
 }
+.paginado {
+    width: 1000px;
+    position: absolute;
+    top: 32px;
+    right:  -330px;
+    display: flex;
+  }

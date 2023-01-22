@@ -51,7 +51,7 @@ const clearFilters = () => {
         clearFilters={clearFilters}
         />
       </div>
-      <div style={{ position: 'absolute', top: '55px', left:'00px' }}>
+      <div style={{ position: 'absolute', top: '52px', left:'00px' }}>
         <FiltradoGenero
           books={books}
           setBooks={setBooks}
@@ -64,7 +64,7 @@ const clearFilters = () => {
           clearFilters={clearFilters}
         />
       </div>
-      <div style={{ position: 'absolute', top: '133px', left:'30px' }}>
+      <div style={{ position: 'absolute', top: '130px', left:'30px' }}>
         <OrdAlfabetico books={books} setBooks={setBooks} />
       </div>
       <div>

@@ -85,7 +85,9 @@ return (
           <option key={c.id}> {c.category} </option>
         ))}
       </select>
-      <div className={style.cardConteiner}>
+
+      <div className={style.mover1}>
+         <div className={style.mover}>
         {bookInputtodos === 'todos' ? (
           <p />
         ) : (
@@ -102,14 +104,15 @@ return (
           ))
         )}
       </div>
+      </div>
 
       <div>         
         {bookInputtodos === 'todos' ? (           
         <p />         
         ) : 
-               
-          <Pagination prevPage={prevPage} nextPage={nextPage} totalPages={currentPage+1} />        
-                  
+          <div className={style.paginado}>
+            <Pagination prevPage={prevPage} nextPage={nextPage} totalPages={currentPage+1} />
+          </div>       
         }       
         </div>
       

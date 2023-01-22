@@ -21,3 +21,22 @@
     flex-wrap: wrap;
   
   }
+  .mover {
+   
+    display: flex;
+    margin-top: 50px;
+}
+
+
+.mover1 {
+    display: flex;
+    position: absolute;
+    right: -125px;
+}
+
+.todo {
+  position: absolute;
+  top: 450px;
+  left: 600px;
+  display: flex;
+}

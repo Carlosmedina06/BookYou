@@ -7,7 +7,7 @@ export default function Pagination  ({ prevPage, nextPage, totalPages })  {
     <div className={style.todo}>
 
       <button onClick={prevPage} className={style.BtnPag}>⟵ prev page</button>
-      <p>{totalPages}</p>
+      <p className={style.p}>{totalPages}</p>
       <button onClick={nextPage} className={style.BtnPag}>next page →</button>
     </div>
     
