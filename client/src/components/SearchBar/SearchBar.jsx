@@ -1,48 +1,49 @@
-import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { getSearchBook } from '../../redux/actions/index';
-import { Paginated } from '../Paginated/paginated';
-import Card from '../Card/Card';
+import { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 
-function SearchBar({setShowCarousels}) {
-  const [bookInput, setBookInput] = useState('');
-  const [message, setMessage] = useState('');
-  const books = useSelector(state => state.books)
-  const dispatch = useDispatch();
+import { getSearchBook } from '../../redux/actions/index'
+import { Paginated } from '../Paginated/paginated'
+import Card from '../Card/Card'
 
-  const handleInputChange = e => {
-    setBookInput(e.target.value);
-    console.log(bookInput);
-  };
+function SearchBar({ setShowCarousels }) {
+  const [bookInput, setBookInput] = useState('')
+  const [message, setMessage] = useState('')
+  const books = useSelector((state) => state.books)
+  const dispatch = useDispatch()
 
-  const handleSubmit = e => {
-    e.preventDefault();
-    setMessage('');
+  const handleInputChange = (e) => {
+    setBookInput(e.target.value)
+    console.log(bookInput)
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    setMessage('')
 
     if (!bookInput) {
-      setMessage('Este campo no debe estar vacío');
+      setMessage('Este campo no debe estar vacío')
     }
 
-    dispatch(getSearchBook(bookInput));
+    dispatch(getSearchBook(bookInput))
 
-    setBookInput('');
-  };
-
-  const filteredResults = books.filter(book => book.title.toLowerCase().includes(bookInput.toLowerCase()))
-  if( bookInput !== ''){
-    setShowCarousels(false);
-  }else if(bookInput === ''){
-    setShowCarousels(true);
+    setBookInput('')
   }
-  
+
+  const filteredResults = books.filter((book) =>
+    book.title.toLowerCase().includes(bookInput.toLowerCase()),
+  )
+
+  if (bookInput !== '') {
+    setShowCarousels(false)
+  } else if (bookInput === '') {
+    setShowCarousels(true)
+  }
+
   return (
-    <form
-      className="top-1/4 w-full my-3.5 m-auto grid col-span-12"
-      onSubmit={handleSubmit}
-    >
+    <form className="top-1/4 w-full my-3.5 m-auto grid col-span-12" onSubmit={handleSubmit}>
       <label
-        htmlFor="default-search"
         className="mb-2 text-sm font-medium	text-gray-900 sr-only dark:text-white"
+        htmlFor="default-search"
       >
         Search
       </label>
@@ -57,26 +58,26 @@ function SearchBar({setShowCarousels}) {
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
               d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-            ></path>
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+            />
           </svg>
         </div>
         <input
-          type="search"
-          id="default-search"
-          className="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-          placeholder="Libros, Textos, Artículos..."
           required
+          className="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          id="default-search"
+          placeholder="Libros, Textos, Artículos..."
+          type="search"
           onChange={handleInputChange}
         />
-         <div>
+        <div>
           {bookInput === '' ? (
-            <p></p>
+            <p />
           ) : filteredResults.length > 0 ? (
-            filteredResults.map(book => (
+            filteredResults.map((book) => (
               <Card
                 autor={book.autor}
                 comentarios={book.content}
@@ -86,16 +87,14 @@ function SearchBar({setShowCarousels}) {
                 name={book.title}
               />
             ))
-          ) 
-          : (
+          ) : (
             <p>No tenemos ningún texto con ese nombre :C</p>
           )}
         </div>
 
-
         <div className=" place-self-center">
           {bookInput === '' ? (
-            <p></p>
+            <p />
           ) : filteredResults.length > 0 ? (
             <Paginated data={filteredResults} itemsPerPage={2} />
           ) : (
@@ -104,7 +103,7 @@ function SearchBar({setShowCarousels}) {
         </div>
       </div>
     </form>
-  );
+  )
 }
 
-export default SearchBar;
+export default SearchBar
