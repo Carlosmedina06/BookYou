@@ -1,26 +1,26 @@
 import React from "react";
 import NavBar from "../NavBar/NavBar";
-
+import style from "../PageOnConstruction/PageOnConstruction.module.css"
 
 
 const PageOnConstruction  = () =>{
 return(
-<div className="grid bg-slate-400 grid-cols-12">
-    <div className="col-span-3">
-        <NavBar/>
+<div className={style.mainGridContainer}>
+    <div className={style.NavBar}>
+      <NavBar/>  
     </div>
-    <div className="grid content-center  col-span-5 w-full">
-        <div className="inline-block  align-middle">
-            <div className=" w-6/12 font-bold text-4xl"><h1>Proximamente</h1></div>
-            <div className="text-xl mt-8">
+    <div className={style.infoBox}>
+        <div className={style.textBox}>
+            <div><h1>Proximamente</h1></div>
+            <p>
             Aun nos encontramos trabajando en esta 
             caracteristica, estara disponible muy pronto.
-            </div>
+            </p>
         </div>
            
     </div>
-    <div className="col-span-4 h-screen bg-white">
-        <img className="h-screen" src={"https://res.cloudinary.com/dn8jxsqka/image/upload/v1674253571/pagina_en_construccion_ndqp9v.png"} alt="" />
+    <div className={style.imageBox}>
+        <img className="h-screen" src={"https://res.cloudinary.com/dn8jxsqka/image/upload/v1674253571/pagina_en_construccion_ndqp9v.png"} alt="" /> 
     </div>
 </div>
 )

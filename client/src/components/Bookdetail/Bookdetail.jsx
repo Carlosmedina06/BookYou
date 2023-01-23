@@ -1,64 +1,66 @@
-import React from "react";
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
-import { getBookById } from "../../redux/actions";
-
-import NavBar from "../NavBar/NavBar";
-import Reviews from "./Reviews";
-import Review from "./Reviews";
+import React from 'react'
+import { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { useParams } from 'react-router-dom'
 
 
+import { getBookById } from '../../redux/actions'
+import NavBar from '../NavBar/NavBar'
+import style from '../Bookdetail/Bookdetail.module.css'
 
-const Bookdetail = () =>{
-const dispatch = useDispatch()
-const {id} = useParams()
-const details = useSelector(state => state.detail)
-useEffect(()=>{
-    
-dispatch(getBookById(id))
+const Bookdetail = () => {
+  const dispatch = useDispatch()
+  const { id } = useParams()
+  const details = useSelector((state) => state.detail)
 
-},[dispatch,id])
 
-const handleReadButton = (e) =>{
+  useEffect(() => {
+    dispatch(getBookById(id))
+  }, [dispatch, id])
+
+  const handleReadButton = (e) => {
     e.preventDefault()
     window.open(details.content)
- 
- }
 
-return(
-   <div className="grid bg-white grid-cols-12">
-    <div className=" grid col-span-3">
-    <NavBar/>
-    </div>
-    <div className="grid bg-white col-span-9 pt-10 px-5">
-      <div className="flex flex-row">
-        <div className="w-8/12">
-            <img className="w-48" src={details.img}  alt="" />  
-        </div>
+  }
+
+  return (
+    <div className={style.mainGridContainer}>
+      <div>
+        <NavBar />
+      </div>
+      <div>
+        <div className={style.Bookdetails}>
+          <div className={style.bookImage}>
+            <img alt="" src={details.img} />
+          </div>
+          <div className={style.bookTextDetail}>
             <div>
-                <div className="w-6/12 mx-16">
-                    <h1 className="font-bold text-2xl">{details.title}</h1>
-                </div>
-                <div className="w-7/12 mx-16 mt-8">
-                    <h2 className="font-medium text-2xl mt-8 mb-2">Acerca del libro</h2>
-                    <p>{details.description}</p>
-                </div>
-                <div className="my-4 mx-16">
-                    <button className="bg-transparent font-semibold text-sm text-black  py-1 px-3 border border-black  rounded-full mx-1">{details.category}</button>
-                   
+              <h1>
+                {details.title.charAt(0).toUpperCase()}
+                {details.title.slice(1)}
+              </h1>
 
-                </div >
-                <div className="my-5 mx-16">
-                <button onClick={handleReadButton}className="bg-black font-bold  text-lg text-white py-2 px-4 border border-black  rounded mx-1">Leer libro</button>
-                </div>
             </div>
+            <div>
+              <h2>Acerca del libro</h2>
+              <p>{details.description}</p>
+            </div>
+            <div className={style.buttonCategorycontainer}>
+              <button className={style.buttonCategory}>{details.category}</button>
+            </div>
+            <div className={style.readBookButtonContainer}>
+              <button className={style.readBookButton} onClick={handleReadButton}>
+                Leer libro
+              </button>
+            </div>
+          </div>
         </div>
-        <Reviews/>
-    </div>
-    </div>
-)
 
+      </div>
+
+    </div>
+  )
 }
 
 export default Bookdetail

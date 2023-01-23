@@ -1,0 +1,57 @@
+
+
+.NavBarContainer{
+  position: fixed;
+  background-color: black;
+  max-width: 15rem;
+  height: 100%;
+  
+  
+  }
+  
+  .NavBarLogo{
+  
+  font-size: 2.25rem; 
+  line-height: 2.5rem;
+  color: white;
+  font-weight:900;
+  margin-top: 9rem;
+  margin-left: 1.25rem;
+  margin-right: 1.25rem;
+  }
+  
+  
+  .NavBarOption{
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  font-size: 1.25rem;
+  color: white;
+  margin: 2rem 2.5rem 4rem 2.5rem;
+  }
+  
+  .NavBarOption li{
+  margin: 2rem 0 2rem 0;
+  
+  }
+  
+  .buttonSuscribeContainer{
+  display: flex;
+  justify-content: center;
+  margin-top: 8rem;
+  
+  
+  }
+  
+  /* "bg-transparent text-white hover:bg-black text-white font-semibold hover:text-white py-2 px-4 border border-white-500  rounded */
+  
+  .buttonSuscribe{
+  background-color: transparent;
+  color: white;
+  font-weight: 600;
+  padding: 0.2rem 0.3rem 0.2rem 0.3rem;
+  border: 1px solid white ;
+  border-radius: 0.2rem;
+  
+  }
+
