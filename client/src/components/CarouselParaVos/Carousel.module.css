@@ -101,6 +101,7 @@
 	transition: .2s ease all ;
 }
 
+
 .izquierda:hover , .derecha:hover  {
 	background:rgba(0, 0, 0, 0.7);
 

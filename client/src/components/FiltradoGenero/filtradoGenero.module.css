@@ -22,7 +22,7 @@
   
   }
   .mover {
-   
+   margin-left: -25rem;
     display: flex;
     margin-top: 50px;
 }
