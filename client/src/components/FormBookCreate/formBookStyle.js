@@ -11,7 +11,7 @@ export const FormContent = styled.form`
   display: flex;
   flex-direction: column;
   gap: 20px;
-  width: 70%;
+  width: 50%;
   margin: 0 auto;
   background: #fff;
   border-radius: 10px;
@@ -24,7 +24,7 @@ export const FormItem = styled.div`
   display: flex;
   flex-direction: column;
   gap: 10px;
-  width: 50%;
+  width: 60%;
   margin: 0 auto;
   text-align: center;
 `
