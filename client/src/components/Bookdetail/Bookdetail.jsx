@@ -6,6 +6,7 @@ import { getBookById } from "../../redux/actions";
 
 import NavBar from "../NavBar/NavBar";
 import style from "../Bookdetail/Bookdetail.module.css"
+import Reviews from "./Reviews";
 
 
 const Bookdetail = () =>{
@@ -36,7 +37,8 @@ return(
         </div>
             <div className={style.bookTextDetail}>
                 <div >
-                    <h1 >{(details.title).charAt(0).toUpperCase()}{ (details.title).slice(1)}</h1>
+                    <h1>{details.title}</h1> 
+                     {/* <h1 >{(details.title).charAt(0).toUpperCase()}{ (details.title).slice(1)}</h1>   */}
                 </div>
                 <div >
                     <h2>Acerca del libro</h2>
@@ -52,7 +54,7 @@ return(
                 </div>
             </div>
         </div>
-      
+       <Reviews/>
     </div>
     </div>
 )

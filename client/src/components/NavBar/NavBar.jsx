@@ -20,7 +20,7 @@ return(
     <nav className={style.NavBarOption}>
        <ul>
         <li ><NavLink to="/home">Inicio</NavLink></li>
-        <li ><NavLink to="/home">Crear Libro</NavLink></li>
+        <li ><NavLink to="/createbook">Crear Libro</NavLink></li>
       
         </ul>
        
