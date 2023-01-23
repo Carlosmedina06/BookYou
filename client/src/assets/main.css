@@ -500,7 +500,6 @@ video {
 .m-auto {
   margin: auto;
 }
-
 .mx-3 {
   margin-left: 0.75rem;
   margin-right: 0.75rem;
@@ -537,7 +536,6 @@ video {
 .h-screen {
   height: 100vh;
 }
-
 .w-24 {
   width: 6rem;
 }
@@ -547,7 +545,6 @@ video {
 .w-full {
   width: 100%;
 }
-
 .grid-cols-12 {
   grid-template-columns: repeat(12, minmax(0, 1fr));
 }
@@ -557,7 +554,6 @@ video {
 .place-content-center {
   place-content: center;
 }
-
 .place-self-center {
   place-self: center;
 }
@@ -696,4 +692,6 @@ video {
     --tw-text-opacity: 1;
     color: rgb(255 255 255 / var(--tw-text-opacity));
   }
+}
+
 
