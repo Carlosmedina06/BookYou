@@ -3,6 +3,7 @@ import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 
+
 import { getBookById } from '../../redux/actions'
 import NavBar from '../NavBar/NavBar'
 import style from '../Bookdetail/Bookdetail.module.css'
@@ -12,6 +13,7 @@ const Bookdetail = () => {
   const { id } = useParams()
   const details = useSelector((state) => state.detail)
 
+
   useEffect(() => {
     dispatch(getBookById(id))
   }, [dispatch, id])
@@ -19,6 +21,7 @@ const Bookdetail = () => {
   const handleReadButton = (e) => {
     e.preventDefault()
     window.open(details.content)
+
   }
 
   return (
@@ -37,6 +40,7 @@ const Bookdetail = () => {
                 {details.title.charAt(0).toUpperCase()}
                 {details.title.slice(1)}
               </h1>
+
             </div>
             <div>
               <h2>Acerca del libro</h2>
@@ -52,7 +56,9 @@ const Bookdetail = () => {
             </div>
           </div>
         </div>
+
       </div>
+
     </div>
   )
 }

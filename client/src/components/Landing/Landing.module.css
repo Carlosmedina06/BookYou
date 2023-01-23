@@ -1,0 +1,87 @@
+
+
+.mainContainer{
+    display:flex;
+align-items: center;
+background: url('https://res.cloudinary.com/dn8jxsqka/image/upload/v1674395527/hero_rnl2ay.jpg');
+background-size: cover;
+height: 100vh;
+width: 100vw;
+max-width: 1280px;
+background-position: center;
+text-align: center;
+
+}
+
+
+.contentBox{
+    border: 2px solid white;
+    background-color:  transparent;
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+
+
+
+}
+@media (min-width: 640px) { 
+    .contentBox{
+        width: max-content;;
+        
+    } 
+    .bookYouLogo{
+        width: 75%;
+    }
+
+}
+ @media (min-width: 768px) { 
+        .contentBox{
+            
+            width: 75%;
+       
+        }
+        .bookYouLogo{
+            width: 50%;
+        }
+
+ }
+
+ .bookYouLogo{
+    font-size: 4.5rem; /* 72px */
+    line-height: 1;
+    text-align: center;
+    color: black;
+    font-weight: bold;
+    border: 4px solid white;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 0.75rem;
+    margin-bottom: 0.75rem;
+    border-radius: 8px;
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    margin-bottom: 1.25rem;
+    background-color: white;
+
+ }
+
+ .contentBox p{
+
+    color: rgb(229 231 235);
+    font-weight: 500;
+    font-size: 2rem; /* 36px */
+    line-height: 2.5rem; /* 40px */
+ }
+
+
+ .enterButton{
+ background-color: transparent;
+ color: white;
+ border-radius: 15px;
+ border: 2px solid white;
+ padding: 8px 15px 8px 15px;
+margin-top: 1rem
+ }
