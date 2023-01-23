@@ -8,13 +8,14 @@ import Landing from './components/Landing/Landing'
 import { CreateUser } from './components/CreateUser/CreateUser'
 import PageOnConstruction from './components/PageOnConstruction/PageOnConstruction'
 import PostBook from './components/FormBookCreate/formBook'
+/* import NavbarLayout from './layout/navLayout' */
 
 function App() {
   return (
     <div className="App">
       <Routes>
         <Route element={<Landing />} path="/" />
-
+        {/*         <Route element={<NavbarLayout />} path="/home" /> */}
         <Route element={<Home />} path="/home" />
         <Route element={<Usuario />} path="/Usuario" />
         <Route element={<CreateUser />} path="/createUser" />

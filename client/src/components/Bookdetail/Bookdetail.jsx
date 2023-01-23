@@ -62,3 +62,11 @@ return(
 }
 
 export default Bookdetail
+
+      </div>
+
+    </div>
+  )
+}
+
+export default Bookdetail
