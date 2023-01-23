@@ -6,7 +6,7 @@ import { getBookById } from "../../redux/actions";
 
 import NavBar from "../NavBar/NavBar";
 import style from "../Bookdetail/Bookdetail.module.css"
-import Reviews from "./Reviews";
+
 
 
 const Bookdetail = () =>{
@@ -54,7 +54,7 @@ return(
                 </div>
             </div>
         </div>
-       <Reviews/>
+      
     </div>
     </div>
 )

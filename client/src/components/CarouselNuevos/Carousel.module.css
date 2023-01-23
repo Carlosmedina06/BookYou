@@ -8,7 +8,7 @@
 	background-size: cover;
 	margin-bottom: 3.12em;
 	display: flex;
-	align-items: end;
+	align-items: flex-end;
 
 	margin: 0 auto;
 	
@@ -57,7 +57,7 @@
 .titulo {
 	display: flex;
 	justify-content: space-between;
-	align-items: end;
+	align-items: flex-end;
 
 	color: rgb(0, 0, 0);
 	font-size: 30px;
