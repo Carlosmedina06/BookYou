@@ -37,8 +37,7 @@ const Bookdetail = () => {
           <div className={style.bookTextDetail}>
             <div>
               <h1>
-                {details.title.charAt(0).toUpperCase()}
-                {details.title.slice(1)}
+              {details.title}
               </h1>
 
             </div>
