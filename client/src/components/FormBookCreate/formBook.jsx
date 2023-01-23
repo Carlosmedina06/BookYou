@@ -3,6 +3,8 @@ import { useSelector, useDispatch } from 'react-redux'
 
 import { getCategorys } from '../../redux/actions'
 import { useForm } from '../../utils/Hooks/useForm'
+import style from '../FormBookCreate/formBook.module.css'
+import NavBar from '../NavBar/NavBar'
 
 import { Container, FormContent, FormItem, Input, InputFile, Select } from './formBookStyle'
 import validationsForm from './ValidationForm'
@@ -46,9 +48,12 @@ const PostBook = () => {
     if (!response.message) {
       return (
         <section>
+          <div className={style.navbar}>
+            <NavBar />
+          </div>
           <div>
-            <h1>Created succesfully!</h1>
-            <button type="button" onClick={handleClear}>
+            <h1 className={style.h1}>Created succesfully!</h1>
+            <button className={style.button} type="button" onClick={handleClear}>
               Noted
             </button>
           </div>
