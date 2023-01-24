@@ -9,6 +9,7 @@ import Carousel from '../CarouselRecomendados/Carousel'
 import CarouselPV from '../CarouselParaVos/Carousel'
 import CarouselN from '../CarouselNuevos/Carousel'
 import SearchBar from '../SearchBar/SearchBar'
+import Login from '../Login/Login'
 
 export const Home = () => {
   const dispatch = useDispatch()
@@ -18,16 +19,16 @@ export const Home = () => {
   const [showSearchFilter, setShowSearchFilter] = useState(true)
   const [books, setBooks] = useState(true)
 
-//----------------------------------------------------------------
-  const [bookInput, setBookInput] = useState('');
+  //----------------------------------------------------------------
+  const [bookInput, setBookInput] = useState('')
   const [bookInputtodos, setBookInputtodos] = useState('todos')
-//----------------------------------------------------------------
+  //----------------------------------------------------------------
 
-const clearFilters = () => {
-  setBookInput('');
-  setBookInputtodos('todos');
-  setCurrentPage(1);
-}
+  const clearFilters = () => {
+    setBookInput('')
+    setBookInputtodos('todos')
+    setCurrentPage(1)
+  }
 
   /*   const allBooks = useSelector((state) => state.books)
   const allGeneros = useSelector((state) => state.category) */
@@ -43,28 +44,29 @@ const clearFilters = () => {
         <NavBar />
       </div>
       <div>
-        <SearchBar 
-        setShowCarousels={setShowCarousels} 
-        bookInput= {bookInput}
-        setBookInput= {setBookInput}
-        setBookInputtodos = {setBookInputtodos}
-        clearFilters={clearFilters}
+        <Login />
+        <SearchBar
+          bookInput={bookInput}
+          clearFilters={clearFilters}
+          setBookInput={setBookInput}
+          setBookInputtodos={setBookInputtodos}
+          setShowCarousels={setShowCarousels}
         />
       </div>
-      <div style={{ position: 'absolute', top: '52px', left:'00px' }}>
+      <div style={{ position: 'absolute', top: '52px', left: '00px' }}>
         <FiltradoGenero
+          bookInput={bookInput}
+          bookInputtodos={bookInputtodos}
           books={books}
+          clearFilters={clearFilters}
+          setBookInput={setBookInput}
+          setBookInputtodos={setBookInputtodos}
           setBooks={setBooks}
           setShowFilterGenero={setShowFilterGenero}
           showFilterGenero={showFilterGenero}
-          bookInputtodos= {bookInputtodos}
-          setBookInputtodos = {setBookInputtodos}
-          setBookInput= {setBookInput}
-          bookInput= {bookInput}
-          clearFilters={clearFilters}
         />
       </div>
-      <div style={{ position: 'absolute', top: '130px', left:'30px' }}>
+      <div style={{ position: 'absolute', top: '130px', left: '30px' }}>
         <OrdAlfabetico books={books} setBooks={setBooks} />
       </div>
       <div>
