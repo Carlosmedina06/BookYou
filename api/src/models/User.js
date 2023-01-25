@@ -4,7 +4,6 @@ const UserSchema = new moongose.Schema({
   name: String,
   username: {
     type: String,
-    required: true,
     unique: true,
   },
   email: {
@@ -14,10 +13,8 @@ const UserSchema = new moongose.Schema({
   },
   password: {
     type: String,
-    required: true,
   },
   img: String,
-  GoogleId: String,
   createdAt: {
     type: Date,
     default: Date.now,

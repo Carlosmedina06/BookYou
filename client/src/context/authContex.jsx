@@ -7,6 +7,7 @@ import {
   signInWithPopup,
   onAuthStateChanged,
 } from 'firebase/auth'
+import axios from 'axios'
 
 import { auth } from '../utils/FireBase/FireBase'
 
@@ -35,27 +36,31 @@ export function AuthProvider({ children }) {
       }
     })
   }, [])
-  const register = async (email, password) => {
+  const register = async (email, password, displayName) => {
     const response = await createUserWithEmailAndPassword(auth, email, password)
+
+    response.user.displayName = displayName
+
+    axios.post('http://localhost:3001/signup', response.user).then((res) => {
+      console.log(res)
+    })
+  }
+  const login = async (email, password) => {
+    const response = await signInWithEmailAndPassword(auth, email, password)
 
     console.log(response)
   }
-  const login = async (email, password) => {
-    const respose = await signInWithEmailAndPassword(auth, email, password)
-
-    console.log(respose)
-  }
   const logout = async () => {
     await signOut(auth)
-
-    console.log('logut')
   }
   const loginGoogle = async () => {
     const provider = new GoogleAuthProvider()
 
     const res = await signInWithPopup(auth, provider)
 
-    console.log(res)
+    axios.post('http://localhost:3001/signup', res.user).then((res) => {
+      console.log('axios', res)
+    })
   }
 
   return (
