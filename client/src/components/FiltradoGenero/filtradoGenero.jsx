@@ -2,9 +2,11 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useState } from 'react'
 
 import { filterCategorys } from '../../redux/actions/index'
-import style from '../FiltradoGenero/filtradoGenero.module.css'
 import Card from '../Card/Card'
 import Pagination from '../Pagination/Pagination'
+
+import style from '../FiltradoGenero/filtradoGenero.module.css'
+import CssGenerico from '../CssGenerico/CssGenerico.module.css'
 
 export const FiltradoGenero = ({
   setShowFilterGenero,
@@ -63,7 +65,7 @@ export const FiltradoGenero = ({
 
   return (
     <div className={style.contenedor}>
-      <select className={style.select} onChange={(e) => handleFilterCategorys(e)}>
+      <select className={CssGenerico.selectGen} onChange={(e) => handleFilterCategorys(e)}>
         <option className={style.titulo} value="todos">
           {' '}
           Géneros{' '}

@@ -40,7 +40,7 @@ export const Home = () => {
 
   return (
     <div>
-      <div style={{ position: 'relative', top: '-14px' }}>
+      <div style={{ position: 'absolute', top: '0px' }}>
         <NavBar />
       </div>
       <div>

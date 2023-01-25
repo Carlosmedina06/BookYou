@@ -7,6 +7,7 @@ import Pagination from '../Pagination/Pagination'
 import style2 from '../FiltradoGenero/filtradoGenero.module.css'
 
 import style from './SearchBar.module.css'
+import CssGenerico from '../CssGenerico/CssGenerico.module.css'
 
 function SearchBar({ setShowCarousels, bookInput, setBookInput, setBookInputtodos, clearFilters }) {
   const books = useSelector((state) => state.books)
@@ -58,14 +59,8 @@ function SearchBar({ setShowCarousels, bookInput, setBookInput, setBookInputtodo
 
   return (
     <>
-      <div className="top-1/4 w-full my-3.5 m-auto grid col-span-12">
+      <div >
         <div className={style.input}>
-          <label
-            className="mb-2 text-sm font-medium	text-gray-900 sr-only dark:text-white"
-            htmlFor="default-search"
-          >
-            Search
-          </label>
           <div>
             <div className={style.svgConteiner}>
               <svg
@@ -87,7 +82,7 @@ function SearchBar({ setShowCarousels, bookInput, setBookInput, setBookInputtodo
 
             <input
               required
-              className={style2.select}
+              className={CssGenerico.search}
               id="default-search"
               placeholder="Libros, Textos, Artículos..."
               type="search"

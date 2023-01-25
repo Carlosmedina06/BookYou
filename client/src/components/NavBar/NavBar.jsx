@@ -26,7 +26,7 @@ return(
        
     </nav>
    <div className={style.buttonSuscribeContainer}>
-   <div> <button onClick={handleSuscribe} onClick={handleSuscribe}className={style.buttonSuscribe}>Suscribirse</button></div>
+   <div> <button onClick={handleSuscribe} className={style.buttonSuscribe}>Suscribirse</button></div>
     </div>
     </div>
   )
