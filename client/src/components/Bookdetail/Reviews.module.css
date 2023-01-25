@@ -47,3 +47,58 @@ input:checked ~ form{
 display: block;
 
 }
+
+
+  
+
+    .textLoginBanner{
+    color: white
+
+
+    }
+
+    .commentsContainer{
+        color: white;
+     display: flex;
+     width: 100%;
+     flex-direction: column;
+      align-items: center;
+ 
+    }
+
+    .addReviewForm{
+     display: flex;
+     flex-direction: column;
+
+    }
+
+
+    .addReviewForm textarea {
+       border-radius: 15px;
+       color: rgb(48, 47, 47)
+       }
+
+
+    .postedCommentsBox{
+        display: flex;
+        flex-direction: row;
+         width: 70%;
+
+    }
+
+    .postedCommentsImg {
+      border-radius: 50%;
+      
+      margin: 10px;
+      min-width: 2rem;
+      max-width: 2rem; 
+    }
+
+    .postReviewButton{
+        background-color: rgb(6, 1, 1);
+        font-size: 1.4rem;
+        padding: 0.5rem 1rem 0.5rem 1rem;
+        border-radius: 3px;
+        color: rgb(255, 255, 255)
+        
+        }
