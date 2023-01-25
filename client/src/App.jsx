@@ -8,6 +8,7 @@ import Landing from './components/Landing/Landing'
 import { CreateUser } from './components/CreateUser/CreateUser'
 import PageOnConstruction from './components/PageOnConstruction/PageOnConstruction'
 import PostBook from './components/FormBookCreate/formBook'
+import Autentication from './components/Autentication/Autentication'
 /* import NavbarLayout from './layout/navLayout' */
 
 function App() {
@@ -24,6 +25,8 @@ function App() {
         <Route element={<PostBook />} path="/create/book" />
         <Route element={<PageOnConstruction />} path="/pageonconstruction" />
         <Route element={<PostBook />} path="createbook" />
+        <Route element={<Autentication />} path="/login" />
+
       </Routes>
     </div>
   )
