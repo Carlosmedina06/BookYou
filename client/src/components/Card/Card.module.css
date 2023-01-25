@@ -4,22 +4,100 @@
   
   justify-content: space-around;
   border-radius: 10px;
-  
+  width: 13.5rem;
   
 }
 .card {
   margin-left: 20px;
-  
+  height: 20rem;
     display: flex;
     
-    justify-content: space-around;
+    /* justify-content: space-around; */
     border-radius: 10px;
-    
-    
+     background-color: #7c7c7c;
+    width: 12rem;
 }
 .card {
     margin-left: 20px;
     
+} 
+
+
+
+
+
+ .imagen{
+  
+  position: relative;
+  height: 210px;
+  width: 12rem;
+  display: flex;
+  
+  
+  /* justify-content: center; */
+  align-items: center;
+  background-color: #8f8c8c;
+  border-radius: 10px 10px 0 0;
+  transition: border-radius cubic-bezier(0.075, 0.82, 0.165, 1) 2s,
+  transform cubic-bezier(0.075, 0.82, 0.165, 1) 1.5s;
+
+  box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.4);
+  overflow: hidden;
+  
+  position:relative;
+ 
+ }
+ .todo:hover {
+  border-bottom-right-radius: 30px;
+  border-top-left-radius: 30px;
+  transform: scale(1.1);
+  transition: all  1s ease;
+ }
+
+
+ .texto {
+  margin-left:10px;
+  
+}
+
+.texto {
+  /* margin-left:10px; */
+ 
+}
+/* .rectangulo {
+  margin-top:-110px;
+  margin-left:45px;
+  width: 130px;
+  height: 100px;
+  background-color: #7c7c7c;
+  border-bottom-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+} */
+
+
+/* 
+ .todo {
+
+  display: flex;
+
+  justify-content: space-around;
+  border-radius: 10px;
+
+
+}
+.card {
+  margin-left: 20px;
+
+    display: flex;
+
+    justify-content: space-around;
+    border-radius: 10px;
+
+
+}
+.card {
+    margin-left: 20px;
+
 } 
 
 
@@ -32,7 +110,7 @@
   width: 130px;
   display: flex;
   margin-left: 45px;
-  
+
   justify-content: center;
   align-items: center;
   background-color: #8f8c8c;
@@ -49,10 +127,7 @@
   border-top-left-radius: 30px;
   transform: scale(1.2);
  }
-.texto {
-  margin-left:10px;
-  margin-top:110px;
-}
+
 .rectangulo {
   margin-top:-110px;
   margin-left:45px;
@@ -61,5 +136,106 @@
   background-color: #7c7c7c;
   border-bottom-right-radius: 20px;
   border-bottom-left-radius: 20px;
+} */
+
+
+.bookTitle {
+font-weight:  600;
+font-size: 15px;
+padding-top: 8px;
 }
 
+
+.premiumRibbon {
+  /*Le damos al contenedor las medidas de la imagen y lo centramos*/
+
+ 
+  box-sizing:border-box;
+  /* margin: calc(50vh - 170px) auto; */
+
+  /* Esto es importante. Para posicionar el ::before
+  de forma absoluta, necesitamos que el contenedor
+  tenga position:relative */
+
+  position:relative;
+}
+
+.premiumRibbon::before {
+  z-index: 3;
+  position:absolute;
+  top: 0;
+  left: 2;
+ 
+  display: flex;
+  box-sizing:border-box;
+  content: " Premium";
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 12px;
+  text-align:center;
+  font-weight: 700;
+  color: rgb(255, 255, 255);
+  align-content: center;
+  /*Le damos medidas estas y color para verlo
+  ahora más claro, pero luego lo modificaremos*/
+   padding-left: 3px;
+  background: rgb(10, 9, 9);           
+  border-radius:  9px 5px 5px 0px;
+
+   width: 60px;
+  
+
+  
+}
+
+.freeRibbon{
+
+
+ 
+  box-sizing:border-box;
+  /* margin: calc(50vh - 170px) auto; */
+
+  /* Esto es importante. Para posicionar el ::before
+  de forma absoluta, necesitamos que el contenedor
+  tenga position:relative */
+
+  position:relative;
+
+
+
+}
+
+.freeRibbon::before {
+  z-index: 3;
+  position:absolute;
+  top: 0;
+  left: 2;
+ 
+  display: flex;
+  box-sizing:border-box;
+  content: " Free";
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 12px;
+  text-align:center;
+  font-weight: 700;
+  color: rgb(255, 255, 255);
+  align-content: center;
+  /*Le damos medidas estas y color para verlo
+  ahora más claro, pero luego lo modificaremos*/
+   padding-left: 7px;
+  background: rgb(10, 9, 9);           
+  border-radius:  9px 5px 5px 0px;
+
+   width: 40px;
+  
+
+  
+}
+
+
+.rateStarRow{
+display: flex;
+flex-direction: row;
+font-size: 10px;
+color: yellow
+
+}
