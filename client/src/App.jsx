@@ -11,11 +11,17 @@ import Autentication from './components/Autentication/Autentication'
 import { AuthProvider } from './context/authContex'
 import MainPage from './components/Landing/index'
 import NotFound from './components/NotFound/NotFound'
+import MainContainerLayout from './layout/Main-container-layout'
+import NavbarLayout from './layout/Nav.layout'
+import MainContentLayout from './layout/main-content.layout'
 /* import NavbarLayout from './layout/navLayout' */
 
 function App() {
   return (
     <AuthProvider>
+      <MainContainerLayout/>
+      <NavbarLayout/>
+      <MainContentLayout>
       <div className="App">
         <Routes>
           <Route element={<MainPage />} path="/" />
@@ -32,6 +38,7 @@ function App() {
           <Route element={<Autentication />} path="/login" />
         </Routes>
       </div>
+      </MainContentLayout>
     </AuthProvider>
   )
 }
