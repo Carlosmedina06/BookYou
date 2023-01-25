@@ -1,4 +1,4 @@
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
 
 import { getBooks, getCategorys } from '../../redux/actions/index'
@@ -9,7 +9,7 @@ import Carousel from '../CarouselRecomendados/Carousel'
 import CarouselPV from '../CarouselParaVos/Carousel'
 import CarouselN from '../CarouselNuevos/Carousel'
 import SearchBar from '../SearchBar/SearchBar'
-import Login from '../Login/Login'
+import { useAuth } from '../../context/authContex'
 
 export const Home = () => {
   const dispatch = useDispatch()
@@ -27,7 +27,6 @@ export const Home = () => {
   const clearFilters = () => {
     setBookInput('')
     setBookInputtodos('todos')
-    setCurrentPage(1)
   }
 
   /*   const allBooks = useSelector((state) => state.books)
@@ -44,7 +43,6 @@ export const Home = () => {
         <NavBar />
       </div>
       <div>
-        <Login />
         <SearchBar
           bookInput={bookInput}
           clearFilters={clearFilters}

@@ -17,7 +17,7 @@ export const useAuth = () => {
   const context = useContext(authContext)
 
   if (!context) {
-    console.log('errror no creaste el contexto')
+    throw new Error('useAuth must be used within a AuthProvider')
   }
 
   return context
@@ -25,41 +25,78 @@ export const useAuth = () => {
 
 export function AuthProvider({ children }) {
   const [user, setUser] = useState('')
+  const [token, setToken] = useState({})
+
+  useEffect(() => {
+    const token = window.localStorage.getItem('token')
+
+    token ? setToken(token) : setToken({})
+  }, [])
 
   useEffect(() => {
     const subcribe = onAuthStateChanged(auth, (currenUuser) => {
-      if (!currenUuser) {
-        console.log('no hay usuarios logeados')
-        setUser('')
-      } else {
-        setUser(currenUuser)
-      }
+      !currenUuser ? setUser('') : setUser(currenUuser)
     })
+
+    return subcribe
   }, [])
+
   const register = async (email, password, displayName) => {
-    const response = await createUserWithEmailAndPassword(auth, email, password)
+    try {
+      const response = await createUserWithEmailAndPassword(auth, email, password)
 
-    response.user.displayName = displayName
-
-    axios.post('http://localhost:3001/signup', response.user).then((res) => {
-      console.log(res)
-    })
+      response.user.displayName = displayName
+      axios.post('http://localhost:3001/signup', response.user).then((res) => {
+        // eslint-disable-next-line no-console
+        console.log(res.data)
+      })
+    } catch (error) {
+      console.log({ error: error.message })
+    }
   }
+
   const login = async (email, password) => {
-    const response = await signInWithEmailAndPassword(auth, email, password)
+    try {
+      // eslint-disable-next-line no-unused-vars
+      const response = await signInWithEmailAndPassword(auth, email, password)
 
-    console.log(response)
+      axios.post('http://localhost:3001/login', response.user).then((res) => {
+        // eslint-disable-next-line no-console
+        console.log(res.data)
+      })
+    } catch (error) {
+      console.log({ error: error.message })
+    }
   }
+
   const logout = async () => {
     await signOut(auth)
   }
+
+  const registerGoogle = async () => {
+    try {
+      const provider = new GoogleAuthProvider()
+
+      const res = await signInWithPopup(auth, provider)
+
+      axios.post('http://localhost:3001/signup', res.user).then((res) => {
+        // eslint-disable-next-line no-console
+        console.log(res.data)
+      })
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.log({ error: error.message })
+    }
+  }
+
   const loginGoogle = async () => {
     const provider = new GoogleAuthProvider()
 
     const res = await signInWithPopup(auth, provider)
 
-    axios.post('http://localhost:3001/signup', res.user).then((res) => {
-      console.log('axios', res)
+    axios.post('http://localhost:3001/login', res.user).then((res) => {
+      // eslint-disable-next-line no-console
+      console.log(res.data)
     })
   }
 
@@ -70,7 +107,9 @@ export function AuthProvider({ children }) {
         login,
         logout,
         loginGoogle,
+        registerGoogle,
         user,
+        token,
       }}
     >
       {children}
