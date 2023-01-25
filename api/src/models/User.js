@@ -2,9 +2,19 @@ import moongose from 'mongoose'
 
 const UserSchema = new moongose.Schema({
   name: String,
-  username: String,
-  email: String,
-  password: String,
+  username: {
+    type: String,
+    unique: true,
+  },
+  email: {
+    type: String,
+    required: true,
+    unique: true,
+  },
+  password: {
+    type: String,
+  },
+  img: String,
   createdAt: {
     type: Date,
     default: Date.now,

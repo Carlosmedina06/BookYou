@@ -127,3 +127,21 @@ export const orderAlf = (payload) => {
     payload,
   }
 }
+
+/* ----------------- POSTEAR COMENTARIO DE UN LIBRO----------------- */
+
+export const postBookReview = () => async (dispatch) => {
+  try {
+    const info = await axios.get('http://localhost:3001/create/book')
+
+    return dispatch({
+      type: 'GET_COMENTARIOS',
+      payload: info.data,
+    })
+  } catch (error) {
+    dispatch({
+      type: ERROR,
+      payload: error.message,
+    })
+  }
+}

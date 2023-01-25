@@ -10,6 +10,7 @@ import CarouselPV from '../CarouselParaVos/Carousel'
 import CarouselN from '../CarouselNuevos/Carousel'
 import SearchBar from '../SearchBar/SearchBar'
 import SearchByAutor from '../FiltradoAutor/filterAutor'
+import Login from '../Login/Login'
 
 export const Home = () => {
   const dispatch = useDispatch()
@@ -20,11 +21,13 @@ export const Home = () => {
   const [books, setBooks] = useState(true) /* actualizar estado libros orden alf */
 
   //----------------------------------------------------------------
+
   const [bookInput, setBookInput] = useState('') /* actualizar estado searchbar por libro*/
   const [authorInput, setAuthorInput] = useState('') /* actualizar estado searchbar por autor */
   const [bookInputtodos, setBookInputtodos] =
     useState('todos') /* actualizar estado genero 'value=todos' para serachbar por libro y autor*/
   const [authorInputtodos, setAuthorInputtodos] = useState('todos')
+
   //----------------------------------------------------------------
 
   const clearFilters = () => {
@@ -34,6 +37,9 @@ export const Home = () => {
     setAuthorInputtodos('todos')
     /* setCurrentPage(1) */
   }
+
+  /*   const allBooks = useSelector((state) => state.books)
+  const allGeneros = useSelector((state) => state.category) */
 
   useEffect(() => {
     dispatch(getBooks())
@@ -45,6 +51,9 @@ export const Home = () => {
     <div>
       <div style={{ position: 'relative', top: '-14px' }}>
         <NavBar />
+      </div>
+      <div>
+        <Login />
       </div>
       <div>
         <SearchBar
@@ -66,6 +75,7 @@ export const Home = () => {
       </div>
       <div style={{ position: 'absolute', top: '52px', left: '00px' }}>
         <FiltradoGenero
+          bookInput={bookInput}
           bookInputtodos={bookInputtodos}
           books={books}
           clearFilters={clearFilters}
@@ -73,6 +83,7 @@ export const Home = () => {
           setBookInputtodos={setBookInputtodos}
           setBooks={setBooks}
           setShowFilterGenero={setShowFilterGenero}
+          showFilterGenero={showFilterGenero}
         />
       </div>
       <div style={{ position: 'absolute', top: '130px', left: '30px' }}>

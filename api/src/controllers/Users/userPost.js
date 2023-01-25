@@ -1,6 +1,7 @@
 import bcrypt from 'bcrypt'
 
 import User from '../../models/User.js'
+import { sendMailNewUser } from '../../emailer/emailer.js'
 
 const userPost = async (req, res) => {
   const { username, email, password, name } = req.body
@@ -17,6 +18,7 @@ const userPost = async (req, res) => {
 
   const savedUser = await user.save()
 
+  sendMailNewUser(user)
   res.status(201).json(savedUser)
 }
 
