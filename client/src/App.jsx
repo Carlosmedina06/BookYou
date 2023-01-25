@@ -23,7 +23,7 @@ function App() {
         <Route element={<Bookdetail />} path="/bookdetail/:id" />
         <Route element={<PostBook />} path="/create/book" />
         <Route element={<PageOnConstruction />} path="/pageonconstruction" />
-        <Route element={<PostBook/>} path="createbook" />
+        <Route element={<PostBook />} path="createbook" />
       </Routes>
     </div>
   )
