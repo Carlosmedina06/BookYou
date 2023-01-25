@@ -1,7 +1,6 @@
 import nodemailer from 'nodemailer'
 import dotenv from 'dotenv'
-
-const nodemailerSendgrid = require('nodemailer-sendgrid')
+import nodemailerSendgrid from 'nodemailer-sendgrid'
 
 dotenv.config()
 
