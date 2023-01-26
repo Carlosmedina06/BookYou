@@ -38,8 +38,8 @@
   align-items: center;
   background-color: #8f8c8c;
   border-radius: 10px 10px 0 0;
-  transition: border-radius cubic-bezier(0.075, 0.82, 0.165, 1) 2s,
-  transform cubic-bezier(0.075, 0.82, 0.165, 1) 1.5s;
+  transition: border-radius cubic-bezier(0.075, 0.82, 0.165, 1) 1s,
+  transform cubic-bezier(0.075, 0.82, 0.165, 1) 1s;
 
   box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.4);
   overflow: hidden;

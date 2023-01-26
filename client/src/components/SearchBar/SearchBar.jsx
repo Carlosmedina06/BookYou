@@ -9,7 +9,14 @@ import style2 from '../FiltradoGenero/filtradoGenero.module.css'
 import style from './SearchBar.module.css'
 import CssGenerico from '../CssGenerico/CssGenerico.module.css'
 
-function SearchBar({ setShowCarousels, bookInput, setBookInput, setBookInputtodos, clearFilters }) {
+function SearchBar({ 
+  bookInput, 
+  clearFilters,  
+  setBookInput,
+  setAuthorInput, 
+  setBookInputtodos,
+  setShowCarousels
+}) {
   const books = useSelector((state) => state.books)
   /*   const [book, setBook] = useState([])
   const dispatch = useDispatch() */
@@ -23,6 +30,7 @@ function SearchBar({ setShowCarousels, bookInput, setBookInput, setBookInputtodo
   const handleInputChange = (e) => {
     setBookInput(e.target.value)
     setBookInputtodos('todos')
+    setAuthorInput('')
     setCurrentPage(0)
   }
 
@@ -56,11 +64,11 @@ function SearchBar({ setShowCarousels, bookInput, setBookInput, setBookInputtodo
   }
 
   /*   console.log(filteredResults.length) */
-
+ 
   return (
     <>
       <div >
-        <div className={style.input}>
+        
           <div>
             <div className={style.svgConteiner}>
               <svg
@@ -80,6 +88,7 @@ function SearchBar({ setShowCarousels, bookInput, setBookInput, setBookInputtodo
               </svg>
             </div>
 
+            <div style={{ position: 'absolute', top: '20px', left: '300px' }}>
             <input
               required
               className={CssGenerico.search}
@@ -87,7 +96,8 @@ function SearchBar({ setShowCarousels, bookInput, setBookInput, setBookInputtodo
               placeholder="Libros, Textos, Artículos..."
               type="search"
               onChange={handleInputChange}
-            />
+              />
+              </div>
           </div>
 
           <div className={style.mover1}>
@@ -121,7 +131,7 @@ function SearchBar({ setShowCarousels, bookInput, setBookInput, setBookInputtodo
               </div>
             )}
           </div>
-        </div>
+        
       </div>
     </>
   )

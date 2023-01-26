@@ -5,27 +5,25 @@ import { getBooks, getCategorys, loginUser, getAutores } from '../../redux/actio
 import FiltradoGenero from '../FiltradoGenero/filtradoGenero'
 import OrdAlfabetico from '../OrderAlfab/orderAlfabetico'
 import NavBar from '../NavBar/NavBar'
-import Carousel from '../CarouselRecomendados/Carousel'
-import CarouselPV from '../CarouselParaVos/Carousel'
-import CarouselN from '../CarouselNuevos/Carousel'
+import Carousel from '../Carouseles/CarouselRecomendados/Carousel'
+import CarouselPV from '../Carouseles/CarouselParaVos/Carousel'
+import CarouselN from '../Carouseles/CarouselNuevos/Carousel'
 import SearchBar from '../SearchBar/SearchBar'
 import SearchByAutor from '../FiltradoAutor/filterAutor'
 
 export const Home = () => {
   const dispatch = useDispatch()
 
-  const [showCarousels, setShowCarousels] = useState(true) /* cactualizar estado arousel cards */
+  const [showCarousels, setShowCarousels] = useState(true) /* actualizar estado arousel cards */
   const [showFilterGenero, setShowFilterGenero] = useState(true) /* actualizar estado genero */
   const [showFilterAutor, setShowFilterAutor] = useState(true)
   const [books, setBooks] = useState(true) /* actualizar estado libros orden alf */
-
+  
   //----------------------------------------------------------------
-
+  
   const [bookInput, setBookInput] = useState('') /* actualizar estado searchbar por libro*/
   const [authorInput, setAuthorInput] = useState('') /* actualizar estado searchbar por autor */
-  const [bookInputtodos, setBookInputtodos] =
-    useState('todos') /* actualizar estado genero 'value=todos' para serachbar por libro y autor*/
-  const [authorInputtodos, setAuthorInputtodos] = useState('todos')
+  const [bookInputtodos, setBookInputtodos] = useState('todos') /* actualizar estado genero 'value=todos' para serachbar por libro y autor*/
 
   //----------------------------------------------------------------
 
@@ -33,7 +31,6 @@ export const Home = () => {
     setBookInput('')
     setBookInputtodos('todos')
     setAuthorInput('')
-    setAuthorInputtodos('todos')
     /* setCurrentPage(1) */
   }
 
@@ -55,33 +52,36 @@ export const Home = () => {
         <NavBar />
       </div>
       <div />
-      <div>
+      
         <SearchBar
           bookInput={bookInput}
           clearFilters={clearFilters}
           setBookInput={setBookInput}
+          setAuthorInput= {setAuthorInput}
           setBookInputtodos={setBookInputtodos}
           setShowCarousels={setShowCarousels}
         />
-      </div>
-      <div style={{ position: 'absolute', top: '52px', left: '00px' }}>
-        <div>
+      
+      <div >
+        <div >
           <SearchByAutor
             authorInput={authorInput}
             clearFilters={clearFilters}
+            setBookInput={setBookInput}
             setAuthorInput={setAuthorInput}
-            setAuthorInputtodos={setAuthorInputtodos}
+            setBookInputtodos={setBookInputtodos}
             setShowFilterAutor={setShowFilterAutor}
           />
         </div>
-        <div style={{ position: 'absolute', top: '52px', left: '00px' }}>
+        <div >
           <FiltradoGenero
             bookInput={bookInput}
-            bookInputtodos={bookInputtodos}
-            books={books}
             clearFilters={clearFilters}
             setBookInput={setBookInput}
+            setAuthorInput={setAuthorInput}
             setBookInputtodos={setBookInputtodos}
+            bookInputtodos={bookInputtodos}
+            books={books}
             setBooks={setBooks}
             setShowFilterGenero={setShowFilterGenero}
             showFilterGenero={showFilterGenero}
@@ -93,9 +93,18 @@ export const Home = () => {
         <div>
           {showCarousels && showFilterGenero && showFilterAutor && (
             <>
-              <Carousel />
-              <CarouselPV />
-              <CarouselN />
+              <div style={{position: 'absolute', left: '300px',top: '100px'}}>
+                <h3 style={{color: 'white', position: 'absolute', top:'-20px',left:'20px',fontSize: '30px'}}>Recomendado</h3>
+                <Carousel />
+              </div>
+              <div style={{position: 'absolute', left: '300px',top: '500px'}}>
+                <h3 style={{color: 'white', position: 'absolute', top:'-20px',left:'20px',fontSize: '30px'}}>Para Vos</h3>
+                <CarouselPV />
+              </div>
+              <div style={{position: 'absolute', left: '300px',top: '900px'}}>
+                <h3 style={{color: 'white', position: 'absolute', top:'-20px',left:'20px',fontSize: '30px'}}>Nuevo</h3>
+                <CarouselN />
+              </div>
             </>
           )}
         </div>
