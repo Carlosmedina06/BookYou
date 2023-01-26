@@ -1,4 +1,3 @@
-
 import {
   ERROR,
   GET_BOOKBY_ID,
@@ -9,7 +8,6 @@ import {
   LOGIN_LOCAL,
   LOGOUT,
   REGISTER_LOCAL,
-   ERROR, GET_BOOKBY_ID, GET_USERS
 } from '../actions'
 
 const initialState = {
