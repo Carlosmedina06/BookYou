@@ -3,6 +3,7 @@ import dotenv from 'dotenv'
 // import nodemailerSendgrid from 'nodemailer-sendgrid'
 
 import { templateWelcome } from './templateWelcome.js'
+import { templateNewBook } from './templateNewBook.js'
 
 dotenv.config()
 
@@ -25,7 +26,6 @@ const creatTrans = () => {
 }
 
 export const sendMailNewUser = async (user) => {
-  console.log('email', user)
   const transporter = creatTrans()
 
   await transporter.sendMail({
@@ -43,7 +43,7 @@ export const sendMailNewBook = async (book, user) => {
     from: `"Book You 📚" <info@bookyou.com>`,
     to: `${user.email}`,
     subject: `${user.name} created a new book: ${book.title}`,
-    html: `este es mi libro ${book.title}`,
+    html: templateNewBook(book.title),
   })
 }
 
