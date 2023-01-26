@@ -1,6 +1,8 @@
 import * as React from 'react'
 import { DataGrid } from '@mui/x-data-grid'
 
+import style from '../userList/userList.module.css'
+
 const columns = [
   { field: 'id', headerName: 'ID', width: 70 },
   { field: 'firstName', headerName: 'First name', width: 130 },
@@ -34,9 +36,10 @@ const rows = [
 
 const DataTable = () => {
   return (
-    <div>
+    <div className={style.contenedor}>
       <DataGrid
         checkboxSelection
+        className={style.grid}
         columns={columns}
         pageSize={5}
         rows={rows}
