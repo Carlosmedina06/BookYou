@@ -2,13 +2,14 @@
    
   display: flex;
   margin-top: 50px;
+  
 }
 
 .svgConteiner{
   position: absolute;
   width: 35px;
-  margin-top: 12px ;
-  margin-left: 21rem;
+  margin-top: 30px ;
+  margin-left: 31rem;
   color:white
 }
 
@@ -19,13 +20,10 @@
 .mover1 {
   display: flex;
   position: absolute;
+  top: 80px;
+  left: 250px;
 }
 
-.input {
-  position: absolute;
-  margin-top: 45px;
-  margin-left: 45rem;
-}
 .p {
   color: white;
   font-size: 1.2em;
@@ -35,7 +33,7 @@
 .paginado {
   width: 1000px;
   position: absolute;
-  top: 32px;
-  right:  -330px;
+  top: 50px;
+  left:  20px;
   display: flex;
 }

@@ -11,10 +11,6 @@
 	align-items: flex-end;
 
 	margin: 0 auto;
-	
-    position: absolute;
-    left: 270px;
-    top: 860px;
     
 }
 
@@ -117,11 +113,11 @@
 
 .librocarousel .izquierda {
     position: absolute;
-	left: 0;
+	left: -36px;
 }
 .librocarousel .derecha {
     position: absolute;
-	right: -65px;
+	right: -59px;
 }
 /* ---- ----- ----- carousel ----- ----- ----- */
 

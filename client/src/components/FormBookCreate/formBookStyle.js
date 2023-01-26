@@ -3,15 +3,19 @@ import styled from 'styled-components'
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
-  // margin: 50px auto;
+  margin: 0px auto;
+
   padding: 50px;
+  
+  margin-left:250px
 `
 
 export const FormContent = styled.form`
   display: flex;
   flex-direction: column;
+  
   gap: 20px;
-  width: 50%;
+  width: 70%;
   margin: 0 auto;
   background: #fff;
   border-radius: 10px;
@@ -23,17 +27,21 @@ export const FormContent = styled.form`
 export const FormItem = styled.div`
   display: flex;
   flex-direction: column;
+ 
   gap: 10px;
   width: 60%;
   margin: 0 auto;
   text-align: center;
+  
 `
 
 export const Input = styled.input`
+
   font-weight: 500;
   font-size: 14px;
   height: 40px;
   border-radius: 10px;
+  color: rgb(255, 255, 255);
   padding-left: 10px;
   border: none;
   border-bottom: 1px solid #e5e5e5;
@@ -48,6 +56,7 @@ export const Input = styled.input`
 export const Select = styled.select`
   font-weight: 500;
   font-size: 14px;
+  color: rgb(255, 255, 255);
   height: 40px;
   border-radius: 10px;
   padding-left: 10px;
@@ -64,7 +73,8 @@ export const Select = styled.select`
 export const InputFile = styled.input`
   ::-webkit-file-upload-button {
     padding: 10px;
-    color: black;
+   
+    
     cursor: pointer;
     margin-bottom: 0;
     width: 50%;
@@ -79,6 +89,10 @@ export const InputFile = styled.input`
     text-align: center;
     &::after {
       content: 'Upload';
+    }
+    &:hover {
+      background: #07484a;
+      color: #fff;
     }
     &:active {
       background-color: #f1ac15;

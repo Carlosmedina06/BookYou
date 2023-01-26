@@ -5,14 +5,33 @@
   color:white;
 }
 
-.button{
-  margin-top: 5rem;
-  margin-left: 40rem;
-  color:white;
-  font-size: 20px;
-}
 
 .navbar{
   position: absolute;
   top:0px;
 }
+
+.button{
+  margin-top: 5rem;
+  color:white;
+  font-size: 20px;
+  background: #07484a;
+  color: #07484a;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 10px 200px;
+  border-radius: 10px;
+  
+  box-shadow: 1px 5px 50px 10px rgba(0, 0, 0, 0.4);
+  border-radius: 10px;
+  margin-bottom: 20px;
+  transition: all 0.3s ease-in-out; 
+  
+}
+  
+  .button:hover {
+    background: #07484a;
+    color: #fff;
+  
+  }
