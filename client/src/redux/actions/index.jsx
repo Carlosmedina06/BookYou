@@ -5,13 +5,101 @@ export const ERROR = 'ERROR'
 export const GET_BOOKBY_ID = 'GET_BOOKBY_ID'
 export const GET_BOOK_ID = 'GET_BOOKBY_ID'
 export const GET_SEARCH_BOOK = 'GET_SEARCH_BOOK'
+export const LOGIN_GOOGLE = 'LOGIN_GOOGLE'
+export const LOGIN_LOCAL = 'LOGIN_LOCAL'
+export const LOGOUT = 'LOGOUT'
+export const LOGIN = 'LOGIN'
+export const REGISTER_LOCAL = 'REGISTER_LOCAL'
+// export const REGISTER_GOOGLE = 'REGISTER_GOOGLE'
+import {
+  GoogleAuthProvider,
+  signInWithPopup,
+  signOut,
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
+} from 'firebase/auth'
 
+import { auth } from '../../utils/FireBase/FireBase'
+
+export const loginGoogle = () => async (dispatch) => {
+  const provider = new GoogleAuthProvider()
+
+  const res = await signInWithPopup(auth, provider)
+
+  axios.post('http://localhost:3001/login', res.user).then((res) => {
+    window.localStorage.setItem('token', res.data.token)
+
+    return dispatch({
+      type: LOGIN_GOOGLE,
+      payload: res.data.token,
+    })
+  })
+}
+
+export const loginUser = () => async (dispatch) => {
+  const token = window.localStorage.getItem('token')
+
+  if (token) {
+    return dispatch({
+      type: LOGIN,
+      payload: token,
+    })
+  }
+}
+
+// export const registerGoogle = () => async (dispatch) => {
+//   const provider = new GoogleAuthProvider()
+
+//   const res = await signInWithPopup(auth, provider)
+
+//   axios.post('http://localhost:3001/signup', res.user).then((res) => {
+//     return dispatch({
+//       type: REGISTER_GOOGLE,
+//       payload: res.data.token,
+//     })
+//   })
+// }
+
+export const registerLocal = (email, password, displayName) => async (dispatch) => {
+  const response = await createUserWithEmailAndPassword(auth, email, password)
+
+  response.user.displayName = displayName
+  axios.post('http://localhost:3001/signup', response.user).then((res) => {
+    return dispatch({
+      type: REGISTER_LOCAL,
+      payload: res.data.token,
+    })
+  })
+}
+
+export const loginLocal = (email, password) => async (dispatch) => {
+  const response = await signInWithEmailAndPassword(auth, email, password)
+
+  axios.post('http://localhost:3001/login', response.user).then((res) => {
+    window.localStorage.setItem('token', res.data.token)
+
+    return dispatch({
+      type: LOGIN_LOCAL,
+      payload: res.data.token,
+    })
+  })
+}
+
+export const logout = () => async (dispatch) => {
+  await signOut(auth)
+  window.localStorage.removeItem('token')
+
+  return dispatch({
+    type: 'LOGOUT',
+  })
+}
 /* ------------- GET BOOKS SEARCH ----------*/
 export const getSearchBook = (name) => async (dispatch) => {
   try {
     const info = await axios.get('http://localhost:3001/book')
+    // eslint-disable-next-line no-console
+    console.log(info.data)
     const books = info.data.filter((b) => b.title.toLowerCase().includes(name.toLowerCase()))
-
     return dispatch({
       type: GET_SEARCH_BOOK,
       payload: books,
@@ -120,6 +208,7 @@ export const filterCategorys = (payload) => {
   }
 } */
 
+
 /* ----------------- ORDENAR GÉNEROS POR ORDEN ALFABETICO----------------- */
 export const orderAlf = (payload) => {
   return {
@@ -144,4 +233,7 @@ export const postBookReview = () => async (dispatch) => {
       payload: error.message,
     })
   }
+
+};
 }
+
