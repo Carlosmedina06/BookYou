@@ -4,8 +4,10 @@ import { Link } from 'react-router-dom'
 
 import { getCategorys } from '../../redux/actions'
 import { useForm } from '../../utils/Hooks/useForm'
-import style from '../FormBookCreate/formBook.module.css'
 import NavBar from '../NavBar/NavBar'
+
+import style from '../FormBookCreate/formBook.module.css'
+import CssGenerico from '../CssGenerico/CssGenerico.module.css'
 
 import { Container, FormContent, FormItem, Input, InputFile, Select } from './formBookStyle'
 import validationsForm from './ValidationForm'
@@ -76,7 +78,11 @@ const PostBook = () => {
     }
   } else {
     return (
+      
       <Container>
+        <div style={{ position: 'absolute', top: '0px', left:'0px'}}>
+          <NavBar />
+        </div>
         <div>
           <FormContent onSubmit={handleSubmit}>
             {/* // input title  */}
@@ -185,9 +191,10 @@ const PostBook = () => {
 
             {/* // input pdf  */}
             <FormItem>
+              
               <label htmlFor="pdf">
                 Select book file
-                <input
+                <InputFile
                   accept="application/pdf,application/msword,
                         application/vnd.openxmlformats-officedocument.wordprocessingml.document"
                   name="pdf"
@@ -204,7 +211,9 @@ const PostBook = () => {
               RESET
             </button> */}
 
-            <button type="submit" onSubmit={handleSubmit}>
+            <button 
+            className={style.button}
+            type="submit" onSubmit={handleSubmit}>
               CREATE BOOK!
             </button>
           </FormContent>
