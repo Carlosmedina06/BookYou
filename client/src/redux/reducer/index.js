@@ -1,4 +1,15 @@
-import { ERROR, GET_BOOKBY_ID, GET_USERS } from '../actions'
+import {
+  ERROR,
+  GET_BOOKBY_ID,
+  GET_USERS,
+  //GET_SEARCH_BOOK,
+  LOGIN,
+  LOGIN_GOOGLE,
+  LOGIN_LOCAL,
+  LOGOUT,
+  REGISTER_LOCAL,
+} from '../actions'
+
 const initialState = {
   books: [],
   allBooks: [],
@@ -7,6 +18,7 @@ const initialState = {
   autor: [],
   users: [],
   error: [],
+  loginUser: '',
 }
 
 function rootReducer(state = initialState, action) {
@@ -20,14 +32,42 @@ function rootReducer(state = initialState, action) {
     action.payload === 'asc'
       ? state.books.sort((a, b) => (a.title > b.title ? 1 : a.title < b.title ? -1 : 0))
       : state.books.sort((a, b) => (a.title > b.title ? -1 : a.title < b.title ? 1 : 0))
-
   /*   let allAutores = state.allBooks
-  let autorFilter =
+    let autorFilter =
     action.payload === 'todos'
       ? allAutores
       : allAutores.filter((c) => c.author?.includes(action.payload)) */
 
   switch (action.type) {
+    case LOGIN_GOOGLE:
+      return {
+        ...state,
+        loginUser: action.payload,
+      }
+
+    case LOGIN_LOCAL:
+      return {
+        ...state,
+        loginUser: action.payload,
+      }
+
+    case LOGOUT:
+      return {
+        ...state,
+        loginUser: '',
+      }
+
+    case LOGIN:
+      return {
+        ...state,
+        loginUser: action.payload,
+      }
+
+    case REGISTER_LOCAL: {
+      return {
+        ...state,
+      }
+    }
     case 'GET_BOOKS':
       return {
         ...state,
@@ -49,16 +89,19 @@ function rootReducer(state = initialState, action) {
         ...state,
         autor: action.payload,
       }
+
     case 'FILTER_CATEGORY':
       return {
         ...state,
         books: categFilter,
       }
+
     /*  case 'FILTER_AUTOR':
       return {
         ...state,
         autor: autorFilter,
       } */
+
     case 'ORDER_ALF':
       return {
         ...state,
@@ -85,3 +128,25 @@ function rootReducer(state = initialState, action) {
 }
 
 export default rootReducer
+
+/* export const usersSlice = createSlice({
+  name: 'users',
+  initialState: {
+    USERS: [],
+    users: [],
+    user: {},
+    error: {},
+  },
+  reducers: {
+    getAllUsers: (state, action) => {
+      state.users = action.payload
+      state.USERS = action.payload
+    },
+    getUserById: (state, action) => {
+      state.user = action.payload
+    },
+    userError: (state, action) => {
+      state.error = action.payload
+    },
+  },
+}) */
