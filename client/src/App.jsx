@@ -12,6 +12,8 @@ import MainPage from './components/Landing/index'
 import NotFound from './components/NotFound/NotFound'
 import Signup from './components/Signup/Signup'
 import Login from './components/Login/Login'
+import { GraphicUsersFreeToSubs } from './components/DashBoard/UserGraph/UserGraph'
+import { Dash } from './components/DashBoard/Dash'
 
 /* import NavbarLayout from './layout/navLayout' */
 
@@ -32,6 +34,7 @@ function App() {
         <Route element={<PostBook />} path="createbook" />
         <Route element={<Login />} path="/login" />
         <Route element={<Signup />} path="/signup" />
+        <Route element={<Dash />} path="/grafico" />
       </Routes>
     </div>
   )

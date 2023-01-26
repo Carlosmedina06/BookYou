@@ -1,0 +1,7 @@
+.graph{
+    width: 450px;
+    height: 450px;
+    background-color: rgb(49, 48, 48);
+    padding: 20px;
+    border-radius: 40px;
+}
