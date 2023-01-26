@@ -2,11 +2,12 @@ import {
   ERROR,
   GET_BOOKBY_ID,
   GET_USERS,
-  GET_SEARCH_BOOK,
+  //GET_SEARCH_BOOK,
   LOGIN,
   LOGIN_GOOGLE,
   LOGIN_LOCAL,
   LOGOUT,
+  REGISTER_LOCAL,
 } from '../actions'
 const initialState = {
   books: [],
@@ -15,7 +16,7 @@ const initialState = {
   category: [],
   users: [],
   error: [],
-  loginUser: {},
+  loginUser: '',
 }
 
 function rootReducer(state = initialState, action) {
@@ -46,7 +47,7 @@ function rootReducer(state = initialState, action) {
     case LOGOUT:
       return {
         ...state,
-        loginUser: {},
+        loginUser: '',
       }
 
     case LOGIN:
@@ -55,6 +56,11 @@ function rootReducer(state = initialState, action) {
         loginUser: action.payload,
       }
 
+    case REGISTER_LOCAL: {
+      return {
+        ...state,
+      }
+    }
     case 'GET_BOOKS':
       return {
         ...state,

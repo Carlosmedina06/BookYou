@@ -9,11 +9,14 @@ export const LOGIN_GOOGLE = 'LOGIN_GOOGLE'
 export const LOGIN_LOCAL = 'LOGIN_LOCAL'
 export const LOGOUT = 'LOGOUT'
 export const LOGIN = 'LOGIN'
+export const REGISTER_LOCAL = 'REGISTER_LOCAL'
+// export const REGISTER_GOOGLE = 'REGISTER_GOOGLE'
 import {
   GoogleAuthProvider,
   signInWithPopup,
   signOut,
   signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
 } from 'firebase/auth'
 
 import { auth } from '../../utils/FireBase/FireBase'
@@ -24,6 +27,8 @@ export const loginGoogle = () => async (dispatch) => {
   const res = await signInWithPopup(auth, provider)
 
   axios.post('http://localhost:3001/login', res.user).then((res) => {
+    window.localStorage.setItem('token', res.data.token)
+
     return dispatch({
       type: LOGIN_GOOGLE,
       payload: res.data.token,
@@ -31,8 +36,43 @@ export const loginGoogle = () => async (dispatch) => {
   })
 }
 
+export const loginUser = () => async (dispatch) => {
+  const token = window.localStorage.getItem('token')
+
+  if (token) {
+    return dispatch({
+      type: LOGIN,
+      payload: token,
+    })
+  }
+}
+
+// export const registerGoogle = () => async (dispatch) => {
+//   const provider = new GoogleAuthProvider()
+
+//   const res = await signInWithPopup(auth, provider)
+
+//   axios.post('http://localhost:3001/signup', res.user).then((res) => {
+//     return dispatch({
+//       type: REGISTER_GOOGLE,
+//       payload: res.data.token,
+//     })
+//   })
+// }
+
+export const registerLocal = (email, password, displayName) => async (dispatch) => {
+  const response = await createUserWithEmailAndPassword(auth, email, password)
+
+  response.user.displayName = displayName
+  axios.post('http://localhost:3001/signup', response.user).then((res) => {
+    return dispatch({
+      type: REGISTER_LOCAL,
+      payload: res.data.token,
+    })
+  })
+}
+
 export const loginLocal = (email, password) => async (dispatch) => {
-  // eslint-disable-next-line no-unused-vars
   const response = await signInWithEmailAndPassword(auth, email, password)
 
   axios.post('http://localhost:3001/login', response.user).then((res) => {
@@ -59,6 +99,7 @@ export const getSearchBook = (name) => async (dispatch) => {
   try {
     const info = await axios.get('http://localhost:3001/book')
 
+    // eslint-disable-next-line no-console
     console.log(info.data)
     const books = info.data.filter((b) => b.title.toLowerCase().includes(name.toLowerCase()))
 
