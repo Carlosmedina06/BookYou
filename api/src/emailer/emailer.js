@@ -36,13 +36,24 @@ export const sendMailNewUser = async (user) => {
   })
 }
 
+export const sendMailNewBook = async (book, user) => {
+  const transporter = creatTrans()
+
+  await transporter.sendMail({
+    from: `"Book You 📚" <info@bookyou.com>`,
+    to: `${user.email}`,
+    subject: `${user.name} created a new book: ${book.title}`,
+    html: `este es mi libro ${book.title}`,
+  })
+}
+
 // export const SendMailnewComment = async (book) => {
 //   const transporter = creatTrans()
 
 //   await transporter.sendMail({
-//     from: `"Book You 📚" <info@bookyou.com>`,
-//     to: `${user.email}`,
-//     subject: `Hey ${user.name}, there are new comments about your book`,
+//     from: `"Book You 📚" <info@bookyou.com> `,
+//     to: `${ user.email } `,
+//     subject: `Hey ${ user.name }, there are new comments about your book`,
 //     html: ``,
 //   })
 // }
