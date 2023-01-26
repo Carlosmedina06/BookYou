@@ -1,6 +1,7 @@
 import React from 'react'
-import { Link, NavLink } from 'react-router-dom'
-import { useLocation } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
+// import { useLocation } from 'react-router-dom'
+
 import style from './NavBar.module.css'
 
 const NavBar = () => {
@@ -8,11 +9,12 @@ const NavBar = () => {
     e.preventDefault()
     window.open('/pageonconstruction')
   }
-  const location = useLocation();
 
-  if (location.pathname === '/') {
-    return null;
-  }
+  // const location = useLocation();
+
+  // if (location.pathname === '/') {
+  //   return null;
+  // }
 
   return (
     <div className={style.NavBarContainer}>
@@ -25,18 +27,21 @@ const NavBar = () => {
           <li>
             <NavLink to="/home">Inicio</NavLink>
           </li>
-          <li> 
+          <li>
             <NavLink to="/createbook">Crear Libro</NavLink>
           </li>
         </ul>
-       
-    </nav>
-   <div className={style.buttonSuscribeContainer}>
-   <div> <button onClick={handleSuscribe} className={style.buttonSuscribe}>Suscribirse</button></div>
-    </div>
+      </nav>
+      <div className={style.buttonSuscribeContainer}>
+        <div>
+          {' '}
+          <button className={style.buttonSuscribe} onClick={handleSuscribe}>
+            Suscribirse
+          </button>
+        </div>
+      </div>
     </div>
   )
 }
 
 export default NavBar
-
