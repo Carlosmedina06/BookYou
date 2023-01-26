@@ -8,7 +8,6 @@ import { Usuario } from './components/Usuario/Usuario'
 import { CreateUser } from './components/CreateUser/CreateUser'
 import PageOnConstruction from './components/PageOnConstruction/PageOnConstruction'
 import PostBook from './components/FormBookCreate/formBook'
-import { AuthProvider } from './context/authContex'
 import MainPage from './components/Landing/index'
 import NotFound from './components/NotFound/NotFound'
 import MainContainerLayout from './layout/Main-container-layout'
@@ -19,7 +18,7 @@ import Login from './components/Login/Login'
 
 function App() {
   return (
-    <AuthProvider>
+
       <MainContainerLayout/>
       <NavbarLayout/>
       <MainContentLayout>
@@ -40,7 +39,6 @@ function App() {
         </Routes>
       </div>
       </MainContentLayout>
-    </AuthProvider>
   )
 }
 
