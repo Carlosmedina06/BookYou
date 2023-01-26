@@ -191,5 +191,21 @@ export const orderAlf = (payload) => {
   return {
     type: 'ORDER_ALF',
     payload,
+  };
+};
+
+
+/* ----------------- POSTEAR COMENTARIO DE UN LIBRO----------------- */
+
+export const postBookReview = () => async dispatch => {
+  try {
+    const info = await axios.get('http://localhost:3001/create/book');
+     
+  } catch (error) {
+    dispatch({
+      type: ERROR,
+      payload: error.message,
+    });
   }
-}
+};
+
