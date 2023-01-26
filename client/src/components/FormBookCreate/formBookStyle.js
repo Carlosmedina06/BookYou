@@ -31,6 +31,7 @@ export const FormItem = styled.div`
   width: 60%;
   margin: 0 auto;
   text-align: center;
+  
 `
 
 export const Input = styled.input`
@@ -72,7 +73,7 @@ export const InputFile = styled.input`
   ::-webkit-file-upload-button {
     padding: 10px;
    
-    color: rgb(255, 255, 255);
+    
     cursor: pointer;
     margin-bottom: 0;
     width: 50%;
@@ -87,6 +88,10 @@ export const InputFile = styled.input`
     text-align: center;
     &::after {
       content: 'Upload';
+    }
+    &:hover {
+      background: #07484a;
+      color: #fff;
     }
     &:active {
       background-color: #f1ac15;

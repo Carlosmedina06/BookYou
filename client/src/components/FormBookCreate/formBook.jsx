@@ -187,9 +187,10 @@ const PostBook = () => {
 
             {/* // input pdf  */}
             <FormItem>
+              
               <label htmlFor="pdf">
                 Select book file
-                <input
+                <InputFile
                   accept="application/pdf,application/msword,
                         application/vnd.openxmlformats-officedocument.wordprocessingml.document"
                   name="pdf"
