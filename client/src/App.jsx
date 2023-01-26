@@ -25,7 +25,7 @@ function App() {
       <div className="App">
         <Routes>
           <Route element={<MainPage />} path="/" />
-          {/*         <Route element={<NavbarLayout />} path="/home" /> */}
+          {/*  <Route element={<NavbarLayout />} path="/home" /> */}
           <Route element={<Home />} path="/home" />
           <Route element={<NotFound />} path="/404" />
           <Route element={<Usuario />} path="/Usuario" />
