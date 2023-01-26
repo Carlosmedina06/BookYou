@@ -27,7 +27,7 @@ router.use('/category', categoryRouter)
 //= =====================Login Routes================================
 router.use('/login', loginRouter)
 //= =====================Login Routes================================
-router.use('/login', singupRouter)
+router.use('/signup', singupRouter)
 
 //= =====================Checkout Routes================================
 router.use('/checkout', checkOutRouter)

@@ -8,7 +8,9 @@ function Autentication() {
   const [register, setRegister] = useState({
     email: '',
     password: '',
+    displayName: '',
   })
+
   const [login, setLongin] = useState({
     email: '',
     password: '',
@@ -27,7 +29,7 @@ function Autentication() {
   }
   const submitRegister = (e) => {
     e.preventDefault()
-    auth.register(register.email, register.password)
+    auth.register(register.email, register.password, register.displayName)
   }
   const submitLogin = (e) => {
     e.preventDefault()
@@ -53,6 +55,7 @@ function Autentication() {
           type="password"
           onChange={hamdleRegister}
         />
+        <input name="displayName" placeholder="name" type="text" onChange={hamdleRegister} />
         <button type="submit">Register</button>
       </form>
       <form onSubmit={submitLogin}>
