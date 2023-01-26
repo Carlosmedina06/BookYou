@@ -2,13 +2,17 @@
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
 import style from "./NavBar.module.css"
-
+import { useLocation } from 'react-router-dom';
 const NavBar = () =>{
 const handleSuscribe = (e) =>{
 e.preventDefault()
-window.open("/pageonconstruction")
+window.open("/pageonconstruction")}
 
-}
+  const location = useLocation();
+
+  if (location.pathname === '/') {
+    return null;
+  }
 return(
 <div className = {style.NavBarContainer} >
 <div className={style.NavBarLogo}>
