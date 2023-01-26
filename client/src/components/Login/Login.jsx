@@ -1,20 +1,14 @@
-import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
+import React, { useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
 
-import { useAuth } from '../../context/authContex'
 import { loginGoogle, logout, loginLocal } from '../../redux/actions/index'
 
 const Login = () => {
   const dispatch = useDispatch()
-  const [token, setToken] = useState({})
-  const auth = useAuth()
+  const navigate = useNavigate()
 
-  useEffect(() => {
-    setToken(auth.token)
-  }, [auth.token])
-
-  console.log(token)
+  const user = useSelector((state) => state.loginUser)
 
   const [login, setLogin] = useState({
     email: '',
@@ -29,28 +23,31 @@ const Login = () => {
   const submitLogin = (e) => {
     e.preventDefault()
     dispatch(loginLocal(login.email, login.password))
-    setToken(auth.token)
+    navigate('/')
   }
 
-  const handleGoogle = (e) => {
+  const handleGoogle = async (e) => {
     e.preventDefault()
-    dispatch(loginGoogle())
+    await dispatch(loginGoogle())
   }
 
   const handleLogout = (e) => {
     e.preventDefault()
     dispatch(logout())
-    setToken({})
   }
 
   return (
     <div>
       <form onSubmit={submitLogin}>
-        <label>Login: </label>
-        {token.length > 0 ? (
-          <button onClick={handleLogout}>Cerrar sesion</button>
-        ) : (
+        {user && <button onClick={handleLogout}>Cerrar sesion</button>}
+        <br />
+        <br />
+        <br />
+        <br />
+
+        {!user && (
           <>
+            <label>Login: </label>
             <input name="email" placeholder="email..." type="email" onChange={handletLogin} />
             <input
               name="password"
@@ -58,12 +55,11 @@ const Login = () => {
               type="password"
               onChange={handletLogin}
             />
-            <button type="submit">Iniciar sesion</button>
             <br />
-            <br />
-            <button onClick={handleGoogle}>Inicia sesion con Google</button>
+            <button type="submit">Iniciar sesion</button>{' '}
           </>
         )}
+        {!user && <button onClick={handleGoogle}>Inicia sesion con Google</button>}
       </form>
       <br />
       <br />
@@ -71,7 +67,6 @@ const Login = () => {
       <br />
       <br />
       <Link to="/signup">Registrarse</Link>
-      <button onClick={handleLogout}>Cerrar sesion</button>
     </div>
   )
 }
