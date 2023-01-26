@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
+import { Link } from 'react-router-dom'
 
 import { getCategorys } from '../../redux/actions'
 import { useForm } from '../../utils/Hooks/useForm'
@@ -14,6 +15,9 @@ import validationsForm from './ValidationForm'
 const PostBook = () => {
   const category = useSelector((state) => state.category)
 
+  const user = useSelector((state) => state.loginUser)
+
+  console.log('create book:', user)
   const dispatch = useDispatch()
 
   const initialForm = {
@@ -214,6 +218,7 @@ const PostBook = () => {
             </button>
           </FormContent>
         </div>
+        <Link to="/home">home</Link>
       </Container>
     )
   }

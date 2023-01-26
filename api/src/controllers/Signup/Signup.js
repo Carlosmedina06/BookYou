@@ -12,14 +12,16 @@ const signupController = async (req, res) => {
         const results = await User.create({
           email,
           name: displayName,
+          username: email,
         })
         const userForToken = {
           email: results.email,
           id: results._id,
           name: results.name,
-          picture: results.picture,
+          username: results.username,
+          img: results.img,
           role: results.role,
-          subsscription: results.subscription,
+          subscription: results.subscription,
         }
         const token = jwt.sign(userForToken, process.env.SECRET, { expiresIn: '1h' })
 
@@ -39,13 +41,13 @@ const signupController = async (req, res) => {
           email: user.email,
           id: user._id,
           name: user.name,
-          picture: user.picture,
+          img: user.img,
           role: user.role,
-          subsscription: user.subscription,
+          subscription: user.subscription,
         }
         const token = jwt.sign(userForToken, process.env.SECRET, { expiresIn: '1h' })
 
-        return res.status(200).send({
+        return res.status(200).json({
           token,
         })
       } else {
@@ -53,20 +55,20 @@ const signupController = async (req, res) => {
           email,
           name,
           username: email,
-          picture,
+          img: picture,
         })
         const userForToken = {
           email: results.email,
           id: results._id,
           username: results.username,
           name: results.name,
-          picture: results.picture,
+          img: results.img,
           role: results.role,
-          subsscription: results.subscription,
+          subscription: results.subscription,
         }
         const token = jwt.sign(userForToken, process.env.SECRET, { expiresIn: '1h' })
 
-        res.status(200).send({
+        res.status(200).json({
           token,
         })
       }
