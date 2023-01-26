@@ -16,8 +16,8 @@ const creatTrans = () => {
     host: 'smtp.mailtrap.io',
     port: 2525,
     auth: {
-      user: '6a9235ed0dc342',
-      pass: '4a97d7e4aab7a9',
+      user: 'baaa4e1294db2a',
+      pass: 'd45867fd72fdb0',
     },
   })
 
@@ -25,6 +25,7 @@ const creatTrans = () => {
 }
 
 export const sendMailNewUser = async (user) => {
+  console.log('email', user)
   const transporter = creatTrans()
 
   await transporter.sendMail({
@@ -35,13 +36,24 @@ export const sendMailNewUser = async (user) => {
   })
 }
 
+export const sendMailNewBook = async (book, user) => {
+  const transporter = creatTrans()
+
+  await transporter.sendMail({
+    from: `"Book You 📚" <info@bookyou.com>`,
+    to: `${user.email}`,
+    subject: `${user.name} created a new book: ${book.title}`,
+    html: `este es mi libro ${book.title}`,
+  })
+}
+
 // export const SendMailnewComment = async (book) => {
 //   const transporter = creatTrans()
 
 //   await transporter.sendMail({
-//     from: `"Book You 📚" <info@bookyou.com>`,
-//     to: `${user.email}`,
-//     subject: `Hey ${user.name}, there are new comments about your book`,
+//     from: `"Book You 📚" <info@bookyou.com> `,
+//     to: `${ user.email } `,
+//     subject: `Hey ${ user.name }, there are new comments about your book`,
 //     html: ``,
 //   })
 // }

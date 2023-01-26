@@ -1,5 +1,6 @@
 import React from 'react'
-import { Link, NavLink } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
+// import { useLocation } from 'react-router-dom'
 
 import style from './NavBar.module.css'
 
@@ -8,6 +9,12 @@ const NavBar = () => {
     e.preventDefault()
     window.open('/pageonconstruction')
   }
+
+  // const location = useLocation();
+
+  // if (location.pathname === '/') {
+  //   return null;
+  // }
 
   return (
     <div className={style.NavBarContainer}>
@@ -28,15 +35,9 @@ const NavBar = () => {
       <div className={style.buttonSuscribeContainer}>
         <div>
           {' '}
-          <Link to="/login">
-            <button
-              className={style.buttonSuscribe}
-            // onClick={handleSuscribe}
-            // onClick={handleSuscribe}
-            >
-              Suscribirse
-            </button>
-          </Link>
+          <button className={style.buttonSuscribe} onClick={handleSuscribe}>
+            Suscribirse
+          </button>
         </div>
       </div>
     </div>

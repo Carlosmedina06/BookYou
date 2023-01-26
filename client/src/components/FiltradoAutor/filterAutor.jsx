@@ -5,18 +5,26 @@ import { useSelector } from 'react-redux'
 import Card from '../Card/Card'
 import Pagination from '../Pagination/Pagination'
 import style2 from '../FiltradoGenero/filtradoGenero.module.css'
+
 import style from '../FiltradoAutor/filterAutor.module.css'
+import CssGenerico from '../CssGenerico/CssGenerico.module.css'
 
-function SearchByAutor({ setShowFilterAutor, authorInput, setAuthorInput, setAuthorInputtodos }) {
+function SearchByAutor({ 
+  authorInput,
+  clearFilters,
+  setBookInput,
+  setAuthorInput,
+  setBookInputtodos,
+  setShowFilterAutor
+}) {
   const autor = useSelector((state) => state.autor)
-
-  console.log('soy autor', autor)
-
   const [currentPage, setCurrentPage] = useState(1)
+
 
   const handleInputChange = (e) => {
     setAuthorInput(e.target.value)
-    setAuthorInputtodos('todos')
+    setBookInput('')
+    setBookInputtodos('todos')
     setCurrentPage(0)
   }
 
@@ -51,14 +59,8 @@ function SearchByAutor({ setShowFilterAutor, authorInput, setAuthorInput, setAut
 
   return (
     <>
-      <div className="top-1/4 w-full my-3.5 m-auto grid col-span-12">
-        <div className={style.input}>
-          <label
-            className="mb-2 text-sm font-medium	text-gray-900 sr-only dark:text-white"
-            htmlFor="default-search"
-          >
-            Search
-          </label>
+      <div >
+        
           <div>
             <div className={style.svgConteiner}>
               <svg
@@ -78,14 +80,17 @@ function SearchByAutor({ setShowFilterAutor, authorInput, setAuthorInput, setAut
               </svg>
             </div>
 
+            <div style={{ position: 'absolute', top: '20px', left: '600px' }}>
+
             <input
               required
-              className={style2.select}
+              className={CssGenerico.search}
               id="default-search"
               placeholder=" Autores"
               type="search"
               onChange={handleInputChange}
-            />
+              />
+              </div>
           </div>
 
           <div className={style.mover1}>
@@ -119,7 +124,7 @@ function SearchByAutor({ setShowFilterAutor, authorInput, setAuthorInput, setAut
               </div>
             )}
           </div>
-        </div>
+        
       </div>
     </>
   )

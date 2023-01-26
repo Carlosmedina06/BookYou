@@ -7,13 +7,6 @@ import portada from './7442df453f2197f67249ab1b49ebb44b.jpg';
 import perfil from './271812565_2088201441327034_8800356643564968973_n.png';
 import style from './Usuario.module.css'
 
-import Carousel from '../CarouselRecomendados/Carousel';
-import CarouselPV from '../CarouselParaVos/Carousel';
-import CarouselN from '../CarouselNuevos/Carousel';
-import SearchBar from '../SearchBar/SearchBar';
-
-
-
 export const Usuario = () => {
  
   return (
