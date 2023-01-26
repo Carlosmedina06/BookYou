@@ -1,12 +1,17 @@
 import React from 'react'
 import { Link, NavLink } from 'react-router-dom'
-
+import { useLocation } from 'react-router-dom'
 import style from './NavBar.module.css'
 
 const NavBar = () => {
   const handleSuscribe = (e) => {
     e.preventDefault()
     window.open('/pageonconstruction')
+  }
+  const location = useLocation();
+
+  if (location.pathname === '/') {
+    return null;
   }
 
   return (
@@ -44,3 +49,4 @@ const NavBar = () => {
 }
 
 export default NavBar
+
