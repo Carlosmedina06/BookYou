@@ -1,3 +1,4 @@
+
 import {
   ERROR,
   GET_BOOKBY_ID,
@@ -8,12 +9,15 @@ import {
   LOGIN_LOCAL,
   LOGOUT,
   REGISTER_LOCAL,
+   ERROR, GET_BOOKBY_ID, GET_USERS
 } from '../actions'
+
 const initialState = {
   books: [],
   allBooks: [],
   detail: [],
   category: [],
+  autor: [],
   users: [],
   error: [],
   loginUser: '',
@@ -30,6 +34,11 @@ function rootReducer(state = initialState, action) {
     action.payload === 'asc'
       ? state.books.sort((a, b) => (a.title > b.title ? 1 : a.title < b.title ? -1 : 0))
       : state.books.sort((a, b) => (a.title > b.title ? -1 : a.title < b.title ? 1 : 0))
+  /*   let allAutores = state.allBooks
+    let autorFilter =
+    action.payload === 'todos'
+      ? allAutores
+      : allAutores.filter((c) => c.author?.includes(action.payload)) */
 
   switch (action.type) {
     case LOGIN_GOOGLE:
@@ -77,11 +86,24 @@ function rootReducer(state = initialState, action) {
         ...state,
         category: action.payload,
       }
+    case 'GET_SEARCH_AUTORES':
+      return {
+        ...state,
+        autor: action.payload,
+      }
+
     case 'FILTER_CATEGORY':
       return {
         ...state,
         books: categFilter,
       }
+
+    /*  case 'FILTER_AUTOR':
+      return {
+        ...state,
+        autor: autorFilter,
+      } */
+
     case 'ORDER_ALF':
       return {
         ...state,

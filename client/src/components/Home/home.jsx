@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
 
 import { getBooks, getCategorys, loginUser } from '../../redux/actions/index'
+import { getBooks, getCategorys, getAutores } from '../../redux/actions/index'
 import FiltradoGenero from '../FiltradoGenero/filtradoGenero'
 import OrdAlfabetico from '../OrderAlfab/orderAlfabetico'
 import NavBar from '../NavBar/NavBar'
@@ -10,22 +11,34 @@ import CarouselPV from '../CarouselParaVos/Carousel'
 import CarouselN from '../CarouselNuevos/Carousel'
 import SearchBar from '../SearchBar/SearchBar'
 
+import SearchByAutor from '../FiltradoAutor/filterAutor'
+import Login from '../Login/Login'
+
+
 export const Home = () => {
   const dispatch = useDispatch()
-  const [showCarousels, setShowCarousels] = useState(true)
-  const [showFilterGenero, setShowFilterGenero] = useState(true)
 
-  const [showSearchFilter, setShowSearchFilter] = useState(true)
-  const [books, setBooks] = useState(true)
+  const [showCarousels, setShowCarousels] = useState(true) /* cactualizar estado arousel cards */
+  const [showFilterGenero, setShowFilterGenero] = useState(true) /* actualizar estado genero */
+  const [showFilterAutor, setShowFilterAutor] = useState(true)
+  const [books, setBooks] = useState(true) /* actualizar estado libros orden alf */
 
   //----------------------------------------------------------------
-  const [bookInput, setBookInput] = useState('')
-  const [bookInputtodos, setBookInputtodos] = useState('todos')
+
+  const [bookInput, setBookInput] = useState('') /* actualizar estado searchbar por libro*/
+  const [authorInput, setAuthorInput] = useState('') /* actualizar estado searchbar por autor */
+  const [bookInputtodos, setBookInputtodos] =
+    useState('todos') /* actualizar estado genero 'value=todos' para serachbar por libro y autor*/
+  const [authorInputtodos, setAuthorInputtodos] = useState('todos')
+
   //----------------------------------------------------------------
 
   const clearFilters = () => {
     setBookInput('')
     setBookInputtodos('todos')
+    setAuthorInput('')
+    setAuthorInputtodos('todos')
+    /* setCurrentPage(1) */
   }
 
   /*   const allBooks = useSelector((state) => state.books)
@@ -35,6 +48,7 @@ export const Home = () => {
     dispatch(getBooks())
     dispatch(getCategorys())
     dispatch(loginUser())
+    dispatch(getAutores())
   }, [dispatch])
 
   const user = useSelector((state) => state.loginUser)
@@ -48,6 +62,11 @@ export const Home = () => {
       </div>
       <div>
         {/* <SearchBar
+        <Login />
+      </div>
+      <div>
+        <SearchBar
+
           bookInput={bookInput}
           clearFilters={clearFilters}
           setBookInput={setBookInput}
@@ -55,7 +74,20 @@ export const Home = () => {
           setShowCarousels={setShowCarousels}
         /> */}
       </div>
+
       {/* <div style={{ position: 'absolute', top: '52px', left: '00px' }}>
+
+      <div>
+        <SearchByAutor
+          authorInput={authorInput}
+          clearFilters={clearFilters}
+          setAuthorInput={setAuthorInput}
+          setAuthorInputtodos={setAuthorInputtodos}
+          setShowFilterAutor={setShowFilterAutor}
+        />
+      </div>
+      <div style={{ position: 'absolute', top: '52px', left: '00px' }}>
+
         <FiltradoGenero
           bookInput={bookInput}
           bookInputtodos={bookInputtodos}
@@ -72,7 +104,7 @@ export const Home = () => {
         <OrdAlfabetico books={books} setBooks={setBooks} />
       </div>
       <div>
-        {showCarousels && showFilterGenero && (
+        {showCarousels && showFilterGenero && showFilterAutor && (
           <>
             <Carousel />
             <CarouselPV />

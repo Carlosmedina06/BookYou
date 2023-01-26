@@ -93,16 +93,13 @@ export const logout = () => async (dispatch) => {
     type: 'LOGOUT',
   })
 }
-
 /* ------------- GET BOOKS SEARCH ----------*/
 export const getSearchBook = (name) => async (dispatch) => {
   try {
     const info = await axios.get('http://localhost:3001/book')
-
     // eslint-disable-next-line no-console
     console.log(info.data)
     const books = info.data.filter((b) => b.title.toLowerCase().includes(name.toLowerCase()))
-
     return dispatch({
       type: GET_SEARCH_BOOK,
       payload: books,
@@ -178,6 +175,23 @@ export const getCategorys = () => async (dispatch) => {
   }
 }
 
+/* ----------------------- GET AUTORES LITERARIOS -------------------- */
+export const getAutores = () => async (dispatch) => {
+  try {
+    const info = await axios.get('http://localhost:3001/book')
+
+    return dispatch({
+      type: 'GET_SEARCH_AUTORES',
+      payload: info.data,
+    })
+  } catch (error) {
+    dispatch({
+      type: ERROR,
+      payload: error.message,
+    })
+  }
+}
+
 /* ------------- FILTRO POR GÉNERO LITERARIO -------------------- */
 export const filterCategorys = (payload) => {
   return {
@@ -186,26 +200,40 @@ export const filterCategorys = (payload) => {
   }
 }
 
+/* -------------- FILTRO POR AUTOR ----------------------- */
+/* export const filterAutor = (payload) => {
+  return {
+    type: 'FILTER_AUTOR',
+    payload,
+  }
+} */
+
+
 /* ----------------- ORDENAR GÉNEROS POR ORDEN ALFABETICO----------------- */
 export const orderAlf = (payload) => {
   return {
     type: 'ORDER_ALF',
     payload,
-  };
-};
-
+  }
+}
 
 /* ----------------- POSTEAR COMENTARIO DE UN LIBRO----------------- */
 
-export const postBookReview = () => async dispatch => {
+export const postBookReview = () => async (dispatch) => {
   try {
-    const info = await axios.get('http://localhost:3001/create/book');
-     
+    const info = await axios.get('http://localhost:3001/create/book')
+
+    return dispatch({
+      type: 'GET_COMENTARIOS',
+      payload: info.data,
+    })
   } catch (error) {
     dispatch({
       type: ERROR,
       payload: error.message,
-    });
+    })
   }
+
 };
+}
 
