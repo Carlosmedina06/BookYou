@@ -1,76 +1,52 @@
-import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
-import axios from 'axios'
 
 import User from '../../models/User.js'
 
 const loginController = async (req, res) => {
-  if (req.body.googleAccessToken) {
-    // login with google
-    try {
-      const { googleAccessToken } = req.body
+  try {
+    const decodedToken = jwt.decode(req.body.stsTokenManager.accessToken)
 
-      axios
-        .get('https://www.googleapis.com/oauth2/v3/userinfo', {
-          headers: {
-            Authorization: `Bearer ${googleAccessToken}`,
-          },
-        })
-        .then(async (response) => {
-          const email = response.data.email
+    const { email, name, picture } = decodedToken
+    const user = await User.findOne({ email })
 
-          const existingUser = await User.findOne({ email })
-
-          if (!existingUser) return res.status(401).json({ error: "User don't exist" })
-
-          const userForToken = {
-            username: existingUser.username,
-            id: existingUser._id,
-            name: existingUser.name,
-            role: existingUser.role,
-            subscription: existingUser.subscription,
-            email: existingUser.email,
-            img: existingUser.img,
-            books: existingUser.books,
-            comment: existingUser.comment,
-          }
-          const token = jwt.sign(userForToken, process.env.SECRET, { expiresIn: '1h' })
-
-          res.status(200).send({ token, username: existingUser.username, name: existingUser.name })
-        })
-    } catch (error) {
-      res.status(500).json({ error: 'something went wrong' })
-    }
-  } else {
-    // login local
-    try {
-      const { password, email } = req.body
-      const user = await User.findOne({ email })
-      const passwordCorrect = user === null ? false : await bcrypt.compare(password, user.password)
-
-      if (!(user && passwordCorrect)) {
-        return res.status(401).json({
-          error: 'invalid email or password',
-        })
-      }
-
+    if (user) {
       const userForToken = {
-        username: user.username,
         email: user.email,
         id: user._id,
         name: user.name,
-        role: user.role,
-        subscription: user.subscription,
         img: user.img,
-        books: user.books,
-        comment: user.comment,
+        role: user.role,
+        subsscription: user.subscription,
       }
-      const token = jwt.sign(userForToken, process.env.SECRET)
+      const token = jwt.sign(userForToken, process.env.SECRET, { expiresIn: '1h' })
 
-      res.status(200).send({ token, username: user.username, name: user.name })
-    } catch (error) {
-      res.status(500).json({ error: 'something went wrong' })
+      return res.status(200).json({
+        token,
+      })
+    } else {
+      const results = await User.create({
+        email,
+        name,
+        username: email,
+        img: picture,
+      })
+      const userForToken = {
+        email: results.email,
+        id: results._id,
+        username: results.username,
+        name: results.name,
+        img: results.img,
+        role: results.role,
+        subsscription: results.subscription,
+      }
+      const token = jwt.sign(userForToken, process.env.SECRET, { expiresIn: '1h' })
+
+      res.status(200).json({
+        token,
+      })
     }
+  } catch (error) {
+    res.status(500).json({ error: error.message })
   }
 }
 
