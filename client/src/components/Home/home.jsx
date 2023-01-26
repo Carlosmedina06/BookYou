@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
 
-import { getBooks, getCategorys } from '../../redux/actions/index'
+import { getBooks, getCategorys, loginUser } from '../../redux/actions/index'
 import FiltradoGenero from '../FiltradoGenero/filtradoGenero'
 import OrdAlfabetico from '../OrderAlfab/orderAlfabetico'
 import NavBar from '../NavBar/NavBar'
@@ -9,7 +9,6 @@ import Carousel from '../CarouselRecomendados/Carousel'
 import CarouselPV from '../CarouselParaVos/Carousel'
 import CarouselN from '../CarouselNuevos/Carousel'
 import SearchBar from '../SearchBar/SearchBar'
-import { useAuth } from '../../context/authContex'
 
 export const Home = () => {
   const dispatch = useDispatch()
@@ -35,7 +34,12 @@ export const Home = () => {
   useEffect(() => {
     dispatch(getBooks())
     dispatch(getCategorys())
+    dispatch(loginUser())
   }, [dispatch])
+
+  const user = useSelector((state) => state.loginUser)
+
+  console.log(user)
 
   return (
     <div>
@@ -43,15 +47,15 @@ export const Home = () => {
         <NavBar />
       </div>
       <div>
-        <SearchBar
+        {/* <SearchBar
           bookInput={bookInput}
           clearFilters={clearFilters}
           setBookInput={setBookInput}
           setBookInputtodos={setBookInputtodos}
           setShowCarousels={setShowCarousels}
-        />
+        /> */}
       </div>
-      <div style={{ position: 'absolute', top: '52px', left: '00px' }}>
+      {/* <div style={{ position: 'absolute', top: '52px', left: '00px' }}>
         <FiltradoGenero
           bookInput={bookInput}
           bookInputtodos={bookInputtodos}
@@ -63,7 +67,7 @@ export const Home = () => {
           setShowFilterGenero={setShowFilterGenero}
           showFilterGenero={showFilterGenero}
         />
-      </div>
+      </div> */}
       <div style={{ position: 'absolute', top: '130px', left: '30px' }}>
         <OrdAlfabetico books={books} setBooks={setBooks} />
       </div>

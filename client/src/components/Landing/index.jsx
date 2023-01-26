@@ -19,12 +19,12 @@ function MainPage() {
           </p>
         </div>
         <div className={`${style.LinkContainer}`}>
-          <Link to="/404">
+          <Link to="/login">
             <div className={style.buttonContainer}>
               <button className="button_home">Login</button>
             </div>
           </Link>
-          <Link to="/404">
+          <Link to="/register">
             <div className={style.buttonContainer}>
               <button className="button_home">Register</button>
             </div>
