@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
+//import jwt_decode from 'jwt-decode'
 
 import { getBooks, getCategorys, loginUser, getAutores } from '../../redux/actions/index'
 import FiltradoGenero from '../FiltradoGenero/filtradoGenero'
@@ -45,7 +46,8 @@ export const Home = () => {
     dispatch(getAutores())
   }, [dispatch])
 
-  const user = useSelector((state) => state.loginUser)
+  //var decoded = jwt_decode(window.localStorage.getItem('token'))
+  //console.log(decoded) traer datos (id) del user logeado
 
   return (
     <div>
