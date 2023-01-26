@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
-import { registerLocal, loginGoogle } from '../../redux/actions/index.jsx'
+import { registerLocal, loginGoogle } from '../../redux/actions/index.js'
 
 const Signup = () => {
   const [register, setRegister] = useState({

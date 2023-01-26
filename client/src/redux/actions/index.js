@@ -97,9 +97,11 @@ export const logout = () => async (dispatch) => {
 export const getSearchBook = (name) => async (dispatch) => {
   try {
     const info = await axios.get('http://localhost:3001/book')
+
     // eslint-disable-next-line no-console
     console.log(info.data)
     const books = info.data.filter((b) => b.title.toLowerCase().includes(name.toLowerCase()))
+
     return dispatch({
       type: GET_SEARCH_BOOK,
       payload: books,
@@ -208,7 +210,6 @@ export const filterCategorys = (payload) => {
   }
 } */
 
-
 /* ----------------- ORDENAR GÉNEROS POR ORDEN ALFABETICO----------------- */
 export const orderAlf = (payload) => {
   return {
@@ -233,7 +234,4 @@ export const postBookReview = () => async (dispatch) => {
       payload: error.message,
     })
   }
-
-};
 }
-
