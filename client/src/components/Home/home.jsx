@@ -18,12 +18,13 @@ export const Home = () => {
   const [showFilterGenero, setShowFilterGenero] = useState(true) /* actualizar estado genero */
   const [showFilterAutor, setShowFilterAutor] = useState(true)
   const [books, setBooks] = useState(true) /* actualizar estado libros orden alf */
-  
+
   //----------------------------------------------------------------
-  
+
   const [bookInput, setBookInput] = useState('') /* actualizar estado searchbar por libro*/
   const [authorInput, setAuthorInput] = useState('') /* actualizar estado searchbar por autor */
-  const [bookInputtodos, setBookInputtodos] = useState('todos') /* actualizar estado genero 'value=todos' para serachbar por libro y autor*/
+  const [bookInputtodos, setBookInputtodos] =
+    useState('todos') /* actualizar estado genero 'value=todos' para serachbar por libro y autor*/
 
   //----------------------------------------------------------------
 
@@ -52,36 +53,36 @@ export const Home = () => {
         <NavBar />
       </div>
       <div />
-      
-        <SearchBar
-          bookInput={bookInput}
-          clearFilters={clearFilters}
-          setBookInput={setBookInput}
-          setAuthorInput= {setAuthorInput}
-          setBookInputtodos={setBookInputtodos}
-          setShowCarousels={setShowCarousels}
-        />
-      
-      <div >
-        <div >
+
+      <SearchBar
+        bookInput={bookInput}
+        clearFilters={clearFilters}
+        setAuthorInput={setAuthorInput}
+        setBookInput={setBookInput}
+        setBookInputtodos={setBookInputtodos}
+        setShowCarousels={setShowCarousels}
+      />
+
+      <div>
+        <div>
           <SearchByAutor
             authorInput={authorInput}
             clearFilters={clearFilters}
-            setBookInput={setBookInput}
             setAuthorInput={setAuthorInput}
+            setBookInput={setBookInput}
             setBookInputtodos={setBookInputtodos}
             setShowFilterAutor={setShowFilterAutor}
           />
         </div>
-        <div >
+        <div>
           <FiltradoGenero
             bookInput={bookInput}
-            clearFilters={clearFilters}
-            setBookInput={setBookInput}
-            setAuthorInput={setAuthorInput}
-            setBookInputtodos={setBookInputtodos}
             bookInputtodos={bookInputtodos}
             books={books}
+            clearFilters={clearFilters}
+            setAuthorInput={setAuthorInput}
+            setBookInput={setBookInput}
+            setBookInputtodos={setBookInputtodos}
             setBooks={setBooks}
             setShowFilterGenero={setShowFilterGenero}
             showFilterGenero={showFilterGenero}
@@ -93,16 +94,46 @@ export const Home = () => {
         <div>
           {showCarousels && showFilterGenero && showFilterAutor && (
             <>
-              <div style={{position: 'absolute', left: '300px',top: '100px'}}>
-                <h3 style={{color: 'white', position: 'absolute', top:'-20px',left:'20px',fontSize: '30px'}}>Recomendado</h3>
+              <div style={{ position: 'absolute', left: '300px', top: '100px' }}>
+                <h3
+                  style={{
+                    color: 'white',
+                    position: 'absolute',
+                    top: '-20px',
+                    left: '20px',
+                    fontSize: '30px',
+                  }}
+                >
+                  Recomendado
+                </h3>
                 <Carousel />
               </div>
-              <div style={{position: 'absolute', left: '300px',top: '500px'}}>
-                <h3 style={{color: 'white', position: 'absolute', top:'-20px',left:'20px',fontSize: '30px'}}>Para Vos</h3>
+              <div style={{ position: 'absolute', left: '300px', top: '500px' }}>
+                <h3
+                  style={{
+                    color: 'white',
+                    position: 'absolute',
+                    top: '-20px',
+                    left: '20px',
+                    fontSize: '30px',
+                  }}
+                >
+                  Para Vos
+                </h3>
                 <CarouselPV />
               </div>
-              <div style={{position: 'absolute', left: '300px',top: '900px'}}>
-                <h3 style={{color: 'white', position: 'absolute', top:'-20px',left:'20px',fontSize: '30px'}}>Nuevo</h3>
+              <div style={{ position: 'absolute', left: '300px', top: '900px' }}>
+                <h3
+                  style={{
+                    color: 'white',
+                    position: 'absolute',
+                    top: '-20px',
+                    left: '20px',
+                    fontSize: '30px',
+                  }}
+                >
+                  Nuevo
+                </h3>
                 <CarouselN />
               </div>
             </>
