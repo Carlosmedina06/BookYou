@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-
+import style from './Login.module.css'
 import { loginGoogle, logout, loginLocal } from '../../redux/actions/index'
 
 const Login = () => {
@@ -37,7 +37,8 @@ const Login = () => {
   }
 
   return (
-    <div>
+  <div className={style.mainContainer}>
+    <div className={style.cardContainer}>
       <form onSubmit={submitLogin}>
         {user && <button onClick={handleLogout}>Cerrar sesion</button>}
         <br />
@@ -46,28 +47,52 @@ const Login = () => {
         <br />
 
         {!user && (
-          <>
+          <div className={style.contentformCard}>
             <label>Login: </label>
-            <input name="email" placeholder="email..." type="email" onChange={handletLogin} />
-            <input
-              name="password"
-              placeholder="password..."
-              type="password"
-              onChange={handletLogin}
-            />
+           
+            <div>
+                  <input name="email" placeholder="email..." type="email" onChange={handletLogin} />
+            </div> 
+            <div>
+                  <input
+                    name="password"
+                    placeholder="password..."
+                    type="password"
+                    onChange={handletLogin}
+                  />
+               </div>
             <br />
-            <button type="submit">Iniciar sesion</button>{' '}
-          </>
+            <button  className={style.buttonSignIn}type="submit">Iniciar sesion<div class="arrow-wrapper">
+        <div class="arrow"></div>
+
+    </div></button>{' '}
+          </div>
         )}
-        {!user && <button onClick={handleGoogle}>Inicia sesion con Google</button>}
+
+        <div className={style.SignInGoogleButtons}>
+        <div className={style.googleBtn}>
+              <div class={style.googleIconWrapper}>
+                <img class={style.googleIcon} src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"/>
+              </div>
+              <p class={style.btnText}><b>Sign in with google</b></p>
+        </div>
+            {!user && <button onClick={handleGoogle}>Inicia sesion con Google
+            
+             
+            </button>}
+            <Link to="/signup">Registrarse</Link>
+        </div>
       </form>
       <br />
       <br />
       <br />
       <br />
       <br />
-      <Link to="/signup">Registrarse</Link>
+      
+      
     </div>
+    
+  </div>  
   )
 }
 
