@@ -41,20 +41,19 @@ const Login = () => {
     <div className={style.cardContainer}>
       <form onSubmit={submitLogin}>
         {user && <button onClick={handleLogout}>Cerrar sesion</button>}
-        <br />
-        <br />
-        <br />
-        <br />
-
         {!user && (
           <div className={style.contentformCard}>
-            <label>Login: </label>
-           
-            <div>
+          <div className={style.formTitle}>
+           <p>Iniciar sesión</p> 
+           </div>
+            <div className={style.formInputBox}>
+                  <label htmlFor="email">E-mail</label>
                   <input name="email" placeholder="email..." type="email" onChange={handletLogin} />
             </div> 
-            <div>
+            <div className={style.formInputBox}>
+              <label htmlFor="password">Password</label>
                   <input
+                   
                     name="password"
                     placeholder="password..."
                     type="password"
@@ -70,17 +69,24 @@ const Login = () => {
         )}
 
         <div className={style.SignInGoogleButtons}>
-        <div className={style.googleBtn}>
+   
+            {!user && <button onClick={handleGoogle}>
+            <div className={style.googleBtn}>
               <div class={style.googleIconWrapper}>
                 <img class={style.googleIcon} src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"/>
               </div>
-              <p class={style.btnText}><b>Sign in with google</b></p>
+              <p class={style.btnText}><b>Entrar con google</b></p>
         </div>
-            {!user && <button onClick={handleGoogle}>Inicia sesion con Google
-            
              
             </button>}
-            <Link to="/signup">Registrarse</Link>
+          
+            <div>
+            <Link to="/signup">
+            <button  className={style.buttonRegistrer} >Registrarse</button>
+            </Link>
+            </div>
+            
+          
         </div>
       </form>
       <br />
