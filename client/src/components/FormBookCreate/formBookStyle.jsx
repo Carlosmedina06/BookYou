@@ -3,8 +3,9 @@ import styled from 'styled-components'
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
-  margin: 50px auto;
-  padding: 50px;
+  margin: 0px auto;
+  padding: 20px;
+  background-color: #ffffff;
 `
 
 export const FormContent = styled.form`
@@ -12,11 +13,11 @@ export const FormContent = styled.form`
   flex-direction: column;
   gap: 20px;
   width: 50%;
-  margin: 0 auto;
+  margin-left: 27rem;
   background: #fff;
   border-radius: 10px;
-  padding: 30px;
-  box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.1), 0 0 0 2px #00a3fe,
+  padding: 20px;
+  box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.1), 0 0 0 2px #010326,
     0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
 `
 
@@ -32,7 +33,7 @@ export const FormItem = styled.div`
 export const Input = styled.input`
   font-weight: 500;
   font-size: 14px;
-  height: 40px;
+  height: 30px;
   border-radius: 10px;
   padding-left: 10px;
   border: none;
@@ -43,6 +44,7 @@ export const Input = styled.input`
     -webkit-transition: 0.1s;
     transition: 0.5s;
   }
+  background-color: #ebf2ed;
 `
 
 export const Select = styled.select`
@@ -59,6 +61,7 @@ export const Select = styled.select`
     -webkit-transition: 0.1s;
     transition: 0.5s;
   }
+  background-color: #ebf2ed;
 `
 
 export const InputFile = styled.input`
@@ -70,9 +73,11 @@ export const InputFile = styled.input`
     width: 50%;
     word-wrap: break-word;
     border-radius: 5px;
-    border: 2px solid #00a3fe;
+    /*  border: 2px solid #00a3fe; */
     height: 35px;
-    border-color: transparent;
+    /* border-color: transparent; */
+    background-color: #ffffff;
+    border: none;
     box-shadow: 0px;
     outline: none;
     transition: 0.15s;

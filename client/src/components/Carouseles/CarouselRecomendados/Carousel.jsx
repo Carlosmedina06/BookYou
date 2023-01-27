@@ -1,11 +1,12 @@
+
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faChevronLeft,faChevronRight} from '@fortawesome/free-solid-svg-icons';
-import Card from '../Card/Card';
 
+import Card from '../../Card/Card'
 
-import style from './Carousel.module.css'
+import style from '../../CssGenerico/Carousel.module.css';
 
 const Carousel = () => {
   const libros = useSelector((state) => state.allBooks)
@@ -51,9 +52,6 @@ const Carousel = () => {
   return (
     <div className={style.todo1}>
       <div className={style.librocarousel}>
-        <div className={style.titulo}>
-          <h3 className={style.h3}>Nuevo</h3>
-        </div>
         <div className={style.contenedorprincipal}>
           <button className={style.izquierda} onClick={handleLeftArrowClick}>
           <FontAwesomeIcon icon={faChevronLeft}/>
