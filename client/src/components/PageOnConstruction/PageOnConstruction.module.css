@@ -12,7 +12,7 @@ background-color: aquamarine;
 
 .infoBox{
 display: flex;
-background-color: rgb(150, 153, 156);
+background-color: #EBF2ED;
 justify-content: center;
 align-items: center;
 
