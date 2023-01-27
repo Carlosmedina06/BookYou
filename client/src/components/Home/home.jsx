@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { useEffect, useState } from 'react'
 //import jwt_decode from 'jwt-decode'
 
@@ -11,6 +11,7 @@ import CarouselPV from '../Carouseles/CarouselParaVos/Carousel'
 import CarouselN from '../Carouseles/CarouselNuevos/Carousel'
 import SearchBar from '../SearchBar/SearchBar'
 import SearchByAutor from '../FiltradoAutor/filterAutor'
+import style from '../Home/home.module.css'
 
 export const Home = () => {
   const dispatch = useDispatch()
@@ -50,11 +51,10 @@ export const Home = () => {
   //console.log(decoded) traer datos (id) del user logeado
 
   return (
-    <div>
+    <div className={style.container}>
       <div style={{ position: 'absolute', top: '0px' }}>
         <NavBar />
       </div>
-      <div />
 
       <SearchBar
         bookInput={bookInput}
@@ -99,7 +99,7 @@ export const Home = () => {
               <div style={{ position: 'absolute', left: '300px', top: '100px' }}>
                 <h3
                   style={{
-                    color: 'white',
+                    color: '#010326',
                     position: 'absolute',
                     top: '-20px',
                     left: '20px',
@@ -111,7 +111,7 @@ export const Home = () => {
                 {/* <Card /> */}
                 <Carousel />
               </div>
-              <div style={{ position: 'absolute', left: '300px', top: '500px' }}>
+              {/* <div style={{ position: 'absolute', left: '300px', top: '500px' }}>
                 <h3
                   style={{
                     color: 'white',
@@ -138,7 +138,7 @@ export const Home = () => {
                   Nuevo
                 </h3>
                 <CarouselN />
-              </div>
+              </div> */}
             </>
           )}
         </div>
