@@ -8,11 +8,11 @@
 
   .p {
     height: 45px;
-    background: #07484a;;
+    background: #D97823;
     border-radius: 10px;
     color: #fff;
-    box-shadow: 0px 4px 50px rgb(0 0 0 / 10%);
-    border: solid 2px #07484a;
+    box-shadow: 0px 4px 50px #F28322;
+    border: solid 2px #F28322;
     padding: 10px 20px;
     user-select: none;
   }
@@ -20,18 +20,18 @@
 
 .BtnPag {
   font-size: 20px;
- color: #07484a;
+ color: #D97823;
   border: none;
   outline: none;
   cursor: pointer;
   padding: 10px 20px;
   border-radius: 10px;
-  color: #ffffff;
+  color: #010326;
   box-shadow: 0px 4px 50px rgba(0, 0, 0, 0.3);
   border-radius: 10px;
   margin-bottom: 20px;
   transition: all 0.3s ease-in-out; }
   .BtnPag:hover {
-    background: #07484a;
+    background: #D97823;
     color: #fff;
   }
