@@ -7,11 +7,13 @@
 
 .svgConteiner{
   position: absolute;
-  width: 35px;
+  width: 40px;
   margin-top: 30px ;
   margin-left: 31rem;
   color:white
 }
+
+
 
 .svg{
   margin-left: 10px;
