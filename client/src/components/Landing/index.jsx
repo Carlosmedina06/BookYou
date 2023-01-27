@@ -24,7 +24,7 @@ function MainPage() {
               <button className="button_home">Login</button>
             </div>
           </Link>
-          <Link to="/register">
+          <Link to="/signup">
             <div className={style.buttonContainer}>
               <button className="button_home">Register</button>
             </div>
