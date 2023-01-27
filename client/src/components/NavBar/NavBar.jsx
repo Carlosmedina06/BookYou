@@ -1,5 +1,8 @@
-import React from 'react'
-import { Link, NavLink } from 'react-router-dom'
+import React from 'react';
+import { NavLink } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {faSignOut} from '@fortawesome/free-solid-svg-icons';
+// import { useLocation } from 'react-router-dom'
 
 import style from './NavBar.module.css'
 
@@ -8,6 +11,12 @@ const NavBar = () => {
     e.preventDefault()
     window.open('/pageonconstruction')
   }
+
+  // const location = useLocation();
+
+  // if (location.pathname === '/') {
+  //   return null;
+  // }-
 
   return (
     <div className={style.NavBarContainer}>
@@ -23,20 +32,24 @@ const NavBar = () => {
           <li>
             <NavLink to="/createbook">Crear Libro</NavLink>
           </li>
+          
         </ul>
       </nav>
+      <div>
+        
+      </div>
       <div className={style.buttonSuscribeContainer}>
         <div>
+          
           {' '}
-          <Link to="/login">
-            <button
-              className={style.buttonSuscribe}
-            // onClick={handleSuscribe}
-            // onClick={handleSuscribe}
-            >
-              Suscribirse
-            </button>
-          </Link>
+          <div>
+          <button className={style.buttonSuscribe} onClick={handleSuscribe}>
+            Suscribirse
+          </button>
+          </div>
+          <div>
+        <button className={style.buttonLogOut}><FontAwesomeIcon  className={style.buttonLogOutIcon}icon={faSignOut}/>{' '} Cerrar Sesíon</button>
+        </div>
         </div>
       </div>
     </div>

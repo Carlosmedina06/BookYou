@@ -7,9 +7,6 @@ const NavbarLayout = () => {
   return (
     <div>
       <NavBar />
-      <main>
-        <Outlet />
-      </main>
     </div>
   )
 }

@@ -1,6 +1,7 @@
 import jwt from 'jsonwebtoken'
 
 import User from '../../models/User.js'
+import { sendMailNewUser } from '../../emailer/emailer.js'
 
 const signupController = async (req, res) => {
   try {
@@ -24,6 +25,8 @@ const signupController = async (req, res) => {
           subscription: results.subscription,
         }
         const token = jwt.sign(userForToken, process.env.SECRET, { expiresIn: '1h' })
+
+        sendMailNewUser(results)
 
         return res.status(200).send({
           token,
@@ -68,6 +71,7 @@ const signupController = async (req, res) => {
         }
         const token = jwt.sign(userForToken, process.env.SECRET, { expiresIn: '1h' })
 
+        sendMailNewUser(results)
         res.status(200).json({
           token,
         })

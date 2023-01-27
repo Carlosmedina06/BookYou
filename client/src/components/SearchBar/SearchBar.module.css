@@ -8,7 +8,7 @@
     position: absolute;
     width: 35px;
     margin-top: 12px ;
-    margin-left: 21rem;
+    margin-left: 12rem;
     color:white
 }
 
@@ -19,13 +19,11 @@
 .mover1 {
     display: flex;
     position: absolute;
-}
+    top: 80px;
+    left: 250px;
+  }
 
-.input {
-    position: absolute;
-    top: 20px;
-    left: 270px;
-}
+
 .p {
     color: white;
     font-size: 1.2em;
@@ -35,7 +33,7 @@
 .paginado {
     width: 1000px;
     position: absolute;
-    top: 32px;
-    right:  -330px;
+    top: 50px;
+    left:  20px;
     display: flex;
   }
