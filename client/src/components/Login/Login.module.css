@@ -40,9 +40,10 @@ align-items: center;
 }
 
 .formTitle{
-font-size: large;
+font-size: 1.2rem;
 font-weight: 700;
-
+ margin-bottom: 1%;
+ padding: 3%
 }
 
 .SignInGoogleButtons{
@@ -56,7 +57,7 @@ align-items: center;
 display: flex;
 flex-direction: column;
 width: 60%;
-
+    
 }
 .formInputBox input{
  border-radius: 10px;
@@ -134,10 +135,11 @@ width: 60%;
   }
 
 
-.formTitle{
-padding: 3%
-}
 
+.googleBtn:active{
+    transform: scale(1.02)
+
+  }
 
 /* boton de iniciar sesion */
 

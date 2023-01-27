@@ -2,11 +2,11 @@
 
 .NavBarContainer{
   position: fixed;
-  background-color: black;
+  background-color: #010326;
   max-width: 15rem;
   height: 100%;
-  
-  
+  box-shadow: 1px 5px 5px 5px rgb( 0 0 0 / 40%);
+   
   }
   
   .NavBarLogo{
@@ -36,11 +36,12 @@
   }
   
   .buttonSuscribeContainer{
+  width: 100%;
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  margin-top: 8rem;
-  
-  
+  margin-top: 4rem;
+ margin-left: 2.5rem;
   }
   
   /* "bg-transparent text-white hover:bg-black text-white font-semibold hover:text-white py-2 px-4 border border-white-500  rounded */
@@ -55,3 +56,32 @@
   
   }
 
+
+  .buttonLogOut{
+    
+    background-color: transparent;
+    color: white;
+    font-weight: 600;
+    padding: 0.5rem;
+    margin-top: 7rem;
+    font-weight: 600;
+    border-radius: 0.2rem;
+    margin-bottom: 0.5rem;
+    }
+
+    .buttonLogOut:active{
+      background-color: transparent;
+      color: white;
+      font-weight: 600;
+      /* padding: 0.2rem 0.3rem 0.2rem 0.3rem; */
+      border-radius: 0.2rem;
+      transform: scale(1.02) ease;
+      background-color: orange;
+      color: white;
+      }
+  
+      .buttonLogOutIcon{
+      margin-right: 7px;
+     
+
+      }

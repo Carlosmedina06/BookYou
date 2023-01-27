@@ -138,7 +138,9 @@ width: 60%;
 padding: 3%
 }
 
-
+.googleBtn:active{
+  transform: scale(1.02)
+}
 /* boton de iniciar sesion */
 
 .buttonSignIn{
