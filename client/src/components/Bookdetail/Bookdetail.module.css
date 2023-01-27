@@ -37,6 +37,7 @@
   margin-top: 1rem;
   width: 70%;
   margin-left: 2rem;
+ 
   }
   
   .bookTextDetail h1{
@@ -53,11 +54,11 @@
       
   .buttonCategory{
   background-color: transparent;
-  color:white;
+  color: #d97823;
   font-weight: 600;
   font-size: 0.8rem;
   padding: 0.2rem 0.8rem 0.2rem 0.8rem;
-  border: 1px solid white ;
+  border: 1px solid #d97823;
   border-radius: 15px;
   }
   
@@ -71,7 +72,7 @@
   margin-left: 0.2rem;
   margin-top: 2rem;
   }
-  
+/*   
   .readBookButton{
   background-color: black;
   font-size: 1.4rem;
@@ -79,5 +80,41 @@
   border-radius: 3px;
   
   
-  }
+  } */
+
+
+  
+.readBookButton{
+ 
+    color: white;
+    cursor: pointer;
+    margin: 3%;
+    width: 10rem;
+    word-wrap: break-word;
+    border-radius: 5px;
+    border: 2px solid #00a3fe;
+    height: 50px;
+    border-color: transparent;
+    box-shadow: 1px 5px 5px 2px rgb( 0 0 0 / 40%);
+     outline: none; 
+    transition: 0.15s;
+    text-align: center;
+    box-shadow: #010326;
+    background-color: #f1ac15;
+
+    font-size: 1.4rem;
+  padding: 1rem 0.5rem 1rem 0.5rem; 
+  border-radius: 3px;
+  
+}
+
+    .readBookButton:hover {
+      background-color: white;
+      color: black
+    }
+
+    .readBookButton:active{
+        transform: scale(1.02)
+        
+      }
 

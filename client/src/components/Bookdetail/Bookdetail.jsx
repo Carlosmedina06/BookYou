@@ -16,6 +16,8 @@ const Bookdetail = () => {
   const { id } = useParams()
   const details = useSelector((state) => state.detail)
 
+  console.log(details)
+
   useEffect(() => {
     dispatch(getBookById(id))
   }, [dispatch, id])
@@ -84,7 +86,7 @@ const Bookdetail = () => {
             </div>
           </div>
         </div>
-        <Reviews />
+        <Reviews comment={details.comment} id={details.id} />
       </div>
     </div>
   )

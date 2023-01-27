@@ -6,7 +6,8 @@ const getBookById = async (req, res, next) => {
 
     const oneBook = await Book.findById(id).populate('comment')
 
-    await oneBook.populate('user', { username: 1 })
+    console.log(oneBook)
+    await oneBook.populate('user', { username: 2 })
 
     res.status(200).json(oneBook)
   } catch (error) {

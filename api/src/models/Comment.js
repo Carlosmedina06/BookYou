@@ -14,6 +14,8 @@ const CommentSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
   },
+  username: String,
+  rate: String,
 })
 
 CommentSchema.set('toJSON', {
