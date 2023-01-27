@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
 //import jwt_decode from 'jwt-decode'
-
+import style from './home.module.css'
 import { getBooks, getCategorys, loginUser, getAutores } from '../../redux/actions/index'
 import FiltradoGenero from '../FiltradoGenero/filtradoGenero'
 import OrdAlfabetico from '../OrderAlfab/orderAlfabetico'
@@ -50,7 +50,7 @@ export const Home = () => {
   //console.log(decoded) traer datos (id) del user logeado
 
   return (
-    <div>
+    <div  style={{ backgroundColor:"blue"}}>
       <div style={{ position: 'absolute', top: '0px' }}>
         <NavBar />
       </div>
@@ -99,7 +99,7 @@ export const Home = () => {
               <div style={{ position: 'absolute', left: '300px', top: '100px' }}>
                 <h3
                   style={{
-                    color: 'white',
+                    color: '#010326',
                     position: 'absolute',
                     top: '-20px',
                     left: '20px',
@@ -113,7 +113,7 @@ export const Home = () => {
               <div style={{ position: 'absolute', left: '300px', top: '500px' }}>
                 <h3
                   style={{
-                    color: 'white',
+                    color: '#010326',
                     position: 'absolute',
                     top: '-20px',
                     left: '20px',
@@ -127,7 +127,7 @@ export const Home = () => {
               <div style={{ position: 'absolute', left: '300px', top: '900px' }}>
                 <h3
                   style={{
-                    color: 'white',
+                    color: '#010326',
                     position: 'absolute',
                     top: '-20px',
                     left: '20px',
