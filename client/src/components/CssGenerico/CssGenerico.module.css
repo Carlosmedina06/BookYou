@@ -6,7 +6,8 @@ input{
     border: 1px solid rgb(156, 163, 175);
     color: rgb(255, 255, 255);
     background-color:rgb(124,124,124);
-    padding-left: 10px;
+  
+    padding-right: 30px;
   }
 select{
     padding: 6px;
@@ -21,7 +22,8 @@ select{
     color: #010326;
     background-color: #EBF2ED;
     height: 50px;
-    width: 260px;
+    width: 250px;
+    padding-left: 10px;
 
   }
   .selectGen{

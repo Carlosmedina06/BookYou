@@ -1,7 +1,7 @@
 import { useDispatch } from 'react-redux'
 import { useEffect, useState } from 'react'
+
 //import jwt_decode from 'jwt-decode'
-import style from './home.module.css'
 import { getBooks, getCategorys, loginUser, getAutores } from '../../redux/actions/index'
 import FiltradoGenero from '../FiltradoGenero/filtradoGenero'
 import OrdAlfabetico from '../OrderAlfab/orderAlfabetico'
@@ -20,25 +20,16 @@ export const Home = () => {
   const [showFilterGenero, setShowFilterGenero] = useState(true) /* actualizar estado genero */
   const [showFilterAutor, setShowFilterAutor] = useState(true)
   const [books, setBooks] = useState(true) /* actualizar estado libros orden alf */
-
-  //----------------------------------------------------------------
-
   const [bookInput, setBookInput] = useState('') /* actualizar estado searchbar por libro*/
   const [authorInput, setAuthorInput] = useState('') /* actualizar estado searchbar por autor */
   const [bookInputtodos, setBookInputtodos] =
     useState('todos') /* actualizar estado genero 'value=todos' para serachbar por libro y autor*/
 
-  //----------------------------------------------------------------
-
   const clearFilters = () => {
     setBookInput('')
     setBookInputtodos('todos')
     setAuthorInput('')
-    /* setCurrentPage(1) */
   }
-
-  /*   const allBooks = useSelector((state) => state.books)
-  const allGeneros = useSelector((state) => state.category) */
 
   useEffect(() => {
     dispatch(getBooks())
@@ -47,11 +38,8 @@ export const Home = () => {
     dispatch(getAutores())
   }, [dispatch])
 
-  //var decoded = jwt_decode(window.localStorage.getItem('token'))
-  //console.log(decoded) traer datos (id) del user logeado
-
   return (
-    <div  style={{ backgroundColor:"blue"}}>
+    <div style={{ backgroundColor: 'blue' }}>
       <div style={{ position: 'absolute', top: '0px' }}>
         <NavBar />
       </div>

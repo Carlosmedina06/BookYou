@@ -32,9 +32,9 @@
     font-style: italic;
 }
 .paginado {
-    width: 1000px;
+    width: 500px;
     position: absolute;
-    top: 50px;
-    left:  20px;
+    top: 500px;
+    left: 600px;
     display: flex;
   }
