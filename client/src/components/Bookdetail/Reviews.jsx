@@ -1,33 +1,32 @@
 import React, { useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBell, faStar } from '@fortawesome/free-solid-svg-icons'
+import { faStar } from '@fortawesome/free-solid-svg-icons'
 import { Link } from 'react-router-dom'
-import { useEffect } from 'react'
-import { useDispatch } from 'react-redux'
+import axios from 'axios'
 
 import GetRateStars from '../GetRateStars/GetRateStars'
 import style from '../Bookdetail/Reviews.module.css'
 let key = 0
-let bookComments = [
-  {
-    rate: '4',
-    comment:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-  },
-  {
-    rate: '3',
-    comment:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-  },
-  {
-    rate: '5',
-    comment:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-  },
-]
-const Reviews = () => {
+// let bookComments = [
+//   {
+//     rate: '4',
+//     comment:
+//       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+//   },
+//   {
+//     rate: '3',
+//     comment:
+//       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+//   },
+//   {
+//     rate: '5',
+//     comment:
+//       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+//   },
+// ]
+const Reviews = ({ id, comment }) => {
   let userlogged = true
-  const dispatch = useDispatch()
+  let bookComments = comment
 
   const initialState = {
     rate: '',
@@ -36,13 +35,10 @@ const Reviews = () => {
   const [Review, setReview] = useState(initialState)
 
   const handleReview = (e) => {
-    console.log(e.target.name)
-    console.log(e.target.value)
     setReview({
       ...Review,
       [e.target.name]: e.target.value,
     })
-    console.log(Review)
   }
 
   const handlePostReview = (e) => {
@@ -51,12 +47,34 @@ const Reviews = () => {
   }
   const handleSubmitReview = (e) => {
     e.preventDefault()
-    console.log(Review)
-    bookComments.push(Review)
-    console.log('soy bookcomments')
-    console.log(bookComments)
+    const coment = {
+      comment: Review.comment,
+      rate: Review.rate,
+      id: id,
+    }
+
+    axios
+      .post('http://localhost:3001/comment/create/book', coment, {
+        headers: {
+          authorization: `Bearer ${localStorage.getItem('token')}`,
+        },
+      })
+      .then((res) => console.log(res.data))
     setReview(initialState)
   }
+  const token = localStorage.getItem('token')
+
+  const loginUserVerification = () => {
+    if (!token) return false
+
+    return true
+  }
+
+  // const handleSubmitReview = (e) => {
+  //   e.preventDefault()
+  //   bookComments.push(Review)
+  //   setReview(initialState)
+  // }
 
   if (!userlogged) {
     return (
@@ -76,66 +94,33 @@ const Reviews = () => {
 
   return (
     <div className={style.commentsContainer}>
-      <div>Califica este libro</div>
-      <div className={style.StarContainer}>
-        <div className={style.starWidget}>
-          <input
-            id="rate-5"
-            name="rate"
-            name="rate"
-            type="radio"
-            value="5"
-            onClick={handleReview}
-          />
-          <label className="fas fa-star" htmlFor="rate-5">
-            <FontAwesomeIcon icon={faStar} />
-          </label>
-          <input
-            id="rate-4"
-            name="rate"
-            name="rate"
-            type="radio"
-            value="4"
-            onClick={handleReview}
-          />
-          <label className={faStar} htmlFor="rate-4">
-            <FontAwesomeIcon icon={faStar} />
-          </label>
-          <input
-            id="rate-3"
-            name="rate"
-            name="rate"
-            type="radio"
-            value="3"
-            onClick={handleReview}
-          />
-          <label className={faStar} htmlFor="rate-3">
-            <FontAwesomeIcon icon={faStar} />
-          </label>
-          <input
-            id="rate-2"
-            name="rate"
-            name="rate"
-            type="radio"
-            value="2"
-            onClick={handleReview}
-          />
-          <label className={faStar} htmlFor="rate-2">
-            <FontAwesomeIcon icon={faStar} />
-          </label>
-          <input
-            id="rate-1"
-            name="rate"
-            name="rate"
-            type="radio"
-            value="1"
-            onClick={handleReview}
-          />
-          <label className={faStar} htmlFor="rate-1">
-            <FontAwesomeIcon icon={faStar} />
-          </label>
+      {loginUserVerification() ? <div>Califica este libro</div> : null}
+      {loginUserVerification() ? (
+        <div className={style.StarContainer}>
+          <div className={style.starWidget}>
+            <input id="rate-5" name="rate" type="radio" value="5" onClick={handleReview} />
+            <label className="fas fa-star" htmlFor="rate-5">
+              <FontAwesomeIcon icon={faStar} />
+            </label>
+            <input id="rate-4" name="rate" type="radio" value="4" onClick={handleReview} />
+            <label className={faStar} htmlFor="rate-4">
+              <FontAwesomeIcon icon={faStar} />
+            </label>
+            <input id="rate-3" name="rate" type="radio" value="3" onClick={handleReview} />
+            <label className={faStar} htmlFor="rate-3">
+              <FontAwesomeIcon icon={faStar} />
+            </label>
+            <input id="rate-2" name="rate" type="radio" value="2" onClick={handleReview} />
+            <label className={faStar} htmlFor="rate-2">
+              <FontAwesomeIcon icon={faStar} />
+            </label>
+            <input id="rate-1" name="rate" type="radio" value="1" onClick={handleReview} />
+            <label className={faStar} htmlFor="rate-1">
+              <FontAwesomeIcon icon={faStar} />
+            </label>
+          </div>
         </div>
-      </div>
+      ) : null}
       {Review.rate && (
         <div>
           <form className={style.addReviewForm} onSubmit={handleSubmitReview}>
@@ -156,7 +141,7 @@ const Reviews = () => {
         </div>
       )}
 
-      {!bookComments.length ? (
+      {!bookComments ? (
         <div>Aun no hay Comentarios para este libro</div>
       ) : (
         bookComments?.map((item) => (
@@ -169,7 +154,7 @@ const Reviews = () => {
             </div>
             <div>
               <div>{item.comment}</div>
-              <div> Usarname </div>
+              <div>{item.username ? item.username : 'username'} </div>
               <GetRateStars rate={item.rate} />
             </div>
           </div>
