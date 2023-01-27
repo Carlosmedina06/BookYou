@@ -16,15 +16,14 @@ height: 130vh;
     
 background-color: white;
 border-radius: 10px;
-width: 600px;
-max-width: 550px;
+width: 700px;
+max-width: 700px;
 height: auto;
 display: flex;
   flex-direction: column;
   gap: 20px;
-  
   margin: 0 auto;
-  background: #fff;
+  background: white;
   border-radius: 10px;
   padding: 30px;
   box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.1), 0 0 0 2px #f28322,
