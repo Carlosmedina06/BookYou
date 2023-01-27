@@ -5,17 +5,17 @@ import { useDispatch, useSelector } from 'react-redux'
 import Card from '../Card/Card'
 import Pagination from '../Pagination/Pagination'
 import style2 from '../FiltradoGenero/filtradoGenero.module.css'
-
-import style from './SearchBar.module.css'
 import CssGenerico from '../CssGenerico/CssGenerico.module.css'
 
-function SearchBar({ 
-  bookInput, 
-  clearFilters,  
+import style from './SearchBar.module.css'
+
+function SearchBar({
+  bookInput,
+  clearFilters,
   setBookInput,
-  setAuthorInput, 
+  setAuthorInput,
   setBookInputtodos,
-  setShowCarousels
+  setShowCarousels,
 }) {
   const books = useSelector((state) => state.books)
   /*   const [book, setBook] = useState([])
@@ -64,31 +64,30 @@ function SearchBar({
   }
 
   /*   console.log(filteredResults.length) */
- 
+
   return (
     <>
-      <div >
-        
-          <div>
-            <div className={style.svgConteiner}>
-              <svg
-                aria-hidden="true"
-                className={style.svg}
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                />
-              </svg>
-            </div>
+      <div>
+        <div>
+          <div className={style.svgConteiner}>
+            <svg
+              aria-hidden="true"
+              className={style.svg}
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+              />
+            </svg>
+          </div>
 
-            <div style={{ position: 'absolute', top: '20px', left: '300px' }}>
+          <div style={{ position: 'absolute', top: '20px', left: '300px' }}>
             <input
               required
               className={CssGenerico.search}
@@ -96,42 +95,41 @@ function SearchBar({
               placeholder="Libros, Textos, Artículos..."
               type="search"
               onChange={handleInputChange}
-              />
-              </div>
+            />
           </div>
+        </div>
 
-          <div className={style.mover1}>
-            <div className={style.mover}>
-              {bookInput === '' ? (
-                <p />
-              ) : filteredResults.length > 0 ? (
-                filterBooks().map((book, i) => (
-                  <Card
-                    key={i}
-                    autor={book.autor}
-                    comentarios={book.content}
-                    estado={book.subscription}
-                    id={book.id}
-                    img={book.img}
-                    name={book.title}
-                  />
-                ))
-              ) : (
-                <p className={style.p}>No tenemos ningún texto con ese nombre</p>
-              )}
-            </div>
-          </div>
-
-          <div className=" place-self-center">
+        <div className={style.mover1}>
+          <div className={style.mover}>
             {bookInput === '' ? (
               <p />
+            ) : filteredResults.length > 0 ? (
+              filterBooks().map((book, i) => (
+                <Card
+                  key={i}
+                  autor={book.autor}
+                  comentarios={book.content}
+                  estado={book.subscription}
+                  id={book.id}
+                  img={book.img}
+                  name={book.title}
+                />
+              ))
             ) : (
-              <div className={style.paginado}>
-                <Pagination nextPage={nextPage} prevPage={prevPage} totalPages={currentPage + 1} />
-              </div>
+              <p className={style.p}>No tenemos ningún texto con ese nombre</p>
             )}
           </div>
-        
+        </div>
+
+        <div className=" place-self-center">
+          {bookInput === '' ? (
+            <p />
+          ) : (
+            <div className={style.paginado}>
+              <Pagination nextPage={nextPage} prevPage={prevPage} totalPages={currentPage + 1} />
+            </div>
+          )}
+        </div>
       </div>
     </>
   )
