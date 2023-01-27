@@ -12,8 +12,6 @@ const NavBar = () => {
   const dispatch = useDispatch()
   const user = useSelector((state) => state.loginUser)
 
-  console.log('navbar', user)
-
   const handleSuscribe = (e) => {
     e.preventDefault()
     window.open('/pageonconstruction')
@@ -52,10 +50,10 @@ const NavBar = () => {
           ) : (
             <>
               <li>
-                <NavLink to="/login">Login</NavLink>{' '}
+                <NavLink to="/login">Inicio sesion</NavLink>{' '}
               </li>
               <li>
-                <NavLink to="/signup">registro</NavLink>{' '}
+                <NavLink to="/signup">Registro</NavLink>{' '}
               </li>
             </>
           )}
