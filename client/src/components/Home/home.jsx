@@ -7,11 +7,12 @@ import FiltradoGenero from '../FiltradoGenero/filtradoGenero'
 import OrdAlfabetico from '../OrderAlfab/orderAlfabetico'
 import NavBar from '../NavBar/NavBar'
 import Carousel from '../Carouseles/CarouselRecomendados/Carousel'
-import CarouselPV from '../Carouseles/CarouselParaVos/Carousel'
-import CarouselN from '../Carouseles/CarouselNuevos/Carousel'
+/* import CarouselPV from '../Carouseles/CarouselParaVos/Carousel'
+import CarouselN from '../Carouseles/CarouselNuevos/Carousel' */
 import SearchBar from '../SearchBar/SearchBar'
 import SearchByAutor from '../FiltradoAutor/filterAutor'
-import style from '../Home/home.module.css'
+/* import Pagination from '../Pagination/Pagination' */
+/* import style from '../Home/home.module.css' */
 
 export const Home = () => {
   const dispatch = useDispatch()
@@ -81,6 +82,7 @@ export const Home = () => {
         <div style={{ position: 'absolute', top: '130px', left: '30px' }}>
           <OrdAlfabetico books={books} setBooks={setBooks} />
         </div>
+        {/*  <Pagination /> */}
         <div>
           {showCarousels && showFilterGenero && showFilterAutor && (
             <>
