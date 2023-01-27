@@ -4,7 +4,6 @@ import { useState } from 'react'
 import { filterCategorys } from '../../redux/actions/index'
 import Card from '../Card/Card'
 import Pagination from '../Pagination/Pagination'
-
 import style from '../FiltradoGenero/filtradoGenero.module.css'
 import CssGenerico from '../CssGenerico/CssGenerico.module.css'
 
@@ -67,23 +66,22 @@ export const FiltradoGenero = ({
   }
 
   return (
-    <div >
+    <div>
       <div style={{ position: 'absolute', top: '20px', left: '900px' }}>
-
-      <select className={CssGenerico.selectGen} onChange={(e) => handleFilterCategorys(e)}>
-        <option className={style.titulo} value="todos">
-          {' '}
-          Géneros{' '}
-        </option>
-        {/*         <option className={style.titulo} value="todos">
+        <select className={CssGenerico.selectGen} onChange={(e) => handleFilterCategorys(e)}>
+          <option className={style.titulo} value="todos">
+            {' '}
+            Géneros{' '}
+          </option>
+          {/*         <option className={style.titulo} value="todos">
           {' '}
           Por defecto{' '}
         </option> */}
-        {allGeneros?.map((c) => (
-          <option key={c.id}> {c.category} </option>
+          {allGeneros?.map((c) => (
+            <option key={c.id}> {c.category} </option>
           ))}
-      </select>
-          </div>
+        </select>
+      </div>
 
       <div className={style.mover1}>
         <div className={style.mover}>
