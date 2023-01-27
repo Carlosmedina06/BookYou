@@ -5,8 +5,8 @@
 
 
   display: grid;
-  grid-template-columns: 15rem auto
-  
+  grid-template-columns: 15rem auto;
+  color: #010326
   
   
   }
@@ -30,7 +30,7 @@
   
   
   .bookTextDetail{
-      color: white;
+      color: #010326;
   display: flex;
   flex-direction: column;
   justify-items: left;
