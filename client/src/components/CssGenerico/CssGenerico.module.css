@@ -18,21 +18,26 @@ select{
 
 
   .search{
-    color: rgb(255, 255, 255);
+    color: #010326;
+    background-color: #EBF2ED;
     height: 50px;
-    width: 250px;
+    width: 260px;
 
   }
   .selectGen{
-    color: rgb(255, 255, 255);
+    color: #010326;
+    background-color: #EBF2ED;
     height: 50px;
     width: 250px;
+    border-color:1px #010326;
 
   }
   .selectAZ{
-    color: rgb(255, 255, 255);
+    color: #010326;
+    background-color: #EBF2ED;
     width: 100px;
     height: 50px;
+    border-color:1px #010326;
 
   }
   /*-----input-----*/
