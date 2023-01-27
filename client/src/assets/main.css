@@ -644,8 +644,6 @@ video {
     font-weight: 400;
     color-scheme: light dark;
     color: rgba(7, 7, 7, 0.87);
-    /* background-color: #EBF2ED; */
-  
     font-synthesis: none;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
