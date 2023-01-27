@@ -1,17 +1,4 @@
-.contenedor{
-    margin-left: 45rem;
-   margin-top: -2rem;
-  }
-  
-  .select{
-    padding: 6px;
-    border-radius: 20px;
-    border: 1px solid rgb(156, 163, 175);
-    height: 50px;
-    width: 400px;
-    color: rgb(156, 163, 175);
-    background-color:rgb(55, 65, 81);
-  }
+
   
   .cardConteiner{
     gap:30px;
@@ -22,7 +9,7 @@
   
   }
   .mover {
-   margin-left: -25rem;
+   
     display: flex;
     margin-top: 50px;
 }
@@ -30,6 +17,8 @@
 .mover1 {
   display: flex;
   position: absolute;
+  top: 80px;
+  left: 250px;
 }
 
 .todo {
@@ -45,4 +34,12 @@
   font-size: 1.2em;
   font-style: italic;
   color: white;
+}
+
+.paginado {
+  width: 1000px;
+  position: absolute;
+  top: 50px;
+  left:  20px;
+  display: flex;
 }

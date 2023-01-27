@@ -2,19 +2,23 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useState } from 'react'
 
 import { filterCategorys } from '../../redux/actions/index'
-import style from '../FiltradoGenero/filtradoGenero.module.css'
 import Card from '../Card/Card'
 import Pagination from '../Pagination/Pagination'
 
+import style from '../FiltradoGenero/filtradoGenero.module.css'
+import CssGenerico from '../CssGenerico/CssGenerico.module.css'
+
 export const FiltradoGenero = ({
-  setShowFilterGenero,
-  setBooks,
-  books,
-  bookInputtodos,
-  setBookInputtodos,
-  setBookInput,
   bookInput,
   clearFilters,
+  setBookInput,
+  setAuthorInput,
+  setBookInputtodos,
+  bookInputtodos,
+  books,
+  setBooks,
+  setShowFilterGenero,
+  showFilterGenero,
 }) => {
   const dispatch = useDispatch()
 
@@ -35,6 +39,7 @@ export const FiltradoGenero = ({
     setBookInputtodos(e.target.value)
     setBooks(!books)
     setBookInput('')
+    setAuthorInput('')
   }
   if (bookInputtodos !== 'todos') {
     setShowFilterGenero(false)
@@ -62,8 +67,10 @@ export const FiltradoGenero = ({
   }
 
   return (
-    <div className={style.contenedor}>
-      <select className={style.select} onChange={(e) => handleFilterCategorys(e)}>
+    <div >
+      <div style={{ position: 'absolute', top: '20px', left: '900px' }}>
+
+      <select className={CssGenerico.selectGen} onChange={(e) => handleFilterCategorys(e)}>
         <option className={style.titulo} value="todos">
           {' '}
           Géneros{' '}
@@ -74,8 +81,9 @@ export const FiltradoGenero = ({
         </option> */}
         {allGeneros?.map((c) => (
           <option key={c.id}> {c.category} </option>
-        ))}
+          ))}
       </select>
+          </div>
 
       <div className={style.mover1}>
         <div className={style.mover}>

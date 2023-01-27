@@ -7,8 +7,16 @@ import Pagination from '../Pagination/Pagination'
 import style2 from '../FiltradoGenero/filtradoGenero.module.css'
 
 import style from './SearchBar.module.css'
+import CssGenerico from '../CssGenerico/CssGenerico.module.css'
 
-function SearchBar({ setShowCarousels, bookInput, setBookInput, setBookInputtodos, clearFilters }) {
+function SearchBar({ 
+  bookInput, 
+  clearFilters,  
+  setBookInput,
+  setAuthorInput, 
+  setBookInputtodos,
+  setShowCarousels
+}) {
   const books = useSelector((state) => state.books)
   /*   const [book, setBook] = useState([])
   const dispatch = useDispatch() */
@@ -22,6 +30,7 @@ function SearchBar({ setShowCarousels, bookInput, setBookInput, setBookInputtodo
   const handleInputChange = (e) => {
     setBookInput(e.target.value)
     setBookInputtodos('todos')
+    setAuthorInput('')
     setCurrentPage(0)
   }
 
@@ -55,17 +64,11 @@ function SearchBar({ setShowCarousels, bookInput, setBookInput, setBookInputtodo
   }
 
   /*   console.log(filteredResults.length) */
-
+ 
   return (
     <>
-      <div className="top-1/4 w-full my-3.5 m-auto grid col-span-12">
-        <div className={style.input}>
-          <label
-            className="mb-2 text-sm font-medium	text-gray-900 sr-only dark:text-white"
-            htmlFor="default-search"
-          >
-            Search
-          </label>
+      <div >
+        
           <div>
             <div className={style.svgConteiner}>
               <svg
@@ -85,14 +88,16 @@ function SearchBar({ setShowCarousels, bookInput, setBookInput, setBookInputtodo
               </svg>
             </div>
 
+            <div style={{ position: 'absolute', top: '20px', left: '300px' }}>
             <input
               required
-              className={style2.select}
+              className={CssGenerico.search}
               id="default-search"
               placeholder="Libros, Textos, Artículos..."
               type="search"
               onChange={handleInputChange}
-            />
+              />
+              </div>
           </div>
 
           <div className={style.mover1}>
@@ -126,7 +131,7 @@ function SearchBar({ setShowCarousels, bookInput, setBookInput, setBookInputtodo
               </div>
             )}
           </div>
-        </div>
+        
       </div>
     </>
   )
