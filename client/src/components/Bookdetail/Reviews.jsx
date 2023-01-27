@@ -1,38 +1,29 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import axios from 'axios'
+import { useDispatch, useSelector } from 'react-redux'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
-import { Link } from 'react-router-dom'
-import axios from 'axios'
+import Swal from 'sweetalert2'
 
 import GetRateStars from '../GetRateStars/GetRateStars'
 import style from '../Bookdetail/Reviews.module.css'
-let key = 0
-// let bookComments = [
-//   {
-//     rate: '4',
-//     comment:
-//       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-//   },
-//   {
-//     rate: '3',
-//     comment:
-//       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-//   },
-//   {
-//     rate: '5',
-//     comment:
-//       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-//   },
-// ]
-const Reviews = ({ id, comment }) => {
-  let userlogged = true
-  let bookComments = comment
+import { getBookById } from '../../redux/actions/index'
 
-  const initialState = {
+import { ImgContainer, ReviewContainer, ReviewContent, ReviewText, ReviewDate } from './ReviewStyle'
+
+const Reviews = ({ id }) => {
+  const dispatch = useDispatch()
+  const book = useSelector((state) => state.detail)
+
+  const [rata, setRata] = useState(0) // NO TOCAR 🐭
+  const [Review, setReview] = useState({
     rate: '',
     comment: '',
-  }
-  const [Review, setReview] = useState(initialState)
+  })
+
+  useEffect(() => {
+    dispatch(getBookById(id))
+  }, [dispatch, id, rata])
 
   const handleReview = (e) => {
     setReview({
@@ -41,11 +32,7 @@ const Reviews = ({ id, comment }) => {
     })
   }
 
-  const handlePostReview = (e) => {
-    e.preventDefault()
-    //  dispatch(postBookReview(e))
-  }
-  const handleSubmitReview = (e) => {
+  const handleSubmitReview = async (e) => {
     e.preventDefault()
     const coment = {
       comment: Review.comment,
@@ -54,42 +41,33 @@ const Reviews = ({ id, comment }) => {
     }
 
     axios
-      .post('http://localhost:3001/comment/create/book', coment, {
+      .post('https://bookyou-production.up.railway.app/comment/create/book', coment, {
         headers: {
           authorization: `Bearer ${localStorage.getItem('token')}`,
         },
       })
-      .then((res) => console.log(res.data))
-    setReview(initialState)
+      .then((res) => {
+        // eslint-disable-next-line no-console
+        console.log(res.data)
+        setRata(rata + 1) // lo siento estoy desesperado.
+      })
+    await setReview({
+      rate: '',
+      comment: '',
+    })
+    Swal.fire({
+      icon: 'success',
+      title: 'Gracias por tu comentario',
+      showConfirmButton: false,
+      timer: 1500,
+    })
   }
-  const token = localStorage.getItem('token')
 
+  // si estas logueado te muestra el formulario para comentar
   const loginUserVerification = () => {
-    if (!token) return false
+    if (!window.localStorage.getItem('token')) return false
 
     return true
-  }
-
-  // const handleSubmitReview = (e) => {
-  //   e.preventDefault()
-  //   bookComments.push(Review)
-  //   setReview(initialState)
-  // }
-
-  if (!userlogged) {
-    return (
-      <div className={style.textLoginBanner}>
-        <div>
-          <p>Deseas agregar un comentario?</p>
-          <p>
-            ingresa a tu cuenta{' '}
-            <Link to="/404">
-              <button className={style.readBookButton}>Log In</button>
-            </Link>
-          </p>
-        </div>
-      </div>
-    )
   }
 
   return (
@@ -136,29 +114,39 @@ const Reviews = ({ id, comment }) => {
             <button className={style.postReviewButton} type="submit" value="Enviar">
               Enviar
             </button>
-            {/* <button onClick={handlePostReview} className={style.postReviewButton} type="submit" value="Enviar">Enviar db</button> */}
           </form>
         </div>
       )}
 
-      {!bookComments ? (
+      {!book.comment ? (
         <div>Aun no hay Comentarios para este libro</div>
       ) : (
-        bookComments?.map((item) => (
-          <div key={key++} className={style.postedCommentsBox}>
-            <div className={style.postedCommentsImg}>
-              <img
-                alt=""
-                src="https://res.cloudinary.com/dn8jxsqka/image/upload/v1674671180/user_icon_riocsx.png"
-              />
-            </div>
-            <div>
-              <div>{item.comment}</div>
-              <div>{item.username ? item.username : 'username'} </div>
-              <GetRateStars rate={item.rate} />
-            </div>
-          </div>
-        ))
+        book.comment
+          ?.map((item, index) => (
+            <ReviewContainer key={index}>
+              <ImgContainer>
+                <img
+                  alt={item.username}
+                  src="https://res.cloudinary.com/dn8jxsqka/image/upload/v1674671180/user_icon_riocsx.png"
+                />
+              </ImgContainer>
+              <ReviewContent>
+                <ReviewText>
+                  <div>
+                    <h2>{item.username ? item.username : 'username'}</h2>
+                  </div>
+                  <div>
+                    <p>{item.comment}</p>
+                  </div>
+                  <GetRateStars rate={item.rate} />
+                </ReviewText>
+                <ReviewDate>
+                  <p>{item.createdAt.slice(0, 10)}</p>
+                </ReviewDate>
+              </ReviewContent>
+            </ReviewContainer>
+          ))
+          .reverse()
       )}
     </div>
   )

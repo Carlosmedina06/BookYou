@@ -1,12 +1,12 @@
 .todo {
-  position: absolute;
-  top: 450px;
-  left: 600px;
+
   display: flex;
 }
 
 
   .p {
+    font-weight: bold;
+
     height: 45px;
     background: #07484a;;
     border-radius: 10px;
@@ -19,6 +19,8 @@
 
 
 .BtnPag {
+  font-weight: bold;
+
   font-size: 20px;
  color: #07484a;
   border: none;
@@ -26,7 +28,7 @@
   cursor: pointer;
   padding: 10px 20px;
   border-radius: 10px;
-  color: #ffffff;
+  color: #000000;
   box-shadow: 0px 4px 50px rgba(0, 0, 0, 0.3);
   border-radius: 10px;
   margin-bottom: 20px;
