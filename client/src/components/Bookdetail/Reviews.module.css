@@ -76,7 +76,7 @@ display: block;
     .addReviewForm textarea {
        border-radius: 5px;
        color: rgb(24, 21, 21);
-       border: 2px solid #f28322;
+       border: 3px solid #010326;
        background-color: transparent;
        }
 
@@ -101,6 +101,6 @@ display: block;
         font-size: 1.4rem;
         padding: 0.5rem 1rem 0.5rem 1rem;
         border-radius: 3px;
-        color: rgb(255, 255, 255)
+        color: #010326
         
         }
