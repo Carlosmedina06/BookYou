@@ -108,6 +108,7 @@ export const Home = () => {
                 >
                   Recomendado
                 </h3>
+                {/* <Card /> */}
                 <Carousel />
               </div>
               <div style={{ position: 'absolute', left: '300px', top: '500px' }}>
