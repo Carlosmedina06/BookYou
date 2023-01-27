@@ -8,7 +8,7 @@ import commentRouter from './Comment/Comment.routes.js'
 import categoryRouter from './Category/Category.routes.js'
 import loginRouter from './Login/Login.routes.js'
 import checkOutRouter from './Checkout/Checkout.routes.js'
-import singupRouter from './Singup/Singup.routes.js'
+import singupRouter from './Singup/singup.routes.js'
 
 const router = Router()
 
