@@ -1,7 +1,7 @@
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { useEffect, useState } from 'react'
+
 //import jwt_decode from 'jwt-decode'
-import style from './home.module.css'
 import { getBooks, getCategorys, loginUser, getAutores } from '../../redux/actions/index'
 import FiltradoGenero from '../FiltradoGenero/filtradoGenero'
 import OrdAlfabetico from '../OrderAlfab/orderAlfabetico'
@@ -50,7 +50,7 @@ export const Home = () => {
   //console.log(decoded) traer datos (id) del user logeado
 
   return (
-    <div  style={{ backgroundColor:"blue"}}>
+    <div style={{ backgroundColor: 'blue' }}>
       <div style={{ position: 'absolute', top: '0px' }}>
         <NavBar />
       </div>
