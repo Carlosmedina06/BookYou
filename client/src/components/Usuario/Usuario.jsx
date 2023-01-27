@@ -46,9 +46,7 @@ export const Usuario = () => {
       </div>
 
        {<div style={{ position:'absolute', top:'300px', left:'300px' }}>
-        <h2 style={{ fontWeight: 'bold',fontSize: '30px'}}>Mis Libros</h2>
-
-
+        <h2 style={{ fontWeight: 'bold',fontSize: '31px'}}>Mis Libros</h2>
 
         <div >
             <div >
