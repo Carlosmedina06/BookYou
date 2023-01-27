@@ -5,8 +5,9 @@ import Comment from '../../models/Comment.js'
 import User from '../../models/User.js'
 
 const createCommentBook = async (req, res) => {
+  console.log(req.body)
   try {
-    const { comment, id } = req.body
+    const { comment, id, rate } = req.body
 
     const authorization = req.get('authorization')
 
@@ -27,7 +28,13 @@ const createCommentBook = async (req, res) => {
 
       const book = await Book.findById(id)
 
-      const newComment = new Comment({ comment, book: book._id, user: user._id })
+      const newComment = new Comment({
+        comment,
+        book: book._id,
+        user: user._id,
+        rate,
+        username: user.name,
+      })
 
       await newComment.save()
       book.comment = book.comment.concat(newComment._id)
