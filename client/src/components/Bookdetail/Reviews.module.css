@@ -74,8 +74,10 @@ display: block;
 
 
     .addReviewForm textarea {
-       border-radius: 15px;
-       color: rgb(48, 47, 47)
+       border-radius: 5px;
+       color: rgb(24, 21, 21);
+       border: 2px solid #f28322;
+       background-color: transparent;
        }
 
 
