@@ -3,6 +3,7 @@ import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import axios from 'axios'
+import jwt_decode from 'jwt-decode'
 
 import { getBookById } from '../../redux/actions'
 import NavBar from '../NavBar/NavBar'
@@ -14,8 +15,6 @@ const Bookdetail = () => {
   const dispatch = useDispatch()
   const { id } = useParams()
   const details = useSelector((state) => state.detail)
-
-  console.log('details', details)
 
   useEffect(() => {
     dispatch(getBookById(id))
@@ -37,6 +36,18 @@ const Bookdetail = () => {
       .then((res) => {
         console.log(res.data)
       })
+  }
+  const token = localStorage.getItem('token')
+
+  const loginUserVerification = () => {
+    if (!token) return false
+    let decoded = jwt_decode(token)
+
+    if (!details.user) return false
+    if (!details.user.id) return false
+    if (decoded.id === details.user.id) return true
+
+    return false
   }
 
   return (
@@ -67,7 +78,9 @@ const Bookdetail = () => {
               </button>
               <br />
               <br />
-              <button onClick={handletDelete}> eliminar libro </button>
+              {loginUserVerification() ? (
+                <button onClick={handletDelete}> eliminar libro </button>
+              ) : null}
             </div>
           </div>
         </div>
