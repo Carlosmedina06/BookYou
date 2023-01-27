@@ -1,0 +1,83 @@
+.container {
+  /* background-color: #ebf2ed; */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 800px;
+  height: 350px;
+  margin: 0 auto;
+  padding: 2rem;
+  gap: 10px;
+  border: solid 2px #f28322;
+  border-radius: 10px;
+  box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.1), 0 0 0 2px #f28322,
+    0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
+}
+
+.bookCover {
+  height: 100%;
+  width: 45%;
+}
+
+.bookCover img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+.bookInfo {
+  padding: 1rem;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.bookInfo h3 {
+  font-size: 24px;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.author {
+  font-style: oblique;
+  text-transform: uppercase;
+}
+
+.statusBook {
+  background-color: #f28322;
+  padding: 5px;
+  border-radius: 5px;
+  color: #fff;
+}
+
+.options {
+  width: 25%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  text-align: start;
+}
+
+.options div {
+  width: 100%;
+}
+
+.optionButton {
+  width: 100%;
+  padding: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 5px;
+  background-color: #010326;
+  color: #fff;
+  transition: all 0.2s ease-out;
+}
+
+.optionButton:hover {
+  background-color: rgba(1, 3, 38, 0.7);
+}
