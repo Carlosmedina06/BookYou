@@ -16,8 +16,6 @@ const Bookdetail = () => {
   const { id } = useParams()
   const details = useSelector((state) => state.detail)
 
-  console.log(details)
-
   useEffect(() => {
     dispatch(getBookById(id))
   }, [dispatch, id])
@@ -30,7 +28,7 @@ const Bookdetail = () => {
   const handletDelete = (e) => {
     e.preventDefault()
     axios
-      .delete(`http://localhost:3001/book/delete/${id}`, {
+      .delete(`https://bookyou-production.up.railway.app/book/delete/${id}`, {
         headers: {
           authorization: `Bearer ${localStorage.getItem('token')}`,
         },

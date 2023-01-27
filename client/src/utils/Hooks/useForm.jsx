@@ -38,7 +38,8 @@ export const useForm = (initialForm, validationsForm) => {
         setResponse(res)
       }
     } catch (error) {
-      console.log({ error: error.response.data })
+      // eslint-disable-next-line no-console
+      console.loåg({ error: error.response.data })
     }
   }
 

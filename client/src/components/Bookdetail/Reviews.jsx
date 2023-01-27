@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
 import { Link } from 'react-router-dom'
@@ -6,33 +7,20 @@ import axios from 'axios'
 
 import GetRateStars from '../GetRateStars/GetRateStars'
 import style from '../Bookdetail/Reviews.module.css'
-let key = 0
-// let bookComments = [
-//   {
-//     rate: '4',
-//     comment:
-//       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-//   },
-//   {
-//     rate: '3',
-//     comment:
-//       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-//   },
-//   {
-//     rate: '5',
-//     comment:
-//       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-//   },
-// ]
-const Reviews = ({ id, comment }) => {
-  let userlogged = true
-  let bookComments = comment
+import { getBookById } from '../../redux/actions/index'
 
-  const initialState = {
+const Reviews = ({ id }) => {
+  const [rata, setRata] = useState(0) // NO TOCAR 🐭
+  const dispatch = useDispatch()
+  const book = useSelector((state) => state.detail)
+  const [Review, setReview] = useState({
     rate: '',
     comment: '',
-  }
-  const [Review, setReview] = useState(initialState)
+  })
+
+  useEffect(() => {
+    dispatch(getBookById(id))
+  }, [dispatch, id, rata])
 
   const handleReview = (e) => {
     setReview({
@@ -41,10 +29,6 @@ const Reviews = ({ id, comment }) => {
     })
   }
 
-  const handlePostReview = (e) => {
-    e.preventDefault()
-    //  dispatch(postBookReview(e))
-  }
   const handleSubmitReview = (e) => {
     e.preventDefault()
     const coment = {
@@ -54,42 +38,29 @@ const Reviews = ({ id, comment }) => {
     }
 
     axios
-      .post('http://localhost:3001/comment/create/book', coment, {
+      .post('https://bookyou-production.up.railway.app/comment/create/book', coment, {
         headers: {
           authorization: `Bearer ${localStorage.getItem('token')}`,
         },
       })
-      .then((res) => console.log(res.data))
-    setReview(initialState)
+      // eslint-disable-next-line no-console
+      .then((res) => {
+        // eslint-disable-next-line no-console
+        console.log(res.data)
+        setRata(rata + 1) // lo siento estoy desesperado.
+      })
+    setReview({
+      rate: '',
+      comment: '',
+    })
   }
+
   const token = localStorage.getItem('token')
 
   const loginUserVerification = () => {
     if (!token) return false
 
     return true
-  }
-
-  // const handleSubmitReview = (e) => {
-  //   e.preventDefault()
-  //   bookComments.push(Review)
-  //   setReview(initialState)
-  // }
-
-  if (!userlogged) {
-    return (
-      <div className={style.textLoginBanner}>
-        <div>
-          <p>Deseas agregar un comentario?</p>
-          <p>
-            ingresa a tu cuenta{' '}
-            <Link to="/404">
-              <button className={style.readBookButton}>Log In</button>
-            </Link>
-          </p>
-        </div>
-      </div>
-    )
   }
 
   return (
@@ -136,29 +107,30 @@ const Reviews = ({ id, comment }) => {
             <button className={style.postReviewButton} type="submit" value="Enviar">
               Enviar
             </button>
-            {/* <button onClick={handlePostReview} className={style.postReviewButton} type="submit" value="Enviar">Enviar db</button> */}
           </form>
         </div>
       )}
 
-      {!bookComments ? (
+      {!book.comment ? (
         <div>Aun no hay Comentarios para este libro</div>
       ) : (
-        bookComments?.map((item) => (
-          <div key={key++} className={style.postedCommentsBox}>
-            <div className={style.postedCommentsImg}>
-              <img
-                alt=""
-                src="https://res.cloudinary.com/dn8jxsqka/image/upload/v1674671180/user_icon_riocsx.png"
-              />
+        book.comment
+          ?.map((item, index) => (
+            <div key={index} className={style.postedCommentsBox}>
+              <div className={style.postedCommentsImg}>
+                <img
+                  alt=""
+                  src="https://res.cloudinary.com/dn8jxsqka/image/upload/v1674671180/user_icon_riocsx.png"
+                />
+              </div>
+              <div>
+                <div>{item.comment}</div>
+                <div>{item.username ? item.username : 'username'} </div>
+                <GetRateStars rate={item.rate} />
+              </div>
             </div>
-            <div>
-              <div>{item.comment}</div>
-              <div>{item.username ? item.username : 'username'} </div>
-              <GetRateStars rate={item.rate} />
-            </div>
-          </div>
-        ))
+          ))
+          .reverse()
       )}
     </div>
   )
