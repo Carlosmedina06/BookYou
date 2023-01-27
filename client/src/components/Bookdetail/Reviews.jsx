@@ -10,7 +10,7 @@ import style from '../Bookdetail/Reviews.module.css'
 import { getBookById } from '../../redux/actions/index'
 
 const Reviews = ({ id }) => {
-  const [rata, setRata] = useState(0)
+  const [rata, setRata] = useState(0) // NO TOCAR 🐭
   const dispatch = useDispatch()
   const book = useSelector((state) => state.detail)
   const [Review, setReview] = useState({
