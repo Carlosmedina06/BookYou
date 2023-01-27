@@ -133,10 +133,10 @@ const Reviews = ({ id }) => {
               <ReviewContent>
                 <ReviewText>
                   <div>
-                    <p>{item.comment}</p>
+                    <h2>{item.username ? item.username : 'username'}</h2>
                   </div>
                   <div>
-                    <h2>{item.username ? item.username : 'username'}</h2>
+                    <p>{item.comment}</p>
                   </div>
                   <GetRateStars rate={item.rate} />
                 </ReviewText>

@@ -5,12 +5,10 @@ export const ReviewContainer = styled.div`
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
-  width: 50%;
+  width: 40%;
   margin: 2px;
-  background-color: #fff;
-  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
-  border: 1px solid orange;
-  border-radius: 5px;
+  background-color: none;
+  border-bottom: 2px solid orange;
   padding: 10px;
 `
 export const ImgContainer = styled.div`
@@ -27,6 +25,7 @@ export const ReviewContent = styled.div`
   justify-content: flex-start;
   align-items: flex-start;
   width: 100%;
+  height: 50%;
 `
 export const ReviewText = styled.div`
   width: 100%;
@@ -40,7 +39,6 @@ export const ReviewText = styled.div`
   p {
     font-size: 14px;
     font-weight: 400;
-    margin: 15px 0;
   }
 `
 export const ReviewDate = styled.div`
