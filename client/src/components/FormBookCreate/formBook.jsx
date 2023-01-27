@@ -5,9 +5,7 @@ import { Link } from 'react-router-dom'
 import { getCategorys } from '../../redux/actions'
 import { useForm } from '../../utils/Hooks/useForm'
 import NavBar from '../NavBar/NavBar'
-
 import style from '../FormBookCreate/formBook.module.css'
-import CssGenerico from '../CssGenerico/CssGenerico.module.css'
 
 import { Container, FormContent, FormItem, Input, InputFile, Select } from './formBookStyle'
 import validationsForm from './ValidationForm'
@@ -15,9 +13,6 @@ import validationsForm from './ValidationForm'
 const PostBook = () => {
   const category = useSelector((state) => state.category)
 
-  const user = useSelector((state) => state.loginUser)
-
-  console.log('create book:', user)
   const dispatch = useDispatch()
 
   const initialForm = {
@@ -54,9 +49,6 @@ const PostBook = () => {
     if (!response.message) {
       return (
         <section>
-          <div className={style.navbar}>
-            <NavBar />
-          </div>
           <div>
             <h1 className={style.h1}>Created succesfully!</h1>
             <button className={style.button} type="button" onClick={handleClear}>
@@ -78,9 +70,8 @@ const PostBook = () => {
     }
   } else {
     return (
-      
       <Container>
-        <div style={{ position: 'absolute', top: '0px', left:'0px'}}>
+        <div style={{ position: 'absolute', top: '0px', left: '0px' }}>
           <NavBar />
         </div>
         <div>
@@ -191,7 +182,6 @@ const PostBook = () => {
 
             {/* // input pdf  */}
             <FormItem>
-              
               <label htmlFor="pdf">
                 Select book file
                 <InputFile
@@ -211,9 +201,7 @@ const PostBook = () => {
               RESET
             </button> */}
 
-            <button 
-            className={style.button}
-            type="submit" onSubmit={handleSubmit}>
+            <button className={style.button} type="submit" onSubmit={handleSubmit}>
               CREATE BOOK!
             </button>
           </FormContent>
