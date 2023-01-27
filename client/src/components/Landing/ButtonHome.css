@@ -21,7 +21,7 @@ button{
 }
 
 .button_home:hover{
-    color: #25b687;
+    color: #edf3f1;
 }
 
 .button_home::before,
@@ -31,7 +31,7 @@ button{
     top: 0;
     left: 0;
     position: absolute;
-    background-color: white;
+    background-color: #F28322;
     height: 100%;
     width: 100%;
     transition: transform 0.5s linear;
