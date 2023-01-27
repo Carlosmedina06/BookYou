@@ -3,9 +3,9 @@ import jwt from 'jsonwebtoken'
 import Book from '../../models/Book.js'
 import Comment from '../../models/Comment.js'
 import User from '../../models/User.js'
+import { SendMailnewComment } from '../../emailer/emailer.js'
 
 const createCommentBook = async (req, res) => {
-  console.log(req.body)
   try {
     const { comment, id, rate } = req.body
 
@@ -28,6 +28,7 @@ const createCommentBook = async (req, res) => {
 
       const book = await Book.findById(id)
 
+      console.log('el libro comentado', book)
       const newComment = new Comment({
         comment,
         book: book._id,
@@ -41,7 +42,7 @@ const createCommentBook = async (req, res) => {
       user.comment = user.comment.concat(newComment._id)
       await user.save()
       await book.save()
-
+      SendMailnewComment(book, newComment)
       res.status(200).send('Created book comment')
     }
   } catch (error) {

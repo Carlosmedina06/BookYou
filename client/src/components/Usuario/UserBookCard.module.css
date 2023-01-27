@@ -5,13 +5,11 @@
   align-items: center;
   max-width: 800px;
   height: 350px;
-  margin: 0 auto;
+  margin-left: 100px;
   padding: 2rem;
   gap: 10px;
-  border: solid 2px #f28322;
-  border-radius: 10px;
-  box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.1), 0 0 0 2px #f28322,
-    0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
+  border-bottom: solid 2px #f28322;
+  
 }
 
 .bookCover {

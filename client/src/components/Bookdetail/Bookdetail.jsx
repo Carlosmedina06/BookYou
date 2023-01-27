@@ -3,11 +3,11 @@ import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import axios from 'axios'
-import jwt_decode from 'jwt-decode'
 
 import { getBookById } from '../../redux/actions'
 import NavBar from '../NavBar/NavBar'
 import style from '../Bookdetail/Bookdetail.module.css'
+import loginUserVerification from '../../utils/Functions/LoginUserVerification'
 
 import Reviews from './Reviews'
 
@@ -17,7 +17,6 @@ const Bookdetail = () => {
   const details = useSelector((state) => state.detail)
 
   console.log(details)
-
   useEffect(() => {
     dispatch(getBookById(id))
   }, [dispatch, id])
@@ -30,26 +29,15 @@ const Bookdetail = () => {
   const handletDelete = (e) => {
     e.preventDefault()
     axios
-      .delete(`http://localhost:3001/book/delete/${id}`, {
+      .delete(`https://bookyou-production.up.railway.app/book/delete/${id}`, {
         headers: {
           authorization: `Bearer ${localStorage.getItem('token')}`,
         },
       })
       .then((res) => {
+        // eslint-disable-next-line no-console
         console.log(res.data)
       })
-  }
-  const token = localStorage.getItem('token')
-
-  const loginUserVerification = () => {
-    if (!token) return false
-    let decoded = jwt_decode(token)
-
-    if (!details.user) return false
-    if (!details.user.id) return false
-    if (decoded.id === details.user.id) return true
-
-    return false
   }
 
   return (
@@ -65,7 +53,6 @@ const Bookdetail = () => {
           <div className={style.bookTextDetail}>
             <div>
               <h1>{details.title}</h1>
-              {/* <h1 >{(details.title).charAt(0).toUpperCase()}{ (details.title).slice(1)}</h1>   */}
             </div>
             <div>
               <h2>Acerca del libro</h2>
@@ -80,7 +67,7 @@ const Bookdetail = () => {
               </button>
               <br />
               <br />
-              {loginUserVerification() ? (
+              {loginUserVerification(localStorage.getItem('token'), details) ? (
                 <button onClick={handletDelete}> eliminar libro </button>
               ) : null}
             </div>
