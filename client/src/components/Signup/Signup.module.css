@@ -19,7 +19,7 @@ height: 100vh;
 background-color: white;
 border-radius: 10px;
 width: 500px;
-max-width: 5px;
+max-width: 500px;
 height: 560px;
 display: flex;
   flex-direction: column;
