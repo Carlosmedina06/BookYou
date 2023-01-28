@@ -10,7 +10,7 @@ export const LOGIN_LOCAL = 'LOGIN_LOCAL'
 export const LOGOUT = 'LOGOUT'
 export const LOGIN = 'LOGIN'
 export const REGISTER_LOCAL = 'REGISTER_LOCAL'
-export const CLEAR_BOOK_DETAILS = "CLEAR_BOOK_DETAIL"
+export const CLEAR_BOOK_DETAILS = 'CLEAR_BOOK_DETAIL'
 // export const REGISTER_GOOGLE = 'REGISTER_GOOGLE'
 import {
   GoogleAuthProvider,
@@ -147,10 +147,9 @@ export const getUsers = () => async (dispatch) => {
 }
 
 /* ------------------GET BOOKS POR ID ------------------- */
-export const clearBookDetails = () => async(dispatch)=>{
-  try{
+export const clearBookDetails = () => async (dispatch) => {
+  try {
     dispatch({ type: CLEAR_BOOK_DETAILS })
-
   } catch (error) {
     dispatch({
       type: ERROR,
