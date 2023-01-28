@@ -25,7 +25,7 @@ export const BtnHome = styled.button`
       width: 0;
       left: 0;
       bottom: -7px;
-      background: #c84747;
+      background: #f28322;
       height: 2px;
       transition: 0.3s ease - out;
     }
@@ -36,7 +36,7 @@ export const BtnHome = styled.button`
       width: 0%;
       inset: 0;
       text-align: center;
-      color: #c84747;
+      color: #f28322;
       overflow: hidden;
       transition: 0.3s ease - out;
     }
