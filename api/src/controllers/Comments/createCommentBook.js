@@ -28,7 +28,6 @@ const createCommentBook = async (req, res) => {
 
       const book = await Book.findById(id)
 
-      console.log('el libro comentado', book)
       const newComment = new Comment({
         comment,
         book: book._id,

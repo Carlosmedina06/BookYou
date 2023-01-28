@@ -1,25 +1,29 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import axios from 'axios'
+
 import { getBookById } from '../../redux/actions'
 import NavBar from '../NavBar/NavBar'
 import style from '../Bookdetail/Bookdetail.module.css'
 import loginUserVerification from '../../utils/Functions/LoginUserVerification'
 import { clearBookDetails } from '../../redux/actions'
+
 import Reviews from './Reviews'
 
 const Bookdetail = () => {
   const dispatch = useDispatch()
   const { id } = useParams()
   const details = useSelector((state) => state.detail)
+  const [rata, setRata] = useState(0) // NO TOCAR 🐭  const [rata, setRata] = useState(0) // NO TOCAR 🐭
 
-  console.log(details)
+  console.log('🐭')
+
   useEffect(() => {
-     dispatch(clearBookDetails())
+    dispatch(clearBookDetails())
     dispatch(getBookById(id))
-  }, [dispatch, id])
+  }, [dispatch, id, rata])
 
   const handleReadButton = (e) => {
     e.preventDefault()
@@ -73,7 +77,7 @@ const Bookdetail = () => {
             </div>
           </div>
         </div>
-        <Reviews comment={details.comment} id={details.id} />
+        <Reviews comment={details.comment} id={details.id} rata={rata} setRata={setRata} />
       </div>
     </div>
   )

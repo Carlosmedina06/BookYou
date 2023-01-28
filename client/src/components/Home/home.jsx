@@ -14,7 +14,6 @@ import Card from '../Card/Card'
 import Pagination from '../Pagination/Pagination'
 import style from '../Home/home.module.css'
 
-
 export const Home = () => {
   const dispatch = useDispatch()
 
@@ -112,7 +111,7 @@ export const Home = () => {
       <div style={{ position: 'absolute', top: '0px' }}>
         <NavBar />
       </div>
-      
+
       <SearchBar
         bookInput={bookInput}
         setAuthorInput={setAuthorInput}
@@ -143,7 +142,7 @@ export const Home = () => {
         <div style={{ position: 'absolute', top: '130px', left: '30px' }}>
           <OrdAlfabetico books={books} setBooks={setBooks} />
         </div>
-  
+
         <div>
           {(bookInput.length > 0 && filterLibros.length === 0) ||
           (bookInputtodos.length > 0 && filterLibros.length === 0) ||
