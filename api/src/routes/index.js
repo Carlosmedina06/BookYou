@@ -9,6 +9,7 @@ import categoryRouter from './Category/Category.routes.js'
 import loginRouter from './Login/Login.routes.js'
 import checkOutRouter from './Checkout/Checkout.routes.js'
 import signupRouter from './Signup/signup.routes.js'
+import successRouter from './Success/Success.routes.js'
 
 const router = Router()
 
@@ -32,6 +33,9 @@ router.use('/signup', signupRouter)
 
 //= =====================Checkout Routes================================
 router.use('/checkout', checkOutRouter)
+
+//= =====================success Routes================================
+router.use('/success', successRouter)
 
 //= =====================Error Middlewares================================
 

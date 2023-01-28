@@ -27,7 +27,7 @@ export const loginGoogle = () => async (dispatch) => {
 
   const res = await signInWithPopup(auth, provider)
 
-  axios.post('https://bookyou-production.up.railway.app/login', res.user).then((res) => {
+  axios.post('http://localhost:3001/login', res.user).then((res) => {
     window.localStorage.setItem('token', res.data.token)
 
     return dispatch({
@@ -65,7 +65,7 @@ export const registerLocal = (email, password, displayName) => async (dispatch) 
   const response = await createUserWithEmailAndPassword(auth, email, password)
 
   response.user.displayName = displayName
-  axios.post('https://bookyou-production.up.railway.app/signup', response.user).then((res) => {
+  axios.post('http://localhost:3001/signup', response.user).then((res) => {
     return dispatch({
       type: REGISTER_LOCAL,
       payload: res.data.token,
@@ -76,7 +76,7 @@ export const registerLocal = (email, password, displayName) => async (dispatch) 
 export const loginLocal = (email, password) => async (dispatch) => {
   const response = await signInWithEmailAndPassword(auth, email, password)
 
-  axios.post('https://bookyou-production.up.railway.app/login', response.user).then((res) => {
+  axios.post('http://localhost:3001/login', response.user).then((res) => {
     window.localStorage.setItem('token', res.data.token)
 
     return dispatch({
@@ -97,7 +97,7 @@ export const logout = () => async (dispatch) => {
 /* ------------- GET BOOKS SEARCH ----------*/
 export const getSearchBook = (name) => async (dispatch) => {
   try {
-    const info = await axios.get('https://bookyou-production.up.railway.app/book')
+    const info = await axios.get('http://localhost:3001/book')
 
     // eslint-disable-next-line no-console
     console.log(info.data)
@@ -115,7 +115,7 @@ export const getSearchBook = (name) => async (dispatch) => {
 /* ----------------GET BOOKS-------------- */
 export const getBooks = () => async (dispatch) => {
   try {
-    const info = await axios.get('https://bookyou-production.up.railway.app/book')
+    const info = await axios.get('http://localhost:3001/book')
 
     return dispatch({
       type: 'GET_BOOKS',
@@ -132,7 +132,7 @@ export const getBooks = () => async (dispatch) => {
 /* -------------------- GET USUARIOS ----------------- */
 export const getUsers = () => async (dispatch) => {
   try {
-    const info = await axios.get('https://bookyou-production.up.railway.app/user')
+    const info = await axios.get('http://localhost:3001/user')
 
     return dispatch({
       type: GET_USERS,
@@ -161,7 +161,7 @@ export const clearBookDetails = () => async (dispatch) => {
 
 export const getBookById = (id) => async (dispatch) => {
   try {
-    const info = await axios.get('https://bookyou-production.up.railway.app/book/' + id)
+    const info = await axios.get('http://localhost:3001/book/' + id)
 
     dispatch({ type: GET_BOOKBY_ID, payload: info.data })
   } catch (error) {
@@ -175,7 +175,7 @@ export const getBookById = (id) => async (dispatch) => {
 /* ---------------GET GÉNEROS LITERARIOS------------------ */
 export const getCategorys = () => async (dispatch) => {
   try {
-    const info = await axios.get('https://bookyou-production.up.railway.app/category')
+    const info = await axios.get('http://localhost:3001/category')
 
     return dispatch({
       type: 'GET_ALL_GENEROS',
@@ -192,7 +192,7 @@ export const getCategorys = () => async (dispatch) => {
 /* ----------------------- GET AUTORES LITERARIOS -------------------- */
 export const getAutores = () => async (dispatch) => {
   try {
-    const info = await axios.get('https://bookyou-production.up.railway.app/book')
+    const info = await axios.get('http://localhost:3001/book')
 
     return dispatch({
       type: 'GET_SEARCH_AUTORES',
@@ -234,7 +234,7 @@ export const orderAlf = (payload) => {
 
 export const postBookReview = () => async (dispatch) => {
   try {
-    const info = await axios.get('https://bookyou-production.up.railway.app/create/book')
+    const info = await axios.get('http://localhost:3001/create/book')
 
     return dispatch({
       type: 'GET_COMENTARIOS',

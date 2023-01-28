@@ -2,8 +2,8 @@ import mongoose from 'mongoose'
 import dotenv from 'dotenv'
 dotenv.config()
 
-const connectionString =
-  'mongodb://mongo:WvBlEj0kRoFevavLjcXT@containers-us-west-23.railway.app:7588'
+const connectionString = 'mongodb+srv://carlosmedina06:admin@carlosdb.9aqig43.mongodb.net/test'
+// 'mongodb://mongo:WvBlEj0kRoFevavLjcXT@containers-us-west-23.railway.app:7588'
 const database = () => {
   mongoose
     .connect(connectionString, {
