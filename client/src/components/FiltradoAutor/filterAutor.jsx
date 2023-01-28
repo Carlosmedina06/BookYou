@@ -1,59 +1,24 @@
-import { useState } from 'react'
-import { useSelector } from 'react-redux'
+/* import { useState } from 'react'
+import { useSelector } from 'react-redux' */
 
 /* import { getSearchBook } from '../../redux/actions/index' */
-import Card from '../Card/Card'
+/* import Card from '../Card/Card'
 import Pagination from '../Pagination/Pagination'
-import style2 from '../FiltradoGenero/filtradoGenero.module.css'
+import style2 from '../FiltradoGenero/filtradoGenero.module.css' */
 import style from '../FiltradoAutor/filterAutor.module.css'
 import CssGenerico from '../CssGenerico/CssGenerico.module.css'
 
-function SearchByAutor({
-  authorInput,
-  clearFilters,
-  setBookInput,
-  setAuthorInput,
-  setBookInputtodos,
-  setShowFilterAutor,
-}) {
-  const autor = useSelector((state) => state.autor)
-  const [currentPage, setCurrentPage] = useState(1)
+function SearchByAutor({ /* authorInput, clearFilters, setBookInput, */ setAuthorInput }) {
+  /*   const autor = useSelector((state) => state.autor)
+  const [currentPage, setCurrentPage] = useState(1) */
 
   const handleInputChange = (e) => {
     setAuthorInput(e.target.value)
-    setBookInput('')
-    setBookInputtodos('todos')
-    setCurrentPage(0)
   }
 
-  const filterAuthor = autor.filter((a) =>
+  /*  const filterAuthor = autor.filter((a) =>
     a.author.toLowerCase().includes(authorInput.toLowerCase()),
-  )
-
-  if (authorInput !== '') {
-    setShowFilterAutor(false)
-  } else if (authorInput === '') {
-    setShowFilterAutor(true)
-  }
-
-  //data pagination-----------------------
-  const totalPages = Math.ceil(filterAuthor.length / 5)
-  const filterBooks = () => {
-    const filtered = filterAuthor.slice(currentPage * 5, currentPage * 5 + 5)
-
-    return filtered
-  }
-
-  //Pagina Anterior
-  const prevPage = () => {
-    if (currentPage >= 1) setCurrentPage(currentPage - 1)
-  }
-  //Pagina siguiente
-  const nextPage = () => {
-    if (currentPage < totalPages && filterAuthor.length - 5 > currentPage * 5) {
-      setCurrentPage(currentPage + 1)
-    }
-  }
+  ) */
 
   return (
     <>
@@ -89,7 +54,7 @@ function SearchByAutor({
           </div>
         </div>
 
-        <div className={style.mover1}>
+        {/* <div className={style.mover1}>
           <div className={style.mover}>
             {authorInput === '' ? (
               <p />
@@ -119,7 +84,7 @@ function SearchByAutor({
               <Pagination nextPage={nextPage} prevPage={prevPage} totalPages={currentPage + 1} />
             </div>
           )}
-        </div>
+        </div> */}
       </div>
     </>
   )
