@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 import { getCategorys } from '../../redux/actions'
 import { useForm } from '../../utils/Hooks/useForm'
 import NavBar from '../NavBar/NavBar'
-import style from '../FormBookCreate/formBook.module.css'
+import style from './formBookCss.module.css'
 
 import { Container, FormContent, FormItem, Input, InputFile, Select } from './formBookStyle'
 import validationsForm from './ValidationForm'
@@ -70,18 +70,23 @@ const PostBook = () => {
     }
   } else {
     return (
-      <Container>
+      <div className={style.mainContainer}>
         <div style={{ position: 'absolute', top: '0px', left: '0px' }}>
           <NavBar />
         </div>
         <div>
-          <FormContent onSubmit={handleSubmit}>
+          <div className={style.cardContainer}>
+          <form onSubmit={handleSubmit}>
+          <div className={style.contentformCard}>
             {/* // input title  */}
-            <FormItem>
-              <label htmlFor="title">Title</label>
-              <Input
+            <div className={style.formTitle}>
+           <p>Crear Libro</p> 
+           </div>
+            <div className={style.formInputBox}>
+              <label htmlFor="title">Titulo</label>
+              <input
                 name="title"
-                placeholder="Title..."
+                placeholder="Titulo..."
                 type="text"
                 value={form.title}
                 onBlur={handleBlur}
@@ -94,15 +99,15 @@ const PostBook = () => {
               ) : (
                 false
               )}
-            </FormItem>
+            </div>
             {/* // input title  */}
 
             {/* // input description  */}
-            <FormItem>
-              <label htmlFor="description">Description</label>
-              <Input
+            <div className={style.formInputBox}>
+              <label htmlFor="description">Descripcion</label>
+              <input
                 name="description"
-                placeholder="Short review of the writing"
+                placeholder="Descripcion corta del escrito."
                 value={form.description}
                 onBlur={handleBlur}
                 onChange={handleChange}
@@ -114,14 +119,14 @@ const PostBook = () => {
               ) : (
                 false
               )}
-            </FormItem>
+            </div>
             {/* // input description  */}
 
-            <FormItem>
-              <label htmlFor="author">Author</label>
-              <Input
+            <div className={style.formInputBox}>
+              <label htmlFor="author">Autor</label>
+              <input
                 name="author"
-                placeholder="Name/s"
+                placeholder="Nombre/s"
                 value={form.author}
                 onBlur={handleBlur}
                 onChange={handleChange}
@@ -133,11 +138,11 @@ const PostBook = () => {
               ) : (
                 false
               )}
-            </FormItem>
+            </div>
 
-            <FormItem>
-              <label htmlFor="subscription">Subscription: </label>
-              <Select
+            <div className={style.formInputBox}>
+              <label htmlFor="subscription">Subscripcion</label>
+              <select className={style.formSelect}
                 name="subscription"
                 value={form.subscription}
                 onBlur={handleBlur}
@@ -145,12 +150,12 @@ const PostBook = () => {
               >
                 <option value="free">Free</option>
                 <option value="premium">Premium</option>
-              </Select>
-            </FormItem>
+              </select>
+            </div>
 
-            <FormItem>
-              <label htmlFor="category">Category: </label>
-              <Select
+            <div className={style.formInputBox}>
+              <label htmlFor="category">Categoria</label>
+              <select className={style.formSelect}
                 name="category"
                 value={form.category}
                 onBlur={handleBlur}
@@ -163,13 +168,13 @@ const PostBook = () => {
                     </option>
                   )
                 })}
-              </Select>
-            </FormItem>
+              </select>
+            </div>
 
             {/* // input img  */}
-            <FormItem>
-              <label htmlFor="image">Select Image file</label>
-              <InputFile
+            <div className={style.formInputBox}>
+              <label htmlFor="image">Seleccionar Imagen</label>
+              <input
                 className="inputFile"
                 name="image"
                 type="file"
@@ -177,14 +182,14 @@ const PostBook = () => {
                   handleChangeImage(e)
                 }}
               />
-            </FormItem>
+            </div>
             {/* // input img  */}
 
             {/* // input pdf  */}
-            <FormItem>
-              <label htmlFor="pdf">
-                Select book file
-                <InputFile
+            <div className={style.formInputBox}>
+              <label htmlFor="pdf">Seleccionar archivo del libro</label>
+                
+                <input
                   accept="application/pdf,application/msword,
                         application/vnd.openxmlformats-officedocument.wordprocessingml.document"
                   name="pdf"
@@ -193,21 +198,24 @@ const PostBook = () => {
                     handleChangeContent(e)
                   }}
                 />
-              </label>
-            </FormItem>
+              
+            </div>
             {/* // input pdf  */}
 
             {/* <button type="button" onClick={(e) => handleReset(e)}>
               RESET
             </button> */}
 
-            <button className={style.button} type="submit" onSubmit={handleSubmit}>
+            <button className={style.buttonSubmit} type="submit" onSubmit={handleSubmit}>
               CREATE BOOK!
             </button>
-          </FormContent>
+            </div>
+          </form>
+          
+          </div>
         </div>
-        <Link to="/home">home</Link>
-      </Container>
+        {/* <Link to="/home">home</Link> */}
+      </div>
     )
   }
 }

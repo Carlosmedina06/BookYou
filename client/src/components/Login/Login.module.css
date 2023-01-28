@@ -19,6 +19,8 @@ height: 100vh;
 background-color: white;
 border-radius: 10px;
 width: 500px;
+min-width: 500px;
+max-width: 500px;
 height: 450px;
 display: flex;
   flex-direction: column;
@@ -36,6 +38,7 @@ display: flex;
 display: flex;
 flex-direction: column;
 align-items: center;
+width: auto;
 
 }
 
@@ -179,7 +182,7 @@ width: 60%;
  
     color: white;
     cursor: pointer;
-    margin: 3%;
+    margin: 3% 0 3% 0;
     width: 15rem;
     word-wrap: break-word;
     border-radius: 5px;

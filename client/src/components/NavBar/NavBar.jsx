@@ -1,30 +1,34 @@
-import React, { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { NavLink } from 'react-router-dom'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSignOut } from '@fortawesome/free-solid-svg-icons'
-
-import { loginUser, logout } from '../../redux/actions'
-
+import React from 'react';
+import { Link, NavLink } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {faSignOut} from '@fortawesome/free-solid-svg-icons';
+import {BiLogIn, BiLogOut} from 'react-icons/bi';
+// import { useLocation } from 'react-router-dom'
+import { logout } from '../../redux/actions';
 import style from './NavBar.module.css'
+import { useDispatch } from 'react-redux';
 
 const NavBar = () => {
+  const token = localStorage.getItem('token')
+
+  // la loginUserVerification esta true para facilitar el desarollo 
+  const loginUserVerification =  true
   const dispatch = useDispatch()
-  const user = useSelector((state) => state.loginUser)
+    const handleSuscribe = (e) => {
+      e.preventDefault()
+      window.open('/pageonconstruction')
+    }
 
-  const handleSuscribe = (e) => {
-    e.preventDefault()
-    window.open('/pageonconstruction')
-  }
+  // const loginUserVerification = () => {
+  //   if (!token) return false
 
-  useEffect(() => {
-    dispatch(loginUser())
-  }, [dispatch])
+  //   return true
+  // }
+    const handleLogOut = (e) =>{
+      dispatch(logout(e))
+      
+    }
 
-  const handleLogout = (e) => {
-    e.preventDefault()
-    dispatch(logout())
-  }
 
   return (
     <div className={style.NavBarContainer}>
@@ -37,40 +41,48 @@ const NavBar = () => {
           <li>
             <NavLink to="/home">Inicio</NavLink>
           </li>
-          {user.length > 0 ? (
-            <>
-              <li>
-                <NavLink to="/createbook">Crear Libro</NavLink>
-              </li>
-              <button className={style.buttonLogOut} onClick={handleLogout}>
-                <FontAwesomeIcon className={style.buttonLogOutIcon} icon={faSignOut} /> Cerrar
-                Sesíon
-              </button>
-            </>
-          ) : (
-            <>
-              <li>
-                <NavLink to="/login">Inicio sesion</NavLink>{' '}
-              </li>
-              <li>
-                <NavLink to="/signup">Registro</NavLink>{' '}
-              </li>
-            </>
-          )}
+          {
+          loginUserVerification &&
+          <li>
+            <NavLink to="/createbook">Crear Libro</NavLink>
+          </li>
+          }      
+          {
+           loginUserVerification &&
+           <li>
+           <NavLink to="/usuario">Perfil</NavLink>
+           </li>
+          }      
+          
         </ul>
       </nav>
-      <div />
+      <div>
+        
+      </div>
+      
       <div className={style.buttonSuscribeContainer}>
         <div>
+          
           {' '}
           <div>
-            <div>
-              <button className={style.buttonSuscribe} onClick={handleSuscribe}>
-                Suscribirse
-              </button>
-            </div>
+          <button className={style.buttonSuscribe} onClick={handleSuscribe}>
+            Suscribirse
+          </button>
           </div>
-          <div />
+          <div>
+            {
+          loginUserVerification &&
+        <button className={style.buttonLogOut}  onClick={handleLogOut}><FontAwesomeIcon  className={style.buttonLogOutIcon}icon={faSignOut}/>{' '} Cerrar Sesíon</button>
+            }
+            </div>
+            <div>
+            {
+            !loginUserVerification &&
+            
+            <button className={style.buttonLogOut}><BiLogIn  className={style.buttonLogOutIcon}/>{' '} Acceder</button>
+           
+             }
+        </div>
         </div>
       </div>
     </div>
@@ -78,3 +90,4 @@ const NavBar = () => {
 }
 
 export default NavBar
+

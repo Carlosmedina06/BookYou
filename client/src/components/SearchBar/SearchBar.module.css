@@ -5,10 +5,12 @@
 }
 
 .svgConteiner{
-    position: absolute;
+    position: relative;
     width: 35px;
+
     margin-top: 5px ;
     margin-left: 50rem;
+
     color:white
 }
 

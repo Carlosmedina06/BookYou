@@ -1,17 +1,16 @@
 import React from 'react'
-
+import {AiOutlineLeft,AiOutlineRight} from 'react-icons/ai';
 import style from './Pagination.module.css'
 
 export default function Pagination({ prevPage, nextPage, totalPages }) {
   return (
     <div className={style.todo}>
-      <button className={style.BtnPag} onClick={prevPage}>
-        ⟵ prev page
-      </button>
+
+
+      <button onClick={prevPage} className={style.BtnPag}><AiOutlineLeft/></button>
       <p className={style.p}>{totalPages}</p>
-      <button className={style.BtnPag} onClick={nextPage}>
-        next page →
-      </button>
+      <button onClick={nextPage} className={style.BtnPag}><AiOutlineRight/></button>
+
     </div>
   )
 }
