@@ -3,12 +3,11 @@ import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import axios from 'axios'
-
 import { getBookById } from '../../redux/actions'
 import NavBar from '../NavBar/NavBar'
 import style from '../Bookdetail/Bookdetail.module.css'
 import loginUserVerification from '../../utils/Functions/LoginUserVerification'
-
+import { clearBookDetails } from '../../redux/actions'
 import Reviews from './Reviews'
 
 const Bookdetail = () => {
@@ -17,6 +16,7 @@ const Bookdetail = () => {
   const details = useSelector((state) => state.detail)
 
   useEffect(() => {
+     dispatch(clearBookDetails())
     dispatch(getBookById(id))
   }, [dispatch, id])
 

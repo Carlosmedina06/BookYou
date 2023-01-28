@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
 import Swal from 'sweetalert2'
-
+import {BiUserCircle} from 'react-icons/bi';
 import GetRateStars from '../GetRateStars/GetRateStars'
 import style from '../Bookdetail/Reviews.module.css'
 import { getBookById } from '../../redux/actions/index'
@@ -125,10 +125,11 @@ const Reviews = ({ id }) => {
           ?.map((item, index) => (
             <ReviewContainer key={index}>
               <ImgContainer>
-                <img
+                {/* <img
                   alt={item.username}
                   src="https://res.cloudinary.com/dn8jxsqka/image/upload/v1674671180/user_icon_riocsx.png"
-                />
+                /> */}
+                <BiUserCircle/>
               </ImgContainer>
               <ReviewContent>
                 <ReviewText>

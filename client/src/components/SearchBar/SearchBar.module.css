@@ -5,9 +5,9 @@
 }
 
 .svgConteiner{
-    position: absolute;
+    position: relative;
     width: 35px;
-    margin-top: 12px ;
+     margin-top: 12px ; 
     margin-left: 12rem;
     color:white
 }
