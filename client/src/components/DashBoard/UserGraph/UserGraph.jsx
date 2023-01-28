@@ -8,6 +8,7 @@ import {
   quantityOfSubsUsers,
   quantityOfUsers,
 } from "../../../utils/Hooks/dashFunctions/userFunctions";
+import { useSelector } from "react-redux";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -46,8 +47,10 @@ export const textCenter = {
 };
 export function GraphicUsersFreeToSubs() {
   const allUsers = quantityOfUsers();
+ // const allUsers = useSelector(state=>state.users)
   const usersFree = quantityOFFreeUsers();
   const usersPremium = quantityOfSubsUsers();
+  console.log(allUsers, usersFree, usersPremium)
   const [data, setData] = useState({
     datasets: [
       {
@@ -104,7 +107,7 @@ export function GraphicUsersFreeToSubs() {
         ctx.textAlign = "center";
         ctx.textBaseline = "middle";
         ctx.fillText(
-          "Users" + allBooks,
+          allUsers+" Users",
           chart.getDatasetMeta(0).data[0].x,
           chart.getDatasetMeta(0).data[0].y
         );

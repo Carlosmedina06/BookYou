@@ -13,7 +13,7 @@ return userId
 
 export const deleteUser = async (id) =>{
 
-const info = await axios.delete('http://localhost:3001/delete/'+id)
+const info = await axios.delete('https://bookyou-production.up.railway.app/delete/'+id)
 const response = info.data
 return response
 }
@@ -44,4 +44,4 @@ export const quantityOFFreeUsers = () =>{
     const usersFree = users.filter(el=> el.subscription === 'free')
     const howManyFree = usersFree.length
     return howManyFree
-}
+}   

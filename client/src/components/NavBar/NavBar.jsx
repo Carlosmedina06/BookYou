@@ -37,11 +37,15 @@ const NavBar = () => {
       <nav className={style.NavBarOption}>
         <ul>
           <li>
+          <NavLink to="/graphic">Ver Dash</NavLink>
             <NavLink to="/home">Inicio</NavLink>
           </li>
           {user.length > 0 ? (
             <>
+            
+              
               <li>
+                
                 <NavLink to="/createbook">Crear Libro</NavLink>
               </li>
               <button className={style.buttonLogOut} onClick={handleLogout}>

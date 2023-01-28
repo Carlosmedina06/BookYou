@@ -2,14 +2,17 @@ import axios from "axios";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 
-import style from './UserEdit.module.css'
+import style from './CommentEdit.module.css'
 
-export const UserEdit = () => {
+export const CommentEdit = () => {
   const users = useSelector((state) => state.users);
+  const books = useSelector((state)=> state.allBooks)
 
   const [input, setInput] = useState({
-    search: "",
+    searchUser: "",
+    searchBook:"",
   });
+
   const handleSearch = (e) => {
     setInput({
       ...input,
@@ -17,26 +20,33 @@ export const UserEdit = () => {
     });
   };
   
-  const [editedUser, setEditedUser] = useState({
-    name: "",
-    username: "",
-    email: "",
-    subscription: "",
-    role: "",
-    id: "",
+  const [book, setBook] = useState({
+    comments: [],
+    
   });
-  const handleClickSearch = () => {
-    const user = users.filter((el) => {
-      return el.name.toLowerCase() === input.search.toLowerCase();
+
+  const handleClickSearchBook = async () => {
+    
+    const book = books.filter((el) => {
+      return el.title.toLowerCase() === input.searchBook.toLowerCase();
     });
-    setEditedUser({
-      name: user[0].name,
-      username: user[0].username,
-      email: user[0].email,
-      subscription: user[0].subscription,
-      role: user[0].role,
-      id: user[0].id,
+    const id = book[0].id
+    console.log(id)
+    const details = await axios.get('https://bookyou-production.up.railway.app/book/'+id)
+    const bookDetails = details.data
+    console.log(bookDetails)
+    // const endpoints = book[0].comment.map((id)=> ('https://bookyou-production.up.railway.app/comment/user/'+id))
+    // //console.log(endpoints)
+    // Promise.all(endpoints.map((endpoint) => axios.get(endpoint))).then(
+    //     axios.spread((...allData) => {
+    //       console.log({ allData });
+    //     })
+    //   );
+   
+    setBook({
+      comments: book[0].comment
     });
+    
   };
 
   const handleChange = (e) => {
@@ -48,11 +58,7 @@ export const UserEdit = () => {
     const formData = new FormData();
 
     formData.append("name", editedUser.name);
-    formData.append("username", editedUser.username);
-    formData.append("email", editedUser.email);
-    formData.append("subscription", editedUser.subscription);
-    formData.append("role", editedUser.role);
-
+    
     const info = await axios.put(
       "http://localhost:3001/user/update" + editedUser.id,
       formData
@@ -64,25 +70,32 @@ export const UserEdit = () => {
   };
   const handleDelete = async (e) => {
     const info = await axios.delete(
-      "http://localhost:3001/user/delete/" + editedUser.id
+      "http://localhost:3001/comment/delete/" + editedUser.id
     );
     const response = info.data;
     return response;
   };
+
   return (
     <div className={style.container}>
-      <h1>Update Users</h1>
-      <br/>
+      <label>Search User Comments</label>
       <input
-        name="search"
+        name="searchUser"
         value={input.search}
         onChange={(e) => handleSearch(e)}
       />
-      <button type="button" onClick={handleClickSearch}>
-        Search User
+      <label>Search Book Comments</label>
+      <input
+        name="searchBook"
+        value={input.search}
+        onChange={(e) => handleSearch(e)}
+      />
+      <button type="button" onClick={handleClickSearchBook}>
+        Buscar
       </button>
-      <form className={style.form}>
-        <label>Name</label>
+      
+      <form>
+        {/* <label>Name</label>
         <input
           name="name"
           value={editedUser.name}
@@ -117,14 +130,14 @@ export const UserEdit = () => {
         >
           <option value="user">User</option>
           <option value="admin">Admin</option>
-        </select>
+        </select> */}
         <br/>
         <button type="submit" onSubmit={handleSubmit}>
           Update
         </button>
       </form>
       <button type="button" onClick={handleDelete}>
-        Delete User
+        Delete Comment
       </button>
     </div>
   );
