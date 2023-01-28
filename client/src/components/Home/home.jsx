@@ -11,7 +11,7 @@ import CarouselPV from '../Carouseles/CarouselParaVos/Carousel'
 import CarouselN from '../Carouseles/CarouselNuevos/Carousel'
 import SearchBar from '../SearchBar/SearchBar'
 import SearchByAutor from '../FiltradoAutor/filterAutor'
-
+import style from './home.module.css'
 export const Home = () => {
   const dispatch = useDispatch()
 
@@ -43,7 +43,7 @@ export const Home = () => {
         <NavBar />
       </div>
       <div />
-
+    
       <SearchBar
         bookInput={bookInput}
         clearFilters={clearFilters}
@@ -81,6 +81,7 @@ export const Home = () => {
         <div style={{ position: 'absolute', top: '130px', left: '30px' }}>
           <OrdAlfabetico books={books} setBooks={setBooks} />
         </div>
+  
         <div>
           {showCarousels && showFilterGenero && showFilterAutor && (
             <>

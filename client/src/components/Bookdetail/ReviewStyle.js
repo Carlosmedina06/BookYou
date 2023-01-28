@@ -13,11 +13,13 @@ export const ReviewContainer = styled.div`
 `
 export const ImgContainer = styled.div`
   height: 100%;
+  font-size: 40px;
   margin: 20px;
-  img {
-    width: 40px;
-    height: 40px;
-  }
+  color: gray;
+  // img {
+  //   width: 40px;
+  //   height: 40px;
+  // }
 `
 export const ReviewContent = styled.div`
   display: flex;

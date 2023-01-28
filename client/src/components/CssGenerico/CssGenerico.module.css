@@ -1,6 +1,6 @@
 /*-----input-----*/
-
-input{
+/* 
+.inputHomeFilter{
     padding: 6px;
     border-radius: 20px;
     border: 1px solid rgb(156, 163, 175);
@@ -8,33 +8,43 @@ input{
     background-color:rgb(124,124,124);
   
     padding-right: 30px;
-  }
-select{
+  } 
+.selectHome{
     padding: 6px;
     border-radius: 20px;
     border: 1px solid rgb(156, 163, 175);
     color: rgb(255, 255, 255);
     background-color:rgb(124,124,124);
-  }
+  } */
 
 
   .search{
-    color: rgb(255, 255, 255);
+    color: #010326;
     height: 50px;
     width: 250px;
     padding-left: 10px;
-
+    border: 3px solid #010326;
+    border-radius: 10px;
+    background-color: transparent;
   }
   .selectGen{
-    color: rgb(255, 255, 255);
+    color: #8e8e92;
     height: 50px;
     width: 250px;
-
+    border: 3px solid #010326;
+    border-radius: 10px;
+    padding-left: 12px;
+    
   }
   .selectAZ{
-    color: rgb(255, 255, 255);
+    color: #8e8e92;
     width: 100px;
     height: 50px;
-
+    border: 3px solid #010326;
+    border-radius: 10px;
+    text-align:start ;
+    padding-left: 12px;
   }
+
+  
   /*-----input-----*/
