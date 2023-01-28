@@ -2,16 +2,16 @@ const validationsForm = (form) => {
   let errors = {}
 
   if (!form.title) {
-    errors.title = 'the title field is required'
+    errors.title = 'El  titulo es requerido'
   }
   if (!form.description) {
-    errors.description = 'the description field is required 😠'
+    errors.description = 'La descripcion es requerida 😠'
   }
   if (!form.author) {
-    errors.author = 'the author field is required'
+    errors.author = 'El nombre del autor es requerido'
   }
   if (!form.category) {
-    errors.category = 'the category field is required'
+    errors.category = 'La Categoria es requerida'
   }
 
   return errors
