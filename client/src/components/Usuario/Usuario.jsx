@@ -6,7 +6,7 @@
  import style from './Usuario.module.css';
 
 import UserBookCard from './UserBookCard';
-import Pagination from '../Pagination/Pagination'
+// import Pagination from '../Pagination/Pagination'
 
 export const Usuario = () => {
   const [currentPage, setCurrentPage] = useState(0)
@@ -61,7 +61,7 @@ export const Usuario = () => {
             </div>
           </div>
               <div className={style.paginado}>
-                <Pagination nextPage={nextPage} prevPage={prevPage} totalPages={currentPage + 1} />
+                {/* <Pagination nextPage={nextPage} prevPage={prevPage} totalPages={currentPage + 1} /> */}
               </div>
 
           <div>

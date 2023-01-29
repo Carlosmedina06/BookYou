@@ -70,11 +70,11 @@ const Login = () => {
                 <p>Iniciar sesión</p>
               </div>
               <div className={style.formInputBox}>
-                <label htmlFor="email">E-mail</label>
+                <label htmlFor="email">Correo electronico</label>
                 <input name="email" placeholder="email..." type="email" onChange={handletLogin} />
               </div>
               <div className={style.formInputBox}>
-                <label htmlFor="password">Password</label>
+                <label htmlFor="password">Contraseña</label>
                 <input
                   name="password"
                   placeholder="password..."
