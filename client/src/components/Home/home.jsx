@@ -9,11 +9,9 @@ import NavBar from '../NavBar/NavBar'
 import Carousel from '../Carouseles/CarouselRecomendados/Carousel'
 import SearchBar from '../SearchBar/SearchBar'
 import SearchByAutor from '../FiltradoAutor/filterAutor'
-
 import Card from '../Card/Card'
 import Pagination from '../Pagination/Pagination'
 import style from '../Home/home.module.css'
-
 
 export const Home = () => {
   const dispatch = useDispatch()
@@ -112,7 +110,7 @@ export const Home = () => {
       <div style={{ position: 'absolute', top: '0px' }}>
         <NavBar />
       </div>
-      
+
       <SearchBar
         bookInput={bookInput}
         setAuthorInput={setAuthorInput}
@@ -143,11 +141,11 @@ export const Home = () => {
         <div style={{ position: 'absolute', top: '130px', left: '30px' }}>
           <OrdAlfabetico books={books} setBooks={setBooks} />
         </div>
-  
+
         <div>
           {(bookInput.length > 0 && filterLibros.length === 0) ||
-          (bookInputtodos.length > 0 && filterLibros.length === 0) ||
-          (authorInput.length > 0 && filterLibros.length === 0) ? (
+            (bookInputtodos.length > 0 && filterLibros.length === 0) ||
+            (authorInput.length > 0 && filterLibros.length === 0) ? (
             <p className={style.p}>No se encontro ningun libro</p>
           ) : (
             <p />
@@ -157,28 +155,28 @@ export const Home = () => {
         <div className={style.mover1}>
           <div className={style.mover}>
             {filterLibros.length > 0
-              ? filterLibros.map((book, i) => (
-                  <Card
-                    key={i}
-                    autor={book.autor}
-                    comentarios={book.content}
-                    estado={book.subscription}
-                    id={book.id}
-                    img={book.img}
-                    name={book.title}
-                  />
-                ))
-              : allBooks.map((book, i) => (
-                  <Card
-                    key={i}
-                    autor={book.autor}
-                    comentarios={book.content}
-                    estado={book.subscription}
-                    id={book.id}
-                    img={book.img}
-                    name={book.title}
-                  />
-                ))}
+              ? filterLibros.map((book) => (
+                <Card
+                  key={book.id}
+                  autor={book.autor}
+                  comentarios={book.content}
+                  estado={book.subscription}
+                  id={book.id}
+                  img={book.img}
+                  name={book.title}
+                />
+              ))
+              : allBooks.map((book) => (
+                <Card
+                  key={book.id}
+                  autor={book.autor}
+                  comentarios={book.content}
+                  estado={book.subscription}
+                  id={book.id}
+                  img={book.img}
+                  name={book.title}
+                />
+              ))}
           </div>
         </div>
         <div className={style.paginado}>
@@ -197,7 +195,6 @@ export const Home = () => {
             >
               Recomendado
             </h3>
-
             <Carousel />
           </div>
         </div>
