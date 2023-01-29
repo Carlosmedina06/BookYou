@@ -4,6 +4,7 @@ import dotenv from 'dotenv'
 
 import { templateWelcome } from './templateWelcome.js'
 import { templateNewBook } from './templateNewBook.js'
+import { templateNewComment } from './templateNewComment.js'
 
 dotenv.config()
 
@@ -15,17 +16,17 @@ const creatTrans = () => {
   // )
   const transport = nodemailer.createTransport({
     // mailtrap de carlos
+    // host: 'smtp.mailtrap.io',
+    // port: 2525,
+    // auth: {
+    //   user: 'baaa4e1294db2a',
+    //   pass: 'd45867fd72fdb0',
+    // mailtrap de andres
     host: 'smtp.mailtrap.io',
     port: 2525,
     auth: {
-      user: 'baaa4e1294db2a',
-      pass: 'd45867fd72fdb0',
-      // mailtrap de andres
-      // host: 'smtp.mailtrap.io',
-      // port: 2525,
-      // auth: {
-      //   user: '6a9235ed0dc342',
-      //   pass: '4a97d7e4aab7a9',
+      user: '6a9235ed0dc342',
+      pass: '4a97d7e4aab7a9',
     },
   })
 
@@ -61,6 +62,6 @@ export const SendMailnewComment = async (book, newComment) => {
     from: `"Book You 📚" <info@bookyou.com> `,
     to: `${book.user.username}`,
     subject: `Hey ${book.author}, there are new comments about your book`,
-    html: `el comentario del usuario ${newComment.username} dice: ${newComment.comment}`,
+    html: templateNewComment(book, newComment),
   })
 }
