@@ -1,7 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
 
-// import jwt_decode from 'jwt-decode'
 import Pagination from '@mui/material/Pagination'
 import Stack from '@mui/material/Stack'
 
@@ -19,18 +18,16 @@ import style from '../Home/home.module.css'
 export const Home = () => {
   const dispatch = useDispatch()
 
+  const allBooks = useSelector((state) => state.books)
   const [books, setBooks] = useState(true) /* actualizar estado libros orden alf */
   const [bookInput, setBookInput] = useState('') /* actualizar estado searchbar por libro*/
   const [authorInput, setAuthorInput] = useState('') /* actualizar estado searchbar por autor */
   const [bookInputtodos, setBookInputtodos] =
     useState('') /* actualizar estado genero 'value=todos' para serachbar por libro y autor*/
   const [filterLibros, setFilterLibros] = useState([])
-
   const [currentPage, setCurrentPage] = useState(0)
   const [countOne, setCountOne] = useState(1)
   const [countTwo, setCountTwo] = useState(1)
-
-  const allBooks = useSelector((state) => state.books)
 
   const onChangePagination = (event, value) => {
     setCountOne(value)
@@ -152,50 +149,48 @@ export const Home = () => {
 
         <div>
           {(bookInput.length > 0 && filterLibros.length === 0) ||
-          (bookInputtodos.length > 0 && filterLibros.length === 0) ||
-          (authorInput.length > 0 && filterLibros.length === 0) ? (
+            (bookInputtodos.length > 0 && filterLibros.length === 0) ||
+            (authorInput.length > 0 && filterLibros.length === 0) ? (
             <p className={style.p}>No se encontro ningun libro</p>
           ) : (
-            <p />
-          )}
-        </div>
-
-        <div className={style.mover1}>
-          <div className={style.mover}>
-            {filterLibros.length > 0
-              ? filterLibros.map((book) => (
-                  <Card
-                    key={book.id}
-                    id={book.id}
-                    autor={book.autor}
-                    className={style.filterCard}
-                    comentarios={book.content}
-                    estado={book.subscription}
-                    img={book.img}
-                    name={book.title}
-                  />
-                ))
-              : allBooks
-                  .slice(currentPage, currentPage + 8)
-                  .map((book) => (
+            <div className={style.mover1}>
+              <div className={style.mover}>
+                {filterLibros.length > 0
+                  ? filterLibros.map((book) => (
                     <Card
                       key={book.id}
-                      id={book.id}
-                      autor={book.author}
-                      className={style.cards}
+                      autor={book.autor}
+                      className={style.filterCard}
                       comentarios={book.content}
                       estado={book.subscription}
+                      id={book.id}
                       img={book.img}
                       name={book.title}
                     />
-                  ))}
-          </div>
+                  ))
+                  : allBooks
+                    .slice(currentPage, currentPage + 8)
+                    .map((book) => (
+                      <Card
+                        key={book.id}
+                        autor={book.author}
+                        className={style.cards}
+                        comentarios={book.content}
+                        estado={book.subscription}
+                        id={book.id}
+                        img={book.img}
+                        name={book.title}
+                      />
+                    ))}
+              </div>
+            </div>
+          )}
         </div>
+
         <div className={style.paginado}>
           <Stack spacing={2}>
             <Pagination
               className={style.pagination}
-              color="primary"
               count={Math.ceil(allBooks.length / 8)}
               page={countOne}
               size="large"

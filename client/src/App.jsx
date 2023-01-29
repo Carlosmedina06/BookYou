@@ -7,7 +7,6 @@ import { Usuario } from './components/Usuario/Usuario'
 import { CreateUser } from './components/CreateUser/CreateUser'
 import Login from './components/Login/Login'
 import Signup from './components/Signup/Signup'
-import PageOnConstruction from './components/PageOnConstruction/PageOnConstruction'
 import PostBook from './components/FormBookCreate/formBook'
 import MainPage from './components/Landing/index'
 import NotFound from './components/NotFound/NotFound'
@@ -18,6 +17,8 @@ import { BookEdit } from './components/DashBoard/BookEdit/BookEdit'
 import { CommentEdit } from './components/DashBoard/CommentEdit/CommentEdit'
 import { Statistics } from './components/DashBoard/Statistics/Statistics'
 import DashBoardMain from './components/DashBoard/dashBoardMain/'
+import Suscripcion from './components/Suscripcion/Suscripcion'
+
 
 const App = createBrowserRouter([
   {
@@ -34,7 +35,7 @@ const App = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: '/Usuario',
+        path: '/usuario',
         element: <Usuario />,
       },
       {
@@ -71,8 +72,8 @@ const App = createBrowserRouter([
         element: <PostBook />,
       },
       {
-        path: '/pageonconstruction',
-        element: <PageOnConstruction />,
+        path: '/suscripcion',
+        element: <Suscripcion />,
       },
       {
         path: '/login',

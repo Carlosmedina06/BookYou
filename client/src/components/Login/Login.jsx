@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import Swal from 'sweetalert2'
 import { useEffect } from 'react'
 
-import { loginGoogle, logout, loginLocal, loginUser } from '../../redux/actions/index'
+import { loginGoogle, loginLocal, loginUser } from '../../redux/actions/index'
 
 import style from './Login.module.css'
 
@@ -54,30 +54,26 @@ const Login = () => {
     navigation('/home')
   }
 
-  const handleLogout = (e) => {
-    e.preventDefault()
-    dispatch(logout())
-  }
-
   return (
     <div className={style.mainContainer}>
       <div className={style.cardContainer}>
         <form onSubmit={submitLogin}>
-          {user && <button onClick={handleLogout}>Cerrar sesion</button>}
           {!user && (
             <div className={style.contentformCard}>
               <div className={style.formTitle}>
                 <p>Iniciar sesión</p>
               </div>
               <div className={style.formInputBox}>
+
                 <label htmlFor="email">Correo electronico</label>
                 <input name="email" placeholder="email..." type="email" onChange={handletLogin} />
+
               </div>
               <div className={style.formInputBox}>
                 <label htmlFor="password">Contraseña</label>
                 <input
                   name="password"
-                  placeholder="password..."
+                  placeholder="Contraseña"
                   type="password"
                   onChange={handletLogin}
                 />

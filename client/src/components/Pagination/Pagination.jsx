@@ -4,10 +4,10 @@ import Stack from '@mui/material/Stack'
 
 import style from '../Pagination/Pagination.module.css'
 
-export default function BasicPagination({ filterLibros }) {
+export default function BasicPagination({ filterBooks }) {
   return (
     <Stack spacing={2}>
-      <Pagination className={style.paginacion} color="primary" count={filterLibros.length} />
+      <Pagination className={style.paginacion} count={filterBooks} />
     </Stack>
   )
 }
