@@ -34,7 +34,7 @@ export const createPago = async (req, res) => {
                 title: 'Subscripcion Bookyou',
                 description: 'suscripcion premium bookyou',
                 quantity: 1,
-                unit_price: 100,
+                unit_price: 385,
               },
             ],
             auto_return: 'approved',
