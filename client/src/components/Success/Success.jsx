@@ -19,7 +19,7 @@ const Success = () => {
   return (
     <>
       <h1>LISTO YA ERES PREMIUM SALUDOS!</h1>
-      <Link>
+      <Link to="/home">
         <button>Regresar al home</button>
       </Link>
     </>

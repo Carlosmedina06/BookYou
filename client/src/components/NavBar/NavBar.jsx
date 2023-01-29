@@ -13,10 +13,6 @@ import style from './NavBar.module.css'
 const NavBar = () => {
   const user = useSelector((state) => state.loginUser)
   const dispatch = useDispatch()
-  const handleSuscribe = (e) => {
-    e.preventDefault()
-    window.open('/pageonconstruction')
-  }
 
   const handleLogOut = (e) => {
     dispatch(logout(e))
@@ -60,9 +56,9 @@ const NavBar = () => {
         <div>
           {' '}
           <div>
-            <button className={style.buttonSuscribe} onClick={handleSuscribe}>
-              Suscribirse
-            </button>
+            <NavLink to="/suscripcion">
+              <button className={style.buttonSuscribe}>Suscribirse</button>
+            </NavLink>
           </div>
           <div>
             {user && (

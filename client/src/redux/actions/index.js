@@ -1,3 +1,4 @@
+import { async } from '@firebase/util'
 import axios from 'axios'
 /* ACA ESTA TODA LA CONEXION BACK Y FRONT!! */
 export const GET_USERS = 'GET_USERS'
@@ -11,7 +12,7 @@ export const LOGOUT = 'LOGOUT'
 export const LOGIN = 'LOGIN'
 export const REGISTER_LOCAL = 'REGISTER_LOCAL'
 export const CLEAR_BOOK_DETAILS = 'CLEAR_BOOK_DETAIL'
-// export const REGISTER_GOOGLE = 'REGISTER_GOOGLE'
+export const SUBSCRIPTION = 'SUBSCRIPTION'
 import {
   GoogleAuthProvider,
   signInWithPopup,
@@ -21,6 +22,16 @@ import {
 } from 'firebase/auth'
 
 import { auth } from '../../utils/FireBase/FireBase'
+
+export const suscription = async () => {
+  const pago = await axios.get('http://localhost:3001/checkout', {
+    headers: {
+      Authorization: `Bearer ${window.localStorage.getItem('token')}`,
+    },
+  })
+
+  return pago.data
+}
 
 export const loginGoogle = () => async (dispatch) => {
   const provider = new GoogleAuthProvider()
@@ -47,19 +58,6 @@ export const loginUser = () => async (dispatch) => {
     })
   }
 }
-
-// export const registerGoogle = () => async (dispatch) => {
-//   const provider = new GoogleAuthProvider()
-
-//   const res = await signInWithPopup(auth, provider)
-
-//   axios.post('http://localhost:3001/signup', res.user).then((res) => {
-//     return dispatch({
-//       type: REGISTER_GOOGLE,
-//       payload: res.data.token,
-//     })
-//   })
-// }
 
 export const registerLocal = (email, password, displayName) => async (dispatch) => {
   const response = await createUserWithEmailAndPassword(auth, email, password)
@@ -216,11 +214,11 @@ export const filterCategorys = (payload) => {
 
 /* -------------- FILTRO POR AUTOR ----------------------- */
 /* export const filterAutor = (payload) => {
-  return {
-    type: 'FILTER_AUTOR',
-    payload,
-  }
-} */
+      return {
+        type: 'FILTER_AUTOR',
+        payload,
+      }
+    } */
 
 /* ----------------- ORDENAR GÉNEROS POR ORDEN ALFABETICO----------------- */
 export const orderAlf = (payload) => {
