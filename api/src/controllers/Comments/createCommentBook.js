@@ -26,8 +26,7 @@ const createCommentBook = async (req, res) => {
 
       if (!comment) res.status(400).send('comment content is required')
 
-      const book = await Book.findById(id)
-
+      const book = await Book.findById(id).populate(['user'])
       const newComment = new Comment({
         comment,
         book: book._id,
@@ -41,6 +40,8 @@ const createCommentBook = async (req, res) => {
       user.comment = user.comment.concat(newComment._id)
       await user.save()
       await book.save()
+      console.log('el libro:', book)
+      console.log('el comentario:', newComment)
       SendMailnewComment(book, newComment)
       res.status(200).send('Created book comment')
     }
