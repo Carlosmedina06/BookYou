@@ -16,10 +16,10 @@
     perspective: 1000px;
 }
 
-.pagination{
-    margin-top: -22rem;
+.pagination {
+    margin-top: -23rem;
     margin-left: 5rem;
-    
+
 }
 
 .svgConteiner {
@@ -67,15 +67,15 @@
     gap: 10px;
     margin-left: 3%;
     perspective: 1000px;
-  }
+}
 
-  .filterCard{
+.filterCard {
     display: flex;
-   /*  flex-wrap: wrap; */
+    /*  flex-wrap: wrap; */
     /* gap: 10px; */
     margin-left: 8%;
     perspective: 1000px;
-  }
+}
 
 
 .searchFilterRow {

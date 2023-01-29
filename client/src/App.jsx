@@ -33,7 +33,7 @@ const App = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: '/Usuario',
+        path: '/usuario',
         element: <Usuario />,
       },
       {
