@@ -172,6 +172,7 @@ export const Home = () => {
                     estado={book.subscription}
                     img={book.img}
                     name={book.title}
+                    id={book.id}
                   />
                 ))
               : allBooks
@@ -185,6 +186,7 @@ export const Home = () => {
                       estado={book.subscription}
                       img={book.img}
                       name={book.title}
+                      id={book.id}
                     />
                   ))}
           </div>
