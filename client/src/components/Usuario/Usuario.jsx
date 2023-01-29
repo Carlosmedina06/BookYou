@@ -1,6 +1,7 @@
 import { useDispatch } from 'react-redux'
 import { useEffect, useState } from 'react'
 
+
 import NavBar from '../NavBar/NavBar'
 import Pagination from '../Pagination/Pagination'
 
@@ -63,6 +64,7 @@ export const Usuario = () => {
               )}
             </div>
           </div>
+
           <div className={style.paginado}>
             <Pagination
               filterBooks={filterBooks().length}
@@ -70,6 +72,7 @@ export const Usuario = () => {
               prevPage={prevPage}
               totalPages={currentPage + 1}
             />
+
           </div>
           <div />
         </div>
