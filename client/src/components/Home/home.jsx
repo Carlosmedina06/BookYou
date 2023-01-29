@@ -26,11 +26,12 @@ export const Home = () => {
     useState('') /* actualizar estado genero 'value=todos' para serachbar por libro y autor*/
   const [filterLibros, setFilterLibros] = useState([])
 
+  const allBooks = useSelector((state) => state.books)
+
+  /* ----------Paginacion------------- */
   const [currentPage, setCurrentPage] = useState(0)
   const [countOne, setCountOne] = useState(1)
   const [countTwo, setCountTwo] = useState(1)
-
-  const allBooks = useSelector((state) => state.books)
 
   const onChangePagination = (event, value) => {
     setCountOne(value)
@@ -52,6 +53,18 @@ export const Home = () => {
     setCountTwo(value)
   }
 
+  //Pagina Anterior
+  const prev = () => {
+    if (0 < currentPage) setCurrentPage(currentPage - 8)
+  }
+  //Pagina siguiente
+  const next = () => {
+    if (currentPage + 8 < allBooks.length) {
+      setCurrentPage(currentPage + 8)
+    }
+  }
+
+  /* ----------Condicional filtrado libros------------- */
   useEffect(() => {
     setFilterLibros(
       allBooks.filter((b) => {
@@ -82,10 +95,12 @@ export const Home = () => {
           return b.author.toLowerCase().includes(authorInput.toLowerCase())
         } else if (bookInputtodos.length > 0) {
           return b.category.toLowerCase().includes(bookInputtodos.toLowerCase())
+        } else if (bookInputtodos.length > 1) {
+          return books
         }
       }),
     )
-  }, [bookInputtodos, authorInput, bookInput, allBooks])
+  }, [bookInputtodos, authorInput, bookInput, allBooks, books])
 
   useEffect(() => {
     dispatch(getBooks())
@@ -93,25 +108,6 @@ export const Home = () => {
     dispatch(loginUser())
     dispatch(getAutores())
   }, [dispatch])
-
-  //data pagination-----------------------
-  /*   const totalPages = Math.ceil(allBooks.length / 8)
-  const filterBooks = () => {
-    const filtered = allBooks.slice(currentPage * 8, currentPage * 4 + 4)
-
-    return filtered
-  } */
-
-  //Pagina Anterior
-  const prev = () => {
-    if (0 < currentPage) setCurrentPage(currentPage - 8)
-  }
-  //Pagina siguiente
-  const next = () => {
-    if (currentPage + 8 < allBooks.length) {
-      setCurrentPage(currentPage + 8)
-    }
-  }
 
   return (
     <div style={{ backgroundColor: 'blue' }}>
@@ -166,11 +162,11 @@ export const Home = () => {
               ? filterLibros.map((book) => (
                   <Card
                     key={book.id}
-                    id={book.id}
-                    autor={book.autor}
+                    autor={book.author}
                     className={style.filterCard}
                     comentarios={book.content}
                     estado={book.subscription}
+                    id={book.id}
                     img={book.img}
                     name={book.title}
                   />
@@ -180,11 +176,11 @@ export const Home = () => {
                   .map((book) => (
                     <Card
                       key={book.id}
-                      id={book.id}
                       autor={book.author}
                       className={style.cards}
                       comentarios={book.content}
                       estado={book.subscription}
+                      id={book.id}
                       img={book.img}
                       name={book.title}
                     />
