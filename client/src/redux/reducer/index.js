@@ -8,6 +8,7 @@ import {
   LOGIN_LOCAL,
   LOGOUT,
   REGISTER_LOCAL,
+  CLEAR_BOOK_DETAILS,
 } from '../actions'
 
 const initialState = {
@@ -122,6 +123,11 @@ function rootReducer(state = initialState, action) {
         ...state,
         detail: action.payload,
       }
+      case CLEAR_BOOK_DETAILS:
+        return{
+          ...state,
+          detail: '',
+        }
     default:
       return state
   }

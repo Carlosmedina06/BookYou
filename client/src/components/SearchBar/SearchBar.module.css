@@ -5,15 +5,18 @@
 }
 
 .svgConteiner{
-    position: absolute;
+    position: relative;
     width: 35px;
-    margin-top: 12px ;
-    margin-left: 12rem;
+
+    margin-top: 5px ;
+    margin-left: 50rem;
+
     color:white
 }
 
 .svg{
     margin-left: 10px;
+
 }
 
 .mover1 {
@@ -25,15 +28,15 @@
 
 
 .p {
-    color: white;
+    color: #010326;
     font-size: 1.2em;
     margin-top: 10%;
     font-style: italic;
 }
 .paginado {
-    width: 1000px;
+    width: 500px;
     position: absolute;
-    top: 50px;
-    left:  20px;
+    top: 500px;
+    left: 600px;
     display: flex;
   }

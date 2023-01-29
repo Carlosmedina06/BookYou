@@ -1,9 +1,9 @@
 import { Router } from 'express'
 
-import stripeCheckout from '../../controllers/stripe/stripeCheckout.js'
+import { createPago } from '../../controllers/MercadoPago/Mercadopago.js'
 
 const checkOutRouter = Router()
 
-checkOutRouter.post('/', stripeCheckout)
+checkOutRouter.get('/', createPago)
 
 export default checkOutRouter

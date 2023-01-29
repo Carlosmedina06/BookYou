@@ -1,26 +1,22 @@
-import React, { useState, useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import React, { useState } from 'react'
+import axios from 'axios'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
-import { Link } from 'react-router-dom'
-import axios from 'axios'
+import Swal from 'sweetalert2'
+import { BiUserCircle } from 'react-icons/bi'
 
 import GetRateStars from '../GetRateStars/GetRateStars'
 import style from '../Bookdetail/Reviews.module.css'
-import { getBookById } from '../../redux/actions/index'
 
-const Reviews = ({ id }) => {
-  const [rata, setRata] = useState(0) // NO TOCAR 🐭
-  const dispatch = useDispatch()
-  const book = useSelector((state) => state.detail)
+import { ImgContainer, ReviewContainer, ReviewContent, ReviewText, ReviewDate } from './ReviewStyle'
+
+const Reviews = ({ id, comment, setRata, rata }) => {
   const [Review, setReview] = useState({
     rate: '',
     comment: '',
   })
 
-  useEffect(() => {
-    dispatch(getBookById(id))
-  }, [dispatch, id, rata])
+  console.log('review')
 
   const handleReview = (e) => {
     setReview({
@@ -29,7 +25,7 @@ const Reviews = ({ id }) => {
     })
   }
 
-  const handleSubmitReview = (e) => {
+  const handleSubmitReview = async (e) => {
     e.preventDefault()
     const coment = {
       comment: Review.comment,
@@ -38,27 +34,31 @@ const Reviews = ({ id }) => {
     }
 
     axios
-      .post('https://bookyou-production.up.railway.app/comment/create/book', coment, {
+      .post('http://localhost:3001/comment/create/book', coment, {
         headers: {
           authorization: `Bearer ${localStorage.getItem('token')}`,
         },
       })
-      // eslint-disable-next-line no-console
       .then((res) => {
         // eslint-disable-next-line no-console
         console.log(res.data)
         setRata(rata + 1) // lo siento estoy desesperado.
       })
-    setReview({
+    await setReview({
       rate: '',
       comment: '',
     })
+    Swal.fire({
+      icon: 'success',
+      title: 'Gracias por tu comentario',
+      showConfirmButton: false,
+      timer: 1500,
+    })
   }
 
-  const token = localStorage.getItem('token')
-
+  // si estas logueado te muestra el formulario para comentar
   const loginUserVerification = () => {
-    if (!token) return false
+    if (!window.localStorage.getItem('token')) return false
 
     return true
   }
@@ -111,24 +111,34 @@ const Reviews = ({ id }) => {
         </div>
       )}
 
-      {!book.comment ? (
+      {!comment ? (
         <div>Aun no hay Comentarios para este libro</div>
       ) : (
-        book.comment
+        comment
           ?.map((item, index) => (
-            <div key={index} className={style.postedCommentsBox}>
-              <div className={style.postedCommentsImg}>
-                <img
-                  alt=""
+            <ReviewContainer key={index}>
+              <ImgContainer>
+                {/* <img
+                  alt={item.username}
                   src="https://res.cloudinary.com/dn8jxsqka/image/upload/v1674671180/user_icon_riocsx.png"
-                />
-              </div>
-              <div>
-                <div>{item.comment}</div>
-                <div>{item.username ? item.username : 'username'} </div>
-                <GetRateStars rate={item.rate} />
-              </div>
-            </div>
+                /> */}
+                <BiUserCircle />
+              </ImgContainer>
+              <ReviewContent>
+                <ReviewText>
+                  <div>
+                    <h2>{item.username ? item.username : 'username'}</h2>
+                  </div>
+                  <div>
+                    <p>{item.comment}</p>
+                  </div>
+                  <GetRateStars rate={item.rate} />
+                </ReviewText>
+                <ReviewDate>
+                  <p>{item.createdAt.slice(0, 10)}</p>
+                </ReviewDate>
+              </ReviewContent>
+            </ReviewContainer>
           ))
           .reverse()
       )}

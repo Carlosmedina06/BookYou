@@ -11,6 +11,7 @@ import PageOnConstruction from './components/PageOnConstruction/PageOnConstructi
 import PostBook from './components/FormBookCreate/formBook'
 import MainPage from './components/Landing/index'
 import NotFound from './components/NotFound/NotFound'
+import Success from './components/Success/Success'
 import Layout from './layout/Layout'
 import { Dash } from './components/DashBoard/Dash'
 import { UserEdit } from './components/DashBoard/UserEdit/UserEdit'
@@ -84,6 +85,10 @@ const App = createBrowserRouter([
       {
         path: '/signup',
         element: <Signup />,
+      },
+      {
+        path: '/success',
+        element: <Success />,
       },
     ],
   },
