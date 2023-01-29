@@ -51,9 +51,6 @@ height: auto;
     display: flex;
   }
 
-
-}
-
 .searchFilterRow{
 display: flex;
 flex-direction: row;
