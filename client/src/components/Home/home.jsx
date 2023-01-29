@@ -166,6 +166,7 @@ export const Home = () => {
               ? filterLibros.map((book) => (
                   <Card
                     key={book.id}
+                    id={book.id}
                     autor={book.autor}
                     className={style.filterCard}
                     comentarios={book.content}
@@ -179,7 +180,8 @@ export const Home = () => {
                   .map((book) => (
                     <Card
                       key={book.id}
-                      autor={book.autor}
+                      id={book.id}
+                      autor={book.author}
                       className={style.cards}
                       comentarios={book.content}
                       estado={book.subscription}
