@@ -1,7 +1,9 @@
+
 // import { AiOutlineSearch, AiOutlineDelete, AiOutlineEdit } from 'react-icons/Ai'
 
 import styles from './UserBookCard.module.css'
 import image from './libro-1.jpg'
+
 
 function UserBookCard() {
   return (
@@ -24,18 +26,22 @@ function UserBookCard() {
         <div>
           <button className={styles.optionButton}>
             <span>Ver</span>
+
             <span>{/* <AiOutlineSearch /> */}</span>
+
           </button>
         </div>
         <div>
           <button className={styles.optionButton}>
             <span>Eliminar</span>
             <span>{/* <AiOutlineDelete /> */}</span>
+
           </button>
         </div>
         <div>
           <button className={styles.optionButton}>
             <span>Editar</span>
+
             <span>{/* <AiOutlineEdit /> */}</span>
           </button>
         </div>

@@ -1,0 +1,12 @@
+.container{
+    display: flex;
+    align-items: center;
+    align-content: space-around;
+}
+.graph{
+    margin: 20px;
+}
+.form{
+    padding: 10px;
+    border: solid 2px red;
+}

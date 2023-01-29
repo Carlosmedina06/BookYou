@@ -13,6 +13,11 @@ import MainPage from './components/Landing/index'
 import NotFound from './components/NotFound/NotFound'
 import Success from './components/Success/Success'
 import Layout from './layout/Layout'
+import { Dash } from './components/DashBoard/Dash'
+import { UserEdit } from './components/DashBoard/UserEdit/UserEdit'
+import { BookEdit } from './components/DashBoard/BookEdit/BookEdit'
+import { CommentEdit } from './components/DashBoard/CommentEdit/CommentEdit'
+import { Statistics } from './components/DashBoard/Statistics/Statistics'
 
 const App = createBrowserRouter([
   {
@@ -40,6 +45,27 @@ const App = createBrowserRouter([
         path: '/dashBoard',
         element: <DashBoard />,
       },
+      {
+        path: '/graphic',
+        element: <Dash />
+      },
+      {
+        path: '/userEdit',
+        element: <UserEdit/>
+      },
+      {
+        path: '/bookEdit',
+        element: <BookEdit/>
+      },
+      {
+        path: '/commentEdit',
+        element: <CommentEdit/>
+      },
+      {
+        path: '/statistics',
+        element: <Statistics/>
+      },
+      
       {
         path: '/bookdetail/:id',
         element: <Bookdetail />,
