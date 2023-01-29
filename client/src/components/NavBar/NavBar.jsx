@@ -40,7 +40,9 @@ const NavBar = () => {
       <nav className={style.NavBarOption}>
         <ul>
           <li>
-          <NavLink to="/graphic">Ver Dash</NavLink>
+            <NavLink to="/dashboard">Ver Dash</NavLink>
+          </li>
+          <li>
             <NavLink to="/home">Inicio</NavLink>
           </li>
           {loginUserVerification() && (

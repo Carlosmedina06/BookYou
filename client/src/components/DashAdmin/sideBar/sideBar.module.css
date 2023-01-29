@@ -1,13 +1,17 @@
 .sidebar{
   flex:1;
-  height: calc(100vh - 50px);
+  height: calc(100vh - 0px);
   background-color: rgba(155, 156, 148, 0.589);
   font-weight: bold;
   position:fixed;
-  margin-left: -77rem;
-  margin-top: 50px;
 }
 
+.titulo{
+  font-size: 2.25rem;
+  margin-left: 1.25rem;
+  line-height: 2.5rem;
+  
+}
 .sidebarWrapper{
   padding: 20px;
   margin-top: 3rem;
