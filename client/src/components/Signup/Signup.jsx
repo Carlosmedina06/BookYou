@@ -69,27 +69,32 @@ const Signup = () => {
               <p>Crear Cuenta</p>
             </div>
             <div className={style.formInputBox}>
-              <label htmlFor="email">Nombre</label>
-              <input name="displayName" placeholder="name" type="text" onChange={handleRegister} />
+              <label htmlFor="display">Nombre</label>
+              <input
+                name="displayName"
+                placeholder="Nombre"
+                type="text"
+                onChange={handleRegister}
+              />
             </div>
             <div className={style.formInputBox}>
-              <label htmlFor="email">E-mail</label>
-              <input name="email" placeholder="email..." type="email" onChange={handleRegister} />
+              <label htmlFor="email">Email</label>
+              <input name="email" placeholder="Email" type="email" onChange={handleRegister} />
             </div>
             <div className={style.formInputBox}>
-              <label htmlFor="email">Contraseña</label>
+              <label htmlFor="password">Contraseña</label>
               <input
                 name="password"
-                placeholder="password..."
+                placeholder="Contraseña"
                 type="password"
                 onChange={handleRegister}
               />
             </div>
             <div className={style.formInputBox}>
-              <label htmlFor="email"> Confirmar Contraseña</label>
+              <label htmlFor="confirmpassword"> Confirmar Contraseña</label>
               <input
                 name="confirmpassword"
-                placeholder="confirm password..."
+                placeholder="Confirmar contraseña"
                 type="password"
                 onChange={handleRegister}
               />

@@ -32,7 +32,7 @@ export const createPago = async (req, res) => {
             items: [
               {
                 title: 'Subscripcion Bookyou',
-                description: 'dame plata papu',
+                description: 'suscripcion premium bookyou',
                 quantity: 1,
                 unit_price: 100,
               },
