@@ -2,6 +2,9 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
 
 //import jwt_decode from 'jwt-decode'
+import Pagination from '@mui/material/Pagination'
+import Stack from '@mui/material/Stack'
+
 import { getBooks, getCategorys, loginUser, getAutores } from '../../redux/actions/index'
 import FiltradoGenero from '../FiltradoGenero/filtradoGenero'
 import OrdAlfabetico from '../OrderAlfab/orderAlfabetico'
@@ -10,7 +13,7 @@ import Carousel from '../Carouseles/CarouselRecomendados/Carousel'
 import SearchBar from '../SearchBar/SearchBar'
 import SearchByAutor from '../FiltradoAutor/filterAutor'
 import Card from '../Card/Card'
-import Pagination from '../Pagination/Pagination'
+/* import Pagination from '../Pagination/Pagination' */
 import style from '../Home/home.module.css'
 
 export const Home = () => {
@@ -21,12 +24,33 @@ export const Home = () => {
   const [authorInput, setAuthorInput] = useState('') /* actualizar estado searchbar por autor */
   const [bookInputtodos, setBookInputtodos] =
     useState('') /* actualizar estado genero 'value=todos' para serachbar por libro y autor*/
-  const [currentPage, setCurrentPage] = useState(0)
   const [filterLibros, setFilterLibros] = useState([])
 
+  const [currentPage, setCurrentPage] = useState(0)
+  const [countOne, setCountOne] = useState(1)
+  const [countTwo, setCountTwo] = useState(1)
+
   const allBooks = useSelector((state) => state.books)
-  const allCateg = useSelector((state) => state.category)
-  const allAuthor = useSelector((state) => state.autor)
+
+  const onChangePagination = (event, value) => {
+    setCountOne(value)
+    if (countTwo < value) {
+      let count = value - countTwo
+
+      while (count > 0) {
+        next()
+        count--
+      }
+    } else if (countTwo > value) {
+      let count = countTwo - value
+
+      while (count > 0) {
+        prev()
+        count--
+      }
+    }
+    setCountTwo(value)
+  }
 
   useEffect(() => {
     setFilterLibros(
@@ -63,22 +87,6 @@ export const Home = () => {
     )
   }, [bookInputtodos, authorInput, bookInput, allBooks])
 
-  /* ---filter books------ */
-  /*   allBooks = allBooks.filter((book) => book.title.toLowerCase().includes(bookInput.toLowerCase()))
-  console.log('soy allbooks:', allBooks) */
-
-  /* ---filter author----- */
-  /*   const filterAuthor = autor.filter((a) =>
-    a.author.toLowerCase().includes(authorInput.toLowerCase()),
-  ) */
-
-  /* ---filter categ---- */
-  /*   let allCateg = state.allBooks
-  let categFilter =
-    action.payload === 'todos'
-      ? allCateg
-      : allCateg.filter((c) => c.category?.includes(action.payload)) */
-
   useEffect(() => {
     dispatch(getBooks())
     dispatch(getCategorys())
@@ -87,21 +95,21 @@ export const Home = () => {
   }, [dispatch])
 
   //data pagination-----------------------
-  const totalPages = Math.ceil(allBooks.length / 5)
+  /*   const totalPages = Math.ceil(allBooks.length / 8)
   const filterBooks = () => {
-    const filtered = allBooks.slice(currentPage * 5, currentPage * 5 + 5)
+    const filtered = allBooks.slice(currentPage * 8, currentPage * 4 + 4)
 
     return filtered
-  }
+  } */
 
   //Pagina Anterior
-  const prevPage = () => {
-    if (currentPage >= 1) setCurrentPage(currentPage - 1)
+  const prev = () => {
+    if (0 < currentPage) setCurrentPage(currentPage - 8)
   }
   //Pagina siguiente
-  const nextPage = () => {
-    if (currentPage < totalPages && filteredResults.length - 5 > currentPage * 5) {
-      setCurrentPage(currentPage + 1)
+  const next = () => {
+    if (currentPage + 8 < allBooks.length) {
+      setCurrentPage(currentPage + 8)
     }
   }
 
@@ -144,8 +152,8 @@ export const Home = () => {
 
         <div>
           {(bookInput.length > 0 && filterLibros.length === 0) ||
-            (bookInputtodos.length > 0 && filterLibros.length === 0) ||
-            (authorInput.length > 0 && filterLibros.length === 0) ? (
+          (bookInputtodos.length > 0 && filterLibros.length === 0) ||
+          (authorInput.length > 0 && filterLibros.length === 0) ? (
             <p className={style.p}>No se encontro ningun libro</p>
           ) : (
             <p />
@@ -156,34 +164,45 @@ export const Home = () => {
           <div className={style.mover}>
             {filterLibros.length > 0
               ? filterLibros.map((book) => (
-                <Card
-                  key={book.id}
-                  autor={book.autor}
-                  comentarios={book.content}
-                  estado={book.subscription}
-                  id={book.id}
-                  img={book.img}
-                  name={book.title}
-                />
-              ))
-              : allBooks.map((book) => (
-                <Card
-                  key={book.id}
-                  autor={book.autor}
-                  comentarios={book.content}
-                  estado={book.subscription}
-                  id={book.id}
-                  img={book.img}
-                  name={book.title}
-                />
-              ))}
+                  <Card
+                    key={book.id}
+                    autor={book.autor}
+                    className={style.filterCard}
+                    comentarios={book.content}
+                    estado={book.subscription}
+                    img={book.img}
+                    name={book.title}
+                  />
+                ))
+              : allBooks
+                  .slice(currentPage, currentPage + 8)
+                  .map((book) => (
+                    <Card
+                      key={book.id}
+                      autor={book.autor}
+                      className={style.cards}
+                      comentarios={book.content}
+                      estado={book.subscription}
+                      img={book.img}
+                      name={book.title}
+                    />
+                  ))}
           </div>
         </div>
         <div className={style.paginado}>
-          <Pagination nextPage={nextPage} prevPage={prevPage} totalPages={currentPage + 1} />
+          <Stack spacing={2}>
+            <Pagination
+              className={style.pagination}
+              color="primary"
+              count={Math.ceil(allBooks.length / 8)}
+              page={countOne}
+              size="large"
+              onChange={onChangePagination}
+            />
+          </Stack>
         </div>
         <div>
-          <div style={{ position: 'absolute', left: '300px', top: '700px' }}>
+          <div style={{ position: 'absolute', left: '290px', top: '65rem' }}>
             <h3
               style={{
                 color: '#010326',

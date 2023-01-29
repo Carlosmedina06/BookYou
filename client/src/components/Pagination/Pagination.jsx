@@ -1,16 +1,13 @@
-import React from 'react'
-import {AiOutlineLeft,AiOutlineRight} from 'react-icons/ai';
-import style from './Pagination.module.css'
+import * as React from 'react'
+import Pagination from '@mui/material/Pagination'
+import Stack from '@mui/material/Stack'
 
-export default function Pagination({ prevPage, nextPage, totalPages }) {
+import style from '../Pagination/Pagination.module.css'
+
+export default function BasicPagination({ filterLibros }) {
   return (
-    <div className={style.todo}>
-
-
-      <button onClick={prevPage} className={style.BtnPag}><AiOutlineLeft/></button>
-      <p className={style.p}>{totalPages}</p>
-      <button onClick={nextPage} className={style.BtnPag}><AiOutlineRight/></button>
-
-    </div>
+    <Stack spacing={2}>
+      <Pagination className={style.paginacion} color="primary" count={filterLibros.length} />
+    </Stack>
   )
 }
