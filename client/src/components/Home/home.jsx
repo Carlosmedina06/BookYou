@@ -22,8 +22,7 @@ export const Home = () => {
   const [books, setBooks] = useState(true) /* actualizar estado libros orden alf */
   const [bookInput, setBookInput] = useState('') /* actualizar estado searchbar por libro*/
   const [authorInput, setAuthorInput] = useState('') /* actualizar estado searchbar por autor */
-  const [bookInputtodos, setBookInputtodos] =
-    useState('') /* actualizar estado genero 'value=todos' para serachbar por libro y autor*/
+  const [bookInputtodos, setBookInputtodos] =useState('') /* actualizar estado genero 'value=todos' para serachbar por libro y autor*/
   const [filterLibros, setFilterLibros] = useState([])
 
   const [currentPage, setCurrentPage] = useState(0)
@@ -113,10 +112,22 @@ export const Home = () => {
     }
   }
 
+
+  const clearStates = () => {
+    setBooks(true);
+    setBookInput('');
+    setAuthorInput('');
+    setBookInputtodos('');
+  }
+
+
   return (
-    <div style={{ backgroundColor: 'blue' }}>
+    <div >
       <div style={{ position: 'absolute', top: '0px' }}>
         <NavBar />
+      </div>
+      <div style={{ position:'absolute',top: '90px', right: '45px' }}>
+        <button className={style.boton}  onClick={clearStates}>Lmpiar</button>
       </div>
 
       <SearchBar
@@ -204,7 +215,7 @@ export const Home = () => {
           </Stack>
         </div>
         <div>
-          <div style={{ position: 'absolute', left: '290px', top: '65rem' }}>
+          <div style={{ position: 'absolute', left: '290px', top: '60rem' }}>
             <h3
               style={{
                 color: '#010326',

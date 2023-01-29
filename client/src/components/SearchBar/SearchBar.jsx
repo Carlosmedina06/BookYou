@@ -1,6 +1,7 @@
 import CssGenerico from '../CssGenerico/CssGenerico.module.css'
 /* import style from './SearchBar.module.css' */
 
+
 function SearchBar({ setBookInput }) {
   //seteo
 
@@ -13,10 +14,11 @@ function SearchBar({ setBookInput }) {
   /*   const filteredResults = books.filter((book) =>
     book.title.toLowerCase().includes(bookInput.toLowerCase()),
   ) */
-
+ 
   return (
     <>
       <div>
+      
         <div>
           <div style={{ position: 'absolute', top: '20px', left: '300px', paddingRight: '300px' }}>
             <input
