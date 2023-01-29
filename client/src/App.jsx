@@ -17,6 +17,7 @@ import { UserEdit } from './components/DashBoard/UserEdit/UserEdit'
 import { BookEdit } from './components/DashBoard/BookEdit/BookEdit'
 import { CommentEdit } from './components/DashBoard/CommentEdit/CommentEdit'
 import { Statistics } from './components/DashBoard/Statistics/Statistics'
+import DashBoardMain from './components/DashBoard/dashBoardMain/'
 
 const App = createBrowserRouter([
   {
@@ -84,6 +85,10 @@ const App = createBrowserRouter([
       {
         path: '/success',
         element: <Success />,
+      },
+      {
+        path: '/dashboard/:select',
+        element: <DashBoardMain/>,
       },
     ],
   },
