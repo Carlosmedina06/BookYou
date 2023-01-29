@@ -1,0 +1,133 @@
+.flexContainer{
+  display: flex;
+  flex-direction: column;
+  
+  
+  justify-content:space-around;
+  
+}
+
+.mainContent{
+margin-top: 3rem;
+
+
+}
+
+.homeHeaderGraphs{
+display: flex;
+flex-direction: row;
+/* margin: 0 40px 40px ;  */
+width: 100%;
+height: auto;
+
+
+}
+
+
+.SideBar{
+width: 18rem;
+min-height: 100vh;
+
+
+}
+/* .gridContainter div{
+background-color: blue;
+
+
+} */
+
+.dash{
+display: flex;
+flex-direction: row;
+width: 212vh;
+
+}
+
+.graphCard{
+  display: flex;
+  flex-direction: column;
+margin-right: 1%;
+  height: auto;
+width: 340px;
+background-color: rgb(49, 48, 48);
+border-radius: 8px;
+align-content: center;
+align-items: center;
+
+}
+
+.cardTitle{
+  position: relative;
+font-size: 1.5rem;
+  color: white;
+  margin-top: 1px;
+  margin-bottom: 10px;
+}
+
+.homeCardGraphValue{
+font-weight: 800;
+color: white;
+font-size: 4rem; 
+margin: 50px 0px  0px;
+background-color: aquamarine;
+
+}
+
+.homeHeaderGraphsWrap{
+display: flex;
+flex-direction: column;
+margin-left: 3rem;
+height: fit-content;
+background-color: aquamarine;
+}
+
+.homeHeaderGraphscontainer{
+display: flex;
+flex-direction: column;
+
+margin-left: 3rem;
+}
+
+
+
+.arrowText{
+  
+display: flex;
+justify-self: right;
+align-self: flex-end;
+margin-right: 2rem;
+margin-top: 0.8rem;
+
+width: fit-content;
+align-items: center;
+}
+
+
+.graph{
+width: 100%;
+height: 200px;
+
+
+}
+
+
+.bookContainer{
+margin: 40px;
+margin-left: 3rem;
+
+}
+
+.ContainerTitle{
+
+  font-weight: 700;
+  font-size: 1.5rem;
+  margin-bottom: 1.7rem;
+  margin-top: 2rem;
+
+}
+
+.bookEditForm{
+ 
+width: 500px;
+
+}
