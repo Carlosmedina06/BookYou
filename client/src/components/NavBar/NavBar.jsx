@@ -39,9 +39,9 @@ const NavBar = () => {
 
       <nav className={style.NavBarOption}>
         <ul>
-          <li>
+          {/*  <li>
             <NavLink to="/dashboard">Ver Dash</NavLink>
-          </li>
+          </li> */}
           <li>
             <NavLink to="/home">Inicio</NavLink>
           </li>
@@ -67,23 +67,22 @@ const NavBar = () => {
               Suscribirse
             </button>
           </div>
-          <div>
-            {loginUserVerification() && (
-              <button className={style.buttonLogOut} onClick={handleLogOut}>
-                <FontAwesomeIcon className={style.buttonLogOutIcon} icon={faSignOut} /> Cerrar
-                Sesíon
+        </div>
+        <div className={style.buttonLogOutContainer}>
+          {loginUserVerification() && (
+            <button className={style.buttonLogOut} onClick={handleLogOut}>
+              <FontAwesomeIcon className={style.buttonLogOutIcon} icon={faSignOut} /> Cerrar Sesíon
+            </button>
+          )}
+        </div>
+        <div>
+          {!loginUserVerification() && (
+            <Link to="/login">
+              <button className={style.buttonLogOut}>
+                <BiLogIn className={style.buttonLogOutIcon} /> Acceder
               </button>
-            )}
-          </div>
-          <div>
-            {!loginUserVerification() && (
-              <Link to="/login">
-                <button className={style.buttonLogOut}>
-                  <BiLogIn className={style.buttonLogOutIcon} /> Acceder
-                </button>
-              </Link>
-            )}
-          </div>
+            </Link>
+          )}
         </div>
       </div>
     </div>
