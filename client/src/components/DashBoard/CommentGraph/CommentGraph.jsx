@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -8,34 +8,27 @@ import {
   Title,
   Tooltip,
   Legend,
-} from 'chart.js';
-import { Line } from 'react-chartjs-2';
+} from 'chart.js'
+import { Line } from 'react-chartjs-2'
+
 import style from './CommentGraph.module.css'
 
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Title,
-  Tooltip,
-  Legend
-);
+ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend)
 
 export const options = {
   responsive: true,
   plugins: {
     legend: {
-      position: 'top' //as const,
+      position: 'top', //as const,
     },
     title: {
       display: true,
       text: 'Number of Comments',
     },
   },
-};
+}
 
-const labels = ['December', 'January', 'February'];
+const labels = ['December', 'January', 'February']
 
 export const data = {
   labels,
@@ -52,13 +45,12 @@ export const data = {
     //   backgroundColor: 'rgba(53, 162, 235, 0.5)',
     // },
   ],
-};
+}
 
 export function GraphicCommentsQuantity() {
   return (
     <div className={style.container}>
-        <Line options={options} data={data} />;
+      <Line data={data} options={options} />;
     </div>
   )
 }
-

@@ -4,6 +4,7 @@ import dotenv from 'dotenv'
 
 import { templateWelcome } from './templateWelcome.js'
 import { templateNewBook } from './templateNewBook.js'
+import { templateNewComment } from './templateNewComment.js'
 
 dotenv.config()
 
@@ -61,6 +62,6 @@ export const SendMailnewComment = async (book, newComment) => {
     from: `"Book You 📚" <info@bookyou.com> `,
     to: `${book.user.username}`,
     subject: `Hey ${book.author}, there are new comments about your book`,
-    html: `el comentario del usuario ${newComment.username} dice: ${newComment.comment}`,
+    html: templateNewComment(book, newComment),
   })
 }
