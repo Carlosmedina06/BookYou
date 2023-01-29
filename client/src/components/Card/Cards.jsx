@@ -1,9 +1,7 @@
-
 /* import  { useState } from 'react' */
 import { NavLink } from 'react-router-dom'
 
 import style from './Card.module.css'
-
 
 export default function Card({ name, id, autor, img, estado, comentarios }) {
   /* const [position, setPosition] = useState(0) */

@@ -7,11 +7,13 @@
 
 .svgConteiner{
   position: absolute;
-  width: 35px;
+  width: 40px;
   margin-top: 30px ;
   margin-left: 31rem;
-  color:white
+  color: #010326
 }
+
+
 
 .svg{
   margin-left: 10px;
@@ -25,7 +27,7 @@
 }
 
 .p {
-  color: white;
+  color: #010326;
   font-size: 1.2em;
   margin-top: 10%;
   font-style: italic;

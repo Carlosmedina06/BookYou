@@ -1,29 +1,22 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import axios from 'axios'
-import { useDispatch, useSelector } from 'react-redux'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
 import Swal from 'sweetalert2'
+import { BiUserCircle } from 'react-icons/bi'
 
 import GetRateStars from '../GetRateStars/GetRateStars'
 import style from '../Bookdetail/Reviews.module.css'
-import { getBookById } from '../../redux/actions/index'
 
 import { ImgContainer, ReviewContainer, ReviewContent, ReviewText, ReviewDate } from './ReviewStyle'
 
-const Reviews = ({ id }) => {
-  const dispatch = useDispatch()
-  const book = useSelector((state) => state.detail)
-
-  const [rata, setRata] = useState(0) // NO TOCAR 🐭
+const Reviews = ({ id, comment, setRata, rata }) => {
   const [Review, setReview] = useState({
     rate: '',
     comment: '',
   })
 
-  useEffect(() => {
-    dispatch(getBookById(id))
-  }, [dispatch, id, rata])
+  console.log('review')
 
   const handleReview = (e) => {
     setReview({
@@ -41,7 +34,7 @@ const Reviews = ({ id }) => {
     }
 
     axios
-      .post('https://bookyou-production.up.railway.app/comment/create/book', coment, {
+      .post('http://localhost:3001/comment/create/book', coment, {
         headers: {
           authorization: `Bearer ${localStorage.getItem('token')}`,
         },
@@ -118,17 +111,18 @@ const Reviews = ({ id }) => {
         </div>
       )}
 
-      {!book.comment ? (
+      {!comment ? (
         <div>Aun no hay Comentarios para este libro</div>
       ) : (
-        book.comment
+        comment
           ?.map((item, index) => (
             <ReviewContainer key={index}>
               <ImgContainer>
-                <img
+                {/* <img
                   alt={item.username}
                   src="https://res.cloudinary.com/dn8jxsqka/image/upload/v1674671180/user_icon_riocsx.png"
-                />
+                /> */}
+                <BiUserCircle />
               </ImgContainer>
               <ReviewContent>
                 <ReviewText>

@@ -11,7 +11,13 @@ import PageOnConstruction from './components/PageOnConstruction/PageOnConstructi
 import PostBook from './components/FormBookCreate/formBook'
 import MainPage from './components/Landing/index'
 import NotFound from './components/NotFound/NotFound'
+import Success from './components/Success/Success'
 import Layout from './layout/Layout'
+import { UserEdit } from './components/DashBoard/UserEdit/UserEdit'
+import { BookEdit } from './components/DashBoard/BookEdit/BookEdit'
+import { CommentEdit } from './components/DashBoard/CommentEdit/CommentEdit'
+import { Statistics } from './components/DashBoard/Statistics/Statistics'
+import DashBoardMain from './components/DashBoard/dashBoardMain/'
 
 const App = createBrowserRouter([
   {
@@ -40,6 +46,23 @@ const App = createBrowserRouter([
         element: <DashBoard />,
       },
       {
+        path: '/userEdit',
+        element: <UserEdit />,
+      },
+      {
+        path: '/bookEdit',
+        element: <BookEdit />,
+      },
+      {
+        path: '/commentEdit',
+        element: <CommentEdit />,
+      },
+      {
+        path: '/statistics',
+        element: <Statistics />,
+      },
+
+      {
         path: '/bookdetail/:id',
         element: <Bookdetail />,
       },
@@ -58,6 +81,14 @@ const App = createBrowserRouter([
       {
         path: '/signup',
         element: <Signup />,
+      },
+      {
+        path: '/success',
+        element: <Success />,
+      },
+      {
+        path: '/dashboard/:select',
+        element: <DashBoardMain/>,
       },
     ],
   },

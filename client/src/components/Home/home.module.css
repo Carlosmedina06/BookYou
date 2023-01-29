@@ -1,7 +1,87 @@
-.homeContainer{
-align-items: center;
-width:100%;
-height: 100vh;
-background-color: aqua;
+.homeContainer {
+    align-items: center;
+    width: 100%;
+    height: auto;
 
+}
+
+/* -----card------ */
+
+.mover {
+    margin-top: 90px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-left: 3%;
+    perspective: 1000px;
+}
+
+.pagination{
+    margin-top: -22rem;
+    margin-left: 5rem;
+    
+}
+
+.svgConteiner {
+    position: absolute;
+    width: 35px;
+    margin-top: 5px;
+    margin-left: 50rem;
+    color: white
+}
+
+.svg {
+    margin-left: 10px;
+
+}
+
+.mover1 {
+    display: flex;
+    position: absolute;
+    top: 80px;
+    left: 250px;
+
+}
+
+
+.p {
+    position: absolute;
+    top: 100px;
+    left: 20rem;
+    color: #010326;
+    font-style: italic;
+    font-size: 20px;
+}
+
+.paginado {
+    width: 500px;
+    position: absolute;
+    top: 500px;
+    left: 600px;
+    display: flex;
+}
+
+.cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-left: 3%;
+    perspective: 1000px;
+  }
+
+  .filterCard{
+    display: flex;
+   /*  flex-wrap: wrap; */
+    /* gap: 10px; */
+    margin-left: 8%;
+    perspective: 1000px;
+  }
+
+
+.searchFilterRow {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-top: 3%;
+    background-color: aquamarine;
 }

@@ -1,0 +1,44 @@
+.container{
+
+    padding: 20px;
+    background-color: #fff;
+    border: #F28322 2px solid;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%
+    }
+    .form{
+        display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    width: 100%;
+    
+    }
+    .container input, select{
+    background-color: #e4e6f8 ;
+    width: 70%;
+    height: 25px;
+    border-radius: 7px;
+    border: none;
+    padding-left: 8px;
+    }
+    .container button{
+        margin: 5px;
+        width: 80%;
+        background-color: #fff;
+        color: #010326;
+        border-bottom:#F28322 solid 1px;
+        border-right: #F28322 solid 1px;
+        height: 25px;
+    }
+    .container button:hover{
+        background: #F28322;
+        color: #fff;
+    }
+    .container label{
+        color: #010326;
+    }
