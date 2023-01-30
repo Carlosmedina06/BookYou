@@ -7,29 +7,36 @@ import FolderSharedIcon from '@mui/icons-material/FolderShared'
 import AutoStoriesIcon from '@mui/icons-material/AutoStories'
 import { faSignOut } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { NavLink } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 
 import style from '../sideBar/sideBar.module.css'
+import DashBoardMain from '../../DashBoard/dashBoardMain'
 
 const SideBar = () => {
+ 
+
+   
+
   return (
     <div className={style.sidebar}>
       <div className={style.sidebarWrapper}>
         <div className={style.sidebarMenu}>
           <div className={style.titulo}>
-            <span>BOOKYOU</span>
+            <Link to="/home"><span>BOOKYOU</span></Link>
           </div>
           <h3 className={style.sidebarTitle}>Dashboard</h3>
+          
           <ul className={style.sidebarList}>
             <li className={style.sidebarListItem}>
               <HomeIcon className={style.sidebarIcon} />
-              <NavLink className={style.letras} to="/home">
+              <NavLink className={style.letras} to="/dashboard/home">
                 Home
               </NavLink>
             </li>
             <li className={style.sidebarListItem}>
               <TimelineIcon className={style.sidebarIcon} />
-              <NavLink className={style.letras} to="/statistics">
+              {/* <NavLink className={style.letras} to="/statistics" > */}
+              <NavLink className={style.letras} to="/dashboard/stadistics" >
                 Estadísticas
               </NavLink>
             </li>
@@ -38,14 +45,16 @@ const SideBar = () => {
           <ul className={style.sidebarList}>
             <li className={style.sidebarListItem}>
               <PersonIcon className={style.sidebarIcon} />
-              <div className={style.letras}> Usuarios </div>
+              <div className={style.letras}> Usuarios </div> 
+              
             </li>
             <li className={style.sidebarListItem}>
-              <FolderSharedIcon className={style.sidebarIcon} />
+              {/* <FolderSharedIcon className={style.sidebarIcon} />
               <NavLink className={style.letras} to="/userEdit">
                 {' '}
                 Actualizacion Usuarios{' '}
-              </NavLink>
+              </NavLink> */}
+             
             </li>
             <li className={style.sidebarListItem}>
               <BookIcon className={style.sidebarIcon} />
@@ -53,7 +62,7 @@ const SideBar = () => {
             </li>
             <li className={style.sidebarListItem}>
               <AutoStoriesIcon className={style.sidebarIcon} />
-              <NavLink className={style.letras} to="/bookEdit">
+              <NavLink className={style.letras} to="/dashboard/books">
                 Actualizacion de Libros
               </NavLink>
             </li>

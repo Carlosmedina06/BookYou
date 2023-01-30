@@ -30,6 +30,7 @@ export const Home = () => {
   const [countTwo, setCountTwo] = useState(1)
 
   const allBooks = useSelector((state) => state.books)
+  const [orderedBooks, setOrderedBooks] = useState(allBooks)
 
   const onChangePagination = (event, value) => {
     setCountOne(value)
@@ -92,16 +93,8 @@ export const Home = () => {
     dispatch(loginUser())
     dispatch(getAutores())
   }, [dispatch])
-
-  //data pagination-----------------------
-  /*   const totalPages = Math.ceil(allBooks.length / 8)
-  const filterBooks = () => {
-    const filtered = allBooks.slice(currentPage * 8, currentPage * 4 + 4)
-
-    return filtered
-  } */
-
-  //Pagina Anterior
+   
+   
   const prev = () => {
     if (0 < currentPage) setCurrentPage(currentPage - 8)
   }
@@ -157,8 +150,11 @@ export const Home = () => {
             setBooks={setBooks}
           />
         </div>
-        <div style={{ position: 'absolute', top: '130px', left: '30px' }}>
-          <OrdAlfabetico books={books} setBooks={setBooks} />
+        <div style={{ position: 'absolute', top: '180px', right: '500px' }}>
+          <OrdAlfabetico 
+          books={allBooks} 
+          orderedBooks={orderedBooks} 
+          setOrderedBooks = {setOrderedBooks}/>
         </div>
 
         <div>
@@ -177,13 +173,13 @@ export const Home = () => {
               ? filterLibros.map((book) => (
                   <Card
                     key={book.id}
+                    id={book.id}
                     autor={book.autor}
                     className={style.filterCard}
                     comentarios={book.content}
                     estado={book.subscription}
                     img={book.img}
                     name={book.title}
-                    id={book.id}
                   />
                 ))
               : allBooks
@@ -191,13 +187,14 @@ export const Home = () => {
                   .map((book) => (
                     <Card
                       key={book.id}
-                      autor={book.autor}
+                      id={book.id}
+                      autor={book.author}
                       className={style.cards}
                       comentarios={book.content}
                       estado={book.subscription}
                       img={book.img}
                       name={book.title}
-                      id={book.id}
+                      
                     />
                   ))}
           </div>
