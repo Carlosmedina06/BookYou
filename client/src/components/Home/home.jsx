@@ -1,11 +1,9 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
-
-//import jwt_decode from 'jwt-decode'
 import Pagination from '@mui/material/Pagination'
 import Stack from '@mui/material/Stack'
 
-import { getBooks, getCategorys, loginUser, getAutores } from '../../redux/actions/index'
+import { getBooks, getCategorys, getAutores } from '../../redux/actions/index'
 import FiltradoGenero from '../FiltradoGenero/filtradoGenero'
 import OrdAlfabetico from '../OrderAlfab/orderAlfabetico'
 import NavBar from '../NavBar/NavBar'
@@ -26,11 +24,13 @@ export const Home = () => {
     useState('') /* actualizar estado genero 'value=todos' para serachbar por libro y autor*/
   const [filterLibros, setFilterLibros] = useState([])
 
+  const allBooks = useSelector((state) => state.books)
+
+  /* ----------Paginacion------------- */
+
   const [currentPage, setCurrentPage] = useState(0)
   const [countOne, setCountOne] = useState(1)
   const [countTwo, setCountTwo] = useState(1)
-
-  const allBooks = useSelector((state) => state.books)
 
   const onChangePagination = (event, value) => {
     setCountOne(value)
@@ -52,6 +52,18 @@ export const Home = () => {
     setCountTwo(value)
   }
 
+  //Pagina Anterior
+  const prev = () => {
+    if (0 < currentPage) setCurrentPage(currentPage - 8)
+  }
+  //Pagina siguiente
+  const next = () => {
+    if (currentPage + 8 < allBooks.length) {
+      setCurrentPage(currentPage + 8)
+    }
+  }
+
+  /* ----------Condicional filtrado libros------------- */
   useEffect(() => {
     setFilterLibros(
       allBooks.filter((b) => {
@@ -82,36 +94,18 @@ export const Home = () => {
           return b.author.toLowerCase().includes(authorInput.toLowerCase())
         } else if (bookInputtodos.length > 0) {
           return b.category.toLowerCase().includes(bookInputtodos.toLowerCase())
+        } else if (bookInputtodos.length > 1) {
+          return books
         }
       }),
     )
-  }, [bookInputtodos, authorInput, bookInput, allBooks])
+  }, [bookInputtodos, authorInput, bookInput, allBooks, books])
 
   useEffect(() => {
     dispatch(getBooks())
     dispatch(getCategorys())
-    dispatch(loginUser())
     dispatch(getAutores())
   }, [dispatch])
-
-  //data pagination-----------------------
-  /*   const totalPages = Math.ceil(allBooks.length / 8)
-  const filterBooks = () => {
-    const filtered = allBooks.slice(currentPage * 8, currentPage * 4 + 4)
-
-    return filtered
-  } */
-
-  //Pagina Anterior
-  const prev = () => {
-    if (0 < currentPage) setCurrentPage(currentPage - 8)
-  }
-  //Pagina siguiente
-  const next = () => {
-    if (currentPage + 8 < allBooks.length) {
-      setCurrentPage(currentPage + 8)
-    }
-  }
 
   return (
     <div style={{ backgroundColor: 'blue' }}>
@@ -152,8 +146,8 @@ export const Home = () => {
 
         <div>
           {(bookInput.length > 0 && filterLibros.length === 0) ||
-          (bookInputtodos.length > 0 && filterLibros.length === 0) ||
-          (authorInput.length > 0 && filterLibros.length === 0) ? (
+            (bookInputtodos.length > 0 && filterLibros.length === 0) ||
+            (authorInput.length > 0 && filterLibros.length === 0) ? (
             <p className={style.p}>No se encontro ningun libro</p>
           ) : (
             <p />
@@ -164,60 +158,60 @@ export const Home = () => {
           <div className={style.mover}>
             {filterLibros.length > 0
               ? filterLibros.map((book) => (
+                <Card
+                  key={book.id}
+                  autor={book.author}
+                  className={style.filterCard}
+                  comentarios={book.content}
+                  estado={book.subscription}
+                  id={book.id}
+                  img={book.img}
+                  name={book.title}
+                />
+              ))
+              : allBooks
+                .slice(currentPage, currentPage + 8)
+                .map((book) => (
                   <Card
                     key={book.id}
-                    id={book.id}
-                    autor={book.autor}
-                    className={style.filterCard}
+                    autor={book.author}
+                    className={style.cards}
                     comentarios={book.content}
                     estado={book.subscription}
+                    id={book.id}
                     img={book.img}
                     name={book.title}
                   />
-                ))
-              : allBooks
-                  .slice(currentPage, currentPage + 8)
-                  .map((book) => (
-                    <Card
-                      key={book.id}
-                      id={book.id}
-                      autor={book.author}
-                      className={style.cards}
-                      comentarios={book.content}
-                      estado={book.subscription}
-                      img={book.img}
-                      name={book.title}
-                    />
-                  ))}
+                ))}
           </div>
         </div>
-        <div className={style.paginado}>
-          <Stack spacing={2}>
-            <Pagination
-              className={style.pagination}
-              color="primary"
-              count={Math.ceil(allBooks.length / 8)}
-              page={countOne}
-              size="large"
-              onChange={onChangePagination}
-            />
-          </Stack>
-        </div>
-        <div>
-          <div style={{ position: 'absolute', left: '290px', top: '65rem' }}>
-            <h3
-              style={{
-                color: '#010326',
-                position: 'absolute',
-                top: '-20px',
-                left: '20px',
-                fontSize: '30px',
-              }}
-            >
-              Recomendado
-            </h3>
-            <Carousel />
-          </div>
+      </div>
+
+      <div className={style.paginado}>
+        <Stack spacing={2}>
+          <Pagination
+            className={style.pagination}
+            count={Math.ceil(allBooks.length / 8)}
+            page={countOne}
+            size="large"
+            onChange={onChangePagination}
+          />
+        </Stack>
+      </div>
+      <div>
+        <div style={{ position: 'absolute', left: '290px', top: '65rem' }}>
+          <h3
+            style={{
+              color: '#010326',
+              position: 'absolute',
+              top: '-20px',
+              left: '20px',
+              fontSize: '30px',
+            }}
+          >
+            Recomendado
+          </h3>
+          <Carousel />
         </div>
       </div>
     </div>

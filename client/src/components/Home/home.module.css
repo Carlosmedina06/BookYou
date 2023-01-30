@@ -8,18 +8,19 @@
 /* -----card------ */
 
 .mover {
-    margin-top: 90px;
+    width: 1080px;
+
+    margin-top: 10px;
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
-    margin-left: 3%;
+    margin-left: 1%;
     perspective: 1000px;
 }
 
-.pagination{
-    margin-top: -22rem;
+.pagination {
+    margin-top: -380px;
     margin-left: 5rem;
-    
 }
 
 .svgConteiner {
@@ -38,7 +39,7 @@
 .mover1 {
     display: flex;
     position: absolute;
-    top: 80px;
+    top: 150px;
     left: 250px;
 
 }
@@ -67,15 +68,15 @@
     gap: 10px;
     margin-left: 3%;
     perspective: 1000px;
-  }
+}
 
-  .filterCard{
+.filterCard {
     display: flex;
-   /*  flex-wrap: wrap; */
+    /*  flex-wrap: wrap; */
     /* gap: 10px; */
     margin-left: 8%;
     perspective: 1000px;
-  }
+}
 
 
 .searchFilterRow {

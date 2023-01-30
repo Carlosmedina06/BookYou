@@ -5,8 +5,8 @@ import { Link } from 'react-router-dom'
 import { getCategorys } from '../../redux/actions'
 import { useForm } from '../../utils/Hooks/useForm'
 import NavBar from '../NavBar/NavBar'
-import style from './formBookCss.module.css'
 
+import style from './formBookCss.module.css'
 import { Container, FormContent, FormItem, Input, InputFile, Select } from './formBookStyle'
 import validationsForm from './ValidationForm'
 
@@ -76,142 +76,142 @@ const PostBook = () => {
         </div>
         <div>
           <div className={style.cardContainer}>
-          <form onSubmit={handleSubmit}>
-          <div className={style.contentformCard}>
-            {/* // input title  */}
-            <div className={style.formTitle}>
-           <p>Crear Libro</p> 
-           </div>
-            <div className={style.formInputBox}>
-              <label htmlFor="title">Titulo</label>
-              <input
-                name="title"
-                placeholder="Titulo..."
-                type="text"
-                value={form.title}
-                onBlur={handleBlur}
-                onChange={handleChange}
-              />
-              {errors.title ? (
-                <h5>
-                  <small>{errors.title}</small>
-                </h5>
-              ) : (
-                false
-              )}
-            </div>
-            {/* // input title  */}
+            <form onSubmit={handleSubmit}>
+              <div className={style.contentformCard}>
+                {/* // input title  */}
+                <div className={style.formTitle}>
+                  <p>Crear Libro</p>
+                </div>
+                <div className={style.formInputBox}>
+                  <label htmlFor="title">Titulo</label>
+                  <input
+                    name="title"
+                    placeholder="Titulo..."
+                    type="text"
+                    value={form.title}
+                    onBlur={handleBlur}
+                    onChange={handleChange}
+                  />
+                  {errors.title ? (
+                    <h5>
+                      <small>{errors.title}</small>
+                    </h5>
+                  ) : (
+                    false
+                  )}
+                </div>
+                {/* // input title  */}
 
-            {/* // input description  */}
-            <div className={style.formInputBox}>
-              <label htmlFor="description">Descripcion</label>
-              <input
-                name="description"
-                placeholder="Descripcion corta del escrito."
-                value={form.description}
-                onBlur={handleBlur}
-                onChange={handleChange}
-              />
-              {errors.description ? (
-                <h5>
-                  <small>{errors.description}</small>
-                </h5>
-              ) : (
-                false
-              )}
-            </div>
-            {/* // input description  */}
+                {/* // input description  */}
+                <div className={style.formInputBox}>
+                  <label htmlFor="description">Descripcion</label>
+                  <input
+                    name="description"
+                    placeholder="Descripcion corta del escrito."
+                    value={form.description}
+                    onBlur={handleBlur}
+                    onChange={handleChange}
+                  />
+                  {errors.description ? (
+                    <h5>
+                      <small>{errors.description}</small>
+                    </h5>
+                  ) : (
+                    false
+                  )}
+                </div>
+                {/* // input description  */}
 
-            <div className={style.formInputBox}>
-              <label htmlFor="author">Autor</label>
-              <input
-                name="author"
-                placeholder="Nombre/s"
-                value={form.author}
-                onBlur={handleBlur}
-                onChange={handleChange}
-              />
-              {errors.author ? (
-                <h5>
-                  <small>{errors.author}</small>
-                </h5>
-              ) : (
-                false
-              )}
-            </div>
+                <div className={style.formInputBox}>
+                  <label htmlFor="author">Autor</label>
+                  <input
+                    name="author"
+                    placeholder="Nombre/s"
+                    value={form.author}
+                    onBlur={handleBlur}
+                    onChange={handleChange}
+                  />
+                  {errors.author ? (
+                    <h5>
+                      <small>{errors.author}</small>
+                    </h5>
+                  ) : (
+                    false
+                  )}
+                </div>
 
-            <div className={style.formInputBox}>
-              <label htmlFor="subscription">Subscripcion</label>
-              <select className={style.formSelect}
-                name="subscription"
-                value={form.subscription}
-                onBlur={handleBlur}
-                onChange={handleChange}
-              >
-                <option value="free">Free</option>
-                <option value="premium">Premium</option>
-              </select>
-            </div>
+                <div className={style.formInputBox}>
+                  <label htmlFor="subscription">Subscripcion</label>
+                  <select
+                    className={style.formSelect}
+                    name="subscription"
+                    value={form.subscription}
+                    onBlur={handleBlur}
+                    onChange={handleChange}
+                  >
+                    <option value="free">Free</option>
+                    <option value="premium">Premium</option>
+                  </select>
+                </div>
 
-            <div className={style.formInputBox}>
-              <label htmlFor="category">Categoria</label>
-              <select className={style.formSelect}
-                name="category"
-                value={form.category}
-                onBlur={handleBlur}
-                onChange={handleChange}
-              >
-                {category?.map((element) => {
-                  return (
-                    <option key={element.id} value={element.category}>
-                      {element.category}
-                    </option>
-                  )
-                })}
-              </select>
-            </div>
+                <div className={style.formInputBox}>
+                  <label htmlFor="category">Categoria</label>
+                  <select
+                    className={style.formSelect}
+                    name="category"
+                    value={form.category}
+                    onBlur={handleBlur}
+                    onChange={handleChange}
+                  >
+                    {category?.map((element) => {
+                      return (
+                        <option key={element.id} value={element.category}>
+                          {element.category}
+                        </option>
+                      )
+                    })}
+                  </select>
+                </div>
 
-            {/* // input img  */}
-            <div className={style.formInputBox}>
-              <label htmlFor="image">Seleccionar Imagen</label>
-              <input
-                className="inputFile"
-                name="image"
-                type="file"
-                onChange={(e) => {
-                  handleChangeImage(e)
-                }}
-              />
-            </div>
-            {/* // input img  */}
+                {/* // input img  */}
+                <div className={style.formInputBox}>
+                  <label htmlFor="image">Seleccionar Imagen</label>
+                  <input
+                    className="inputFile"
+                    name="image"
+                    type="file"
+                    onChange={(e) => {
+                      handleChangeImage(e)
+                    }}
+                  />
+                </div>
+                {/* // input img  */}
 
-            {/* // input pdf  */}
-            <div className={style.formInputBox}>
-              <label htmlFor="pdf">Seleccionar archivo del libro</label>
-                
-                <input
-                  accept="application/pdf,application/msword,
+                {/* // input pdf  */}
+                <div className={style.formInputBox}>
+                  <label htmlFor="pdf">Seleccionar archivo del libro</label>
+
+                  <input
+                    accept="application/pdf,application/msword,
                         application/vnd.openxmlformats-officedocument.wordprocessingml.document"
-                  name="pdf"
-                  type="file"
-                  onChange={(e) => {
-                    handleChangeContent(e)
-                  }}
-                />
-              
-            </div>
-            {/* // input pdf  */}
+                    name="pdf"
+                    type="file"
+                    onChange={(e) => {
+                      handleChangeContent(e)
+                    }}
+                  />
+                </div>
+                {/* // input pdf  */}
 
-            {/* <button type="button" onClick={(e) => handleReset(e)}>
+                {/* <button type="button" onClick={(e) => handleReset(e)}>
               RESET
             </button> */}
 
-            <button className={style.buttonSubmit} type="submit" onSubmit={handleSubmit}>
-              CREATE BOOK!
-            </button>
-            </div>
-          </form>
-          
+                <button className={style.buttonSubmit} type="submit" onSubmit={handleSubmit}>
+                  CREATE BOOK!
+                </button>
+              </div>
+            </form>
           </div>
         </div>
         {/* <Link to="/home">home</Link> */}

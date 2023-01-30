@@ -9,11 +9,12 @@ import style from './orderAlf.module.css'
 export const OrdAlfabetico = ({ books, setBooks }) => {
   const dispatch = useDispatch()
 
-  const [ordAlf, setOrdAlf] = useState('')
+  const [ordAlf, setOrdAlf] = useState()
 
   function handleSortBooks(e) {
     e.preventDefault()
     dispatch(orderAlf(e.target.value))
+
     setBooks(!books)
     setOrdAlf(`Ordenando ${e.target.value}`)
   }

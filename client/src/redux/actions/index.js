@@ -11,7 +11,7 @@ export const LOGOUT = 'LOGOUT'
 export const LOGIN = 'LOGIN'
 export const REGISTER_LOCAL = 'REGISTER_LOCAL'
 export const CLEAR_BOOK_DETAILS = 'CLEAR_BOOK_DETAIL'
-// export const REGISTER_GOOGLE = 'REGISTER_GOOGLE'
+export const SUBSCRIPTION = 'SUBSCRIPTION'
 import {
   GoogleAuthProvider,
   signInWithPopup,
@@ -22,12 +22,24 @@ import {
 
 import { auth } from '../../utils/FireBase/FireBase'
 
+const url = 'https://bookyou-production.up.railway.app'
+
+export const suscription = async () => {
+  const pago = await axios.get(`${url}/checkout'`, {
+    headers: {
+      Authorization: `Bearer ${window.localStorage.getItem('token')}`,
+    },
+  })
+
+  return pago.data
+}
+
 export const loginGoogle = () => async (dispatch) => {
   const provider = new GoogleAuthProvider()
 
   const res = await signInWithPopup(auth, provider)
 
-  axios.post('http://localhost:3001/login', res.user).then((res) => {
+  axios.post(`${url}/login`, res.user).then((res) => {
     window.localStorage.setItem('token', res.data.token)
 
     return dispatch({
@@ -48,24 +60,11 @@ export const loginUser = () => async (dispatch) => {
   }
 }
 
-// export const registerGoogle = () => async (dispatch) => {
-//   const provider = new GoogleAuthProvider()
-
-//   const res = await signInWithPopup(auth, provider)
-
-//   axios.post('http://localhost:3001/signup', res.user).then((res) => {
-//     return dispatch({
-//       type: REGISTER_GOOGLE,
-//       payload: res.data.token,
-//     })
-//   })
-// }
-
 export const registerLocal = (email, password, displayName) => async (dispatch) => {
   const response = await createUserWithEmailAndPassword(auth, email, password)
 
   response.user.displayName = displayName
-  axios.post('http://localhost:3001/signup', response.user).then((res) => {
+  axios.post(`${url}/signup`, response.user).then((res) => {
     return dispatch({
       type: REGISTER_LOCAL,
       payload: res.data.token,
@@ -76,7 +75,7 @@ export const registerLocal = (email, password, displayName) => async (dispatch) 
 export const loginLocal = (email, password) => async (dispatch) => {
   const response = await signInWithEmailAndPassword(auth, email, password)
 
-  axios.post('http://localhost:3001/login', response.user).then((res) => {
+  axios.post(`${url}/login`, response.user).then((res) => {
     window.localStorage.setItem('token', res.data.token)
 
     return dispatch({
@@ -97,7 +96,7 @@ export const logout = () => async (dispatch) => {
 /* ------------- GET BOOKS SEARCH ----------*/
 export const getSearchBook = (name) => async (dispatch) => {
   try {
-    const info = await axios.get('http://localhost:3001/book')
+    const info = await axios.get(`${url}/book`)
 
     // eslint-disable-next-line no-console
     console.log(info.data)
@@ -115,7 +114,7 @@ export const getSearchBook = (name) => async (dispatch) => {
 /* ----------------GET BOOKS-------------- */
 export const getBooks = () => async (dispatch) => {
   try {
-    const info = await axios.get('http://localhost:3001/book')
+    const info = await axios.get(`${url}/book`)
 
     return dispatch({
       type: 'GET_BOOKS',
@@ -132,7 +131,7 @@ export const getBooks = () => async (dispatch) => {
 /* -------------------- GET USUARIOS ----------------- */
 export const getUsers = () => async (dispatch) => {
   try {
-    const info = await axios.get('http://localhost:3001/user')
+    const info = await axios.get(`${url}/user`)
 
     return dispatch({
       type: GET_USERS,
@@ -161,7 +160,7 @@ export const clearBookDetails = () => async (dispatch) => {
 
 export const getBookById = (id) => async (dispatch) => {
   try {
-    const info = await axios.get('http://localhost:3001/book/' + id)
+    const info = await axios.get(`${url}/book/${id}`)
 
     dispatch({ type: GET_BOOKBY_ID, payload: info.data })
   } catch (error) {
@@ -175,7 +174,7 @@ export const getBookById = (id) => async (dispatch) => {
 /* ---------------GET GÉNEROS LITERARIOS------------------ */
 export const getCategorys = () => async (dispatch) => {
   try {
-    const info = await axios.get('http://localhost:3001/category')
+    const info = await axios.get(`${url}/category`)
 
     return dispatch({
       type: 'GET_ALL_GENEROS',
@@ -192,7 +191,7 @@ export const getCategorys = () => async (dispatch) => {
 /* ----------------------- GET AUTORES LITERARIOS -------------------- */
 export const getAutores = () => async (dispatch) => {
   try {
-    const info = await axios.get('http://localhost:3001/book')
+    const info = await axios.get(`${url}/book`)
 
     return dispatch({
       type: 'GET_SEARCH_AUTORES',
@@ -216,11 +215,11 @@ export const filterCategorys = (payload) => {
 
 /* -------------- FILTRO POR AUTOR ----------------------- */
 /* export const filterAutor = (payload) => {
-  return {
-    type: 'FILTER_AUTOR',
-    payload,
-  }
-} */
+      return {
+        type: 'FILTER_AUTOR',
+        payload,
+      }
+    } */
 
 /* ----------------- ORDENAR GÉNEROS POR ORDEN ALFABETICO----------------- */
 export const orderAlf = (payload) => {
@@ -234,7 +233,7 @@ export const orderAlf = (payload) => {
 
 export const postBookReview = () => async (dispatch) => {
   try {
-    const info = await axios.get('http://localhost:3001/create/book')
+    const info = await axios.get(`${url}/create/book`)
 
     return dispatch({
       type: 'GET_COMENTARIOS',
