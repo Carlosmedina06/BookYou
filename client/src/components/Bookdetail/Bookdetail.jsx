@@ -18,13 +18,11 @@ const Bookdetail = () => {
   const { id } = useParams()
   const details = useSelector((state) => state.detail)
 
-  console.log(details)
-  const [rata, setRata] = useState(0) // NO TOCAR 🐭  const [rata, setRata] = useState(0) // NO TOCAR 🐭
+  const [rata, setRata] = useState(0) // NO TOCAR 🐭
   const token = localStorage.getItem('token')
   let decoded = token ? jwt_decode(token) : null
 
   console.log(decoded)
-
   useEffect(() => {
     dispatch(clearBookDetails())
     dispatch(getBookById(id))
@@ -80,7 +78,7 @@ const Bookdetail = () => {
                   <button className={style.readBookButton} onClick={handleReadButton}>
                     Leer libro
                   </button>
-                ) : decoded.subsscription === 'premiun' ? (
+                ) : decoded.subsscription === 'premium' ? (
                   <button className={style.readBookButton} onClick={handleReadButton}>
                     Leer libro
                   </button>

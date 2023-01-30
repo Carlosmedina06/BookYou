@@ -1,52 +1,56 @@
-import axios from "axios";
-import { useSelector } from "react-redux";
+import axios from 'axios'
+import { useSelector } from 'react-redux'
 
 export const getBookId = (name) => {
-  const books = useSelector((state) => state.allbooks);
+  const books = useSelector((state) => state.allbooks)
   const book = books.filter((el) => {
-    el.name.trim().toLowerCase() === name.trim().toLowerCase();
-  });
-  const bookId = book.id;
-  return bookId;
-};
+    el.name.trim().toLowerCase() === name.trim().toLowerCase()
+  })
+  const bookId = book.id
+
+  return bookId
+}
 
 export const deleteBook = async (id) => {
-  const info = axios.delete("http://localhost:3001/book/delete/" + id);
-  const response = info.data;
-  return response;
-};
+  const info = axios.delete('https://bookyou-production.up.railway.app/book/delete/' + id)
+  const response = info.data
+
+  return response
+}
 
 export const getBookById = async (id) => {
-  const info = await axios.get("http://localhost:3001/book/" + id);
-  const book = info.data;
+  const info = await axios.get('https://bookyou-production.up.railway.app/book/' + id)
+  const book = info.data
 
-  return book;
-};
+  return book
+}
 
 export const updateBook = async (id, book) => {
-  const info = axios.put("http://localhost:3001/book/update/" + id, book);
-  const response = info.data;
+  const info = axios.put('https://bookyou-production.up.railway.app/book/update/' + id, book)
+  const response = info.data
 
-  return response;
-};
+  return response
+}
 
 export const quantityOfBooks = () => {
-  const books = useSelector((state) => state.allBooks);
-  const booksLength = books.length;
+  const books = useSelector((state) => state.allBooks)
+  const booksLength = books.length
 
-  return booksLength;
-};
+  return booksLength
+}
 
 export const quantityOFPayBooks = () => {
-  const books = useSelector((state) => state.allBooks);
-  const payBooks = books.filter((el) => el.subscription === "premium");
-  const allPayBooks = payBooks.length;
-  return allPayBooks;
-};
+  const books = useSelector((state) => state.allBooks)
+  const payBooks = books.filter((el) => el.subscription === 'premium')
+  const allPayBooks = payBooks.length
+
+  return allPayBooks
+}
 
 export const quantityOfFreeBooks = () => {
-  const books = useSelector((state) => state.allBooks);
-  const freeBooks = books.filter((el) => el.subscription === "free");
-  const allFreeBooks = freeBooks.length;
-  return allFreeBooks;
-};
+  const books = useSelector((state) => state.allBooks)
+  const freeBooks = books.filter((el) => el.subscription === 'free')
+  const allFreeBooks = freeBooks.length
+
+  return allFreeBooks
+}

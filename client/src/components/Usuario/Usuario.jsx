@@ -1,6 +1,5 @@
-import { useDispatch } from 'react-redux'
 import { useEffect, useState } from 'react'
-
+import Swal from 'sweetalert2'
 
 import NavBar from '../NavBar/NavBar'
 import Pagination from '../Pagination/Pagination'
@@ -11,6 +10,15 @@ import UserBookCard from './UserBookCard'
 
 export const Usuario = () => {
   const [currentPage, setCurrentPage] = useState(0)
+
+  useEffect(() => {
+    Swal.fire({
+      title: 'Pagina en Construccion',
+      text: 'Esta pagina esta en construccion, pronto estara disponible, podes mirar un poco de lo que se viene.',
+      icon: 'info',
+      confirmButtonText: 'Ok',
+    })
+  }, [])
 
   const libros = [0, 1, 2, 3, 4, 5, 6, 7, 8]
 
@@ -72,7 +80,6 @@ export const Usuario = () => {
               prevPage={prevPage}
               totalPages={currentPage + 1}
             />
-
           </div>
           <div />
         </div>
