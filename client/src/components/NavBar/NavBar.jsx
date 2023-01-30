@@ -42,9 +42,10 @@ const NavBar = () => {
           </li>
           {user && (
             <>
-              <li>
+              {/*  <li>
                 <NavLink to="/dashboard">Ver Dash</NavLink>
-              </li>
+              </li> */}
+
               <li>
                 <NavLink to="/createbook">Crear Libro</NavLink>
               </li>
@@ -111,6 +112,30 @@ const NavBar = () => {
               </button>
             </Link>
           )}
+
+          <div>
+            <NavLink to="/suscripcion">
+              <button className={style.buttonSuscribe}>Suscribirse</button>
+            </NavLink>
+          </div>
+          <div>
+            {user && (
+              <button className={style.buttonLogOut} onClick={handleLogOut}>
+                <FontAwesomeIcon className={style.buttonLogOutIcon} icon={faSignOut} /> Cerrar
+                Sesíon
+              </button>
+            )}
+          </div>
+          <div>
+            {!user && (
+              <Link to="/login">
+                <button className={style.buttonLogOut}>
+                  <BiLogIn className={style.buttonLogOutIcon} /> Acceder
+                </button>
+              </Link>
+            )}
+          </div>
+
         </div>
       </div>
     </div>
