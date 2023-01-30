@@ -13,19 +13,17 @@ import style from '../sideBar/sideBar.module.css'
 import DashBoardMain from '../../DashBoard/dashBoardMain'
 
 const SideBar = () => {
- 
-
-   
-
   return (
     <div className={style.sidebar}>
       <div className={style.sidebarWrapper}>
         <div className={style.sidebarMenu}>
           <div className={style.titulo}>
-            <Link to="/home"><span>BOOKYOU</span></Link>
+            <Link to="/home">
+              <span>BOOKYOU</span>
+            </Link>
           </div>
           <h3 className={style.sidebarTitle}>Dashboard</h3>
-          
+
           <ul className={style.sidebarList}>
             <li className={style.sidebarListItem}>
               <HomeIcon className={style.sidebarIcon} />
@@ -35,26 +33,13 @@ const SideBar = () => {
             </li>
             <li className={style.sidebarListItem}>
               <TimelineIcon className={style.sidebarIcon} />
-              {/* <NavLink className={style.letras} to="/statistics" > */}
-              <NavLink className={style.letras} to="/dashboard/stadistics" >
+              <NavLink className={style.letras} to="/dashboard/stadistics">
                 Estadísticas
               </NavLink>
             </li>
-          </ul>
-          <h3 className={style.sidebarTitle}>Quik Menu</h3>
-          <ul className={style.sidebarList}>
             <li className={style.sidebarListItem}>
               <PersonIcon className={style.sidebarIcon} />
-              <div className={style.letras}> Usuarios </div> 
-              
-            </li>
-            <li className={style.sidebarListItem}>
-              {/* <FolderSharedIcon className={style.sidebarIcon} />
-              <NavLink className={style.letras} to="/userEdit">
-                {' '}
-                Actualizacion Usuarios{' '}
-              </NavLink> */}
-             
+              <div className={style.letras}> Usuarios </div>
             </li>
             <li className={style.sidebarListItem}>
               <BookIcon className={style.sidebarIcon} />
