@@ -538,9 +538,6 @@ video {
 .hidden {
   display: none;
 }
-.h-screen {
-  height: 100vh;
-}
 .w-24 {
   width: 6rem;
 }

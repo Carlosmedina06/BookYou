@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useParams } from 'react-router-dom'
+import { NavLink, useParams } from 'react-router-dom'
 import axios from 'axios'
+import jwt_decode from 'jwt-decode'
 
 import { getBookById } from '../../redux/actions'
 import NavBar from '../NavBar/NavBar'
@@ -16,9 +17,13 @@ const Bookdetail = () => {
   const dispatch = useDispatch()
   const { id } = useParams()
   const details = useSelector((state) => state.detail)
-  const [rata, setRata] = useState(0) // NO TOCAR 🐭  const [rata, setRata] = useState(0) // NO TOCAR 🐭
 
-  console.log('🐭')
+  console.log(details)
+  const [rata, setRata] = useState(0) // NO TOCAR 🐭  const [rata, setRata] = useState(0) // NO TOCAR 🐭
+  const token = localStorage.getItem('token')
+  let decoded = token ? jwt_decode(token) : null
+
+  console.log(decoded)
 
   useEffect(() => {
     dispatch(clearBookDetails())
@@ -66,9 +71,34 @@ const Bookdetail = () => {
               <button className={style.buttonCategory}>{details.category}</button>
             </div>
             <div className={style.readBookButtonContainer}>
-              <button className={style.readBookButton} onClick={handleReadButton}>
-                Leer libro
-              </button>
+              {details.subscription === 'free' ? (
+                <button className={style.readBookButton} onClick={handleReadButton}>
+                  Leer libro
+                </button>
+              ) : decoded ? (
+                loginUserVerification(localStorage.getItem('token'), details) ? (
+                  <button className={style.readBookButton} onClick={handleReadButton}>
+                    Leer libro
+                  </button>
+                ) : decoded.subsscription === 'premiun' ? (
+                  <button className={style.readBookButton} onClick={handleReadButton}>
+                    Leer libro
+                  </button>
+                ) : (
+                  <div>
+                    <NavLink to="/suscripcion">
+                      <button className={style.buttonSuscribe}>Suscribirse</button>
+                    </NavLink>
+                  </div>
+                )
+              ) : (
+                <div>
+                  <NavLink to="/suscripcion">
+                    <button className={style.buttonSuscribe}>Suscribirse</button>
+                  </NavLink>
+                </div>
+              )}
+
               <br />
               <br />
               {loginUserVerification(localStorage.getItem('token'), details) ? (
