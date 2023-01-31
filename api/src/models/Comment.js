@@ -2,6 +2,14 @@ import mongoose from 'mongoose'
 
 const CommentSchema = new mongoose.Schema({
   comment: String,
+  available: {
+    type: Boolean,
+    default: true,
+  },
+  report: {
+    type: Number,
+    default: 0,
+  },
   createdAt: {
     type: Date,
     default: Date.now,

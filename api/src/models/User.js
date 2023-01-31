@@ -11,6 +11,10 @@ const UserSchema = new moongose.Schema({
     required: true,
     unique: true,
   },
+  strike: {
+    type: Number,
+    default: 0,
+  },
   password: {
     type: String,
   },

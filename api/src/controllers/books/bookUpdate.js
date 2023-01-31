@@ -23,7 +23,10 @@ const bookUpdate = async (req, res, next) => {
       }
       const modifiedBook = await Book.findById(id)
 
-      if (modifiedBook.user.toString() === decodedToken.id.toString()) {
+      if (
+        modifiedBook.user.toString() === decodedToken.id.toString() ||
+        decodedToken.role === 'admin'
+      ) {
         await Book.findByIdAndUpdate(id, { description, title, category, author, subscription })
         res.status(200).json(`El libro fue modificado con éxito`)
       } else {
