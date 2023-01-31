@@ -8,16 +8,19 @@
 /* -----card------ */
 
 .mover {
-    margin-top: 90px;
+    background: #010326;
+   
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
     margin-left: 1%;
     perspective: 1000px;
+    width: 1070px;
+    height: 700px;
 }
 
 .pagination{
-    margin-top: -22rem;
+    margin-top: -25rem;
     margin-left: 5rem;
 }
 
@@ -37,7 +40,7 @@
 .mover1 {
     display: flex;
     position: absolute;
-    top: 150px;
+    top: 160px;
     left: 250px;
 
 }
