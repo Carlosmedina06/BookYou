@@ -15,9 +15,11 @@ import SearchByAutor from '../FiltradoAutor/filterAutor'
 import Card from '../Card/Card'
 /* import Pagination from '../Pagination/Pagination' */
 import style from '../Home/home.module.css'
+import CssGenerico from '../CssGenerico/CssGenerico.module.css'
 
 export const Home = () => {
   const dispatch = useDispatch()
+  const allGeneros = useSelector((state) => state.category)
 
   const [books, setBooks] = useState(true) /* actualizar estado libros orden alf */
   const [bookInput, setBookInput] = useState('') /* actualizar estado searchbar por libro*/
@@ -114,7 +116,9 @@ export const Home = () => {
     setBookInputtodos('');
   }
 
-
+  const handleInputChange = (e) => {
+    setBookInput(e.target.value)
+  }
   return (
     <div >
       <div style={{ position: 'absolute', top: '0px' }}>
@@ -123,35 +127,55 @@ export const Home = () => {
       <div style={{ position:'absolute',top: '90px', right: '45px' }}>
         <button className={style.boton}  onClick={clearStates}>Lmpiar</button>
       </div>
-
-      <SearchBar
-        bookInput={bookInput}
-        setAuthorInput={setAuthorInput}
-        setBookInput={setBookInput}
-        setBookInputtodos={setBookInputtodos}
-      />
-
+{/* input busqueda---------------------------------------------------------- */}
       <div>
-        <div>
-          <SearchByAutor
-            authorInput={authorInput}
-            setAuthorInput={setAuthorInput}
-            setBookInput={setBookInput}
-            setBookInputtodos={setBookInputtodos}
-          />
+          <div style={{ position: 'absolute', top: '20px', left: '300px', paddingRight: '300px' }}>
+            <input
+              required
+              className={CssGenerico.search}
+              id="default-search"
+              placeholder="Libros, Textos, Artículos..."
+              type="text"
+              value={bookInput}
+              onChange={(e) => setBookInput(e.target.value)}
+            />
+          </div>
         </div>
-        <div>
-          <FiltradoGenero
-            bookInput={bookInput}
-            bookInputtodos={bookInputtodos}
-            books={books}
-            setAuthorInput={setAuthorInput}
-            setBookInput={setBookInput}
-            setBookInputtodos={setBookInputtodos}
-            setBooks={setBooks}
-          />
+{/* input busqueda---------------------------------------------------------- */}
+      <div>
+{/* input busqueda Autor---------------------------------------------------- */}
+      <div>
+        <div style={{ position: 'absolute', top: '20px', left: '600px' }}>
+            <input
+              required
+              className={CssGenerico.search}
+              id="default-search"
+              placeholder="Libros, Textos, Artículos..."
+              type="text"
+              value={authorInput}
+              onChange={(e) => setAuthorInput(e.target.value)}
+            />
+          </div>
         </div>
-        <div style={{ position: 'absolute', top: '180px', right: '500px' }}>
+{/* input busqueda Autor---------------------------------------------------- */}
+        
+{/* input Filtro Genero----------------------------------------------------- */}
+      <div style={{ position: 'absolute', top: '20px', left: '900px' }}>
+        <select
+          className={CssGenerico.selectGen}
+          value={bookInputtodos}
+          onChange={(e) => setBookInputtodos(e.target.value)}
+        >
+        <option className={style.titulo} value="">
+          Géneros
+        </option>
+        {allGeneros?.map((c) => (
+          <option key={c.id}>{c.category}</option>
+        ))}
+      </select>
+      </div>
+{/* input Filtro Genero----------------------------------------------------- */}
+        <div style={{ position: 'absolute', top: '130px', right: '45px' }}>
           <OrdAlfabetico 
           books={allBooks} 
           orderedBooks={orderedBooks} 
