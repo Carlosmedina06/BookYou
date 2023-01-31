@@ -1,12 +1,15 @@
 import React, { useState } from 'react'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useParams } from 'react-router-dom'
+import { NavLink, useParams } from 'react-router-dom'
 import axios from 'axios'
+import jwt_decode from 'jwt-decode'
 
 import { getBookById } from '../../redux/actions'
 import NavBar from '../NavBar/NavBar'
 import style from '../Bookdetail/Bookdetail.module.css'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronUp, faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import loginUserVerification from '../../utils/Functions/LoginUserVerification'
 import { clearBookDetails } from '../../redux/actions'
 
@@ -16,10 +19,14 @@ const Bookdetail = () => {
   const dispatch = useDispatch()
   const { id } = useParams()
   const details = useSelector((state) => state.detail)
-  const [rata, setRata] = useState(0) // NO TOCAR 🐭  const [rata, setRata] = useState(0) // NO TOCAR 🐭
 
-  console.log('🐭')
+  const [rata, setRata] = useState(0) // NO TOCAR 🐭
+  const [books, setBooks] = useState(true) /* actualizar estado libros orden alf */
 
+  const token = localStorage.getItem('token')
+  let decoded = token ? jwt_decode(token) : null
+
+  console.log(decoded)
   useEffect(() => {
     dispatch(clearBookDetails())
     dispatch(getBookById(id))
@@ -66,9 +73,34 @@ const Bookdetail = () => {
               <button className={style.buttonCategory}>{details.category}</button>
             </div>
             <div className={style.readBookButtonContainer}>
-              <button className={style.readBookButton} onClick={handleReadButton}>
-                Leer libro
-              </button>
+              {details.subscription === 'free' ? (
+                <button className={style.readBookButton} onClick={handleReadButton}>
+                  Leer libro
+                </button>
+              ) : decoded ? (
+                loginUserVerification(localStorage.getItem('token'), details) ? (
+                  <button className={style.readBookButton} onClick={handleReadButton}>
+                    Leer libro
+                  </button>
+                ) : decoded.subsscription === 'premium' ? (
+                  <button className={style.readBookButton} onClick={handleReadButton}>
+                    Leer libro
+                  </button>
+                ) : (
+                  <div>
+                    <NavLink to="/suscripcion">
+                      <button className={style.buttonSuscribe}>Suscribirse</button>
+                    </NavLink>
+                  </div>
+                )
+              ) : (
+                <div>
+                  <NavLink to="/suscripcion">
+                    <button className={style.buttonSuscribe}>Suscribirse</button>
+                  </NavLink>
+                </div>
+              )}
+
               <br />
               <br />
               {loginUserVerification(localStorage.getItem('token'), details) ? (
@@ -77,7 +109,19 @@ const Bookdetail = () => {
             </div>
           </div>
         </div>
+
+        <div style={{ position: 'absolute', top: '480px', left: '300px' }}>
+        <button className={style.boton} onClick={() => setBooks(!books)}>
+            {books ?  'Ocultar ' :'Mostrar ' }
+            <FontAwesomeIcon 
+            icon={books ?  faChevronUp : faChevronDown} 
+            style={{ fontSize: "0.7em" }}/>
+          </button>
+            </div>
+          {
+            books && (
         <Reviews comment={details.comment} id={details.id} rata={rata} setRata={setRata} />
+            )}
       </div>
     </div>
   )

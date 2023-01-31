@@ -117,3 +117,53 @@
 .readBookButton:active {
   transform: scale(1.02)
 }
+
+.buttonSuscribe {
+
+  color: #D97823;
+  font-weight: 600;
+  padding: 0.3rem 0.4rem 0.3rem 0.4rem;
+  border: 1px solid #D97823;
+  border-radius: 0.2rem;
+  transition: all .25s;
+  z-index: 1;
+  position: relative;
+  text-transform: uppercase;
+}
+
+.buttonSuscribe:before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 0;
+  left: 0;
+  bottom: 0;
+  background-image: linear-gradient(to right, #D97823, #F28322);
+  transition: all .25s;
+  z-index: -1;
+}
+
+.buttonSuscribe:hover {
+  color: white;
+}
+
+.buttonSuscribe:hover::before {
+  height: 100%;
+}
+
+/*---------------//Boton//---------------------*/
+
+.boton{ 
+  margin-top: 10px;
+  border: 3px solid #010326;
+  border-radius: 10px;
+
+  height: 50px;
+  width: 150px;
+  padding-left: 10px;
+
+  font-weight: bold; 
+  font-size: 24px; 
+}
+
+/*---------------//Boton//---------------------*/
