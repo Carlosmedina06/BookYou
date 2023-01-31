@@ -39,11 +39,15 @@ const SideBar = () => {
             </li>
             <li className={style.sidebarListItem}>
               <PersonIcon className={style.sidebarIcon} />
-              <div className={style.letras}> Usuarios </div>
+              <NavLink className={style.letras} to="/dashboard/usuarios">
+                Usuarios
+              </NavLink>
             </li>
             <li className={style.sidebarListItem}>
               <BookIcon className={style.sidebarIcon} />
-              <div className={style.letras}> Libros Publicados </div>
+              <NavLink className={style.letras} to="/dashboard/libros">
+                Libros Publicados
+              </NavLink>
             </li>
             <li className={style.sidebarListItem}>
               <AutoStoriesIcon className={style.sidebarIcon} />
