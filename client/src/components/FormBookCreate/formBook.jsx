@@ -49,6 +49,9 @@ const PostBook = () => {
     if (!response.message) {
       return (
         <section>
+          <div style={{ position: 'absolute', top: '0px', left: '0px' }}>
+            <NavBar />
+          </div>
           <div>
             <h1 className={style.h1}>Created succesfully!</h1>
             <button className={style.button} type="button" onClick={handleClear}>
