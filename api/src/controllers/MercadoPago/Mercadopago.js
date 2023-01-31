@@ -39,7 +39,7 @@ export const createPago = async (req, res) => {
             ],
             auto_return: 'approved',
             back_urls: {
-              success: 'https://https://book-2tmhdihzp-carlosmedina06.vercel.app/success',
+              success: 'https://book-you-rho.vercel.app/success',
               fallure: 'http://www.fallure.com',
               pending: 'http://www.pending.com',
             },
