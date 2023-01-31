@@ -9,11 +9,12 @@ export const UserEdit = () => {
 
   const [input, setInput] = useState({
     search: '',
+    select:''
   })
   const handleSearch = (e) => {
     setInput({
-      ...input,
-      [e.target.name]: e.target.value,
+      search: e.target.value,
+      select:'' 
     })
   }
 
@@ -27,7 +28,7 @@ export const UserEdit = () => {
   })
   const handleClickSearch = () => {
     const user = users.filter((el) => {
-      return el.name.toLowerCase() === input.search.toLowerCase()
+      return el.name.toLowerCase().trim() === input.search.toLowerCase().trim()
     })
 
     setEditedUser({
@@ -39,7 +40,27 @@ export const UserEdit = () => {
       id: user[0].id,
     })
   }
+  const handleUserSelect = (e)=>{
 
+    setInput({
+      search:'',
+      select: e.target.value
+    })
+
+    const user = users.filter((el) => {
+      return el.name.toLowerCase().trim() === e.target.value.toLowerCase().trim()
+    })
+
+    setEditedUser({
+      name: user[0].name,
+      username: user[0].username,
+      email: user[0].email,
+      subscription: user[0].subscription,
+      role: user[0].role,
+      id: user[0].id,
+    })
+
+  }
   const handleChange = (e) => {
     setEditedUser({ ...editedUser, [e.target.name]: e.target.value })
   }
@@ -57,6 +78,11 @@ export const UserEdit = () => {
     const info = await axios.put(
       'https://bookyou-production.up.railway.app/user/update' + editedUser.id,
       formData,
+      {
+        headers: {
+          authorization: `bearer ${localStorage.getItem('token')}`,
+        },
+      },
     )
 
     const res = info.data
@@ -64,9 +90,25 @@ export const UserEdit = () => {
   const handleDelete = async (e) => {
     const info = await axios.delete(
       'https://bookyou-production.up.railway.app/user/delete/' + editedUser.id,
+      {
+        headers: {
+          authorization: `bearer ${localStorage.getItem('token')}`,
+        },
+      },
     )
+    setEditedUser({
+      name: '',
+    username: '',
+    email: '',
+    subscription: '',
+    role: '',
+    id: '',
+    })
+    setInput({
+      search:'',
+      select:''
+    })
     const response = info.data
-
     return response
   }
 
@@ -75,6 +117,20 @@ export const UserEdit = () => {
       <h1>Update Users</h1>
       <br />
       <input name="search" value={input.search} onChange={(e) => handleSearch(e)} />
+      <select
+        name="users"
+        value={input.select}
+        onChange={(e) => handleUserSelect(e)}
+      >
+        <option value="none"></option>
+        {users?.map((element) => {
+          return (
+            <option key={element.id} value={element.name}>
+              {element.name}
+            </option>
+          );
+        })}
+      </select>
       <button type="button" onClick={handleClickSearch}>
         Search User
       </button>
@@ -91,11 +147,13 @@ export const UserEdit = () => {
           value={editedUser.subscription}
           onChange={(e) => handleChange(e)}
         >
+          <option value="none"></option>
           <option value="free">Free</option>
-          <option value="subscription">Premium</option>
+          <option value="premium">Premium</option>
         </select>
         <label>Role</label>
         <select name="role" value={editedUser.role} onChange={(e) => handleChange(e)}>
+          <option value="none"></option>
           <option value="user">User</option>
           <option value="admin">Admin</option>
         </select>
