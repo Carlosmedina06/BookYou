@@ -195,6 +195,7 @@ export const Home = () => {
                       id={book.id}
                       img={book.img}
                       name={book.title}
+                      
                     />
                   ))}
           </div>
