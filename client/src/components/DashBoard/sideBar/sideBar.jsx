@@ -38,21 +38,21 @@ const SideBar = () => {
             </li>
             <li className={style.sidebarListItem}>
               <PersonIcon className={style.sidebarIcon} />
-              <div className={style.letras}> Usuarios </div>
-            </li>
-            <li className={style.sidebarListItem}>
-              <BookIcon className={style.sidebarIcon} />
-              <div className={style.letras}> Libros Publicados </div>
+              <NavLink className={style.letras} to="/dashboard/usuarios">
+                Usuarios
+              </NavLink>
             </li>
             <li className={style.sidebarListItem}>
               <AutoStoriesIcon className={style.sidebarIcon} />
               <NavLink className={style.letras} to="/dashboard/books">
-                Actualizacion de Libros
+                Libros
               </NavLink>
             </li>
             <li className={style.sidebarListItem}>
               <ForumIcon className={style.sidebarIcon} />
-              <div className={style.letras}> Comentarios de usuarios </div>
+              <NavLink className={style.letras} to="/dashboard/comentarios">
+                Comentarios
+              </NavLink>
             </li>
           </ul>
         </div>
