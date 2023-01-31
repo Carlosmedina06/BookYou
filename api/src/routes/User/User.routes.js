@@ -12,7 +12,7 @@ const userRouter = Router()
 userRouter.get('/', getAllUsers)
 userRouter.get('/:id', getUserById)
 userRouter.put('/update/:id', userUpdate)
-userRouter.delete('/delete/:id', userDelete)
+userRouter.put('/delete/:id', userDelete)
 // userRouter.post('/create', userPost)
 
 export default userRouter

@@ -12,7 +12,7 @@ const bookRouter = Router()
 bookRouter.get('/', getAllBooks)
 bookRouter.get('/:id', getBookById)
 bookRouter.put('/update/:id', bookUpdate)
-bookRouter.delete('/delete/:id', bookDelete)
+bookRouter.put('/delete/:id', bookDelete)
 bookRouter.post('/create', bookPost)
 
 export default bookRouter

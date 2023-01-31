@@ -5,6 +5,10 @@ const CommentSchema = new mongoose.Schema({
   available: {
     type: Boolean,
     default: true,
+    report: {
+      type: Number,
+      default: 0,
+    },
   },
   createdAt: {
     type: Date,

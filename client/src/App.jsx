@@ -19,7 +19,6 @@ import { Statistics } from './components/DashBoard/Statistics/Statistics'
 import DashBoardMain from './components/DashBoard/dashBoardMain/'
 import Suscripcion from './components/Suscripcion/Suscripcion'
 
-
 const App = createBrowserRouter([
   {
     path: '/',
@@ -89,7 +88,7 @@ const App = createBrowserRouter([
       },
       {
         path: '/dashboard/:select',
-        element: <DashBoardMain/>,
+        element: <DashBoardMain />,
       },
     ],
   },

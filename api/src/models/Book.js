@@ -6,6 +6,10 @@ const BookSchema = new moongose.Schema({
   content: String,
   img: String,
   author: String,
+  report: {
+    type: Number,
+    default: 0,
+  },
   createdAt: {
     type: Date,
     default: Date.now,

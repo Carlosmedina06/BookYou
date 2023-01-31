@@ -1,7 +1,6 @@
 import jwt from 'jsonwebtoken'
 
 import Book from '../../models/Book.js'
-// import Comment from '../../models/Comment.js'
 
 const bookDelete = async (req, res, next) => {
   try {
@@ -23,15 +22,16 @@ const bookDelete = async (req, res, next) => {
       }
       const book = await Book.findById(id)
 
-      if (decodedToken.id.toString() !== book.user.toString()) {
-        res.status(401).json('Unauthorized papu')
-      } else {
+      if (decodedToken.id.toString() === book.user.toString() || decodedToken.role !== 'admin') {
         book.available = false
         book.save()
         res.status(200).json('Book deleted')
+      } else {
+        res.status(401).json('Unauthorized')
       }
     }
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.log(error)
     next(error)
   }

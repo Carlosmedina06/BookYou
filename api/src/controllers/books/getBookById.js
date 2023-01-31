@@ -4,7 +4,7 @@ const getBookById = async (req, res, next) => {
   try {
     const { id } = req.params
 
-    const oneBook = await Book.findById(id).populate('Comment')
+    const oneBook = await Book.findById(id).populate('comment')
 
     await oneBook.populate('user', { username: 2 })
 
