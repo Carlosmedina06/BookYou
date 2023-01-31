@@ -50,6 +50,20 @@ const Bookdetail = () => {
         console.log(res.data)
       })
   }
+  const handletEdit = (e) => {
+    e.preventDefault()
+    axios
+      .delete(`https://bookyou-production.up.railway.app/book/delete/${id}`, {
+        headers: {
+          authorization: `Bearer ${localStorage.getItem('token')}`,
+        },
+      })
+      .then((res) => {
+        // eslint-disable-next-line no-console
+        console.log(res.data)
+      })
+  }
+  
 
   return (
     <div className={style.mainGridContainer}>
@@ -104,7 +118,10 @@ const Bookdetail = () => {
               <br />
               <br />
               {loginUserVerification(localStorage.getItem('token'), details) ? (
-                <button onClick={handletDelete}> eliminar libro </button>
+                <button onClick={handletDelete}> Eliminar </button>
+              ) : null}
+               {loginUserVerification(localStorage.getItem('token'), details) ? (
+                <button onClick={handletEdit}> Editar </button>
               ) : null}
             </div>
           </div>
