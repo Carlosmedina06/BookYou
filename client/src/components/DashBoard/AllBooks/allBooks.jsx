@@ -5,34 +5,23 @@ import { NavLink } from 'react-router-dom'
 
 import style from '../AllUsers/allUser.module.css'
 
-import { userRows } from './dataUserRow'
+import { bookRows } from './dataBooks'
 
-export const AllUsers = () => {
-  const [data, setData] = useState(userRows)
+export const AllBooksUsers = () => {
+  const [data, setData] = useState(bookRows)
   const handleDelete = (id) => {
     setData(data.filter((i) => i.id !== id))
   } /* borra pero hay que guardar ese borrado para que al actualizar la pagina no vuelva a aparecer */
 
   const columns = [
     { field: 'id', headerName: 'ID', width: 70 },
-    { field: 'Name', headerName: 'Name', width: 130 },
-    { field: 'UserName', headerName: 'UserName', width: 130 },
-    { field: 'Suscription', headerName: 'Suscription', width: 130 },
+    { field: 'username', headerName: 'UserName', width: 190 },
+    { field: 'books', headerName: 'Books', width: 280 },
     {
-      field: 'Status',
+      field: 'status',
       headerName: 'Status',
-      width: 90,
-    },
-    {
-      field: 'Books',
-      headerName: 'Cant. Libros',
-      type: 'number',
-      width: 90,
-    },
-    {
-      field: 'Email',
-      headerName: 'E-mail',
-      width: 190,
+
+      width: 120,
     },
     {
       field: 'action',
@@ -41,9 +30,9 @@ export const AllUsers = () => {
       renderCell: (params) => {
         return (
           <>
-            <NavLink to="/dashboard/usuarios/editar">
+            <NavLink to="/dashboard/books/editar">
               <button className={style.userListEdit}>Edit</button>
-              {/* EL EDIT TIENE QUE LLEVAR AL FORMULARIO DE "USEREDIT" */}
+              {/* EL EDIT TIENE QUE LLEVAR AL FORMULARIO DE "BOOKEDIT" */}
             </NavLink>
             <DeleteIcon
               className={style.userListDelete}
@@ -57,19 +46,18 @@ export const AllUsers = () => {
 
   return (
     <div>
-      <div>
+      <div style={{ height: 400, width: '170%' }}>
+        {' '}
         <DataGrid
           checkboxSelection
-          disableSelectionOnClick
           columns={columns}
           pageSize={5}
           rows={data}
           rowsPerPageOptions={[5]}
-          style={{ height: 400, width: '160%' }}
-        />
+        />{' '}
       </div>
     </div>
   )
 }
 
-export default AllUsers
+export default AllBooksUsers
