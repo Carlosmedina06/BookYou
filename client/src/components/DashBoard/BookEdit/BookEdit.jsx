@@ -4,6 +4,8 @@ import { useSelector } from 'react-redux'
 
 import style from './BookEdit.module.css'
 
+const url = 'https://bookyou-production.up.railway.app'
+
 export const BookEdit = () => {
   const books = useSelector((state) => state.allBooks)
   const categories = useSelector((state) => state.category)
@@ -48,6 +50,11 @@ export const BookEdit = () => {
 
     const info = axios.delete(
       'https://bookyou-production.up.railway.app/book/delete/' + editedBook.id,
+      {
+        headers: {
+          authorization: `bearer ${localStorage.getItem('token')}`,
+        },
+      },
     )
 
     const response = info.data
@@ -66,8 +73,13 @@ export const BookEdit = () => {
     formData.append('author', editedBook.author)
 
     const info = await axios.put(
-      'https://bookyou-production.up.railway.app/book/update' + editedBook.id,
+      'https://bookyou-production.up.railway.app/book/update/' + editedBook.id,
       formData,
+      {
+        headers: {
+          authorization: `bearer ${localStorage.getItem('token')}`,
+        },
+      },
     )
 
 
