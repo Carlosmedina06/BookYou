@@ -8,6 +8,8 @@ import jwt_decode from 'jwt-decode'
 import { getBookById } from '../../redux/actions'
 import NavBar from '../NavBar/NavBar'
 import style from '../Bookdetail/Bookdetail.module.css'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronUp, faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import loginUserVerification from '../../utils/Functions/LoginUserVerification'
 import { clearBookDetails } from '../../redux/actions'
 
@@ -19,6 +21,8 @@ const Bookdetail = () => {
   const details = useSelector((state) => state.detail)
 
   const [rata, setRata] = useState(0) // NO TOCAR 🐭
+  const [books, setBooks] = useState(true) /* actualizar estado libros orden alf */
+
   const token = localStorage.getItem('token')
   let decoded = token ? jwt_decode(token) : null
 
@@ -105,7 +109,19 @@ const Bookdetail = () => {
             </div>
           </div>
         </div>
+
+        <div style={{ position: 'absolute', top: '480px', left: '300px' }}>
+        <button className={style.boton} onClick={() => setBooks(!books)}>
+            {books ?  'Ocultar ' :'Mostrar ' }
+            <FontAwesomeIcon 
+            icon={books ?  faChevronUp : faChevronDown} 
+            style={{ fontSize: "0.7em" }}/>
+          </button>
+            </div>
+          {
+            books && (
         <Reviews comment={details.comment} id={details.id} rata={rata} setRata={setRata} />
+            )}
       </div>
     </div>
   )

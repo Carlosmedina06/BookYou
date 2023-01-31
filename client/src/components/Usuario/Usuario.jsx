@@ -1,15 +1,20 @@
 import { useEffect, useState } from 'react'
 import Swal from 'sweetalert2'
 
+
 import NavBar from '../NavBar/NavBar'
 import Pagination from '../Pagination/Pagination'
 
 import perfil from './perfil.png'
 import style from './Usuario.module.css'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronUp, faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import UserBookCard from './UserBookCard'
 
 export const Usuario = () => {
   const [currentPage, setCurrentPage] = useState(0)
+
+  const [books, setBooks] = useState(true) /* actualizar estado libros orden alf */
 
   useEffect(() => {
     Swal.fire({
@@ -62,25 +67,35 @@ export const Usuario = () => {
       {
         <div style={{ position: 'absolute', top: '300px', left: '300px' }}>
           <h2 style={{ fontWeight: 'bold', fontSize: '31px' }}>Mis Libros</h2>
+          <button className={style.boton} onClick={() => setBooks(!books)}>
+            {books ?  'Ocultar ' :'Mostrar ' }
+            <FontAwesomeIcon 
+            icon={books ?  faChevronUp : faChevronDown} 
+            style={{ fontSize: "0.7em" }}/>
+          </button>
+        
+          {
+            books && (
+              <div>
+                <div>
+                  {libros.length > 0 ? (
+                    filterBooks().map((book, i) => <UserBookCard key={i} />)
+                  ) : (
+                    <p>Sin libros aun</p>
+                  )}
+                </div>
 
-          <div>
-            <div>
-              {libros.length > 0 ? (
-                filterBooks().map((book, i) => <UserBookCard key={i} />)
-              ) : (
-                <p>Sin libros aun</p>
-              )}
-            </div>
-          </div>
-
-          <div className={style.paginado}>
-            <Pagination
-              filterBooks={filterBooks().length}
-              nextPage={nextPage}
-              prevPage={prevPage}
-              totalPages={currentPage + 1}
-            />
-          </div>
+                <div className={style.paginado}>
+                  <Pagination
+                    filterBooks={filterBooks().length}
+                    nextPage={nextPage}
+                    prevPage={prevPage}
+                    totalPages={currentPage + 1}
+                  />
+                </div>
+              </div>
+            )
+          }
           <div />
         </div>
       }

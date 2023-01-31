@@ -1,4 +1,4 @@
-import { createBrowserRouter, createHashRouter, HashRouter } from 'react-router-dom'
+import { createHashRouter, } from 'react-router-dom'
 
 import Bookdetail from './components/Bookdetail/Bookdetail'
 import { DashBoard } from './components/DashBoard/dashBoard'
@@ -16,10 +16,12 @@ import { UserEdit } from './components/DashBoard/UserEdit/UserEdit'
 import { BookEdit } from './components/DashBoard/BookEdit/BookEdit'
 import { CommentEdit } from './components/DashBoard/CommentEdit/CommentEdit'
 import { Statistics } from './components/DashBoard/Statistics/Statistics'
+import { AllUsers } from './components/DashBoard/AllUsers/allUsers'
 import DashBoardMain from './components/DashBoard/dashBoardMain/'
 import Suscripcion from './components/Suscripcion/Suscripcion'
 
-const App = createHashRouter([
+const App = createBrowserRouter([
+
   {
     path: '/',
     element: <Layout />,
@@ -52,6 +54,10 @@ const App = createHashRouter([
       {
         path: '/bookEdit',
         element: <BookEdit />,
+      },
+      {
+        path: '/usuarios',
+        element: <AllUsers />,
       },
       {
         path: '/commentEdit',

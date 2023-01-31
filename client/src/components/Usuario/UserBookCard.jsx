@@ -2,8 +2,14 @@
 
 import styles from './UserBookCard.module.css'
 import image from './libro-1.jpg'
+import { NavLink } from 'react-router-dom'
 
-function UserBookCard() {
+
+
+function UserBookCard({ name, id, autor, img, estado, comentarios, calificacion }) {
+
+
+
   return (
     <div className={styles.container}>
       <figure className={styles.bookCover}>
@@ -22,11 +28,12 @@ function UserBookCard() {
       </section>
       <section className={styles.options}>
         <div>
-          <button className={styles.optionButton}>
-            <span>Ver</span>
-
-            <span>{/* <AiOutlineSearch /> */}</span>
+          <NavLink to={`/bookdetail/${id}`}>
+            <button className={styles.optionButton}>
+              <span>Ver</span>
+              <span>{/* <AiOutlineSearch /> */}</span>
           </button>
+          </NavLink>
         </div>
         <div>
           <button className={styles.optionButton}>

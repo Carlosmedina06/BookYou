@@ -8,18 +8,19 @@
 /* -----card------ */
 
 .mover {
-    width: 1080px;
-
-    margin-top: 10px;
+    background: #010326;
+   
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
     margin-left: 1%;
     perspective: 1000px;
+    width: 1070px;
+    height: 700px;
 }
 
-.pagination {
-    margin-top: -380px;
+.pagination{
+    margin-top: -25rem;
     margin-left: 5rem;
 }
 
@@ -39,7 +40,7 @@
 .mover1 {
     display: flex;
     position: absolute;
-    top: 150px;
+    top: 160px;
     left: 250px;
 
 }
@@ -86,3 +87,14 @@
     margin-top: 3%;
     background-color: aquamarine;
 }
+
+.boton{
+
+    color: #010326;
+    border: 3px solid #010326;
+    background-color: #EBF2ED;
+    height: 40px;
+    width: 150px;
+    border-color:1px #010326;
+
+  }

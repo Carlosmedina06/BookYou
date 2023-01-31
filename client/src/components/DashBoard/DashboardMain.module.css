@@ -56,6 +56,34 @@ align-items: center;
 
 }
 
+.userContainer{
+  margin-top: -5px;
+  margin-left: 10rem;
+}
+
+.userTitle{
+  margin-top: 3rem;
+  font-weight: bold;
+  font-size: 20px;
+}
+.ContainerTitle{
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.graphCardUser{
+  display: flex;
+  flex-direction: column;
+margin-right: 20rem;
+  height: auto;
+width: 340px;
+background-color: rgb(49, 48, 48);
+border-radius: 8px;
+align-content: center;
+align-items: center;
+
+}
+
 .cardTitle{
   position: relative;
 font-size: 1.5rem;
@@ -85,7 +113,7 @@ background-color: aquamarine;
 display: flex;
 flex-direction: column;
 
-margin-left: 3rem;
+margin-left: 23rem;
 }
 
 
