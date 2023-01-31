@@ -15,6 +15,7 @@ import SearchByAutor from '../FiltradoAutor/filterAutor'
 import Card from '../Card/Card'
 /* import Pagination from '../Pagination/Pagination' */
 import style from '../Home/home.module.css'
+import CssGenerico from '../CssGenerico/CssGenerico.module.css'
 
 export const Home = () => {
   const dispatch = useDispatch()
@@ -125,39 +126,41 @@ export const Home = () => {
         <button className={style.boton}  onClick={clearStates}>Lmpiar</button>
       </div>
 
+
+{/**-----------------inputs--------------------------------- */}
       <SearchBar
         bookInput={bookInput}
         setAuthorInput={setAuthorInput}
         setBookInput={setBookInput}
         setBookInputtodos={setBookInputtodos}
       />
-
+     
       <div>
-        <div>
-          <SearchByAutor
-            authorInput={authorInput}
-            setAuthorInput={setAuthorInput}
-            setBookInput={setBookInput}
-            setBookInputtodos={setBookInputtodos}
-          />
-        </div>
-        <div>
-          <FiltradoGenero
-            bookInput={bookInput}
-            bookInputtodos={bookInputtodos}
-            books={books}
-            setAuthorInput={setAuthorInput}
-            setBookInput={setBookInput}
-            setBookInputtodos={setBookInputtodos}
-            setBooks={setBooks}
-          />
-        </div>
-        <div style={{ position: 'absolute', top: '180px', right: '500px' }}>
-          <OrdAlfabetico 
+        <SearchByAutor
+          authorInput={authorInput}
+          setAuthorInput={setAuthorInput}
+          setBookInput={setBookInput}
+          setBookInputtodos={setBookInputtodos}
+        />
+        
+      <FiltradoGenero
+        bookInput={bookInput}
+        bookInputtodos={bookInputtodos}
+        books={books}
+        setAuthorInput={setAuthorInput}
+        setBookInput={setBookInput}
+        setBookInputtodos={setBookInputtodos}
+        setBooks={setBooks}
+      />
+       
+      <div style={{ position: 'absolute', top: '130px', right: '45px' }}>
+        <OrdAlfabetico 
           books={allBooks} 
           orderedBooks={orderedBooks} 
           setOrderedBooks = {setOrderedBooks}/>
-        </div>
+      </div>
+{/**-----------------inputs--------------------------------- */}
+
 
         <div>
           {(bookInput.length > 0 && filterLibros.length === 0) ||
