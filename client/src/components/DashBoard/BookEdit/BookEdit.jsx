@@ -72,8 +72,6 @@ export const BookEdit = () => {
         },
       }
     );
-
-    const response = info.data;
     setEditedBook({
       title: "",
       description: "",
@@ -82,6 +80,11 @@ export const BookEdit = () => {
       subscription: "",
       id: "",
     });
+    setInput({
+      search:"",
+      select:"",
+    })
+    const response = info.data;
     return response;
   };
 
