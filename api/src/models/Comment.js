@@ -2,6 +2,10 @@ import mongoose from 'mongoose'
 
 const CommentSchema = new mongoose.Schema({
   comment: String,
+  available: {
+    type: Boolean,
+    default: true,
+  },
   createdAt: {
     type: Date,
     default: Date.now,
