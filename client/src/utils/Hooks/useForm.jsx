@@ -23,11 +23,15 @@ export const useForm = (initialForm, validationsForm) => {
         formData.append('author', form.author)
         formData.append('subscription', form.subscription)
 
-        const info = await axios.post('http://localhost:3001/book/create', formData, {
-          headers: {
-            authorization: `Bearer ${localStorage.getItem('token')}`,
+        const info = await axios.post(
+          'https://bookyou-production.up.railway.app/book/create',
+          formData,
+          {
+            headers: {
+              authorization: `Bearer ${localStorage.getItem('token')}`,
+            },
           },
-        })
+        )
 
         const res = info.data
 

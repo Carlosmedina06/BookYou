@@ -1,4 +1,3 @@
-import { async } from '@firebase/util'
 import axios from 'axios'
 /* ACA ESTA TODA LA CONEXION BACK Y FRONT!! */
 export const GET_USERS = 'GET_USERS'
@@ -23,8 +22,10 @@ import {
 
 import { auth } from '../../utils/FireBase/FireBase'
 
+const url = 'https://bookyou-production.up.railway.app'
+
 export const suscription = async () => {
-  const pago = await axios.get('http://localhost:3001/checkout', {
+  const pago = await axios.get(`${url}/checkout'`, {
     headers: {
       Authorization: `Bearer ${window.localStorage.getItem('token')}`,
     },
@@ -38,7 +39,7 @@ export const loginGoogle = () => async (dispatch) => {
 
   const res = await signInWithPopup(auth, provider)
 
-  axios.post('http://localhost:3001/login', res.user).then((res) => {
+  axios.post(`${url}/login`, res.user).then((res) => {
     window.localStorage.setItem('token', res.data.token)
 
     return dispatch({
@@ -63,7 +64,7 @@ export const registerLocal = (email, password, displayName) => async (dispatch) 
   const response = await createUserWithEmailAndPassword(auth, email, password)
 
   response.user.displayName = displayName
-  axios.post('http://localhost:3001/signup', response.user).then((res) => {
+  axios.post(`${url}/signup`, response.user).then((res) => {
     return dispatch({
       type: REGISTER_LOCAL,
       payload: res.data.token,
@@ -74,7 +75,7 @@ export const registerLocal = (email, password, displayName) => async (dispatch) 
 export const loginLocal = (email, password) => async (dispatch) => {
   const response = await signInWithEmailAndPassword(auth, email, password)
 
-  axios.post('http://localhost:3001/login', response.user).then((res) => {
+  axios.post(`${url}/login`, response.user).then((res) => {
     window.localStorage.setItem('token', res.data.token)
 
     return dispatch({
@@ -95,7 +96,7 @@ export const logout = () => async (dispatch) => {
 /* ------------- GET BOOKS SEARCH ----------*/
 export const getSearchBook = (name) => async (dispatch) => {
   try {
-    const info = await axios.get('http://localhost:3001/book')
+    const info = await axios.get(`${url}/book`)
 
     // eslint-disable-next-line no-console
     console.log(info.data)
@@ -113,7 +114,7 @@ export const getSearchBook = (name) => async (dispatch) => {
 /* ----------------GET BOOKS-------------- */
 export const getBooks = () => async (dispatch) => {
   try {
-    const info = await axios.get('http://localhost:3001/book')
+    const info = await axios.get(`${url}/book`)
 
     return dispatch({
       type: 'GET_BOOKS',
@@ -130,7 +131,7 @@ export const getBooks = () => async (dispatch) => {
 /* -------------------- GET USUARIOS ----------------- */
 export const getUsers = () => async (dispatch) => {
   try {
-    const info = await axios.get('http://localhost:3001/user')
+    const info = await axios.get(`${url}/user`)
 
     return dispatch({
       type: GET_USERS,
@@ -159,7 +160,7 @@ export const clearBookDetails = () => async (dispatch) => {
 
 export const getBookById = (id) => async (dispatch) => {
   try {
-    const info = await axios.get('http://localhost:3001/book/' + id)
+    const info = await axios.get(`${url}/book/${id}`)
 
     dispatch({ type: GET_BOOKBY_ID, payload: info.data })
   } catch (error) {
@@ -173,7 +174,7 @@ export const getBookById = (id) => async (dispatch) => {
 /* ---------------GET GÉNEROS LITERARIOS------------------ */
 export const getCategorys = () => async (dispatch) => {
   try {
-    const info = await axios.get('http://localhost:3001/category')
+    const info = await axios.get(`${url}/category`)
 
     return dispatch({
       type: 'GET_ALL_GENEROS',
@@ -190,7 +191,7 @@ export const getCategorys = () => async (dispatch) => {
 /* ----------------------- GET AUTORES LITERARIOS -------------------- */
 export const getAutores = () => async (dispatch) => {
   try {
-    const info = await axios.get('http://localhost:3001/book')
+    const info = await axios.get(`${url}/book`)
 
     return dispatch({
       type: 'GET_SEARCH_AUTORES',
@@ -232,7 +233,7 @@ export const orderAlf = (payload) => {
 
 export const postBookReview = () => async (dispatch) => {
   try {
-    const info = await axios.get('http://localhost:3001/create/book')
+    const info = await axios.get(`${url}/create/book`)
 
     return dispatch({
       type: 'GET_COMENTARIOS',

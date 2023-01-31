@@ -64,10 +64,8 @@ const Login = () => {
                 <p>Iniciar sesión</p>
               </div>
               <div className={style.formInputBox}>
-
                 <label htmlFor="email">Correo electronico</label>
                 <input name="email" placeholder="email..." type="email" onChange={handletLogin} />
-
               </div>
               <div className={style.formInputBox}>
                 <label htmlFor="password">Contraseña</label>
@@ -112,11 +110,6 @@ const Login = () => {
             )}
           </div>
         </form>
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
       </div>
     </div>
   )

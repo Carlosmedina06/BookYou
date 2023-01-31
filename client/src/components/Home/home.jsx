@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import Pagination from '@mui/material/Pagination'
 import Stack from '@mui/material/Stack'
 
-import { getBooks, getCategorys, loginUser, getAutores } from '../../redux/actions/index'
+import { getBooks, getCategorys, getAutores } from '../../redux/actions/index'
 import FiltradoGenero from '../FiltradoGenero/filtradoGenero'
 import OrdAlfabetico from '../OrderAlfab/orderAlfabetico'
 import NavBar from '../NavBar/NavBar'
@@ -23,7 +23,6 @@ export const Home = () => {
   const [bookInputtodos, setBookInputtodos] =
     useState('') /* actualizar estado genero 'value=todos' para serachbar por libro y autor*/
   const [filterLibros, setFilterLibros] = useState([])
-
 
   const allBooks = useSelector((state) => state.books)
 
@@ -105,7 +104,6 @@ export const Home = () => {
   useEffect(() => {
     dispatch(getBooks())
     dispatch(getCategorys())
-    dispatch(loginUser())
     dispatch(getAutores())
   }, [dispatch])
 
@@ -148,92 +146,47 @@ export const Home = () => {
 
         <div>
           {(bookInput.length > 0 && filterLibros.length === 0) ||
-          (bookInputtodos.length > 0 && filterLibros.length === 0) ||
-          (authorInput.length > 0 && filterLibros.length === 0) ? (
+            (bookInputtodos.length > 0 && filterLibros.length === 0) ||
+            (authorInput.length > 0 && filterLibros.length === 0) ? (
             <p className={style.p}>No se encontro ningun libro</p>
           ) : (
-            <p />
+            <>
+              <div className={style.mover1}>
+                <div className={style.mover}>
+                  {filterLibros.length > 0
+                    ? filterLibros.map((book) => (
+                      <Card
+                        key={book.id}
+                        autor={book.author}
+                        className={style.filterCard}
+                        comentarios={book.content}
+                        estado={book.subscription}
+                        id={book.id}
+                        img={book.img}
+                        name={book.title}
+                      />
+                    ))
+                    : allBooks
+                      .slice(currentPage, currentPage + 8)
+                      .map((book) => (
+                        <Card
+                          key={book.id}
+                          autor={book.author}
+                          className={style.cards}
+                          comentarios={book.content}
+                          estado={book.subscription}
+                          id={book.id}
+                          img={book.img}
+                          name={book.title}
+                        />
+                      ))}
+                </div>
+              </div>
+            </>
           )}
         </div>
-
-        <div className={style.mover1}>
-          <div className={style.mover}>
-            {filterLibros.length > 0
-              ? filterLibros.map((book) => (
-                <Card
-                  key={book.id}
-                  autor={book.author}
-                  className={style.filterCard}
-                  comentarios={book.content}
-                  estado={book.subscription}
-                  id={book.id}
-                  img={book.img}
-                  name={book.title}
-                />
-              ))
-              : allBooks
-                .slice(currentPage, currentPage + 8)
-                .map((book) => (
-                  <Card
-                    key={book.id}
-                    autor={book.author}
-                    className={style.cards}
-                    comentarios={book.content}
-                    estado={book.subscription}
-                    id={book.id}
-                    img={book.img}
-                    name={book.title}
-                  />
-
-                ))}
-          </div>
-        </div>
       </div>
 
-      <div className={style.paginado}>
-        <Stack spacing={2}>
-          <Pagination
-            className={style.pagination}
-            count={Math.ceil(allBooks.length / 8)}
-            page={countOne}
-            size="large"
-            onChange={onChangePagination}
-          />
-        </Stack>
-      </div>
-      <div>
-        <div style={{ position: 'absolute', left: '290px', top: '65rem' }}>
-          <h3
-            style={{
-              color: '#010326',
-              position: 'absolute',
-              top: '-20px',
-              left: '20px',
-              fontSize: '30px',
-            }}
-          >
-            Recomendado
-          </h3>
-          <Carousel />
-
-                ))
-              : allBooks
-                  .slice(currentPage, currentPage + 8)
-                  .map((book) => (
-                    <Card
-                      key={book.id}
-                      autor={book.author}
-                      className={style.cards}
-                      comentarios={book.content}
-                      estado={book.subscription}
-                      id={book.id}
-                      img={book.img}
-                      name={book.title}
-                    />
-                  ))}
-          </div>
-        </div>
-      </div>
       <div className={style.paginado}>
         <Stack spacing={2}>
           <Pagination
