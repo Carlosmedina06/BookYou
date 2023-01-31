@@ -1,9 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Bitter:wght@700&family=Poppins:wght@400;500;600;700;800&display=swap');
+
 /* ABOUT APP SECTION */
+.wrapper {
+  margin: 3rem auto;
+}
+
 .containerTitle {
+  font-family: 'Bitter', serif;
   text-align: center;
   font-weight: bold;
   letter-spacing: 5px;
-  margin: 2rem 0;
+  margin: 2rem auto;
 }
 
 .containerSection {
@@ -11,16 +18,15 @@
   max-width: 1500px;
 }
 
-.wrapper {
-  margin: 3rem 0;
-}
-
 .logo {
-  font-size: 3rem;
+  font-size: 4rem;
+  text-transform: uppercase;
 }
 
 .simpleContain {
   display: flex;
+  justify-content: space-around;
+  align-items: center;
   margin-bottom: 2rem;
   padding: 2rem;
 }
@@ -31,8 +37,50 @@
 
 .info {
   padding: 3rem;
+  padding-top: 0;
   font-size: 20px;
-  line-height: 30px;
+  line-height: 40px;
+}
+
+.numbers {
+  color: #f28322;
+  font-weight: bold;
+  padding: 5px;
+  margin-right: 1rem;
+  border: 2px solid #f28322;
+  border-radius: 50%;
+}
+
+.paragraphLeft {
+  animation-name: slideInLeft;
+  animation-duration: 2s;
+  animation-fill-mode: both;
+}
+
+@keyframes slideInLeft {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.paragraphRight {
+  animation: slideInRight 2s both;
+}
+
+@keyframes slideInRight {
+  0% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
 }
 
 /* LOGIN SECTION */
@@ -47,6 +95,7 @@
 .buttonContainer {
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
 .main_left_container {
@@ -59,6 +108,7 @@
 }
 
 .titleApp {
+  margin-top: 10rem;
   display: flex;
   justify-content: center;
   color: white;

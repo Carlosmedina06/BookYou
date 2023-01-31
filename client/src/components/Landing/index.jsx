@@ -18,13 +18,13 @@ function MainPage() {
         <div className={style.groupContain}>
           <div className={style.simpleContain}>
             <div className={style.info}>
-              <p>
+              <p className={style.paragraphLeft}>
                 Únete a nuestra comunidad de amantes de los libros. Descubre una
                 amplia selección de títulos y haz un buen negocio vendiendo tus
                 obras. Registrate y comienza a compartir tu pasión por la
                 lectura.
               </p>
-              <p>
+              <p className={style.paragraphLeft}>
                 Conecta con otros entusiastas y expande tu colección de libros
                 con facilidad. Unirte a nuestra comunidad significa tener acceso
                 a una variedad interminable de títulos, a precios accesibles.
@@ -39,13 +39,18 @@ function MainPage() {
               <IconLeft />
             </div>
             <div className={style.info}>
-              <ol>
-                <li>Crea una cuenta.</li>
-                <li>Entra a tu perfil y haz clic en "Añadir libro".</li>
+              <ol className={style.paragraphRight}>
                 <li>
-                  Sube una foto del libro y proporciona información básica, como
-                  título, autor y descripción. Selecciona una membresía y
-                  publica el libro.
+                  <span className={style.numbers}>1</span>Crea una cuenta.
+                </li>
+                <li>
+                  <span className={style.numbers}>2</span>Entra a tu perfil y
+                  haz clic en "Añadir libro".
+                </li>
+                <li>
+                  <span className={style.numbers}>3</span>Sube una foto del
+                  libro y proporciona información básica, como título, autor y
+                  descripción. Selecciona una membresía y publica el libro.
                 </li>
                 <li>
                   Eso es todo! Ahora estás listo para vender tus libros y
@@ -58,7 +63,7 @@ function MainPage() {
       </section>
       <div className={`${style.main_container}`}>
         <div className={`${style.main_left_container}`}>
-          <h1 className={`${style.titleApp}`}>BOOK YOU</h1>
+          <h2 className={`${style.titleApp}`}>COMIENZA</h2>
           <h3>Welcome!</h3>
           <div className={`${style.left_paragraph}`}>
             <p>
