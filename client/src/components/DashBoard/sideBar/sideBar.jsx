@@ -3,14 +3,13 @@ import TimelineIcon from '@mui/icons-material/Timeline'
 import PersonIcon from '@mui/icons-material/Person'
 import BookIcon from '@mui/icons-material/Book'
 import ForumIcon from '@mui/icons-material/Forum'
-import FolderSharedIcon from '@mui/icons-material/FolderShared'
 import AutoStoriesIcon from '@mui/icons-material/AutoStories'
 import { faSignOut } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Link, NavLink } from 'react-router-dom'
 
 import style from '../sideBar/sideBar.module.css'
-import DashBoardMain from '../../DashBoard/dashBoardMain'
+/* import DashBoardMain from '../../DashBoard/dashBoardMain' */
 
 const SideBar = () => {
   return (
@@ -44,20 +43,16 @@ const SideBar = () => {
               </NavLink>
             </li>
             <li className={style.sidebarListItem}>
-              <BookIcon className={style.sidebarIcon} />
-              <NavLink className={style.letras} to="/dashboard/libros">
-                Libros Publicados
-              </NavLink>
-            </li>
-            <li className={style.sidebarListItem}>
               <AutoStoriesIcon className={style.sidebarIcon} />
               <NavLink className={style.letras} to="/dashboard/books">
-                Actualizacion de Libros
+                Libros
               </NavLink>
             </li>
             <li className={style.sidebarListItem}>
               <ForumIcon className={style.sidebarIcon} />
-              <div className={style.letras}> Comentarios de usuarios </div>
+              <NavLink className={style.letras} to="/dashboard/comentarios">
+                Comentarios
+              </NavLink>
             </li>
           </ul>
         </div>

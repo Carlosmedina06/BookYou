@@ -16,9 +16,9 @@ import { UserEdit } from './components/DashBoard/UserEdit/UserEdit'
 import { BookEdit } from './components/DashBoard/BookEdit/BookEdit'
 import { CommentEdit } from './components/DashBoard/CommentEdit/CommentEdit'
 import { Statistics } from './components/DashBoard/Statistics/Statistics'
+import { AllUsers } from './components/DashBoard/AllUsers/allUsers'
 import DashBoardMain from './components/DashBoard/dashBoardMain/'
 import Suscripcion from './components/Suscripcion/Suscripcion'
-
 
 const App = createBrowserRouter([
   {
@@ -55,6 +55,10 @@ const App = createBrowserRouter([
         element: <BookEdit />,
       },
       {
+        path: '/usuarios',
+        element: <AllUsers />,
+      },
+      {
         path: '/commentEdit',
         element: <CommentEdit />,
       },
@@ -89,7 +93,7 @@ const App = createBrowserRouter([
       },
       {
         path: '/dashboard/:select',
-        element: <DashBoardMain/>,
+        element: <DashBoardMain />,
       },
     ],
   },
