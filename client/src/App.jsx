@@ -1,4 +1,4 @@
-import { createBrowserRouter } from 'react-router-dom'
+import { createBrowserRouter, createHashRouter, HashRouter } from 'react-router-dom'
 
 import Bookdetail from './components/Bookdetail/Bookdetail'
 import { DashBoard } from './components/DashBoard/dashBoard'
@@ -19,7 +19,7 @@ import { Statistics } from './components/DashBoard/Statistics/Statistics'
 import DashBoardMain from './components/DashBoard/dashBoardMain/'
 import Suscripcion from './components/Suscripcion/Suscripcion'
 
-const App = createBrowserRouter([
+const App = createHashRouter([
   {
     path: '/',
     element: <Layout />,

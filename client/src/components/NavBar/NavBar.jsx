@@ -52,9 +52,11 @@ const NavBar = () => {
               <li>
                 <NavLink to="/usuario">Perfil</NavLink>
               </li>
-              <li>
-                <NavLink to="/dashboard">Panel Admin</NavLink>
-              </li>
+              {decoded && decoded.role === 'admin' && (
+                <li>
+                  <NavLink to="/dashboard">Panel Admin</NavLink>
+                </li>
+              )}
             </>
           )}
         </ul>

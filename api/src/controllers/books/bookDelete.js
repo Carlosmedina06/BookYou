@@ -22,7 +22,7 @@ const bookDelete = async (req, res, next) => {
       }
       const book = await Book.findById(id)
 
-      if (decodedToken.id.toString() === book.user.toString() || decodedToken.role !== 'admin') {
+      if (decodedToken.id.toString() === book.user.toString() || decodedToken.role === 'admin') {
         book.available = false
         book.save()
         res.status(200).json('Book deleted')
