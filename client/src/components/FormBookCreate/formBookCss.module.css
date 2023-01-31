@@ -217,5 +217,40 @@ padding: 3%
           -webkit-transition: 0.1s;
           transition: 0.5s;
         }
+
+        .h1{
+          margin-top: 10rem;
+          margin-left: 38rem;
+          font-size: 40px;
+          color:#010326;
+        }
+
+        .button{
+          margin-left: 45rem;
+          margin-top: 5rem;
+          color:#010326;
+          font-size: 20px;
+          background: #07484a;
+          color: #07484a;
+          border: none;
+          outline: none;
+          cursor: pointer;
+          padding: 10px 30px 10px 30px;
+          
+          box-shadow: 1px 5px 50px 10px rgba(0, 0, 0, 0.4);
+          border-radius: 10px;
+          margin-bottom: 20px;
+          transition: all 0.4s ease-in-out; 
+          
+        }
+          
+          .button:hover {
+            background: #F28322;
+            color: #fff;
+          
+          }
+        
+        
+        
        
       
