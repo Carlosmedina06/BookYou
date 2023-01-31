@@ -45,9 +45,11 @@ export const BookEdit = () => {
     setEditedBook({ ...editedBook, [e.target.name]: e.target.value })
   }
   const handleDelete = async (id) => {
+
     const info = axios.delete(
       'https://bookyou-production.up.railway.app/book/delete/' + editedBook.id,
     )
+
     const response = info.data
 
     return response
@@ -67,6 +69,7 @@ export const BookEdit = () => {
       'https://bookyou-production.up.railway.app/book/update' + editedBook.id,
       formData,
     )
+
 
     const res = info.data
   }
