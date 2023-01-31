@@ -1,5 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
+
+//import jwt_decode from 'jwt-decode'
 import Pagination from '@mui/material/Pagination'
 import Stack from '@mui/material/Stack'
 
@@ -13,24 +15,26 @@ import SearchByAutor from '../FiltradoAutor/filterAutor'
 import Card from '../Card/Card'
 /* import Pagination from '../Pagination/Pagination' */
 import style from '../Home/home.module.css'
+import CssGenerico from '../CssGenerico/CssGenerico.module.css'
 
 export const Home = () => {
   const dispatch = useDispatch()
+  const allGeneros = useSelector((state) => state.category)
 
   const [books, setBooks] = useState(true) /* actualizar estado libros orden alf */
   const [bookInput, setBookInput] = useState('') /* actualizar estado searchbar por libro*/
   const [authorInput, setAuthorInput] = useState('') /* actualizar estado searchbar por autor */
-  const [bookInputtodos, setBookInputtodos] =
-    useState('') /* actualizar estado genero 'value=todos' para serachbar por libro y autor*/
+  const [bookInputtodos, setBookInputtodos] =useState('') /* actualizar estado genero 'value=todos' para serachbar por libro y autor*/
   const [filterLibros, setFilterLibros] = useState([])
-
-  const allBooks = useSelector((state) => state.books)
 
   /* ----------Paginacion------------- */
 
   const [currentPage, setCurrentPage] = useState(0)
   const [countOne, setCountOne] = useState(1)
   const [countTwo, setCountTwo] = useState(1)
+
+  const allBooks = useSelector((state) => state.books)
+  const [orderedBooks, setOrderedBooks] = useState(allBooks)
 
   const onChangePagination = (event, value) => {
     setCountOne(value)
@@ -52,18 +56,6 @@ export const Home = () => {
     setCountTwo(value)
   }
 
-  //Pagina Anterior
-  const prev = () => {
-    if (0 < currentPage) setCurrentPage(currentPage - 8)
-  }
-  //Pagina siguiente
-  const next = () => {
-    if (currentPage + 8 < allBooks.length) {
-      setCurrentPage(currentPage + 8)
-    }
-  }
-
-  /* ----------Condicional filtrado libros------------- */
   useEffect(() => {
     setFilterLibros(
       allBooks.filter((b) => {
@@ -94,54 +86,100 @@ export const Home = () => {
           return b.author.toLowerCase().includes(authorInput.toLowerCase())
         } else if (bookInputtodos.length > 0) {
           return b.category.toLowerCase().includes(bookInputtodos.toLowerCase())
-        } else if (bookInputtodos.length > 1) {
-          return books
         }
       }),
     )
-  }, [bookInputtodos, authorInput, bookInput, allBooks, books])
+  }, [bookInputtodos, authorInput, bookInput, allBooks])
 
   useEffect(() => {
     dispatch(getBooks())
     dispatch(getCategorys())
     dispatch(getAutores())
   }, [dispatch])
+   
+   
+  const prev = () => {
+    if (0 < currentPage) setCurrentPage(currentPage - 8)
+  }
+  //Pagina siguiente
+  const next = () => {
+    if (currentPage + 8 < allBooks.length) {
+      setCurrentPage(currentPage + 8)
+    }
+  }
 
+
+  const clearStates = () => {
+    setBooks(true);
+    setBookInput('');
+    setAuthorInput('');
+    setBookInputtodos('');
+  }
+
+  const handleInputChange = (e) => {
+    setBookInput(e.target.value)
+  }
   return (
-    <div style={{ backgroundColor: 'blue' }}>
+    <div >
       <div style={{ position: 'absolute', top: '0px' }}>
         <NavBar />
       </div>
-
-      <SearchBar
-        bookInput={bookInput}
-        setAuthorInput={setAuthorInput}
-        setBookInput={setBookInput}
-        setBookInputtodos={setBookInputtodos}
-      />
-
+      <div style={{ position:'absolute',top: '90px', right: '45px' }}>
+        <button className={style.boton}  onClick={clearStates}>Lmpiar</button>
+      </div>
+{/* input busqueda---------------------------------------------------------- */}
       <div>
-        <div>
-          <SearchByAutor
-            authorInput={authorInput}
-            setAuthorInput={setAuthorInput}
-            setBookInput={setBookInput}
-            setBookInputtodos={setBookInputtodos}
-          />
+          <div style={{ position: 'absolute', top: '20px', left: '300px', paddingRight: '300px' }}>
+            <input
+              required
+              className={CssGenerico.search}
+              id="default-search"
+              placeholder="Libros, Textos, Artículos..."
+              type="text"
+              value={bookInput}
+              onChange={(e) => setBookInput(e.target.value)}
+            />
+          </div>
         </div>
-        <div>
-          <FiltradoGenero
-            bookInput={bookInput}
-            bookInputtodos={bookInputtodos}
-            books={books}
-            setAuthorInput={setAuthorInput}
-            setBookInput={setBookInput}
-            setBookInputtodos={setBookInputtodos}
-            setBooks={setBooks}
-          />
+{/* input busqueda---------------------------------------------------------- */}
+      <div>
+{/* input busqueda Autor---------------------------------------------------- */}
+      <div>
+        <div style={{ position: 'absolute', top: '20px', left: '600px' }}>
+            <input
+              required
+              className={CssGenerico.search}
+              id="default-search"
+              placeholder="Libros, Textos, Artículos..."
+              type="text"
+              value={authorInput}
+              onChange={(e) => setAuthorInput(e.target.value)}
+            />
+          </div>
         </div>
-        <div style={{ position: 'absolute', top: '130px', left: '30px' }}>
-          <OrdAlfabetico books={books} setBooks={setBooks} />
+{/* input busqueda Autor---------------------------------------------------- */}
+        
+{/* input Filtro Genero----------------------------------------------------- */}
+      <div style={{ position: 'absolute', top: '20px', left: '900px' }}>
+        <select
+          className={CssGenerico.selectGen}
+          value={bookInputtodos}
+          onChange={(e) => setBookInputtodos(e.target.value)}
+        >
+        <option className={style.titulo} value="">
+          Géneros
+        </option>
+        {allGeneros?.map((c) => (
+          <option key={c.id}>{c.category}</option>
+        ))}
+      </select>
+      </div>
+{/* input Filtro Genero----------------------------------------------------- */}
+        <div style={{ position: 'absolute', top: '130px', right: '45px' }}>
+          <OrdAlfabetico 
+          books={allBooks} 
+          orderedBooks={orderedBooks} 
+          setOrderedBooks = {setOrderedBooks}/>
         </div>
 
         <div>
@@ -150,43 +188,43 @@ export const Home = () => {
             (authorInput.length > 0 && filterLibros.length === 0) ? (
             <p className={style.p}>No se encontro ningun libro</p>
           ) : (
-            <>
-              <div className={style.mover1}>
-                <div className={style.mover}>
-                  {filterLibros.length > 0
-                    ? filterLibros.map((book) => (
-                      <Card
-                        key={book.id}
-                        autor={book.author}
-                        className={style.filterCard}
-                        comentarios={book.content}
-                        estado={book.subscription}
-                        id={book.id}
-                        img={book.img}
-                        name={book.title}
-                      />
-                    ))
-                    : allBooks
-                      .slice(currentPage, currentPage + 8)
-                      .map((book) => (
-                        <Card
-                          key={book.id}
-                          autor={book.author}
-                          className={style.cards}
-                          comentarios={book.content}
-                          estado={book.subscription}
-                          id={book.id}
-                          img={book.img}
-                          name={book.title}
-                        />
-                      ))}
-                </div>
-              </div>
-            </>
+            <p />
           )}
         </div>
-      </div>
 
+        <div className={style.mover1}>
+          <div className={style.mover}>
+            {filterLibros.length > 0
+              ? filterLibros.map((book) => (
+                  <Card
+                    key={book.id}
+                    autor={book.author}
+                    className={style.filterCard}
+                    comentarios={book.content}
+                    estado={book.subscription}
+                    id={book.id}
+                    img={book.img}
+                    name={book.title}
+                  />
+                ))
+              : allBooks
+                  .slice(currentPage, currentPage + 8)
+                  .map((book) => (
+                    <Card
+                      key={book.id}
+                      autor={book.author}
+                      className={style.cards}
+                      comentarios={book.content}
+                      estado={book.subscription}
+                      id={book.id}
+                      img={book.img}
+                      name={book.title}
+                      
+                    />
+                  ))}
+          </div>
+        </div>
+      </div>
       <div className={style.paginado}>
         <Stack spacing={2}>
           <Pagination

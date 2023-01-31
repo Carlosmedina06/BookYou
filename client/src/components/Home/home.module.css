@@ -8,9 +8,7 @@
 /* -----card------ */
 
 .mover {
-    width: 1080px;
-
-    margin-top: 10px;
+    margin-top: 90px;
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
@@ -18,8 +16,8 @@
     perspective: 1000px;
 }
 
-.pagination {
-    margin-top: -380px;
+.pagination{
+    margin-top: -22rem;
     margin-left: 5rem;
 }
 
@@ -86,3 +84,14 @@
     margin-top: 3%;
     background-color: aquamarine;
 }
+
+.boton{
+
+    color: #010326;
+    border: 3px solid #010326;
+    background-color: #EBF2ED;
+    height: 40px;
+    width: 150px;
+    border-color:1px #010326;
+
+  }

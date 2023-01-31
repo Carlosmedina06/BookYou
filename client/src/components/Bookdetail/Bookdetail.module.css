@@ -150,3 +150,20 @@
 .buttonSuscribe:hover::before {
   height: 100%;
 }
+
+/*---------------//Boton//---------------------*/
+
+.boton{ 
+  margin-top: 10px;
+  border: 3px solid #010326;
+  border-radius: 10px;
+
+  height: 50px;
+  width: 150px;
+  padding-left: 10px;
+
+  font-weight: bold; 
+  font-size: 24px; 
+}
+
+/*---------------//Boton//---------------------*/
