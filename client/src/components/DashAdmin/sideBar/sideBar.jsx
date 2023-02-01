@@ -8,7 +8,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Link, NavLink } from 'react-router-dom'
 
 import style from '../sideBar/sideBar.module.css'
-/* import DashBoardMain from '../../DashBoard/dashBoardMain' */
 
 const SideBar = () => {
   return (
@@ -63,5 +62,4 @@ const SideBar = () => {
   )
 }
 
-/* USUARIO INICIO REGISTROUSUARIOS BALANCE */
 export default SideBar

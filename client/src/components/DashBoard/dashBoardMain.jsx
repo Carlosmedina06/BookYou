@@ -1,22 +1,19 @@
-import { AiOutlineRight } from 'react-icons/ai'
-import { Link, useParams } from 'react-router-dom'
-import { width } from '@mui/system'
+/* import { AiOutlineRight } from 'react-icons/ai' */
+import { useParams } from 'react-router-dom'
+/* import { width } from '@mui/system'
 import { useEffect } from 'react'
-import Swal from 'sweetalert2'
+import Swal from 'sweetalert2' */
 
 import style from '../DashBoard/DashboardMain.module.css'
 import SideBar from '../DashAdmin/sideBar/sideBar'
 
-// import DataTable from '../DashAdmin/userList/userList'
 import { GraphicBooksFreeToSubs } from './BookGraph/BookGraph'
 import { GraphicUsersFreeToSubs } from './UserGraph/UserGraph'
 import { GraphicCommentsQuantity } from './CommentGraph/CommentGraph'
-import { BookEdit } from './BookEdit/BookEdit'
 import { AllUsers } from './AllUsers/allUsers'
-import { UserEdit } from './UserEdit/UserEdit'
 import { AllBooksUsers } from './AllBooks/allBooks'
 
-export const DashBoardMain = (props) => {
+export const DashBoardMain = () => {
   const { select } = useParams()
 
   return (
@@ -73,9 +70,6 @@ export const DashBoardMain = (props) => {
               <div>
                 <AllBooksUsers />
               </div>
-              <div className={style.bookEditForm}>
-                <BookEdit />{' '}
-              </div>
             </div>
           )}
 
@@ -89,9 +83,6 @@ export const DashBoardMain = (props) => {
               </div>
               <div className={style.bookEditForm}>
                 <AllUsers />
-              </div>
-              <div>
-                <UserEdit />
               </div>
             </div>
           )}
@@ -112,4 +103,3 @@ export const DashBoardMain = (props) => {
 }
 
 export default DashBoardMain
-/* <DataTable /> */

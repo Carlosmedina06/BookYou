@@ -17,6 +17,7 @@ import { BookEdit } from './components/DashBoard/BookEdit/BookEdit'
 import { CommentEdit } from './components/DashBoard/CommentEdit/CommentEdit'
 import { Statistics } from './components/DashBoard/Statistics/Statistics'
 import { AllUsers } from './components/DashBoard/AllUsers/allUsers'
+import { AllBooksUsers } from './components/DashBoard/AllBooks/allBooks'
 import DashBoardMain from './components/DashBoard/dashBoardMain/'
 import Suscripcion from './components/Suscripcion/Suscripcion'
 
@@ -47,12 +48,16 @@ const App = createHashRouter([
         element: <DashBoard />,
       },
       {
-        path: '/userEdit',
+        path: '/dashboard/usuarios/userEdit',
         element: <UserEdit />,
       },
       {
-        path: '/bookEdit',
+        path: '/dashboard/books/bookEdit',
         element: <BookEdit />,
+      },
+      {
+        path: '/books',
+        element: <AllBooksUsers />,
       },
       {
         path: '/usuarios',
