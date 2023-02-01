@@ -1,3 +1,8 @@
+.cuadro{
+margin-top: -50rem;
+margin-left: -8rem;
+position: absolute;
+}
 .userListEdit{
 border:none;
 border-radius: 10px;

@@ -25,7 +25,7 @@ const columns = [
   {
     field: 'action',
     headerName: 'Action',
-    width: 150,
+    width: 90,
     renderCell: () => {
       return (
         <>
@@ -78,7 +78,7 @@ export const AllUsers = () => {
 
   return (
     <div>
-      <div>
+      <div className={style.cuadro}>
         <DataGrid
           checkboxSelection
           disableSelectionOnClick
@@ -86,7 +86,7 @@ export const AllUsers = () => {
           pageSize={10}
           rows={rows}
           rowsPerPageOptions={[10]}
-          style={{ height: 400, width: '160%' }}
+          style={{ height: 400, width: '550%' }}
         />
       </div>
     </div>
