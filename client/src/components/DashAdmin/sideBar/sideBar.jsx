@@ -1,7 +1,6 @@
 import HomeIcon from '@mui/icons-material/Home'
 import TimelineIcon from '@mui/icons-material/Timeline'
 import PersonIcon from '@mui/icons-material/Person'
-import BookIcon from '@mui/icons-material/Book'
 import ForumIcon from '@mui/icons-material/Forum'
 import AutoStoriesIcon from '@mui/icons-material/AutoStories'
 import { faSignOut } from '@fortawesome/free-solid-svg-icons'
