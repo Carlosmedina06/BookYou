@@ -9,53 +9,56 @@ import axios from 'axios'
 
 import style from '../AllBooks/allBooks.module.css'
 
-export const handleDeleteBook = async (row) => {
+/* export const handleDeleteBook = async (row) => {
   try {
     const borrar = await fetch(
       `https://bookyou-production.up.railway.app/book/delete/${row.row.id}`,
       {
         method: 'DELETE',
         headers: {
-          'Content-type': 'application/json',
+          authorization: `bearer ${localStorage.getItem('token')}`,
         },
       },
     ).then((r) => r.json())
   } catch (error) {
     console.log(error)
   }
-}
-
-/* export const deleteBook = async (id) => {
-  const info = axios.delete('https://bookyou-production.up.railway.app/book/delete/' + id)
+} */
+const handleDelete = async (row) => {
+  const info = axios.delete(`https://bookyou-production.up.railway.app/book/delete/${row.row.id}`, {
+    headers: {
+      authorization: `bearer ${localStorage.getItem('token')}`,
+    },
+  })
   const response = info.data
 
   return response
-} */
+}
 
 const columns = [
   { field: 'id', headerName: 'ID', width: 70 },
   { field: 'title', headerName: 'Title', width: 250 },
   { field: 'author', headerName: 'Author', width: 200 },
+  { field: 'user', headerName: 'User', width: 200 },
   {
     field: 'subscription',
     headerName: 'Subscription',
-    width: 150,
+    width: 110,
   },
   {
     field: 'action',
     headerName: 'Action',
-    width: 150,
+    width: 100,
     renderCell: (row) => {
       return (
         <>
-          <NavLink to="/dashboard/books/editar">
+          {/*    <NavLink to="/dashboard/books/editar">
             <button className={style.bookListEdit}>Edit</button>
-            {/* EL EDIT TIENE QUE LLEVAR AL FORMULARIO DE "USEREDIT" */}
-          </NavLink>
+          </NavLink> */}
           <DeleteIcon
             className={style.bookListDelete}
             onClick={() => {
-              handleDeleteBook({ row }).then(() => location.reload())
+              handleDelete({ row }).then(() => location.reload())
             }}
           >
             Eliminar
@@ -76,7 +79,7 @@ export const AllBooksUsers = () => {
         const t = await fetch(`https://bookyou-production.up.railway.app/book/`, {
           method: 'GET',
           headers: {
-            'Content-type': 'application/json',
+            authorization: `bearer ${localStorage.getItem('token')}`,
           },
         })
         const enviar = await t.json()
@@ -94,13 +97,14 @@ export const AllBooksUsers = () => {
       id: b.id,
       title: b.title,
       author: b.author,
+      user: b.user.username,
       subscription: b.subscription,
     }
   })
 
   return (
     <div>
-      <div style={{ height: 400, width: '170%' }}>
+      <div style={{ height: 400, width: '200%' }}>
         {' '}
         <DataGrid
           checkboxSelection
