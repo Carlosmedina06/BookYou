@@ -10,6 +10,7 @@ import loginRouter from './Login/Login.routes.js'
 import checkOutRouter from './Checkout/Checkout.routes.js'
 import signupRouter from './Signup/signup.routes.js'
 import successRouter from './Success/Success.routes.js'
+import ticketRouter from './tickets/Ticket.routes.js'
 
 const router = Router()
 
@@ -36,6 +37,9 @@ router.use('/checkout', checkOutRouter)
 
 //= =====================success Routes================================
 router.use('/success', successRouter)
+
+//= =====================Tickets Routes================================
+router.use('/ticket', ticketRouter)
 
 //= =====================Error Middlewares================================
 
