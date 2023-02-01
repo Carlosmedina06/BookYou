@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import { useSelector } from "react-redux";
+import { CommentCard } from "./CommentCard";
 
 import style from './CommentEdit.module.css'
 
@@ -11,6 +12,7 @@ export const CommentEdit = () => {
   const [input, setInput] = useState({
     searchUser: "",
     searchBook:"",
+    select:""
   });
 
   const handleSearch = (e) => {
@@ -28,10 +30,10 @@ export const CommentEdit = () => {
   const handleClickSearchBook = async () => {
     
     const book = books.filter((el) => {
-      return el.title.toLowerCase() === input.searchBook.toLowerCase();
+      return el.title.toLowerCase().trim() === input.searchBook.toLowerCase().trim();
     });
     const id = book[0].id
-    console.log(id)
+    console.log(input.searchBook)
     const details = await axios.get('https://bookyou-production.up.railway.app/book/'+id)
     const bookDetails = details.data
     console.log(bookDetails)
@@ -44,11 +46,17 @@ export const CommentEdit = () => {
     //   );
    
     setBook({
-      comments: book[0].comment
+      //comments: bookDetails.comment
+      comments: book.comment
     });
+    console.log(book)
     
   };
+  const handleClickSearchUser = (e) =>{
 
+
+
+  }
   const handleChange = (e) => {
     setEditedUser({ ...editedUser, [e.target.name]: e.target.value });
   };
@@ -60,7 +68,7 @@ export const CommentEdit = () => {
     formData.append("name", editedUser.name);
     
     const info = await axios.put(
-      "http://localhost:3001/user/update" + editedUser.id,
+      "https://bookyou-production.up.railway.app/user/update" + editedUser.id,
       formData
     );
 
@@ -69,13 +77,17 @@ export const CommentEdit = () => {
     
   };
   const handleDelete = async (e) => {
-    const info = await axios.delete(
-      "http://localhost:3001/comment/delete/" + editedUser.id
-    );
-    const response = info.data;
-    return response;
-  };
+    // const info = await axios.delete(
+    //   "https://bookyou-production.up.railway.app/comment/delete/" + editedUser.id
+    // );
+    // const response = info.data;
+    // return response;
 
+    const info = await axios.get('https://bookyou-production.up.railway.app/comment/')
+    const comments = info.data
+    console.log(comments)
+  };
+  
   return (
     <div className={style.container}>
       <label>Search User Comments</label>
@@ -84,58 +96,35 @@ export const CommentEdit = () => {
         value={input.search}
         onChange={(e) => handleSearch(e)}
       />
+      <select
+        name="usersSelect"
+        value={input.select}
+        onChange={(e) => handleUserSelect(e)}
+      >
+        <option value="none"></option>
+        {users?.map((element) => {
+          return (
+            <option key={element.id} value={element.name}>
+              {element.name}
+            </option>
+          );
+        })}
+      </select>
       <label>Search Book Comments</label>
       <input
         name="searchBook"
         value={input.search}
         onChange={(e) => handleSearch(e)}
       />
-      <button type="button" onClick={handleClickSearchBook}>
+      <button type="button" onClick={handleClickSearchUser}>
         Buscar
       </button>
-      
-      <form>
-        {/* <label>Name</label>
-        <input
-          name="name"
-          value={editedUser.name}
-          onChange={(e) => handleChange(e)}
-        />
-        <label>Username</label>
-        <input
-          name="username"
-          value={editedUser.username}
-          onChange={(e) => handleChange(e)}
-        />
-        <label>Email</label>
-        <input
-          name="email"
-          value={editedUser.email}
-          onChange={(e) => handleChange(e)}
-        />
-        <label>Subscription</label>
-        <select
-          name="subscription"
-          value={editedUser.subscription}
-          onChange={(e) => handleChange(e)}
-        >
-          <option value="free">Free</option>
-          <option value="subscription">Premium</option>
-        </select>
-        <label>Role</label>
-        <select
-          name="role"
-          value={editedUser.role}
-          onChange={(e) => handleChange(e)}
-        >
-          <option value="user">User</option>
-          <option value="admin">Admin</option>
-        </select> */}
-        <br/>
-        <button type="submit" onSubmit={handleSubmit}>
-          Update
-        </button>
-      </form>
+      { book.comments.map((el)=>{
+        return <CommentCard
+          key={el}
+          comment={el}/>
+      })}
+     
       <button type="button" onClick={handleDelete}>
         Delete Comment
       </button>

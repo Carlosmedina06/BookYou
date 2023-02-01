@@ -6,6 +6,7 @@ const loginUserVerification = (token, verification) => {
   if (!verification.user) return false
   if (!verification.user.id) return false
   if (decoded.id === verification.user.id) return true
+  if (decoded.role === 'admin') return true
 
   return false
 }

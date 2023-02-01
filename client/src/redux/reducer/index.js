@@ -2,6 +2,7 @@ import {
   ERROR,
   GET_BOOKBY_ID,
   GET_USERS,
+  GET_ONE_USER,
   //GET_SEARCH_BOOK,
   LOGIN,
   LOGIN_GOOGLE,
@@ -22,6 +23,7 @@ const initialState = {
   userLogged: [],
   error: [],
   loginUser: '',
+  oneUser: {}
 }
 
 function rootReducer(state = initialState, action) {
@@ -115,11 +117,18 @@ function rootReducer(state = initialState, action) {
         ...state,
         users: action.payload,
       }
+
       case GET_USER_BY_ID:
         return{
         ...state,
         userLogged: action.payload
         }
+
+    case GET_ONE_USER:
+      return {
+        ...state,
+        oneUser: action.payload,
+      }
     case ERROR:
       return {
         ...state,

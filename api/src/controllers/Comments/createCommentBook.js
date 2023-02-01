@@ -40,8 +40,7 @@ const createCommentBook = async (req, res) => {
       user.comment = user.comment.concat(newComment._id)
       await user.save()
       await book.save()
-      console.log('el libro:', book)
-      console.log('el comentario:', newComment)
+
       SendMailnewComment(book, newComment)
       res.status(200).send('Created book comment')
     }

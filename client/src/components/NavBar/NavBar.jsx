@@ -10,18 +10,22 @@ import Swal from 'sweetalert2'
 import { loginUser, logout } from '../../redux/actions'
 
 import style from './NavBar.module.css'
+import { useParams } from 'react-router-dom';
 
 const NavBar = () => {
   const user = useSelector((state) => state.loginUser)
   const dispatch = useDispatch()
+  
+  const { id } = useParams();
+ 
 
   useEffect(() => {
     dispatch(loginUser())
   }, [dispatch])
-
+  
   const token = localStorage.getItem('token')
   let decoded = token ? jwt_decode(token) : null
-
+  
   const handleLogOut = (e) => {
     dispatch(logout(e))
     Swal.fire({
@@ -50,11 +54,13 @@ const NavBar = () => {
                 <NavLink to="/createbook">Crear Libro</NavLink>
               </li>
               <li>
-                <NavLink to="/usuario">Perfil</NavLink>
+                <NavLink  to = {`/usuario/${decoded.id}`}>Perfil</NavLink>
               </li>
-              <li>
-                <NavLink to="/dashboard">Panel Admin</NavLink>
-              </li>
+              {decoded && decoded.role === 'admin' && (
+                <li>
+                  <NavLink to="/dashboard">Panel Admin</NavLink>
+                </li>
+              )}
             </>
           )}
         </ul>

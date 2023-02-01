@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import Pagination from '@mui/material/Pagination'
 import Stack from '@mui/material/Stack'
 
-import { getBooks, getCategorys, getAutores } from '../../redux/actions/index'
+import { getBooks, getCategorys, getAutores, getUsers } from '../../redux/actions/index'
 import FiltradoGenero from '../FiltradoGenero/filtradoGenero'
 import OrdAlfabetico from '../OrderAlfab/orderAlfabetico'
 import NavBar from '../NavBar/NavBar'
@@ -105,6 +105,7 @@ export const Home = () => {
     dispatch(getBooks())
     dispatch(getCategorys())
     dispatch(getAutores())
+    dispatch(getUsers())
   }, [dispatch])
 
   return (
@@ -146,8 +147,8 @@ export const Home = () => {
 
         <div>
           {(bookInput.length > 0 && filterLibros.length === 0) ||
-            (bookInputtodos.length > 0 && filterLibros.length === 0) ||
-            (authorInput.length > 0 && filterLibros.length === 0) ? (
+          (bookInputtodos.length > 0 && filterLibros.length === 0) ||
+          (authorInput.length > 0 && filterLibros.length === 0) ? (
             <p className={style.p}>No se encontro ningun libro</p>
           ) : (
             <>
@@ -155,31 +156,31 @@ export const Home = () => {
                 <div className={style.mover}>
                   {filterLibros.length > 0
                     ? filterLibros.map((book) => (
-                      <Card
-                        key={book.id}
-                        autor={book.author}
-                        className={style.filterCard}
-                        comentarios={book.content}
-                        estado={book.subscription}
-                        id={book.id}
-                        img={book.img}
-                        name={book.title}
-                      />
-                    ))
-                    : allBooks
-                      .slice(currentPage, currentPage + 8)
-                      .map((book) => (
                         <Card
                           key={book.id}
                           autor={book.author}
-                          className={style.cards}
+                          className={style.filterCard}
                           comentarios={book.content}
                           estado={book.subscription}
                           id={book.id}
                           img={book.img}
                           name={book.title}
                         />
-                      ))}
+                      ))
+                    : allBooks
+                        .slice(currentPage, currentPage + 8)
+                        .map((book) => (
+                          <Card
+                            key={book.id}
+                            autor={book.author}
+                            className={style.cards}
+                            comentarios={book.content}
+                            estado={book.subscription}
+                            id={book.id}
+                            img={book.img}
+                            name={book.title}
+                          />
+                        ))}
                 </div>
               </div>
             </>
