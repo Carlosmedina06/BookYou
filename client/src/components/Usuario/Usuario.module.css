@@ -14,12 +14,13 @@
     height: 150px;
 
     box-shadow: 0px 0px 0px 4px rgb(255, 255, 255),
-                0px 0px 0px 8px rgb(237, 129, 34);
+        0px 0px 0px 8px rgb(237, 129, 34);
 
     position: absolute;
     top: 50px;
     left: 1150px;
 }
+
 /*---------------//FOTOS//---------------------*/
 
 /*---------------//NOMBRE//---------------------*/
@@ -33,7 +34,7 @@
     padding: 20px;
 }
 
-.nombre h3 ~ .p1 {
+.nombre h3~.p1 {
     color: rgb(0, 0, 0);
     font-size: 24px;
     margin-top: 10px;
@@ -44,6 +45,7 @@
     color: rgb(0, 0, 0);
     font-size: 38px;
 }
+
 /*---------------//NOMBRE//---------------------*/
 
 .paginado {
@@ -52,30 +54,30 @@
     position: absolute;
     left: 300px;
     display: flex;
-  }
-<<<<<<< fav-useraccount
+}
 
-  .editAccountLinkIcon{
+
+.editAccountLinkIcon {
     font-size: 24px;
     margin: 3px;
-   }
- 
- 
-   
-   .editAccountLink {
-     width: fit-content;
+}
+
+
+
+.editAccountLink {
+    width: fit-content;
     display: flex;
     flex-direction: row;
     font-size: 18px;
     margin-top: 15px;
     align-items: center;
-   }
-=======
-/*---------------//NOMBRE//---------------------*/ 
+}
+
+/*---------------//NOMBRE//---------------------*/
 
 /*---------------//Boton//---------------------*/
 
-.boton{ 
+.boton {
     margin-top: 10px;
     border: 3px solid #010326;
     border-radius: 10px;
@@ -84,9 +86,8 @@
     width: 150px;
     padding-left: 10px;
 
-    font-weight: bold; 
-    font-size: 24px; 
+    font-weight: bold;
+    font-size: 24px;
 }
 
 /*---------------//Boton//---------------------*/
->>>>>>> MERGE-ACA

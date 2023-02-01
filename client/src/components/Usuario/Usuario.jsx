@@ -92,9 +92,9 @@ export const Usuario = () => {
           Soy un amante de los libros, me encanta sumergirme en historias de todo tipo y viajar a
           través de las palabras. En mis tiempos libres busco nuevos títulos y comparto mis
           recomendaciones con amigos y familiares. Siempre busco nuevos amigos con los que hablar
-          sobre mis libros favoritos. "La vida es como un libro, algunas páginas son alegres, otras
-          tristes, pero todas son necesarias para completar la historia." - Paulo Coelho (Autor
-          brasileño)
+          sobre mis libros favoritos. La vida es como un libro, algunas páginas son alegres, otras
+          tristes, pero todas son necesarias para completar la historia. - Paulo Coelho Autor
+          brasileño
         </p>
       </div>
 
