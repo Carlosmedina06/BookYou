@@ -64,7 +64,6 @@ const Bookdetail = () => {
         console.log(res.data)
       })
   }
-  
 
   return (
     <div className={style.mainGridContainer}>
@@ -118,11 +117,11 @@ const Bookdetail = () => {
 
               <br />
               <br />
-              {loginUserVerification(localStorage.getItem('token'), details) ? 
-                <button onClick={handletDelete}> Eliminar </button>
-              ) : null}
-               {loginUserVerification(localStorage.getItem('token'), details) ? (
-                <button onClick={handletEdit}> Editar </button>
+              {loginUserVerification(localStorage.getItem('token'), details) ? (
+                <>
+                  <button onClick={handletDelete}> Eliminar </button>
+                  <button onClick={handletEdit}> Editar </button>
+                </>
               ) : null}
             </div>
           </div>
