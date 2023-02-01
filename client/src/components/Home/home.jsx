@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import Pagination from '@mui/material/Pagination'
 import Stack from '@mui/material/Stack'
 
-import { getBooks, getCategorys, getAutores } from '../../redux/actions/index'
+import { getBooks, getCategorys, getAutores, getUsers } from '../../redux/actions/index'
 import FiltradoGenero from '../FiltradoGenero/filtradoGenero'
 import OrdAlfabetico from '../OrderAlfab/orderAlfabetico'
 import NavBar from '../NavBar/NavBar'
@@ -105,6 +105,7 @@ export const Home = () => {
     dispatch(getBooks())
     dispatch(getCategorys())
     dispatch(getAutores())
+    dispatch(getUsers())
   }, [dispatch])
 
   return (

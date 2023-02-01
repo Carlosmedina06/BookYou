@@ -1,10 +1,10 @@
 import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { Link } from 'react-router-dom'
 
 import { getCategorys } from '../../redux/actions'
 import { useForm } from '../../utils/Hooks/useForm'
 import NavBar from '../NavBar/NavBar'
+/* import Loading from '../Loading/loading' */
 
 import style from './formBookCss.module.css'
 import { Container, FormContent, FormItem, Input, InputFile, Select } from './formBookStyle'
@@ -188,9 +188,7 @@ const PostBook = () => {
                     }}
                   />
                 </div>
-                {/* // input img  */}
 
-                {/* // input pdf  */}
                 <div className={style.formInputBox}>
                   <label htmlFor="pdf">Seleccionar archivo del libro</label>
 
@@ -204,12 +202,6 @@ const PostBook = () => {
                     }}
                   />
                 </div>
-                {/* // input pdf  */}
-
-                {/* <button type="button" onClick={(e) => handleReset(e)}>
-              RESET
-            </button> */}
-
                 <button className={style.buttonSubmit} type="submit" onSubmit={handleSubmit}>
                   CREATE BOOK!
                 </button>
@@ -217,7 +209,6 @@ const PostBook = () => {
             </form>
           </div>
         </div>
-        {/* <Link to="/home">home</Link> */}
       </div>
     )
   }

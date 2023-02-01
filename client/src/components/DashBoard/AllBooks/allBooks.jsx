@@ -1,48 +1,102 @@
 import { DataGrid } from '@mui/x-data-grid'
 import DeleteIcon from '@mui/icons-material/Delete'
+/* import WorkspacePremiumIcon from '@mui/icons-material/WorkspacePremium'
+import FreeBreakfastIcon from '@mui/icons-material/FreeBreakfast' */
 import { useState } from 'react'
+import { useEffect } from 'react'
 import { NavLink } from 'react-router-dom'
+import axios from 'axios'
 
-import style from '../AllUsers/allUser.module.css'
+import style from '../AllBooks/allBooks.module.css'
 
-import { bookRows } from './dataBooks'
+export const handleDeleteBook = async (row) => {
+  try {
+    const borrar = await fetch(
+      `https://bookyou-production.up.railway.app/book/delete/${row.row.id}`,
+      {
+        method: 'DELETE',
+        headers: {
+          'Content-type': 'application/json',
+        },
+      },
+    ).then((r) => r.json())
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+/* export const deleteBook = async (id) => {
+  const info = axios.delete('https://bookyou-production.up.railway.app/book/delete/' + id)
+  const response = info.data
+
+  return response
+} */
+
+const columns = [
+  { field: 'id', headerName: 'ID', width: 70 },
+  { field: 'title', headerName: 'Title', width: 250 },
+  { field: 'author', headerName: 'Author', width: 200 },
+  {
+    field: 'subscription',
+    headerName: 'Subscription',
+    width: 150,
+  },
+  {
+    field: 'action',
+    headerName: 'Action',
+    width: 150,
+    renderCell: (row) => {
+      return (
+        <>
+          <NavLink to="/dashboard/books/editar">
+            <button className={style.bookListEdit}>Edit</button>
+            {/* EL EDIT TIENE QUE LLEVAR AL FORMULARIO DE "USEREDIT" */}
+          </NavLink>
+          <DeleteIcon
+            className={style.bookListDelete}
+            onClick={() => {
+              handleDeleteBook({ row }).then(() => location.reload())
+            }}
+          >
+            Eliminar
+          </DeleteIcon>
+        </>
+      )
+    },
+  },
+]
 
 export const AllBooksUsers = () => {
-  const [data, setData] = useState(bookRows)
-  const handleDelete = (id) => {
-    setData(data.filter((i) => i.id !== id))
-  } /* borra pero hay que guardar ese borrado para que al actualizar la pagina no vuelva a aparecer */
+  var inicio = []
+  const [books, setBooks] = useState(inicio)
 
-  const columns = [
-    { field: 'id', headerName: 'ID', width: 70 },
-    { field: 'username', headerName: 'UserName', width: 190 },
-    { field: 'books', headerName: 'Books', width: 280 },
-    {
-      field: 'status',
-      headerName: 'Status',
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const t = await fetch(`https://bookyou-production.up.railway.app/book/`, {
+          method: 'GET',
+          headers: {
+            'Content-type': 'application/json',
+          },
+        })
+        const enviar = await t.json()
 
-      width: 120,
-    },
-    {
-      field: 'action',
-      headerName: 'Action',
-      width: 150,
-      renderCell: (params) => {
-        return (
-          <>
-            <NavLink to="/dashboard/books/editar">
-              <button className={style.userListEdit}>Edit</button>
-              {/* EL EDIT TIENE QUE LLEVAR AL FORMULARIO DE "BOOKEDIT" */}
-            </NavLink>
-            <DeleteIcon
-              className={style.userListDelete}
-              onClick={() => handleDelete(params.row.id)}
-            />
-          </>
-        )
-      },
-    },
-  ]
+        setBooks(enviar)
+      } catch (err) {
+        console.log(err)
+      }
+    }
+    if (books.length == 0) fetchData()
+  }, [books])
+
+  const rows = books.map((b) => {
+    return {
+      id: b.id,
+      title: b.title,
+      author: b.author,
+      subscription: b.subscription,
+    }
+  })
 
   return (
     <div>
@@ -50,10 +104,11 @@ export const AllBooksUsers = () => {
         {' '}
         <DataGrid
           checkboxSelection
+          disableSelectionOnClick
           columns={columns}
-          pageSize={5}
-          rows={data}
-          rowsPerPageOptions={[5]}
+          pageSize={10}
+          rows={rows}
+          rowsPerPageOptions={[10]}
         />{' '}
       </div>
     </div>
