@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import Swal from 'sweetalert2'
+import { useDispatch, useSelector } from 'react-redux'
 
 
 import NavBar from '../NavBar/NavBar'
@@ -11,10 +12,21 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronUp, faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import UserBookCard from './UserBookCard'
 
-export const Usuario = () => {
-  const [currentPage, setCurrentPage] = useState(0)
+import { useParams } from 'react-router-dom';
+import { getOneUser} from '../../redux/actions/index'
 
+export const Usuario = () => {
+  const dispatch = useDispatch()
+  const { id } = useParams();
+  const [currentPage, setCurrentPage] = useState(0)
   const [books, setBooks] = useState(true) /* actualizar estado libros orden alf */
+
+  useEffect(() => {
+    dispatch(getOneUser(id))
+  }, [dispatch])
+
+  const oneUser = useSelector((state) => state.oneUser)
+  console.log(oneUser.books);
 
   useEffect(() => {
     Swal.fire({
@@ -50,10 +62,10 @@ export const Usuario = () => {
       <div className=" grid col-span-3">
         <NavBar />
       </div>
-      <img alt="Mi imagen" className={style.perfil} src={perfil} />
+      <img alt="Mi imagen" className={style.perfil} src={oneUser.img} />
       <div className={style.nombre}>
-        <h3 className={style.nombre1}>Nombre de Usuario</h3>
-        <p className={style.p1}>Apodo</p>
+        <h3 className={style.nombre1}>{oneUser.name}</h3>
+        <p className={style.p1}>{oneUser.username}</p>
         <p>
           Soy un amante de los libros, me encanta sumergirme en historias de todo tipo y viajar a
           través de las palabras. En mis tiempos libres busco nuevos títulos y comparto mis
@@ -78,8 +90,18 @@ export const Usuario = () => {
             books && (
               <div>
                 <div>
-                  {libros.length > 0 ? (
-                    filterBooks().map((book, i) => <UserBookCard key={i} />)
+                  {oneUser.books ? (
+                    oneUser.books.map((book, i) => 
+                    <UserBookCard 
+                    key={i} 
+                    title = {book.title}
+                    description = {book.description}
+                    author= {book.author}
+                    subs = {book.subscription}
+                    img = {book.img}
+                    id = {book.id}
+
+                    />)
                   ) : (
                     <p>Sin libros aun</p>
                   )}
@@ -87,7 +109,7 @@ export const Usuario = () => {
 
                 <div className={style.paginado}>
                   <Pagination
-                    filterBooks={filterBooks().length}
+                    filterBooks={oneUser.books}
                     nextPage={nextPage}
                     prevPage={prevPage}
                     totalPages={currentPage + 1}
