@@ -1,6 +1,7 @@
 import axios from 'axios'
 /* ACA ESTA TODA LA CONEXION BACK Y FRONT!! */
 export const GET_USERS = 'GET_USERS'
+export const GET_USER_BY_ID ='GET_USER_BY_ID'
 export const ERROR = 'ERROR'
 export const GET_BOOKBY_ID = 'GET_BOOKBY_ID'
 export const GET_BOOK_ID = 'GET_BOOKBY_ID'
@@ -144,7 +145,25 @@ export const getUsers = () => async (dispatch) => {
     })
   }
 }
-
+/* -------------------- GET USUARIO POR ID ----------------- */
+export const getUserById = (id) => async (dispatch) => {
+  try {
+    const info = await axios.get(`${url}/user/${id}`,{
+      headers: {
+        Authorization: `Bearer ${window.localStorage.getItem('token')}`,
+      },
+    })
+    return dispatch({
+      type: GET_USER_BY_ID,
+      payload: info.data,
+    })
+  } catch (error) {
+    dispatch({
+      type: ERROR,
+      payload: error.message,
+    })
+  }
+}
 /* ------------------GET BOOKS POR ID ------------------- */
 export const clearBookDetails = () => async (dispatch) => {
   try {
