@@ -8,12 +8,11 @@
 /* -----card------ */
 
 .mover {
-<<<<<<< HEAD
-=======
+
     width: 1080px;
 
     margin-top: 10px;
->>>>>>> 771b16d8cb4df84219f3b3d9a73d325adee7f26e
+
     display: flex;
     flex-wrap: wrap;
     gap: 10px;

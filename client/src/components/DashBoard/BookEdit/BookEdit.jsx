@@ -64,9 +64,10 @@ export const BookEdit = () => {
   const handleChange = (e) => {
     setEditedBook({ ...editedBook, [e.target.name]: e.target.value })
   }
-  const handleDelete = async (id) => {
-    const info = axios.delete(
+  const handleDelete = async () => {
+    const info = axios.put(
       'https://bookyou-production.up.railway.app/book/delete/' + editedBook.id,
+      null,
       {
         headers: {
           authorization: `bearer ${localStorage.getItem('token')}`,
@@ -100,9 +101,10 @@ export const BookEdit = () => {
     formData.append('description', editedBook.description)
     formData.append('category', editedBook.category)
     formData.append('author', editedBook.author)
+    formData.append('subscription', editedBook.subscription)
 
     const info = await axios.put(
-      'https://bookyou-production.up.railway.app/book/update/' + editedBook.id,
+      `https://bookyou-production.up.railway.app/book/update/${editedBook.id}`,
       formData,
       {
         headers: {
