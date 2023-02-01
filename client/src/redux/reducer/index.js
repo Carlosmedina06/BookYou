@@ -10,6 +10,7 @@ import {
   LOGOUT,
   REGISTER_LOCAL,
   CLEAR_BOOK_DETAILS,
+GET_USER_BY_ID,
 } from '../actions'
 
 const initialState = {
@@ -19,6 +20,7 @@ const initialState = {
   category: [],
   autor: [],
   users: [],
+  userLogged: [],
   error: [],
   loginUser: '',
   oneUser: {}
@@ -115,6 +117,13 @@ function rootReducer(state = initialState, action) {
         ...state,
         users: action.payload,
       }
+
+      case GET_USER_BY_ID:
+        return{
+        ...state,
+        userLogged: action.payload
+        }
+
     case GET_ONE_USER:
       return {
         ...state,

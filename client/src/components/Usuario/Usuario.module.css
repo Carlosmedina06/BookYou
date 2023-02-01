@@ -53,6 +53,24 @@
     left: 300px;
     display: flex;
   }
+<<<<<<< fav-useraccount
+
+  .editAccountLinkIcon{
+    font-size: 24px;
+    margin: 3px;
+   }
+ 
+ 
+   
+   .editAccountLink {
+     width: fit-content;
+    display: flex;
+    flex-direction: row;
+    font-size: 18px;
+    margin-top: 15px;
+    align-items: center;
+   }
+=======
 /*---------------//NOMBRE//---------------------*/ 
 
 /*---------------//Boton//---------------------*/
@@ -71,3 +89,4 @@
 }
 
 /*---------------//Boton//---------------------*/
+>>>>>>> MERGE-ACA
