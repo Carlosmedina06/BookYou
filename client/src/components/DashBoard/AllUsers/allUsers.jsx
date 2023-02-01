@@ -15,6 +15,7 @@ export const handleDeleteBook = async (row) => {
       method: 'DELETE',
       headers: {
         'Content-type': 'application/json',
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
       },
     }).then((r) => r.json())
   } catch (error) {
