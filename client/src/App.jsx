@@ -18,6 +18,7 @@ import { CommentEdit } from './components/DashBoard/CommentEdit/CommentEdit'
 import { Statistics } from './components/DashBoard/Statistics/Statistics'
 import DashBoardMain from './components/DashBoard/dashBoardMain/'
 import Suscripcion from './components/Suscripcion/Suscripcion'
+import UserAccount from './components/userAccount/userAccount'
 
 const App = createHashRouter([
   {
@@ -36,6 +37,10 @@ const App = createHashRouter([
       {
         path: '/usuario',
         element: <Usuario />,
+      },
+      {
+        path: '/usuario/cuenta',
+        element: <UserAccount />,
       },
       {
         path: '/createUser',
