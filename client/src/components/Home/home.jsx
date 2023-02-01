@@ -13,6 +13,7 @@ import SearchByAutor from '../FiltradoAutor/filterAutor'
 import Card from '../Card/Card'
 /* import Pagination from '../Pagination/Pagination' */
 import style from '../Home/home.module.css'
+import Bot from '../chatbot/ChatBot'
 
 export const Home = () => {
   const dispatch = useDispatch()
@@ -144,11 +145,11 @@ export const Home = () => {
         <div style={{ position: 'absolute', top: '130px', left: '30px' }}>
           <OrdAlfabetico books={books} setBooks={setBooks} />
         </div>
-
+        <Bot />
         <div>
           {(bookInput.length > 0 && filterLibros.length === 0) ||
-          (bookInputtodos.length > 0 && filterLibros.length === 0) ||
-          (authorInput.length > 0 && filterLibros.length === 0) ? (
+            (bookInputtodos.length > 0 && filterLibros.length === 0) ||
+            (authorInput.length > 0 && filterLibros.length === 0) ? (
             <p className={style.p}>No se encontro ningun libro</p>
           ) : (
             <>
@@ -156,31 +157,31 @@ export const Home = () => {
                 <div className={style.mover}>
                   {filterLibros.length > 0
                     ? filterLibros.map((book) => (
+                      <Card
+                        key={book.id}
+                        autor={book.author}
+                        className={style.filterCard}
+                        comentarios={book.content}
+                        estado={book.subscription}
+                        id={book.id}
+                        img={book.img}
+                        name={book.title}
+                      />
+                    ))
+                    : allBooks
+                      .slice(currentPage, currentPage + 8)
+                      .map((book) => (
                         <Card
                           key={book.id}
                           autor={book.author}
-                          className={style.filterCard}
+                          className={style.cards}
                           comentarios={book.content}
                           estado={book.subscription}
                           id={book.id}
                           img={book.img}
                           name={book.title}
                         />
-                      ))
-                    : allBooks
-                        .slice(currentPage, currentPage + 8)
-                        .map((book) => (
-                          <Card
-                            key={book.id}
-                            autor={book.author}
-                            className={style.cards}
-                            comentarios={book.content}
-                            estado={book.subscription}
-                            id={book.id}
-                            img={book.img}
-                            name={book.title}
-                          />
-                        ))}
+                      ))}
                 </div>
               </div>
             </>
