@@ -1,6 +1,7 @@
 import Comment from '../../models/Comment.js'
 const getCommentsUser = async (req, res) => {
-  const comments = await Comment.find({ report: { $gte: 1 } })
+  const { number } = req.params
+  const comments = await Comment.find({ report: { $gte: number } })
 
   res.status(200).json(comments)
 }
