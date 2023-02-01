@@ -112,8 +112,6 @@ export const BookEdit = () => {
         },
       },
     )
-
-    const res = info.data
   }
 
   return (
