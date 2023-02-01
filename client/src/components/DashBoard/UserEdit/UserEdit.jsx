@@ -26,29 +26,31 @@ export const UserEdit = () => {
     role: '',
     id: '',
   })
-  const handleClickSearch = () => {
-    const user = users.filter((el) => {
-      return el.name.toLowerCase().trim() === input.search.toLowerCase().trim()
-    })
-
-    setEditedUser({
-      name: user[0].name,
-      username: user[0].username,
-      email: user[0].email,
-      subscription: user[0].subscription,
-      role: user[0].role,
-      id: user[0].id,
-    })
-  }
   const handleUserSelect = (e)=>{
-
     setInput({
       search:'',
       select: e.target.value
     })
 
+    const user = users.filter((elem)=>{
+      return elem.name === e.target.value
+      //return elem.name.toLowerCase().trim() === e.target.value.toLocaleLowerCase().trim()
+    })
+        
+     setEditedUser({
+      name: user[0].name,
+      username: user[0].username,
+      email: user[0].email,
+      subscription: user[0].subscription,
+      role: user[0].role,
+      id: user[0].id,
+    })
+
+  }
+  const handleClickSearch = () => {
     const user = users.filter((el) => {
-      return el.name.toLowerCase().trim() === e.target.value.toLowerCase().trim()
+      return el.name === input.search
+      //return el.name.toLowerCase().trim() === input.search.toLowerCase().trim()
     })
 
     setEditedUser({
@@ -59,13 +61,16 @@ export const UserEdit = () => {
       role: user[0].role,
       id: user[0].id,
     })
-
   }
+
+  
+  
   const handleChange = (e) => {
     setEditedUser({ ...editedUser, [e.target.name]: e.target.value })
   }
   const handleSubmit = async (e) => {
-    e.preventDefault()
+    
+    e.preventDefault();
 
     const formData = new FormData()
 
@@ -74,10 +79,11 @@ export const UserEdit = () => {
     formData.append('email', editedUser.email)
     formData.append('subscription', editedUser.subscription)
     formData.append('role', editedUser.role)
+    formData.append('id', editedUser.id)
 
     const info = await axios.put(
-      'https://bookyou-production.up.railway.app/user/update' + editedUser.id,
-      formData,
+      'https://bookyou-production.up.railway.app/user/update',
+      editedUser,
       {
         headers: {
           authorization: `bearer ${localStorage.getItem('token')}`,
