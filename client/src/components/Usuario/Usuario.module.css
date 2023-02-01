@@ -53,3 +53,18 @@
     left: 300px;
     display: flex;
   }
+
+
+  .editAccountLink {
+    width: fit-content;
+   display: flex;
+   flex-direction: row;
+   font-size: 18px;
+   margin-top: 15px;
+   align-items: center;
+  }
+
+  .editAccountLinkIcon{
+   font-size: 24px;
+   margin: 3px;
+  }
