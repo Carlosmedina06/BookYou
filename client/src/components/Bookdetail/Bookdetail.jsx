@@ -4,6 +4,9 @@ import { useDispatch, useSelector } from 'react-redux'
 import { NavLink, useParams } from 'react-router-dom'
 import axios from 'axios'
 import jwt_decode from 'jwt-decode'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faChevronUp, faChevronDown } from '@fortawesome/free-solid-svg-icons'
+import { Navigate } from 'react-router-dom'
 
 import { getBookById } from '../../redux/actions'
 import NavBar from '../NavBar/NavBar'
@@ -19,10 +22,11 @@ const Bookdetail = () => {
   const details = useSelector((state) => state.detail)
 
   const [rata, setRata] = useState(0) // NO TOCAR 🐭
+  const [books, setBooks] = useState(true) /* actualizar estado libros orden alf */
+
   const token = localStorage.getItem('token')
   let decoded = token ? jwt_decode(token) : null
 
-  console.log(decoded)
   useEffect(() => {
     dispatch(clearBookDetails())
     dispatch(getBookById(id))
@@ -34,6 +38,20 @@ const Bookdetail = () => {
   }
 
   const handletDelete = (e) => {
+    e.preventDefault()
+    axios
+      .delete(`https://bookyou-production.up.railway.app/book/delete/${id}`, {
+        headers: {
+          authorization: `Bearer ${localStorage.getItem('token')}`,
+        },
+      })
+      .then((res) => {
+        // eslint-disable-next-line no-console
+        console.log(res.data)
+        Navigate('/home')
+      })
+  }
+  const handletEdit = (e) => {
     e.preventDefault()
     axios
       .delete(`https://bookyou-production.up.railway.app/book/delete/${id}`, {
@@ -96,16 +114,41 @@ const Bookdetail = () => {
                   </NavLink>
                 </div>
               )}
-
-              <br />
-              <br />
               {loginUserVerification(localStorage.getItem('token'), details) ? (
-                <button onClick={handletDelete}> eliminar libro </button>
+                <>
+                  <button className={style.boton} onClick={handletDelete}>
+                    <span className={style.btnText}>Eliminar</span>
+                  </button>
+                  <button className={style.boton} onClick={handletEdit}>
+                    <span className={style.btnText}>Editar</span>
+                  </button>
+                </>
               ) : null}
             </div>
           </div>
         </div>
-        <Reviews comment={details.comment} id={details.id} rata={rata} setRata={setRata} />
+        <div
+          style={{
+            position: 'absolute',
+            top: '480px',
+            left: '300px',
+          }}
+        >
+          <button className={style.boton} onClick={() => setBooks(!books)}>
+            {books ? (
+              <span className={style.btnText}>Ocultar</span>
+            ) : (
+              <span className={style.btnText}>Mostrar</span>
+            )}
+            <FontAwesomeIcon
+              icon={books ? faChevronUp : faChevronDown}
+              style={{ fontSize: '0.7em' }}
+            />
+          </button>
+        </div>
+        {books && (
+          <Reviews comment={details.comment} id={details.id} rata={rata} setRata={setRata} />
+        )}
       </div>
     </div>
   )

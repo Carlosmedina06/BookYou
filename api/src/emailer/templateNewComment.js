@@ -128,7 +128,7 @@ export const templateNewComment = (book, newComment) => {
                     <td valign="top" align="center" style="padding:0;Margin:0;width:560px">
                      <table width="100%" cellspacing="0" cellpadding="0" role="presentation" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px">
                        <tr>
-                        <td align="center" style="padding:0;Margin:0"><p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:helvetica, 'helvetica neue', arial, verdana, sans-serif;line-height:38px;color:#333333;font-size:25px">Visita nuestra página <a href="https://book-you-two.vercel.app"class="a-BookYou">BookYou</a> para seguir leyendo lo que otros piensan de tu libro.</p></td>
+                        <td align="center" style="padding:0;Margin:0"><p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:helvetica, 'helvetica neue', arial, verdana, sans-serif;line-height:38px;color:#333333;font-size:25px">Visita nuestra página <a href="https://book-you-rho.vercel.app"class="a-BookYou">BookYou</a> para seguir leyendo lo que otros piensan de tu libro.</p></td>
                        </tr>
                      </table></td>
                    </tr>

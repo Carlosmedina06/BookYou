@@ -14,9 +14,12 @@ const loginController = async (req, res) => {
         email: user.email,
         id: user._id,
         name: user.name,
+        username: user.username,
         img: user.img,
         role: user.role,
         subsscription: user.subscription,
+        available: user.available,
+        strike: user.strike,
       }
       const token = jwt.sign(userForToken, process.env.SECRET, { expiresIn: '1h' })
 
@@ -38,6 +41,8 @@ const loginController = async (req, res) => {
         img: results.img,
         role: results.role,
         subsscription: results.subscription,
+        available: results.available,
+        strike: results.strike,
       }
       const token = jwt.sign(userForToken, process.env.SECRET, { expiresIn: '1h' })
 

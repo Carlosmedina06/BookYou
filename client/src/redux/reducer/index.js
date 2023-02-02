@@ -2,6 +2,7 @@ import {
   ERROR,
   GET_BOOKBY_ID,
   GET_USERS,
+  GET_ONE_USER,
   //GET_SEARCH_BOOK,
   LOGIN,
   LOGIN_GOOGLE,
@@ -9,6 +10,7 @@ import {
   LOGOUT,
   REGISTER_LOCAL,
   CLEAR_BOOK_DETAILS,
+  GET_USER_BY_ID,
 } from '../actions'
 
 const initialState = {
@@ -18,8 +20,10 @@ const initialState = {
   category: [],
   autor: [],
   users: [],
+  userLogged: [],
   error: [],
   loginUser: '',
+  oneUser: {},
 }
 
 function rootReducer(state = initialState, action) {
@@ -113,6 +117,18 @@ function rootReducer(state = initialState, action) {
         ...state,
         users: action.payload,
       }
+
+    case GET_USER_BY_ID:
+      return {
+        ...state,
+        userLogged: action.payload,
+      }
+
+    case GET_ONE_USER:
+      return {
+        ...state,
+        oneUser: action.payload,
+      }
     case ERROR:
       return {
         ...state,
@@ -123,36 +139,14 @@ function rootReducer(state = initialState, action) {
         ...state,
         detail: action.payload,
       }
-      case CLEAR_BOOK_DETAILS:
-        return{
-          ...state,
-          detail: '',
-        }
+    case CLEAR_BOOK_DETAILS:
+      return {
+        ...state,
+        detail: '',
+      }
     default:
       return state
   }
 }
 
 export default rootReducer
-
-/* export const usersSlice = createSlice({
-  name: 'users',
-  initialState: {
-    USERS: [],
-    users: [],
-    user: {},
-    error: {},
-  },
-  reducers: {
-    getAllUsers: (state, action) => {
-      state.users = action.payload
-      state.USERS = action.payload
-    },
-    getUserById: (state, action) => {
-      state.user = action.payload
-    },
-    userError: (state, action) => {
-      state.error = action.payload
-    },
-  },
-}) */

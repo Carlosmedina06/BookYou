@@ -6,7 +6,7 @@ import User from '../../models/User.js'
 const updateComment = async (req, res, next) => {
   try {
     const { id } = req.params
-    const { comment } = req.body
+    const { comment, rate } = req.body
     const targetComment = await Comment.findById(id)
     const authorization = req.get('authorization')
 
@@ -23,16 +23,15 @@ const updateComment = async (req, res, next) => {
       }
       const user = await User.findById(decodedToken.id)
 
-      if (user.id.toString() === targetComment.user.toString()) {
+      if (decodedToken.role === 'admin' || user.id.toString() === targetComment.user.toString()) {
         targetComment.comment = comment
+        targetComment.rate = rate
         targetComment.save()
         res.status(200).json('comentario actualizado ')
       } else {
         res.status(400).json('no tienes permisos')
       }
     }
-
-    // const targetComment = await Comment.findByIdAndUpdate(id, { comment }
   } catch (error) {
     next(error)
   }

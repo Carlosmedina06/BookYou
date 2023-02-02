@@ -39,7 +39,7 @@ export const useForm = (initialForm, validationsForm) => {
       }
     } catch (error) {
       // eslint-disable-next-line no-console
-      console.loåg({ error: error.response.data })
+      console.log({ error: error.response.data })
     }
   }
 

@@ -1,0 +1,19 @@
+.cuadro{
+margin-top: -9rem;
+margin-left: -8rem;
+position: absolute;
+}
+.userListEdit{
+border:none;
+border-radius: 10px;
+padding: 5px 10px;
+background-color: rgba(238, 79, 22, 0.945);
+color: white;
+margin-right: 20px;
+cursor: pointer;
+}
+
+.userListDelete{
+  color: red;
+  cursor: pointer;
+}

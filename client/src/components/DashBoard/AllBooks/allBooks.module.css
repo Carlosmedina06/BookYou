@@ -1,0 +1,20 @@
+.cuadro{
+  margin-top: -4rem;
+  margin-left: -8rem;
+  position: absolute;
+  }
+
+.bookListEdit{
+  border:none;
+  border-radius: 10px;
+  padding: 5px 10px;
+  background-color: rgba(238, 79, 22, 0.945);
+  color: white;
+  margin-right: 20px;
+  cursor: pointer;
+  }
+  
+  .bookListDelete{
+    color: red;
+    cursor: pointer;
+  }

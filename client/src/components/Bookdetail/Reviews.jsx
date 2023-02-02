@@ -16,8 +16,6 @@ const Reviews = ({ id, comment, setRata, rata }) => {
     comment: '',
   })
 
-  console.log('review')
-
   const handleReview = (e) => {
     setReview({
       ...Review,
@@ -42,7 +40,7 @@ const Reviews = ({ id, comment, setRata, rata }) => {
       .then((res) => {
         // eslint-disable-next-line no-console
         console.log(res.data)
-        setRata(rata + 1) // lo siento estoy desesperado.
+        setRata(rata + 1)
       })
     await setReview({
       rate: '',
@@ -118,10 +116,6 @@ const Reviews = ({ id, comment, setRata, rata }) => {
           ?.map((item, index) => (
             <ReviewContainer key={index}>
               <ImgContainer>
-                {/* <img
-                  alt={item.username}
-                  src="https://res.cloudinary.com/dn8jxsqka/image/upload/v1674671180/user_icon_riocsx.png"
-                /> */}
                 <BiUserCircle />
               </ImgContainer>
               <ReviewContent>

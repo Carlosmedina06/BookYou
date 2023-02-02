@@ -59,7 +59,7 @@
   font-size: 0.8rem;
   padding: 0.2rem 0.8rem 0.2rem 0.8rem;
   border: 1px solid #d97823;
-  border-radius: 15px;
+  border-radius: 10px;
 }
 
 .buttonCategorycontainer {
@@ -86,7 +86,9 @@
 
 
 .readBookButton {
-
+  display: flex;
+  justify-content: center;
+  align-items: center;
   color: white;
   cursor: pointer;
   margin: 3%;
@@ -102,11 +104,9 @@
   text-align: center;
   box-shadow: #010326;
   background-color: #f1ac15;
-
   font-size: 1.4rem;
   padding: 1rem 0.5rem 1rem 0.5rem;
   border-radius: 3px;
-
 }
 
 .readBookButton:hover {
@@ -139,7 +139,7 @@
   left: 0;
   bottom: 0;
   background-image: linear-gradient(to right, #D97823, #F28322);
-  transition: all .25s;
+  transition: all .3s ease;
   z-index: -1;
 }
 
@@ -150,3 +150,32 @@
 .buttonSuscribe:hover::before {
   height: 100%;
 }
+
+/*---------------//Boton//---------------------*/
+
+.boton {
+  margin-top: 10px;
+  border: 2px solid #010326;
+  border-radius: 10px;
+  display: flex;
+  height: 30px;
+  width: 100px;
+  padding: 15px;
+  gap: 10px;
+  align-items: center;
+  justify-content: space-around;
+  font-weight: bold;
+  font-size: 24px;
+  transition: all 0.3s ease;
+}
+
+.boton:hover {
+  background-color: #010326;
+  color: #fff;
+}
+
+.btnText {
+  font-size: 16px;
+}
+
+/*---------------//Boton//---------------------*/

@@ -1,13 +1,12 @@
 import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { Link } from 'react-router-dom'
 
 import { getCategorys } from '../../redux/actions'
 import { useForm } from '../../utils/Hooks/useForm'
 import NavBar from '../NavBar/NavBar'
+/* import Loading from '../Loading/loading' */
 
 import style from './formBookCss.module.css'
-import { Container, FormContent, FormItem, Input, InputFile, Select } from './formBookStyle'
 import validationsForm from './ValidationForm'
 
 const PostBook = () => {
@@ -49,6 +48,9 @@ const PostBook = () => {
     if (!response.message) {
       return (
         <section>
+          <div style={{ position: 'absolute', top: '0px', left: '0px' }}>
+            <NavBar />
+          </div>
           <div>
             <h1 className={style.h1}>Created succesfully!</h1>
             <button className={style.button} type="button" onClick={handleClear}>
@@ -78,7 +80,6 @@ const PostBook = () => {
           <div className={style.cardContainer}>
             <form onSubmit={handleSubmit}>
               <div className={style.contentformCard}>
-                {/* // input title  */}
                 <div className={style.formTitle}>
                   <p>Crear Libro</p>
                 </div>
@@ -100,9 +101,6 @@ const PostBook = () => {
                     false
                   )}
                 </div>
-                {/* // input title  */}
-
-                {/* // input description  */}
                 <div className={style.formInputBox}>
                   <label htmlFor="description">Descripcion</label>
                   <input
@@ -120,8 +118,6 @@ const PostBook = () => {
                     false
                   )}
                 </div>
-                {/* // input description  */}
-
                 <div className={style.formInputBox}>
                   <label htmlFor="author">Autor</label>
                   <input
@@ -139,7 +135,6 @@ const PostBook = () => {
                     false
                   )}
                 </div>
-
                 <div className={style.formInputBox}>
                   <label htmlFor="subscription">Subscripcion</label>
                   <select
@@ -153,7 +148,6 @@ const PostBook = () => {
                     <option value="premium">Premium</option>
                   </select>
                 </div>
-
                 <div className={style.formInputBox}>
                   <label htmlFor="category">Categoria</label>
                   <select
@@ -172,8 +166,6 @@ const PostBook = () => {
                     })}
                   </select>
                 </div>
-
-                {/* // input img  */}
                 <div className={style.formInputBox}>
                   <label htmlFor="image">Seleccionar Imagen</label>
                   <input
@@ -185,12 +177,8 @@ const PostBook = () => {
                     }}
                   />
                 </div>
-                {/* // input img  */}
-
-                {/* // input pdf  */}
                 <div className={style.formInputBox}>
                   <label htmlFor="pdf">Seleccionar archivo del libro</label>
-
                   <input
                     accept="application/pdf,application/msword,
                         application/vnd.openxmlformats-officedocument.wordprocessingml.document"
@@ -201,12 +189,6 @@ const PostBook = () => {
                     }}
                   />
                 </div>
-                {/* // input pdf  */}
-
-                {/* <button type="button" onClick={(e) => handleReset(e)}>
-              RESET
-            </button> */}
-
                 <button className={style.buttonSubmit} type="submit" onSubmit={handleSubmit}>
                   CREATE BOOK!
                 </button>
@@ -214,7 +196,6 @@ const PostBook = () => {
             </form>
           </div>
         </div>
-        {/* <Link to="/home">home</Link> */}
       </div>
     )
   }

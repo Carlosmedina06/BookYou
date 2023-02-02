@@ -13,10 +13,8 @@ import './index.css'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <Provider store={store}>
-    <React.StrictMode>
-      <RouterProvider router={App}>
-        <Home />
-      </RouterProvider>
-    </React.StrictMode>
+    <RouterProvider router={App}>
+      <Home />
+    </RouterProvider>
   </Provider>,
 )

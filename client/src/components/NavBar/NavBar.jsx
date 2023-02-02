@@ -6,6 +6,7 @@ import { faSignOut } from '@fortawesome/free-solid-svg-icons'
 import { BiLogIn, BiLogOut } from 'react-icons/bi'
 import jwt_decode from 'jwt-decode'
 import Swal from 'sweetalert2'
+import { useParams } from 'react-router-dom'
 
 import { loginUser, logout } from '../../redux/actions'
 
@@ -14,6 +15,8 @@ import style from './NavBar.module.css'
 const NavBar = () => {
   const user = useSelector((state) => state.loginUser)
   const dispatch = useDispatch()
+
+  const { id } = useParams()
 
   useEffect(() => {
     dispatch(loginUser())
@@ -50,11 +53,13 @@ const NavBar = () => {
                 <NavLink to="/createbook">Crear Libro</NavLink>
               </li>
               <li>
-                <NavLink to="/usuario">Perfil</NavLink>
+                <NavLink to={`/usuario/${decoded.id}`}>Perfil</NavLink>
               </li>
-              <li>
-                <NavLink to="/dashboard">Panel Admin</NavLink>
-              </li>
+              {decoded && decoded.role === 'admin' && (
+                <li>
+                  <NavLink to="/dashboard/stadistics">Panel Admin</NavLink>
+                </li>
+              )}
             </>
           )}
         </ul>

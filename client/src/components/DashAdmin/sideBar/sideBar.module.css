@@ -1,45 +1,45 @@
 .sidebar{
   flex:1;
   height: calc(100vh - 0px);
-  background-color: rgba(155, 156, 148, 0.943);
+  background-color: #D97823;
   font-weight: bold;
   position:fixed;
 
 }
 
 .titulo{
-  font-size: 2.25rem;
-  margin-left: 1.25rem;
+  font-size: 3rem;
   line-height: 2.5rem;
   
 }
 .sidebarWrapper{
-  padding: 20px;
+  padding: 10px;
   margin-top: 3rem;
 }
 
 .letras{
-  color:white;
+  color:#010326;
 }
 
 .sidebarMenu{
   margin-bottom: 10px;
-  margin-top: 10px;
+  margin-top: 30px;
 }
 
 .sidebarTitle{
-  font-size: 15px;
-  color:rgb(238, 234, 234);
+  font-size: 20px;
+  color:#010326;
   margin-top: 20px;
+  margin-left: 60px;
 }
 
 .sidebarList{
   list-style: none;
-  padding: 10px;
+  padding: 40px;
 }
 
 .sidebarListItem{
-  padding: 5px;
+  padding: 10px;
   cursor:pointer;
   display: flex;
   align-items: center;
@@ -57,10 +57,11 @@
   text-align: center;
 }
 
-.button{
+.buttonLogOut{
   padding: 5px;
   border-radius: 10 px;
   font-size: 1rem;
   font-weight: bold;
-  background-color: rgb(238, 234, 230);
+ margin-left: 60px;
+ margin-top: 5rem;
 }

@@ -1,6 +1,8 @@
-import axios from 'axios'
 /* ACA ESTA TODA LA CONEXION BACK Y FRONT!! */
 export const GET_USERS = 'GET_USERS'
+export const GET_USER_BY_ID = 'GET_USER_BY_ID'
+export const GET_ONE_USER = 'GET_ONE_USER'
+
 export const ERROR = 'ERROR'
 export const GET_BOOKBY_ID = 'GET_BOOKBY_ID'
 export const GET_BOOK_ID = 'GET_BOOKBY_ID'
@@ -12,6 +14,7 @@ export const LOGIN = 'LOGIN'
 export const REGISTER_LOCAL = 'REGISTER_LOCAL'
 export const CLEAR_BOOK_DETAILS = 'CLEAR_BOOK_DETAIL'
 export const SUBSCRIPTION = 'SUBSCRIPTION'
+import axios from 'axios'
 import {
   GoogleAuthProvider,
   signInWithPopup,
@@ -145,6 +148,43 @@ export const getUsers = () => async (dispatch) => {
   }
 }
 
+/* -------------------- GET USUARIO POR ID ----------------- */
+export const getOneUser = (id) => async (dispatch) => {
+  try {
+    const info = await axios.get(`${url}/user/${id}`, {
+      headers: {
+        Authorization: `Bearer ${window.localStorage.getItem('token')}`,
+      },
+    })
+
+    return dispatch({
+      type: GET_ONE_USER,
+      payload: info.data,
+    })
+  } catch (error) {
+    dispatch({
+      type: ERROR,
+      payload: error.message,
+    })
+  }
+}
+/* ------------------GET USER POR ID ------------------- */
+// export const getOneUser = (id) => async (dispatch) => {
+//   try {
+//     const info = await axios.get(`http://localhost:3001/user/${id}`)
+
+//     return dispatch({
+//       type: GET_ONE_USER,
+
+//       payload: info.data,
+//     })
+//   } catch (error) {
+//     dispatch({
+//       type: ERROR,
+//       payload: error.message,
+//     })
+//   }
+// }
 /* ------------------GET BOOKS POR ID ------------------- */
 export const clearBookDetails = () => async (dispatch) => {
   try {
