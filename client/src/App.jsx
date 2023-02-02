@@ -41,7 +41,7 @@ const App = createHashRouter([
         element: <Usuario />,
       },
       {
-        path: '/usuario/cuenta',
+        path: '/cuenta',
         element: <UserAccount />,
       },
       {
