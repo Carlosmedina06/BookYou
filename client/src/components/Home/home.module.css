@@ -8,12 +8,11 @@
 /* -----card------ */
 
 .mover {
-<<<<<<< HEAD
-=======
+
     width: 1080px;
 
     margin-top: 10px;
->>>>>>> 771b16d8cb4df84219f3b3d9a73d325adee7f26e
+
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
@@ -89,3 +88,15 @@
     margin-top: 3%;
     background-color: aquamarine;
 }
+
+.boton{
+    border: 3px solid #000000;
+    outline: 0;
+    height: 50px;
+    width: 50px;
+    
+    color: #010326;
+    background-color: #EBF2ED;
+    cursor: pointer;
+   
+  }

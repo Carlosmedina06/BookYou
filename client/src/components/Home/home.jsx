@@ -14,6 +14,9 @@ import Card from '../Card/Card'
 /* import Pagination from '../Pagination/Pagination' */
 import style from '../Home/home.module.css'
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {faTrash} from '@fortawesome/free-solid-svg-icons';
+
 export const Home = () => {
   const dispatch = useDispatch()
 
@@ -21,8 +24,11 @@ export const Home = () => {
   const [bookInput, setBookInput] = useState('') /* actualizar estado searchbar por libro*/
   const [authorInput, setAuthorInput] = useState('') /* actualizar estado searchbar por autor */
   const [bookInputtodos, setBookInputtodos] =
-    useState('') /* actualizar estado genero 'value=todos' para serachbar por libro y autor*/
+  useState('') /* actualizar estado genero 'value=todos' para serachbar por libro y autor*/
   const [filterLibros, setFilterLibros] = useState([])
+
+
+  const [didMount, setDidMount] = useState(false);
 
   const allBooks = useSelector((state) => state.books)
 
@@ -65,6 +71,7 @@ export const Home = () => {
 
   /* ----------Condicional filtrado libros------------- */
   useEffect(() => {
+ 
     setFilterLibros(
       allBooks.filter((b) => {
         if (bookInput.length > 0 && authorInput.length > 0 && bookInputtodos.length > 0) {
@@ -107,17 +114,58 @@ export const Home = () => {
     dispatch(getAutores())
   }, [dispatch])
 
+//----------------------localStorage--------------------------
+useEffect(() => {
+  const savedBookInput = localStorage.getItem('bookInput');
+  const savedAuthorInput = localStorage.getItem('authorInput');
+  const savedBookInputTodos = localStorage.getItem('bookInputtodos');
+  if (savedBookInput) {
+    setBookInput(savedBookInput);
+  }
+  if (savedAuthorInput) {
+    setAuthorInput(savedAuthorInput);
+  }
+  if (savedBookInputTodos) {
+    setBookInputtodos(savedBookInputTodos);
+  }
+  setDidMount(true);
+  console.log(savedBookInput);
+  localStorage.setItem('bookInput', bookInput);
+  localStorage.setItem('authorInput', authorInput);
+  localStorage.setItem('bookInputtodos', bookInputtodos);
+}, [didMount]);
+
+useEffect(() => {
+  if (didMount) {
+    localStorage.setItem('bookInput', bookInput);
+    localStorage.setItem('authorInput', authorInput);
+    localStorage.setItem('bookInputtodos', bookInputtodos);
+  }
+}, [bookInput, authorInput,bookInputtodos]);
+//----------------------localStorage--------------------------
+
+const clearStates = () => {
+  setBooks(true);
+  setBookInput('');
+  setAuthorInput('');
+  setBookInputtodos('');
+}
+
   return (
     <div style={{ backgroundColor: 'blue' }}>
       <div style={{ position: 'absolute', top: '0px' }}>
         <NavBar />
       </div>
 
+      <div style={{ position:'absolute',top: '20px', right: '45px' }}>
+        <button className={style.boton}  onClick={clearStates}>
+        <FontAwesomeIcon icon={faTrash}/>
+        </button>
+      </div>
+
       <SearchBar
         bookInput={bookInput}
-        setAuthorInput={setAuthorInput}
         setBookInput={setBookInput}
-        setBookInputtodos={setBookInputtodos}
       />
 
       <div>
@@ -125,23 +173,18 @@ export const Home = () => {
           <SearchByAutor
             authorInput={authorInput}
             setAuthorInput={setAuthorInput}
-            setBookInput={setBookInput}
-            setBookInputtodos={setBookInputtodos}
           />
         </div>
         <div>
           <FiltradoGenero
-            bookInput={bookInput}
-            bookInputtodos={bookInputtodos}
-            books={books}
-            setAuthorInput={setAuthorInput}
-            setBookInput={setBookInput}
+            bookInputtodos= {bookInputtodos}
             setBookInputtodos={setBookInputtodos}
-            setBooks={setBooks}
           />
         </div>
-        <div style={{ position: 'absolute', top: '130px', left: '30px' }}>
-          <OrdAlfabetico books={books} setBooks={setBooks} />
+        <div style={{ position: 'absolute', top: '130px', left: '-70px' }}>
+          <OrdAlfabetico 
+            books={books} 
+            setBooks={setBooks} />
         </div>
 
         <div>

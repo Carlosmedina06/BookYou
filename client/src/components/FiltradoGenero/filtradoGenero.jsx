@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux'
 import style from '../FiltradoGenero/filtradoGenero.module.css'
 import CssGenerico from '../CssGenerico/CssGenerico.module.css'
 
-export const FiltradoGenero = ({ setBookInputtodos }) => {
+export const FiltradoGenero = ({ bookInputtodos , setBookInputtodos }) => {
   const allGeneros = useSelector((state) => state.category)
 
   function handleFilterCategorys(e) {
@@ -12,8 +12,11 @@ export const FiltradoGenero = ({ setBookInputtodos }) => {
 
   return (
     <div>
-      <div style={{ position: 'absolute', top: '20px', left: '900px' }}>
-        <select className={CssGenerico.selectGen} onChange={(e) => handleFilterCategorys(e)}>
+      <div style={{ position: 'absolute', top: '20px', left: '840px' }}>
+        <select 
+        className={CssGenerico.selectGen} 
+        value={bookInputtodos}
+        onChange={(e) => handleFilterCategorys(e)}>
           <option className={style.titulo} value="">
             {' '}
             Géneros{' '}
