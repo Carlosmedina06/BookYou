@@ -1,4 +1,4 @@
-import BannedWords from '../../models/bannedWords.js'
+import BannedWords from '../../models/BannedWords.js'
 
 const addBannedWord = async (req, res) => {
   try {

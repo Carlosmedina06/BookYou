@@ -11,7 +11,7 @@ const Success = () => {
   useEffect(() => {
     try {
       axios
-        .put('https://bookyou-production.up.railway.app/success', null, {
+        .put('https://server-bookyou.onrender.com/success', null, {
           headers: {
             authorization: `Bearer ${localStorage.getItem('token')}`,
           },

@@ -32,7 +32,7 @@ const Reviews = ({ id, comment, setRata, rata }) => {
     }
 
     axios
-      .post('https://bookyou-production.up.railway.app/comment/create/book', coment, {
+      .post('https://server-bookyou.onrender.com/comment/create/book', coment, {
         headers: {
           authorization: `Bearer ${localStorage.getItem('token')}`,
         },

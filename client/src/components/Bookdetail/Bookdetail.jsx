@@ -40,7 +40,7 @@ const Bookdetail = () => {
   const handletDelete = (e) => {
     e.preventDefault()
     axios
-      .delete(`https://bookyou-production.up.railway.app/book/delete/${id}`, {
+      .delete(`https://server-bookyou.onrender.com/book/delete/${id}`, {
         headers: {
           authorization: `Bearer ${localStorage.getItem('token')}`,
         },

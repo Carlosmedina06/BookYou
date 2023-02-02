@@ -41,7 +41,7 @@ export const AllBooksUsers = () => {
   useEffect(() => {
     async function fetchData() {
       try {
-        const t = await fetch(`https://bookyou-production.up.railway.app/book/`, {
+        const t = await fetch(`https://server-bookyou.onrender.com/book/`, {
           method: 'GET',
           headers: {
             authorization: `bearer ${localStorage.getItem('token')}`,
