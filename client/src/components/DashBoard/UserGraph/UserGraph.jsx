@@ -50,7 +50,6 @@ export function GraphicUsersFreeToSubs() {
   const usersFree = quantityOFFreeUsers()
   const usersPremium = quantityOfSubsUsers()
 
-  console.log(allUsers, usersFree, usersPremium)
   const [data, setData] = useState({
     datasets: [
       {

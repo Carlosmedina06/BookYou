@@ -7,6 +7,7 @@ import SideBar from '../../DashAdmin/sideBar/sideBar'
 import style from './BookEdit.module.css'
 
 const url = 'https://bookyou-production.up.railway.app'
+const urlocal = 'http://localhost:3001'
 
 export const BookEdit = () => {
   const books = useSelector((state) => state.allBooks)
@@ -66,16 +67,15 @@ export const BookEdit = () => {
   const handleChange = (e) => {
     setEditedBook({ ...editedBook, [e.target.name]: e.target.value })
   }
+
   const handleDelete = async () => {
-    const info = axios.put(
-      'https://bookyou-production.up.railway.app/book/delete/' + editedBook.id,
-      null,
-      {
-        headers: {
-          authorization: `bearer ${localStorage.getItem('token')}`,
-        },
+    const info = await axios.delete(`${url}/book/delete/${editedBook.id}`, {
+      headers: {
+        authorization: `bearer ${localStorage.getItem('token')}`,
       },
-    )
+    })
+
+    const response = await info
 
     setEditedBook({
       title: '',
@@ -89,7 +89,6 @@ export const BookEdit = () => {
       search: '',
       select: '',
     })
-    const response = info.data
 
     return response
   }

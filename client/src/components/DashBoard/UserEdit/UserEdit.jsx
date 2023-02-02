@@ -1,14 +1,23 @@
 import axios from 'axios'
-import { useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useEffect, useState } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 
 import SideBar from '../../DashAdmin/sideBar/sideBar'
+import { getUsers } from '../../../redux/actions/index.js'
 
 import style from './UserEdit.module.css'
 
 export const UserEdit = () => {
   const users = useSelector((state) => state.users)
+  const dispatch = useDispatch()
+  const [rata, setRata] = useState(true)
+  const navigate = useNavigate()
 
+  useEffect(() => {
+    dispatch(getUsers())
+  }, [dispatch, rata])
+  console.log(users)
   const [input, setInput] = useState({
     search: '',
     select: '',
@@ -79,18 +88,17 @@ export const UserEdit = () => {
     formData.append('role', editedUser.role)
     formData.append('id', editedUser.id)
 
-    const info = await axios.put(
-      'https://bookyou-production.up.railway.app/user/update',
-      editedUser,
-      {
-        headers: {
-          authorization: `bearer ${localStorage.getItem('token')}`,
-        },
+    const info = await axios.put('http://localhost:3001/user/update', editedUser, {
+      headers: {
+        authorization: `bearer ${localStorage.getItem('token')}`,
       },
-    )
+    })
 
     const res = info.data
+
+    setRata(!rata)
   }
+
   const handleDelete = async (e) => {
     const info = await axios.delete(
       'https://bookyou-production.up.railway.app/user/delete/' + editedUser.id,
@@ -108,12 +116,22 @@ export const UserEdit = () => {
       subscription: '',
       role: '',
       id: '',
+      username: '',
+      email: '',
+      subscription: '',
+      role: '',
+      id: '',
     })
     setInput({
       search: '',
       select: '',
+      search: '',
+      select: '',
     })
     const response = info.data
+
+    setRata(!rata)
+    navigate('/dashboard/usuarios')
 
     return response
   }

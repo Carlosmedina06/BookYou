@@ -20,6 +20,7 @@ import { AllUsers } from './components/DashBoard/AllUsers/allUsers'
 import { AllBooksUsers } from './components/DashBoard/AllBooks/allBooks'
 import DashBoardMain from './components/DashBoard/dashBoardMain/'
 import Suscripcion from './components/Suscripcion/Suscripcion'
+import UserAccount from './components/userAccount/userAccount'
 
 const App = createHashRouter([
   {
@@ -38,6 +39,10 @@ const App = createHashRouter([
       {
         path: '/usuario/:id',
         element: <Usuario />,
+      },
+      {
+        path: '/usuario/cuenta',
+        element: <UserAccount />,
       },
       {
         path: '/createUser',
