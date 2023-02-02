@@ -1,27 +1,11 @@
 import { DataGrid } from '@mui/x-data-grid'
-import DeleteIcon from '@mui/icons-material/Delete'
-/* import { useState } from 'react' */
 import { NavLink } from 'react-router-dom'
 import { useEffect } from 'react'
 import { useState } from 'react'
+export const ERROR = 'ERROR'
+import { useDispatch } from 'react-redux'
 
 import style from '../AllUsers/allUser.module.css'
-
-/* import { userRows } from './dataUserRow' */
-
-export const handleDeleteBook = async (row) => {
-  try {
-    const borrar = await fetch(`https://bookyou-production.up.railway.app/delete/${row.row.id}`, {
-      method: 'DELETE',
-      headers: {
-        'Content-type': 'application/json',
-        Authorization: `Bearer ${localStorage.getItem('token')}`,
-      },
-    }).then((r) => r.json())
-  } catch (error) {
-    console.log(error)
-  }
-}
 
 const columns = [
   { field: 'id', headerName: 'ID', width: 70 },
@@ -41,18 +25,13 @@ const columns = [
   {
     field: 'action',
     headerName: 'Action',
-    width: 150,
-    renderCell: (params) => {
+    width: 90,
+    renderCell: () => {
       return (
         <>
-          <NavLink to="/dashboard/usuarios/editar">
+          <NavLink to="/dashboard/usuarios/userEdit">
             <button className={style.userListEdit}>Edit</button>
-            {/* EL EDIT TIENE QUE LLEVAR AL FORMULARIO DE "USEREDIT" */}
           </NavLink>
-          <DeleteIcon
-            className={style.userListDelete}
-            onClick={() => handleDeleteBook(params.row.id)}
-          />
         </>
       )
     },
@@ -60,13 +39,9 @@ const columns = [
 ]
 
 export const AllUsers = () => {
-  /*  const [data, setData] = useState(userRows)
-  const handleDelete = (id) => {
-    setData(data.filter((i) => i.id !== id))
-  }  */
+  const dispatch = useDispatch()
   var inicio = []
   const [users, setUsers] = useState(inicio)
-  /*   const router = useRouter() */
 
   useEffect(() => {
     async function fetchData() {
@@ -80,8 +55,11 @@ export const AllUsers = () => {
         const enviar = await t.json()
 
         setUsers(enviar)
-      } catch (err) {
-        console.log(err)
+      } catch (error) {
+        dispatch({
+          type: ERROR,
+          payload: error.message,
+        })
       }
     }
     if (users.length == 0) fetchData()
@@ -100,7 +78,7 @@ export const AllUsers = () => {
 
   return (
     <div>
-      <div>
+      <div className={style.cuadro}>
         <DataGrid
           checkboxSelection
           disableSelectionOnClick
@@ -108,7 +86,7 @@ export const AllUsers = () => {
           pageSize={10}
           rows={rows}
           rowsPerPageOptions={[10]}
-          style={{ height: 400, width: '160%' }}
+          style={{ height: 400, width: '550%', top: '10rem' }}
         />
       </div>
     </div>

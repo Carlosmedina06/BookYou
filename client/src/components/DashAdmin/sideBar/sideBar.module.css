@@ -9,7 +9,6 @@
 
 .titulo{
   font-size: 3rem;
-  margin-left: 2rem;
   line-height: 2.5rem;
   
 }
@@ -31,7 +30,7 @@
   font-size: 20px;
   color:#010326;
   margin-top: 20px;
-  margin-left: 90px;
+  margin-left: 60px;
 }
 
 .sidebarList{
@@ -63,5 +62,6 @@
   border-radius: 10 px;
   font-size: 1rem;
   font-weight: bold;
- margin-left: 80px;
+ margin-left: 60px;
+ margin-top: 5rem;
 }

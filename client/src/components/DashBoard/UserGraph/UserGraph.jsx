@@ -116,7 +116,7 @@ export function GraphicUsersFreeToSubs() {
 
   return (
     <div className={style.graph}>
-      <Doughnut data={data} options={options} plugins={[textCenter]} />
+      <Doughnut className={style.doughnut} data={data} options={options} plugins={[textCenter]} />
     </div>
   )
 }
