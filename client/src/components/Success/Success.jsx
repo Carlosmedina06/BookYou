@@ -5,6 +5,9 @@ import Swal from 'sweetalert2'
 
 import { BtnSuccess, CardSuccess, SuccessContainer } from './SuccessStyle.js'
 
+/* const url = 'https://bookyou-production.up.railway.app' */
+const urlocal = 'http://localhost:3001'
+
 const Success = () => {
   useEffect(() => {
     Swal.fire({
@@ -17,7 +20,7 @@ const Success = () => {
   useEffect(() => {
     try {
       axios
-        .put('https://bookyou-production.up.railway.app/success', null, {
+        .put(`${urlocal}/success`, null, {
           headers: {
             authorization: `Bearer ${localStorage.getItem('token')}`,
           },

@@ -10,6 +10,9 @@ import style from '../Bookdetail/Reviews.module.css'
 
 import { ImgContainer, ReviewContainer, ReviewContent, ReviewText, ReviewDate } from './ReviewStyle'
 
+/* const url = 'https://bookyou-production.up.railway.app' */
+const urlocal = 'http://localhost:3001'
+
 const Reviews = ({ id, comment, setRata, rata }) => {
   const [Review, setReview] = useState({
     rate: '',
@@ -32,7 +35,7 @@ const Reviews = ({ id, comment, setRata, rata }) => {
     }
 
     axios
-      .post('https://bookyou-production.up.railway.app/comment/create/book', coment, {
+      .post(`${urlocal}/comment/create/book`, coment, {
         headers: {
           authorization: `Bearer ${localStorage.getItem('token')}`,
         },

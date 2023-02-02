@@ -77,7 +77,7 @@ export const CommentEdit = () => {
     // const response = info.data;
     // return response;
 
-    const info = await axios.get('https://bookyou-production.up.railway.app/comment/')
+    const info = await axios.get(`${urlocal}/comment/`)
     const comments = info.data
 
     console.log(comments)

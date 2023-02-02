@@ -11,6 +11,9 @@ import {
   SuscripcionContainer,
 } from './SuscripcionStyle'
 
+/* const url = 'https://bookyou-production.up.railway.app' */
+const urlocal = 'http://localhost:3001'
+
 const Suscripcion = () => {
   const user = useSelector((state) => state.loginUser)
   const navigate = useNavigate()
@@ -37,7 +40,7 @@ const Suscripcion = () => {
       navigate('/login')
     } else {
       axios
-        .get('https://bookyou-production.up.railway.app/checkout', {
+        .get(`${urlocal}/checkout`, {
           headers: {
             Authorization: `Bearer ${window.localStorage.getItem('token')}`,
           },
