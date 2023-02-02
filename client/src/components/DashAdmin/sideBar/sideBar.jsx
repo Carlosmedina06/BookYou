@@ -1,7 +1,6 @@
 import HomeIcon from '@mui/icons-material/Home'
 import TimelineIcon from '@mui/icons-material/Timeline'
 import PersonIcon from '@mui/icons-material/Person'
-import BookIcon from '@mui/icons-material/Book'
 import ForumIcon from '@mui/icons-material/Forum'
 import AutoStoriesIcon from '@mui/icons-material/AutoStories'
 import { faSignOut } from '@fortawesome/free-solid-svg-icons'
@@ -9,7 +8,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Link, NavLink } from 'react-router-dom'
 
 import style from '../sideBar/sideBar.module.css'
-/* import DashBoardMain from '../../DashBoard/dashBoardMain' */
 
 const SideBar = () => {
   return (
@@ -24,12 +22,6 @@ const SideBar = () => {
           <h3 className={style.sidebarTitle}>Dashboard</h3>
 
           <ul className={style.sidebarList}>
-            <li className={style.sidebarListItem}>
-              <HomeIcon className={style.sidebarIcon} />
-              <NavLink className={style.letras} to="/dashboard/home">
-                Home
-              </NavLink>
-            </li>
             <li className={style.sidebarListItem}>
               <TimelineIcon className={style.sidebarIcon} />
               <NavLink className={style.letras} to="/dashboard/stadistics">
@@ -64,5 +56,4 @@ const SideBar = () => {
   )
 }
 
-/* USUARIO INICIO REGISTROUSUARIOS BALANCE */
 export default SideBar

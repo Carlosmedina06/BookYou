@@ -1,59 +1,87 @@
 import { DataGrid } from '@mui/x-data-grid'
-import DeleteIcon from '@mui/icons-material/Delete'
 import { useState } from 'react'
+import { useEffect } from 'react'
 import { NavLink } from 'react-router-dom'
+export const ERROR = 'ERROR'
+import { useDispatch } from 'react-redux'
 
-import style from '../AllUsers/allUser.module.css'
+import style from '../AllBooks/allBooks.module.css'
 
-import { bookRows } from './dataBooks'
+const columns = [
+  { field: 'id', headerName: 'ID', width: 70 },
+  { field: 'title', headerName: 'Title', width: 250 },
+  { field: 'author', headerName: 'Author', width: 200 },
+  { field: 'user', headerName: 'User', width: 200 },
+  {
+    field: 'subscription',
+    headerName: 'Subscription',
+    width: 110,
+  },
+  {
+    field: 'action',
+    headerName: 'Action',
+    width: 100,
+    renderCell: () => {
+      return (
+        <>
+          <NavLink to="/dashboard/books/bookEdit">
+            <button className={style.bookListEdit}>Edit</button>
+          </NavLink>
+        </>
+      )
+    },
+  },
+]
 
 export const AllBooksUsers = () => {
-  const [data, setData] = useState(bookRows)
-  const handleDelete = (id) => {
-    setData(data.filter((i) => i.id !== id))
-  } /* borra pero hay que guardar ese borrado para que al actualizar la pagina no vuelva a aparecer */
+  const dispatch = useDispatch()
+  var inicio = []
+  const [books, setBooks] = useState(inicio)
 
-  const columns = [
-    { field: 'id', headerName: 'ID', width: 70 },
-    { field: 'username', headerName: 'UserName', width: 190 },
-    { field: 'books', headerName: 'Books', width: 280 },
-    {
-      field: 'status',
-      headerName: 'Status',
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const t = await fetch(`https://bookyou-production.up.railway.app/book/`, {
+          method: 'GET',
+          headers: {
+            authorization: `bearer ${localStorage.getItem('token')}`,
+          },
+        })
+        const enviar = await t.json()
 
-      width: 120,
-    },
-    {
-      field: 'action',
-      headerName: 'Action',
-      width: 150,
-      renderCell: (params) => {
-        return (
-          <>
-            <NavLink to="/dashboard/books/editar">
-              <button className={style.userListEdit}>Edit</button>
-              {/* EL EDIT TIENE QUE LLEVAR AL FORMULARIO DE "BOOKEDIT" */}
-            </NavLink>
-            <DeleteIcon
-              className={style.userListDelete}
-              onClick={() => handleDelete(params.row.id)}
-            />
-          </>
-        )
-      },
-    },
-  ]
+        setBooks(enviar)
+      } catch (error) {
+        dispatch({
+          type: ERROR,
+          payload: error.message,
+        })
+      }
+    }
+    if (books.length == 0) fetchData()
+  }, [books])
+
+  const rows = books.map((b) => {
+    return {
+      id: b.id,
+      title: b.title,
+      author: b.author,
+      user: b.user.username,
+      subscription: b.subscription,
+    }
+  })
 
   return (
     <div>
-      <div style={{ height: 400, width: '170%' }}>
+      <div className={style.cuadro}>
         {' '}
         <DataGrid
           checkboxSelection
+          disableSelectionOnClick
           columns={columns}
-          pageSize={5}
-          rows={data}
-          rowsPerPageOptions={[5]}
+          pageSize={10}
+          rows={rows}
+          rowsPerPageOptions={[10]}
+          style={{ height: 400, width: '500%', top: '5rem' }}
         />{' '}
       </div>
     </div>

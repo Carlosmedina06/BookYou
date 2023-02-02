@@ -12,7 +12,7 @@ const userRouter = Router()
 //= ======================Users Routes================================
 userRouter.get('/', getAllUsers)
 userRouter.get('/:id', getUserById)
-userRouter.put('/update/:id', userUpdate)
+userRouter.put('/update', userUpdate)
 userRouter.put('/delete/:id', userDelete)
 userRouter.put('/active/:id', userActive)
 // userRouter.post('/create', userPost)

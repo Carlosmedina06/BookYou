@@ -10,6 +10,6 @@ const commentRouter = Router()
 commentRouter.post('/create/book', createCommentBook)
 commentRouter.put('/update/:id', updateComment)
 commentRouter.put('/delete/:id', deleteComment)
-commentRouter.get('/', getCommentsUser)
+commentRouter.get('/:number', getCommentsUser)
 
 export default commentRouter

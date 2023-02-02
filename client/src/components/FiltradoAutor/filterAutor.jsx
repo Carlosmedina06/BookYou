@@ -13,6 +13,7 @@ function SearchByAutor({ setAuthorInput,authorInput }) {
           <div style={{ position: 'absolute', top: '20px', left: '570px' }}>
             <input
               required
+              autoComplete="off"
               className={CssGenerico.search}
               id="default-search"
               placeholder=" Autores"
