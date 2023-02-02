@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import axios from 'axios'
 import Confetti from 'react-confetti'
 
-import Navbar from '../Navbar/Navbar.jsx'
+import NavBar from '../NavBar/NavBar.jsx'
 
 import { BtnSuccess, CardSuccess, ContentSuccess, SuccessContainer } from './SuccessStyle.js'
 
@@ -28,7 +28,7 @@ const Success = () => {
   return (
     <>
       <Confetti height={window.innerHeight} width={window.innerWidth} />
-      <Navbar />
+      <NavBar />
       <SuccessContainer>
         <CardSuccess>
           <ContentSuccess>
