@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
+import SideBar from '../../DashAdmin/sideBar/sideBar'
 import { getUsers } from '../../../redux/actions/index.js'
 
 import style from './UserEdit.module.css'
@@ -115,8 +116,15 @@ export const UserEdit = () => {
       subscription: '',
       role: '',
       id: '',
+      username: '',
+      email: '',
+      subscription: '',
+      role: '',
+      id: '',
     })
     setInput({
+      search: '',
+      select: '',
       search: '',
       select: '',
     })
@@ -129,52 +137,58 @@ export const UserEdit = () => {
   }
 
   return (
-    <div className={style.container}>
-      <h1>Update Users</h1>
-      <br />
-      <input name="search" value={input.search} onChange={(e) => handleSearch(e)} />
-      <select name="users" value={input.select} onChange={(e) => handleUserSelect(e)}>
-        <option value="none" />
-        {users?.map((element) => {
-          return (
-            <option key={element.id} value={element.name}>
-              {element.name}
-            </option>
-          )
-        })}
-      </select>
-      <button type="button" onClick={handleClickSearch}>
-        Search User
-      </button>
-      <form className={style.form} onSubmit={handleSubmit}>
-        <label>Name</label>
-        <input name="name" value={editedUser.name} onChange={(e) => handleChange(e)} />
-        <label>Username</label>
-        <input name="username" value={editedUser.username} onChange={(e) => handleChange(e)} />
-        <label>Email</label>
-        <input name="email" value={editedUser.email} onChange={(e) => handleChange(e)} />
-        <label>Subscription</label>
-        <select
-          name="subscription"
-          value={editedUser.subscription}
-          onChange={(e) => handleChange(e)}
-        >
-          <option value="none" />
-          <option value="free">Free</option>
-          <option value="premium">Premium</option>
-        </select>
-        <label>Role</label>
-        <select name="role" value={editedUser.role} onChange={(e) => handleChange(e)}>
-          <option value="none" />
-          <option value="user">User</option>
-          <option value="admin">Admin</option>
-        </select>
+    <>
+      <SideBar />
+      <div className={style.container}>
+        <h1>Update Users</h1>
         <br />
-        <button type="submit">Update</button>
-      </form>
-      <button type="button" onClick={handleDelete}>
-        Delete User
-      </button>
-    </div>
+        <input name="search" value={input.search} onChange={(e) => handleSearch(e)} />
+        <br />
+        <select name="users" value={input.select} onChange={(e) => handleUserSelect(e)}>
+          <option value="none" />
+          {users?.map((element) => {
+            return (
+              <option key={element.id} value={element.name}>
+                {element.name}
+              </option>
+            )
+          })}
+        </select>
+        <button type="button" onClick={handleClickSearch}>
+          Search User
+        </button>
+        <form className={style.form}>
+          <label>Name</label>
+          <input name="name" value={editedUser.name} onChange={(e) => handleChange(e)} />
+          <label>Username</label>
+          <input name="username" value={editedUser.username} onChange={(e) => handleChange(e)} />
+          <label>Email</label>
+          <input name="email" value={editedUser.email} onChange={(e) => handleChange(e)} />
+          <label>Subscription</label>
+          <select
+            name="subscription"
+            value={editedUser.subscription}
+            onChange={(e) => handleChange(e)}
+          >
+            <option value="none" />
+            <option value="free">Free</option>
+            <option value="premium">Premium</option>
+          </select>
+          <label>Role</label>
+          <select name="role" value={editedUser.role} onChange={(e) => handleChange(e)}>
+            <option value="none" />
+            <option value="user">User</option>
+            <option value="admin">Admin</option>
+          </select>
+          <br />
+          <button type="submit" onSubmit={handleSubmit}>
+            Update
+          </button>
+        </form>
+        <button type="button" onClick={handleDelete}>
+          Delete User
+        </button>
+      </div>
+    </>
   )
 }

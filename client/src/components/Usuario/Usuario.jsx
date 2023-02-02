@@ -10,7 +10,9 @@ import { useParams } from 'react-router-dom'
 
 import Pagination from '../Pagination/Pagination'
 import NavBar from '../NavBar/NavBar'
+
 import { getOneUser} from '../../redux/actions/index'
+
 
 import UserBookCard from './UserBookCard'
 import style from './Usuario.module.css'
@@ -20,7 +22,6 @@ export const Usuario = () => {
   const dispatch = useDispatch()
   const { id } = useParams()
   const [currentPage, setCurrentPage] = useState(0)
-
   var decoded = jwtDecode(window.localStorage.getItem('token'))
 
   // useEffect(() => {
@@ -80,19 +81,23 @@ export const Usuario = () => {
         <NavBar />
       </div>
 
+
       <img alt="Mi imagen" className={style.perfil} src={oneUser.img || perfil} />
+
       <div className={style.nombre}>
 
         <h3 className={style.nombre1}>{oneUser.name}</h3>
         
         
         <p className={style.p1}>Apodo</p>
+
       </div>
       <img alt="Mi imagen" className={style.perfil} src={oneUser.img} />
       
       <div className={style.nombre}>
         <h3 className={style.nombre1}>{oneUser.name}</h3>
         <p className={style.p1}>{oneUser.username}</p>
+
 
         <p>
           Soy un amante de los libros, me encanta sumergirme en historias de todo tipo y viajar a
@@ -124,64 +129,32 @@ export const Usuario = () => {
           {' '}
           <h2 style={{ fontWeight: 'bold', fontSize: '31px' }}>Mis Favoritos</h2>
         </button>
-      </div>
-      {/* seccion mis libros */}
-      {profileSection.misLibroSection && (
-        <div>
+
+        {/* seccion mis libros */}
+        {profileSection.misLibroSection && (
           <div>
             <div>
-              {libros.length > 0 ? (
-                filterBooks().map((book, i) => <UserBookCard key={i} />)
-              ) : (
-                <p>Sin libros aun</p>
-              )}
+              <div>
+                {libros.length > 0 ? (
+                  filterBooks().map((book, i) => <UserBookCard key={i} />)
+                ) : (
+                  <p>Sin libros aun</p>
+                )}
+              </div>
+            </div>
+
+            <div className={style.paginado}>
+              <Pagination
+                filterBooks={oneUser.books}
+                nextPage={nextPage}
+                prevPage={prevPage}
+                totalPages={currentPage + 1}
+              />
             </div>
           </div>
-
-          <div style={{ position: 'absolute', top: '300px', left: '300px' }}>
-            <h2 style={{ fontWeight: 'bold', fontSize: '31px' }}>Mis Libros</h2>
-            <button className={style.boton} onClick={() => setBooks(!books)}>
-              {books ? 'Ocultar ' : 'Mostrar '}
-              <FontAwesomeIcon
-                icon={books ? faChevronUp : faChevronDown}
-                style={{ fontSize: '0.7em' }}
-              />
-            </button>
-
-            {books && (
-              <div>
-                <div>
-                  {oneUser.books ? (
-                    oneUser.books.map((book, i) => (
-                      <UserBookCard
-                        key={i}
-                        author={book.author}
-                        description={book.description}
-                        id={book.id}
-                        img={book.img}
-                        subs={book.subscription}
-                        title={book.title}
-                      />
-                    ))
-                  ) : (
-                    <p>Sin libros aun</p>
-                  )}
-                </div>
-
-                <div className={style.paginado}>
-                  <Pagination
-                    filterBooks={oneUser.books}
-                    nextPage={nextPage}
-                    prevPage={prevPage}
-                    totalPages={currentPage + 1}
-                  />
-                </div>
-              </div>
-            )}
-            <div />
-          </div>
-        </div>
-      )}
+        )}
+        <div />
+      </div>
     </div>
   )
 }

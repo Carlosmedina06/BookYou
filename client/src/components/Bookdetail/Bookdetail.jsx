@@ -114,22 +114,32 @@ const Bookdetail = () => {
                   </NavLink>
                 </div>
               )}
-
-              <br />
-              <br />
               {loginUserVerification(localStorage.getItem('token'), details) ? (
                 <>
-                  <button onClick={handletDelete}> Eliminar </button>
-                  <button onClick={handletEdit}> Editar </button>
+                  <button className={style.boton} onClick={handletDelete}>
+                    <span className={style.btnText}>Eliminar</span>
+                  </button>
+                  <button className={style.boton} onClick={handletEdit}>
+                    <span className={style.btnText}>Editar</span>
+                  </button>
                 </>
               ) : null}
             </div>
           </div>
         </div>
-
-        <div style={{ position: 'absolute', top: '480px', left: '300px' }}>
+        <div
+          style={{
+            position: 'absolute',
+            top: '480px',
+            left: '300px',
+          }}
+        >
           <button className={style.boton} onClick={() => setBooks(!books)}>
-            {books ? 'Ocultar ' : 'Mostrar '}
+            {books ? (
+              <span className={style.btnText}>Ocultar</span>
+            ) : (
+              <span className={style.btnText}>Mostrar</span>
+            )}
             <FontAwesomeIcon
               icon={books ? faChevronUp : faChevronDown}
               style={{ fontSize: '0.7em' }}

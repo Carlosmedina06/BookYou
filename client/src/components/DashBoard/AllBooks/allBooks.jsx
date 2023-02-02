@@ -1,65 +1,32 @@
 import { DataGrid } from '@mui/x-data-grid'
-import DeleteIcon from '@mui/icons-material/Delete'
-/* import WorkspacePremiumIcon from '@mui/icons-material/WorkspacePremium'
-import FreeBreakfastIcon from '@mui/icons-material/FreeBreakfast' */
 import { useState } from 'react'
 import { useEffect } from 'react'
 import { NavLink } from 'react-router-dom'
-import axios from 'axios'
+export const ERROR = 'ERROR'
+import { useDispatch } from 'react-redux'
 
 import style from '../AllBooks/allBooks.module.css'
-
-export const handleDeleteBook = async (row) => {
-  try {
-    const borrar = await fetch(
-      `https://bookyou-production.up.railway.app/book/delete/${row.row.id}`,
-      {
-        method: 'DELETE',
-        headers: {
-          'Content-type': 'application/json',
-        },
-      },
-    ).then((r) => r.json())
-  } catch (error) {
-    console.log(error)
-  }
-}
-
-/* export const deleteBook = async (id) => {
-  const info = axios.delete('https://bookyou-production.up.railway.app/book/delete/' + id)
-  const response = info.data
-
-  return response
-} */
 
 const columns = [
   { field: 'id', headerName: 'ID', width: 70 },
   { field: 'title', headerName: 'Title', width: 250 },
   { field: 'author', headerName: 'Author', width: 200 },
+  { field: 'user', headerName: 'User', width: 200 },
   {
     field: 'subscription',
     headerName: 'Subscription',
-    width: 150,
+    width: 110,
   },
   {
     field: 'action',
     headerName: 'Action',
-    width: 150,
-    renderCell: (row) => {
+    width: 100,
+    renderCell: () => {
       return (
         <>
-          <NavLink to="/dashboard/books/editar">
+          <NavLink to="/dashboard/books/bookEdit">
             <button className={style.bookListEdit}>Edit</button>
-            {/* EL EDIT TIENE QUE LLEVAR AL FORMULARIO DE "USEREDIT" */}
           </NavLink>
-          <DeleteIcon
-            className={style.bookListDelete}
-            onClick={() => {
-              handleDeleteBook({ row }).then(() => location.reload())
-            }}
-          >
-            Eliminar
-          </DeleteIcon>
         </>
       )
     },
@@ -67,6 +34,7 @@ const columns = [
 ]
 
 export const AllBooksUsers = () => {
+  const dispatch = useDispatch()
   var inicio = []
   const [books, setBooks] = useState(inicio)
 
@@ -76,14 +44,17 @@ export const AllBooksUsers = () => {
         const t = await fetch(`https://bookyou-production.up.railway.app/book/`, {
           method: 'GET',
           headers: {
-            'Content-type': 'application/json',
+            authorization: `bearer ${localStorage.getItem('token')}`,
           },
         })
         const enviar = await t.json()
 
         setBooks(enviar)
-      } catch (err) {
-        console.log(err)
+      } catch (error) {
+        dispatch({
+          type: ERROR,
+          payload: error.message,
+        })
       }
     }
     if (books.length == 0) fetchData()
@@ -94,13 +65,14 @@ export const AllBooksUsers = () => {
       id: b.id,
       title: b.title,
       author: b.author,
+      user: b.user.username,
       subscription: b.subscription,
     }
   })
 
   return (
     <div>
-      <div style={{ height: 400, width: '170%' }}>
+      <div className={style.cuadro}>
         {' '}
         <DataGrid
           checkboxSelection
@@ -109,6 +81,7 @@ export const AllBooksUsers = () => {
           pageSize={10}
           rows={rows}
           rowsPerPageOptions={[10]}
+          style={{ height: 400, width: '500%', top: '5rem' }}
         />{' '}
       </div>
     </div>

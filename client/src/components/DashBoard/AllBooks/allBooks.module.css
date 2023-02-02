@@ -1,3 +1,9 @@
+.cuadro{
+  margin-top: -4rem;
+  margin-left: -8rem;
+  position: absolute;
+  }
+
 .bookListEdit{
   border:none;
   border-radius: 10px;
