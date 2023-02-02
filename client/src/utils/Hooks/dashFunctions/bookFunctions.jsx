@@ -12,21 +12,21 @@ export const getBookId = (name) => {
 }
 
 export const deleteBook = async (id) => {
-  const info = axios.delete('https://bookyou-production.up.railway.app/book/delete/' + id)
+  const info = axios.delete('https://server-bookyou.onrender.com/book/delete/' + id)
   const response = info.data
 
   return response
 }
 
 export const getBookById = async (id) => {
-  const info = await axios.get('https://bookyou-production.up.railway.app/book/' + id)
+  const info = await axios.get('https://server-bookyou.onrender.com/book/' + id)
   const book = info.data
 
   return book
 }
 
 export const updateBook = async (id, book) => {
-  const info = axios.put('https://bookyou-production.up.railway.app/book/update/' + id, book)
+  const info = axios.put('https://server-bookyou.onrender.com/book/update/' + id, book)
   const response = info.data
 
   return response

@@ -31,7 +31,7 @@ const Suscripcion = () => {
       navigate('/login')
     } else {
       axios
-        .get('https://bookyou-production.up.railway.app/checkout', {
+        .get('https://server-bookyou.onrender.com/checkout', {
           headers: {
             Authorization: `Bearer ${window.localStorage.getItem('token')}`,
           },

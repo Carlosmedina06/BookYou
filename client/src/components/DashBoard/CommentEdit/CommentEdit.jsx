@@ -35,7 +35,7 @@ export const CommentEdit = () => {
     const id = book[0].id
 
     console.log(input.searchBook)
-    const details = await axios.get('https://bookyou-production.up.railway.app/book/' + id)
+    const details = await axios.get('https://server-bookyou.onrender.com/book/' + id)
     const bookDetails = details.data
 
     console.log(bookDetails)
@@ -53,7 +53,7 @@ export const CommentEdit = () => {
     })
     console.log(book)
   }
-  const handleClickSearchUser = (e) => {}
+  const handleClickSearchUser = (e) => { }
   const handleChange = (e) => {
     setEditedUser({ ...editedUser, [e.target.name]: e.target.value })
   }
@@ -65,7 +65,7 @@ export const CommentEdit = () => {
     formData.append('name', editedUser.name)
 
     const info = await axios.put(
-      'https://bookyou-production.up.railway.app/user/update' + editedUser.id,
+      'https://server-bookyou.onrender.com/user/update' + editedUser.id,
       formData,
     )
 
@@ -78,7 +78,7 @@ export const CommentEdit = () => {
     // const response = info.data;
     // return response;
 
-    const info = await axios.get('https://bookyou-production.up.railway.app/comment/')
+    const info = await axios.get('https://server-bookyou.onrender.com/comment/')
     const comments = info.data
 
     console.log(comments)

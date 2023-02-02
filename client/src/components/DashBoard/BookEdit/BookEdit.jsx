@@ -6,7 +6,7 @@ import SideBar from '../../DashAdmin/sideBar/sideBar'
 
 import style from './BookEdit.module.css'
 
-const url = 'https://bookyou-production.up.railway.app'
+const url = 'https://server-bookyou.onrender.com'
 const urlocal = 'http://localhost:3001'
 
 export const BookEdit = () => {
@@ -104,15 +104,11 @@ export const BookEdit = () => {
     formData.append('author', editedBook.author)
     formData.append('subscription', editedBook.subscription)
 
-    const info = await axios.put(
-      `https://bookyou-production.up.railway.app/book/update/${editedBook.id}`,
-      formData,
-      {
-        headers: {
-          authorization: `bearer ${localStorage.getItem('token')}`,
-        },
+    const info = await axios.put(`${url}/book/update/${editedBook.id}`, formData, {
+      headers: {
+        authorization: `bearer ${localStorage.getItem('token')}`,
       },
-    )
+    })
   }
 
   return (

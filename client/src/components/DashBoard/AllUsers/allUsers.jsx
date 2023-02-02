@@ -46,7 +46,7 @@ export const AllUsers = () => {
   useEffect(() => {
     async function fetchData() {
       try {
-        const t = await fetch(`https://bookyou-production.up.railway.app/user/`, {
+        const t = await fetch(`https://server-bookyou.onrender.com/user/`, {
           method: 'GET',
           headers: {
             'Content-type': 'application/json',

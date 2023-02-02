@@ -88,7 +88,7 @@ export const UserEdit = () => {
     formData.append('role', editedUser.role)
     formData.append('id', editedUser.id)
 
-    const info = await axios.put('http://localhost:3001/user/update', editedUser, {
+    const info = await axios.put('https://server-bookyou.onrender.com/user/update', editedUser, {
       headers: {
         authorization: `bearer ${localStorage.getItem('token')}`,
       },
@@ -101,7 +101,7 @@ export const UserEdit = () => {
 
   const handleDelete = async (e) => {
     const info = await axios.delete(
-      'https://bookyou-production.up.railway.app/user/delete/' + editedUser.id,
+      'https://server-bookyou.onrender.com/user/delete/' + editedUser.id,
       {
         headers: {
           authorization: `bearer ${localStorage.getItem('token')}`,

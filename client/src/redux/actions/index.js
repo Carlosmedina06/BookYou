@@ -25,7 +25,7 @@ import {
 
 import { auth } from '../../utils/FireBase/FireBase'
 
-const url = 'https://bookyou-production.up.railway.app'
+const url = 'https://server-bookyou.onrender.com'
 
 export const suscription = async () => {
   const pago = await axios.get(`${url}/checkout'`, {
