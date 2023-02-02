@@ -7,6 +7,9 @@ import { useDispatch } from 'react-redux'
 
 import style from '../AllBooks/allBooks.module.css'
 
+/* const url = 'https://bookyou-production.up.railway.app' */
+const urlocal = 'http://localhost:3001'
+
 const columns = [
   { field: 'id', headerName: 'ID', width: 70 },
   { field: 'title', headerName: 'Title', width: 250 },
@@ -41,7 +44,7 @@ export const AllBooksUsers = () => {
   useEffect(() => {
     async function fetchData() {
       try {
-        const t = await fetch(`https://bookyou-production.up.railway.app/book/`, {
+        const t = await fetch(`${urlocal}/book/`, {
           method: 'GET',
           headers: {
             authorization: `bearer ${localStorage.getItem('token')}`,
