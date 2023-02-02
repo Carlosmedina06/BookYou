@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux'
 import Swal from 'sweetalert2'
 import axios from 'axios'
 
-import Navbar from '../Navbar/Navbar'
+import NavBar from '../NavBar/NavBar'
 
 import {
   BtnSuscripcion,
@@ -44,7 +44,7 @@ const Suscripcion = () => {
 
   return (
     <>
-      <Navbar />
+      <NavBar />
       <SuscripcionContainer>
         <CardSuscripcion>
           <ContentSuscripcion>
