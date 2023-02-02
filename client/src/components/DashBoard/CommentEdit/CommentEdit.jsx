@@ -7,6 +7,9 @@ import SideBar from '../../DashAdmin/sideBar/sideBar'
 import { CommentCard } from './CommentCard'
 import style from './CommentEdit.module.css'
 
+/* const url = 'https://bookyou-production.up.railway.app' */
+const urlocal = 'http://localhost:3001'
+
 export const CommentEdit = () => {
   const users = useSelector((state) => state.users)
   const books = useSelector((state) => state.allBooks)
@@ -34,8 +37,7 @@ export const CommentEdit = () => {
     })
     const id = book[0].id
 
-    console.log(input.searchBook)
-    const details = await axios.get('https://bookyou-production.up.railway.app/book/' + id)
+    const details = await axios.get(`${urlocal}/book/` + id)
     const bookDetails = details.data
 
     console.log(bookDetails)
@@ -64,10 +66,7 @@ export const CommentEdit = () => {
 
     formData.append('name', editedUser.name)
 
-    const info = await axios.put(
-      'https://bookyou-production.up.railway.app/user/update' + editedUser.id,
-      formData,
-    )
+    const info = await axios.put(`${urlocal}/user/update` + editedUser.id, formData)
 
     const res = info.data
   }
