@@ -11,6 +11,7 @@ import checkOutRouter from './Checkout/Checkout.routes.js'
 import signupRouter from './Signup/signup.routes.js'
 import successRouter from './Success/Success.routes.js'
 import ticketRouter from './tickets/Ticket.routes.js'
+import bannedWordsRouter from './BannedWords/bannedWords.js'
 
 const router = Router()
 
@@ -40,6 +41,9 @@ router.use('/success', successRouter)
 
 //= =====================Tickets Routes================================
 router.use('/ticket', ticketRouter)
+
+//= =====================Tickets Routes================================
+router.use('/bannedwords', bannedWordsRouter)
 
 //= =====================Error Middlewares================================
 
