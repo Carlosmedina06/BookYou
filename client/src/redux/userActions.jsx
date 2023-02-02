@@ -2,9 +2,14 @@ import axios from 'axios'
 
 import { getAllUsers, getUserById, userError } from './userSlice'
 
+const url = 'http://localhost:3001'
+
+// http://localhost:3001
+//https://bookyou-production.up.railway.app
+
 export const getUsers = () => async (dispatch) => {
   try {
-    const info = await axios.get('http://localhost:3001/users')
+    const info = await axios.get(`${url}/users`)
 
     dispatch(getAllUsers(info.data))
   } catch (error) {
@@ -13,7 +18,7 @@ export const getUsers = () => async (dispatch) => {
 }
 export const getUserId = (id) => async (dispatch) => {
   try {
-    const info = await axios.get('http://localhost:3001/user/' + id)
+    const info = await axios.get(`${url}/users/${id}`)
 
     dispatch(getUserById(info.data))
   } catch (error) {
