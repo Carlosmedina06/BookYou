@@ -23,12 +23,6 @@ const SideBar = () => {
 
           <ul className={style.sidebarList}>
             <li className={style.sidebarListItem}>
-              <HomeIcon className={style.sidebarIcon} />
-              <NavLink className={style.letras} to="/dashboard/home">
-                Home
-              </NavLink>
-            </li>
-            <li className={style.sidebarListItem}>
               <TimelineIcon className={style.sidebarIcon} />
               <NavLink className={style.letras} to="/dashboard/stadistics">
                 Estadísticas

@@ -86,7 +86,7 @@ export const AllUsers = () => {
           pageSize={10}
           rows={rows}
           rowsPerPageOptions={[10]}
-          style={{ height: 400, width: '550%' }}
+          style={{ height: 400, width: '550%', top: '10rem' }}
         />
       </div>
     </div>

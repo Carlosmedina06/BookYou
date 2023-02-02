@@ -2,6 +2,8 @@ import axios from 'axios'
 import { useState } from 'react'
 import { useSelector } from 'react-redux'
 
+import SideBar from '../../DashAdmin/sideBar/sideBar'
+
 import style from './BookEdit.module.css'
 
 const url = 'https://bookyou-production.up.railway.app'
@@ -115,68 +117,72 @@ export const BookEdit = () => {
   }
 
   return (
-    <div className={style.container}>
-      <h1>Update Books</h1>
-      <br />
-      <input
-        name="search"
-        placeholder="Enter book name"
-        value={input.search}
-        onChange={(e) => handleSearch(e)}
-      />
-      <select name="books" value={input.select} onChange={(e) => handleBookSelect(e)}>
-        <option value="none" />
-        {books?.map((element) => {
-          return (
-            <option key={element.id} value={element.title}>
-              {element.title}
-            </option>
-          )
-        })}
-      </select>
-      <button type="button" onClick={handleClickSearch}>
-        Search
-      </button>
-      <form className={style.form} onSubmit={handleSubmit}>
-        <label>Title</label>
-        <input name="title" value={editedBook.title} onChange={(e) => handleChange(e)} />
-        <label>Description</label>
+    <>
+      <SideBar />
+      <div className={style.container}>
+        <h1>Update Books</h1>
+        <br />
         <input
-          name="description"
-          value={editedBook.description}
-          onChange={(e) => handleChange(e)}
+          name="search"
+          placeholder="Enter book name"
+          value={input.search}
+          onChange={(e) => handleSearch(e)}
         />
-        <label>Author</label>
-        <input name="author" value={editedBook.author} onChange={(e) => handleChange(e)} />
-        <label>Subscription</label>
-        <select
-          name="subscription"
-          value={editedBook.subscription}
-          onChange={(e) => handleChange(e)}
-        >
+        <br />
+        <select name="books" value={input.select} onChange={(e) => handleBookSelect(e)}>
           <option value="none" />
-          <option value="free">Free</option>
-          <option value="premium">Premium</option>
-        </select>
-        <label>Category</label>
-        <select name="category" value={editedBook.category} onChange={(e) => handleChange(e)}>
-          <option value="none" />
-          {categories?.map((element) => {
+          {books?.map((element) => {
             return (
-              <option key={element.id} value={element.category}>
-                {element.category}
+              <option key={element.id} value={element.title}>
+                {element.title}
               </option>
             )
           })}
         </select>
-        <br />
-        <button type="submit" onSubmit={handleSubmit}>
-          Update
+        <button type="button" onClick={handleClickSearch}>
+          Search
         </button>
-      </form>
-      <button type="button" onClick={handleDelete}>
-        Delete Book
-      </button>
-    </div>
+        <form className={style.form} onSubmit={handleSubmit}>
+          <label>Title</label>
+          <input name="title" value={editedBook.title} onChange={(e) => handleChange(e)} />
+          <label>Description</label>
+          <input
+            name="description"
+            value={editedBook.description}
+            onChange={(e) => handleChange(e)}
+          />
+          <label>Author</label>
+          <input name="author" value={editedBook.author} onChange={(e) => handleChange(e)} />
+          <label>Subscription</label>
+          <select
+            name="subscription"
+            value={editedBook.subscription}
+            onChange={(e) => handleChange(e)}
+          >
+            <option value="none" />
+            <option value="free">Free</option>
+            <option value="premium">Premium</option>
+          </select>
+          <label>Category</label>
+          <select name="category" value={editedBook.category} onChange={(e) => handleChange(e)}>
+            <option value="none" />
+            {categories?.map((element) => {
+              return (
+                <option key={element.id} value={element.category}>
+                  {element.category}
+                </option>
+              )
+            })}
+          </select>
+          <br />
+          <button type="submit" onSubmit={handleSubmit}>
+            Update
+          </button>
+        </form>
+        <button type="button" onClick={handleDelete}>
+          Delete Book
+        </button>
+      </div>
+    </>
   )
 }
