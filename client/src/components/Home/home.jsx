@@ -27,7 +27,7 @@ export const Home = () => {
     useState('') /* actualizar estado genero 'value=todos' para serachbar por libro y autor*/
   const [filterLibros, setFilterLibros] = useState([])
 
-  const [didMount, setDidMount] = useState(false)
+  const [didMount111, setDidMount] = useState(false)
 
   const allBooks = useSelector((state) => state.books)
 
@@ -132,15 +132,15 @@ export const Home = () => {
     localStorage.setItem('bookInput', bookInput)
     localStorage.setItem('authorInput', authorInput)
     localStorage.setItem('bookInputtodos', bookInputtodos)
-  }, [didMount, bookInput, authorInput, bookInputtodos])
+  }, [didMount111])
 
   useEffect(() => {
-    if (didMount) {
+    if (didMount111) {
       localStorage.setItem('bookInput', bookInput)
       localStorage.setItem('authorInput', authorInput)
       localStorage.setItem('bookInputtodos', bookInputtodos)
     }
-  }, [bookInput, authorInput, bookInputtodos, didMount])
+  }, [bookInput, authorInput, bookInputtodos])
   //----------------------localStorage--------------------------
 
   const clearStates = () => {
