@@ -159,7 +159,7 @@ export const getOneUser = (id) => async (dispatch) => {
 
     return dispatch({
       type: GET_ONE_USER,
-      payload: info.data
+      payload: info.data,
     })
   } catch (error) {
     dispatch({
