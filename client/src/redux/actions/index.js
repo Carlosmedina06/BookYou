@@ -171,7 +171,7 @@ export const getUserById = (id) => async (dispatch) => {
 /* ------------------GET USER POR ID ------------------- */
 export const getOneUser = (id) => async (dispatch) => {
   try {
-    const info = await axios.get(`http://localhost:3001/user/${id}`)
+    const info = await axios.get(`${urlocal}/user/${id}`)
 
     return dispatch({
       type: GET_ONE_USER,
@@ -252,14 +252,6 @@ export const filterCategorys = (payload) => {
     payload,
   }
 }
-
-/* -------------- FILTRO POR AUTOR ----------------------- */
-/* export const filterAutor = (payload) => {
-      return {
-        type: 'FILTER_AUTOR',
-        payload,
-      }
-    } */
 
 /* ----------------- ORDENAR GÉNEROS POR ORDEN ALFABETICO----------------- */
 export const orderAlf = (payload) => {
