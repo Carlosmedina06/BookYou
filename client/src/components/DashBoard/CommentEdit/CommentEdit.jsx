@@ -1,14 +1,11 @@
-import axios from 'axios'
 import { useState } from 'react'
 import { useSelector } from 'react-redux'
 
 import SideBar from '../../DashAdmin/sideBar/sideBar'
+import rutaApi from '../../../../API/api'
 
 import { CommentCard } from './CommentCard'
 import style from './CommentEdit.module.css'
-
-/* const url = 'https://bookyou-production.up.railway.app' */
-const urlocal = 'http://localhost:3001'
 
 export const CommentEdit = () => {
   const users = useSelector((state) => state.users)
@@ -37,7 +34,7 @@ export const CommentEdit = () => {
     })
     const id = book[0].id
 
-    const details = await axios.get(`${urlocal}/book/` + id)
+    const details = await rutaApi.get(`/book/` + id)
     const bookDetails = details.data
 
     console.log(bookDetails)
@@ -66,7 +63,7 @@ export const CommentEdit = () => {
 
     formData.append('name', editedUser.name)
 
-    const info = await axios.put(`${urlocal}/user/update` + editedUser.id, formData)
+    const info = await rutaApi.put(`/user/update` + editedUser.id, formData)
 
     const res = info.data
   }
@@ -77,7 +74,7 @@ export const CommentEdit = () => {
     // const response = info.data;
     // return response;
 
-    const info = await axios.get(`${urlocal}/comment/`)
+    const info = await rutaApi.get(`/comment/`)
     const comments = info.data
 
     console.log(comments)

@@ -4,11 +4,9 @@ import axios from 'axios'
 
 /* import { getUsers } from '../../redux/actions' */
 import NavBar from '../NavBar/NavBar'
+import rutaApi from '../../../API/api'
 
 import { validate, check } from './utils'
-
-/* const url = 'https://bookyou-production.up.railway.app' */
-const urlocal = 'http://localhost:3001'
 
 export const CreateUser = () => {
   const allUsers = useSelector((state) => state.users)
@@ -54,7 +52,7 @@ export const CreateUser = () => {
   const handleSubmit = async (e) => {
     e.preventDefault()
     setErrorForm(validate(user, available))
-    const info = await axios.post(`${urlocal}/create`, userSend)
+    const info = await rutaApi.post(`/create`, userSend)
     const res = info.data
 
     setResponse(res)

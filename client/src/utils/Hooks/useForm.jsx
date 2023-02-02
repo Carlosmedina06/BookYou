@@ -1,5 +1,6 @@
-import axios from 'axios'
 import { useState } from 'react'
+
+import rutaApi from '../../../API/api'
 
 export const useForm = (initialForm, validationsForm) => {
   const [form, setForm] = useState(initialForm)
@@ -23,15 +24,11 @@ export const useForm = (initialForm, validationsForm) => {
         formData.append('author', form.author)
         formData.append('subscription', form.subscription)
 
-        const info = await axios.post(
-          'https://bookyou-production.up.railway.app/book/create',
-          formData,
-          {
-            headers: {
-              authorization: `Bearer ${localStorage.getItem('token')}`,
-            },
+        const info = await rutaApi.post('/book/create', formData, {
+          headers: {
+            authorization: `Bearer ${localStorage.getItem('token')}`,
           },
-        )
+        })
 
         const res = info.data
 

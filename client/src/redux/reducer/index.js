@@ -24,6 +24,7 @@ const initialState = {
   error: [],
   loginUser: '',
   oneUser: {},
+  palabrasProhibidas: [],
 }
 
 function rootReducer(state = initialState, action) {
@@ -88,6 +89,11 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         category: action.payload,
+      }
+    case 'GET_PALABRAS_PROHIBIDAS':
+      return {
+        ...state,
+        palabrasProhibidas: action.payload,
       }
     case 'GET_SEARCH_AUTORES':
       return {

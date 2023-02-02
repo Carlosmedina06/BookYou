@@ -5,10 +5,8 @@ import { useState } from 'react'
 export const ERROR = 'ERROR'
 import { useDispatch } from 'react-redux'
 
+import rutaApi from '../../../../API/api'
 import style from '../AllUsers/allUser.module.css'
-
-/* const url = 'https://bookyou-production.up.railway.app' */
-const urlocal = 'http://localhost:3001'
 
 const columns = [
   { field: 'id', headerName: 'ID', width: 70 },
@@ -49,7 +47,7 @@ export const AllUsers = () => {
   useEffect(() => {
     async function fetchData() {
       try {
-        const t = await fetch(`${urlocal}/user/`, {
+        const t = await rutaApi.get(`/user/`, {
           method: 'GET',
           headers: {
             'Content-type': 'application/json',

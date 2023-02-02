@@ -1,20 +1,17 @@
 import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import axios from 'axios'
 import Confetti from 'react-confetti'
 
+import rutaApi from '../../../API/api.jsx'
 import NavBar from '../NavBar/NavBar.jsx'
 
 import { BtnSuccess, CardSuccess, ContentSuccess, SuccessContainer } from './SuccessStyle.js'
 
-/* const url = 'https://bookyou-production.up.railway.app' */
-const urlocal = 'http://localhost:3001'
-
 const Success = () => {
   useEffect(() => {
     try {
-      axios
-        .put(`${urlocal}/success`, null, {
+      rutaApi
+        .put(`/success`, null, {
           headers: {
             authorization: `Bearer ${localStorage.getItem('token')}`,
           },

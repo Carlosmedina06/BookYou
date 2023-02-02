@@ -1,10 +1,10 @@
-import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
 import SideBar from '../../DashAdmin/sideBar/sideBar'
 import { getUsers } from '../../../redux/actions/index.js'
+import rutaApi from '../../../../API/api'
 
 import style from './UserEdit.module.css'
 
@@ -88,7 +88,7 @@ export const UserEdit = () => {
     formData.append('role', editedUser.role)
     formData.append('id', editedUser.id)
 
-    const info = await axios.put('http://localhost:3001/user/update', editedUser, {
+    const info = await rutaApi.put('/user/update', editedUser, {
       headers: {
         authorization: `bearer ${localStorage.getItem('token')}`,
       },
@@ -100,14 +100,11 @@ export const UserEdit = () => {
   }
 
   const handleDelete = async (e) => {
-    const info = await axios.delete(
-      'https://bookyou-production.up.railway.app/user/delete/' + editedUser.id,
-      {
-        headers: {
-          authorization: `bearer ${localStorage.getItem('token')}`,
-        },
+    const info = await rutaApi.delete('/user/delete/' + editedUser.id, {
+      headers: {
+        authorization: `bearer ${localStorage.getItem('token')}`,
       },
-    )
+    })
 
     setEditedUser({
       name: '',
@@ -116,15 +113,8 @@ export const UserEdit = () => {
       subscription: '',
       role: '',
       id: '',
-      username: '',
-      email: '',
-      subscription: '',
-      role: '',
-      id: '',
     })
     setInput({
-      search: '',
-      select: '',
       search: '',
       select: '',
     })

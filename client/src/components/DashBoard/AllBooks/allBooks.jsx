@@ -5,10 +5,8 @@ import { NavLink } from 'react-router-dom'
 export const ERROR = 'ERROR'
 import { useDispatch } from 'react-redux'
 
+import rutaApi from '../../../../API/api'
 import style from '../AllBooks/allBooks.module.css'
-
-/* const url = 'https://bookyou-production.up.railway.app' */
-const urlocal = 'http://localhost:3001'
 
 const columns = [
   { field: 'id', headerName: 'ID', width: 70 },
@@ -44,7 +42,7 @@ export const AllBooksUsers = () => {
   useEffect(() => {
     async function fetchData() {
       try {
-        const t = await fetch(`${urlocal}/book/`, {
+        const t = await rutaApi.get(`/book/`, {
           method: 'GET',
           headers: {
             authorization: `bearer ${localStorage.getItem('token')}`,

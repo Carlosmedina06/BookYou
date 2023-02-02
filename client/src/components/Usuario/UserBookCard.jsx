@@ -3,17 +3,16 @@
 import { NavLink } from 'react-router-dom'
 
 import loginUserVerification from '../../utils/Functions/LoginUserVerification'
+import rutaApi from '../../../API/api'
 
 import styles from './UserBookCard.module.css'
 import image from './libro-1.jpg'
-/* const url = 'https://bookyou-production.up.railway.app' */
-const urlocal = 'http://localhost:3001'
 
 function UserBookCard({ key, title, description, subs, img, id, author }) {
   const handletDelete = (e) => {
     e.preventDefault()
-    axios
-      .delete(`${urlocal}/book/delete/${id}`, {
+    rutaApi
+      .delete(`/book/delete/${id}`, {
         headers: {
           authorization: `Bearer ${localStorage.getItem('token')}`,
         },

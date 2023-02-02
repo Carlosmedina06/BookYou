@@ -2,8 +2,8 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import Swal from 'sweetalert2'
-import axios from 'axios'
 
+import rutaApi from '../../../API/api'
 import NavBar from '../NavBar/NavBar'
 
 import {
@@ -13,9 +13,6 @@ import {
   SuscripcionContainer,
   ContentChecks,
 } from './SuscripcionStyle'
-
-/* const url = 'https://bookyou-production.up.railway.app' */
-const urlocal = 'http://localhost:3001'
 
 const Suscripcion = () => {
   const user = useSelector((state) => state.loginUser)
@@ -33,8 +30,8 @@ const Suscripcion = () => {
       })
       navigate('/login')
     } else {
-      axios
-        .get(`${urlocal}/checkout`, {
+      rutaApi
+        .get(`/checkout`, {
           headers: {
             Authorization: `Bearer ${window.localStorage.getItem('token')}`,
           },

@@ -8,6 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronUp, faChevronDown } from '@fortawesome/free-solid-svg-icons'
 import { Navigate } from 'react-router-dom'
 
+import rutaApi from '../../../API/api'
 import { getBookById } from '../../redux/actions'
 import NavBar from '../NavBar/NavBar'
 import style from '../Bookdetail/Bookdetail.module.css'
@@ -39,8 +40,8 @@ const Bookdetail = () => {
 
   const handletDelete = (e) => {
     e.preventDefault()
-    axios
-      .delete(`https://bookyou-production.up.railway.app/book/delete/${id}`, {
+    rutaApi
+      .delete(`/book/delete/${id}`, {
         headers: {
           authorization: `Bearer ${localStorage.getItem('token')}`,
         },
@@ -53,8 +54,8 @@ const Bookdetail = () => {
   }
   const handletEdit = (e) => {
     e.preventDefault()
-    axios
-      .delete(`https://bookyou-production.up.railway.app/book/delete/${id}`, {
+    rutaApi
+      .delete(`/book/delete/${id}`, {
         headers: {
           authorization: `Bearer ${localStorage.getItem('token')}`,
         },

@@ -5,13 +5,11 @@ import { faStar } from '@fortawesome/free-solid-svg-icons'
 import Swal from 'sweetalert2'
 import { BiUserCircle } from 'react-icons/bi'
 
+import rutaApi from '../../../API/api'
 import GetRateStars from '../GetRateStars/GetRateStars'
 import style from '../Bookdetail/Reviews.module.css'
 
 import { ImgContainer, ReviewContainer, ReviewContent, ReviewText, ReviewDate } from './ReviewStyle'
-
-/* const url = 'https://bookyou-production.up.railway.app' */
-const urlocal = 'http://localhost:3001'
 
 const Reviews = ({ id, comment, setRata, rata }) => {
   const [Review, setReview] = useState({
@@ -34,8 +32,8 @@ const Reviews = ({ id, comment, setRata, rata }) => {
       id: id,
     }
 
-    axios
-      .post(`${urlocal}/comment/create/book`, coment, {
+    rutaApi
+      .post(`/comment/create/book`, coment, {
         headers: {
           authorization: `Bearer ${localStorage.getItem('token')}`,
         },
