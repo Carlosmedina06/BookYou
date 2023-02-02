@@ -44,8 +44,8 @@ const App = createHashRouter([
         element: <CreateUser />,
       },
       {
-        path: '/dashBoard',
-        element: <DashBoard />,
+        path: '/dashboard/statistics',
+        element: <Statistics />,
       },
       {
         path: '/dashboard/usuarios/userEdit',
@@ -64,13 +64,13 @@ const App = createHashRouter([
         element: <AllUsers />,
       },
       {
-        path: '/commentEdit',
+        path: '/dashboard/comentarios/commentEdit',
         element: <CommentEdit />,
       },
-      {
+      /*   {
         path: '/statistics',
         element: <Statistics />,
-      },
+      }, */
 
       {
         path: '/bookdetail/:id',

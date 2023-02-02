@@ -72,7 +72,7 @@ export const AllBooksUsers = () => {
 
   return (
     <div>
-      <div style={{ height: 400, width: '200%' }}>
+      <div className={style.cuadro}>
         {' '}
         <DataGrid
           checkboxSelection
@@ -81,6 +81,7 @@ export const AllBooksUsers = () => {
           pageSize={10}
           rows={rows}
           rowsPerPageOptions={[10]}
+          style={{ height: 400, width: '500%', top: '5rem' }}
         />{' '}
       </div>
     </div>

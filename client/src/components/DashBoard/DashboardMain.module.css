@@ -16,11 +16,9 @@ margin-top: 3rem;
 .homeHeaderGraphs{
 display: flex;
 flex-direction: row;
-/* margin: 0 40px 40px ;  */
+margin-left: -5rem;
 width: 100%;
 height: auto;
-
-
 }
 
 
@@ -30,11 +28,7 @@ min-height: 100vh;
 
 
 }
-/* .gridContainter div{
-background-color: blue;
 
-
-} */
 
 .dash{
 display: flex;
@@ -43,18 +37,42 @@ width: 212vh;
 
 }
 
-.graphCard{
+.graphBooksStadistics{
+  height: 300px;
+  width: 300px;
+}
+
+.graphUsersStadistics{
+  margin-top: 3rem;
+  margin-left: -9rem;
+  height: 62rem;
+  width: 500px;
+}
+
+.graphCommentsStadistics{
+  height: 200px;
+  width: 300px;
+}
+
+.graphBooks{
+  width: 200px;
+  height: 200px;
+  margin-left: 15rem;
+  margin-top: 1rem;
+}
+
+/* .graphCardStadistics{
   display: flex;
   flex-direction: column;
-margin-right: 1%;
-  height: auto;
-width: 340px;
+margin-left: 4rem;
+  height: 300px;
+width: 300px;
 background-color: rgb(49, 48, 48);
 border-radius: 8px;
 align-content: center;
 align-items: center;
 
-}
+} */
 
 .userContainer{
   margin-top: -5px;
@@ -66,29 +84,35 @@ align-items: center;
   font-weight: bold;
   font-size: 20px;
 }
+
 .ContainerTitle{
   font-weight: bold;
   font-size: 20px;
 }
 
-/* .graphCardUser{
+.titleEstadistics{
+  font-size: 40px;
+  margin-left: 9rem;
+}
+
+.graphCardUser{
   display: flex;
   flex-direction: column;
 margin-right: 20rem;
   height: auto;
 width: 340px;
-background-color: rgb(49, 48, 48);
 border-radius: 8px;
 align-content: center;
 align-items: center;
+margin-top: 10px;
 
-} */
+}
 
 .cardTitle{
   position: relative;
 font-size: 1.5rem;
   color: white;
-  margin-top: 1px;
+  margin-top: 8rem;
   margin-bottom: 10px;
 }
 
@@ -96,7 +120,7 @@ font-size: 1.5rem;
 font-weight: 800;
 color: white;
 font-size: 4rem; 
-margin: 50px 0px  0px;
+margin: 80px 0px  0px;
 background-color: aquamarine;
 
 }
@@ -131,17 +155,18 @@ align-items: center;
 }
 
 
-.graph{
-width: 100%;
+.graphBooks1{
+width: 150%;
 height: 200px;
-
 
 }
 
 
 .bookContainer{
-margin: 40px;
-margin-left: 3rem;
+/* margin: 40px; */
+margin-left: 10rem;
+margin-top: -10%;
+
 
 }
 
@@ -150,7 +175,8 @@ margin-left: 3rem;
   font-weight: 700;
   font-size: 1.5rem;
   margin-bottom: 1.7rem;
-  margin-top: 2rem;
+  margin-top: 0rem;
+  margin-left: 5rem;
 
 }
 
@@ -159,3 +185,29 @@ margin-left: 3rem;
 width: 500px;
 
 }
+
+.bookListEdit{
+  margin-left: 50rem;
+  color: black;
+    cursor: pointer;
+    width: 15rem;
+    word-wrap: break-word;
+    border-radius: 5px;
+    height: 35px;
+    border-color: transparent;
+    box-shadow: 1px 5px 5px 2px rgb( 0 0 0 / 40%);
+     outline: none; 
+    transition: 0.15s;
+    text-align: center;
+    box-shadow: #010326;
+    background-color: #D97823;
+}
+.bookListEdit:hover {
+  background-color: #f1ac15;
+  color: white
+}
+
+.bookListEdit:active{
+    transform: scale(1.02)
+    
+  }
