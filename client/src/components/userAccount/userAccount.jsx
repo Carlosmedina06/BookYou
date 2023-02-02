@@ -7,14 +7,14 @@ import NavBar from "../NavBar/NavBar";
 import { useDispatch, useSelector } from "react-redux";
 import jwtDecode from 'jwt-decode'
 import { useEffect } from "react";
-import { getUserById } from "../../redux/actions";
+import { getOneUser } from "../../redux/actions";
 
 const UserAccount = () =>{
     const dispatch = useDispatch()
 
     var decoded = jwtDecode(window.localStorage.getItem('token'))
     useEffect(()=>{
-     dispatch(getUserById(decoded.id))
+     dispatch(getOneUser(decoded.id))
     })
   
     const infoUser = useSelector((state => state.userLogged))

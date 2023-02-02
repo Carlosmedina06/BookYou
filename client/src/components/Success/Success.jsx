@@ -1,22 +1,16 @@
 import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
-import Swal from 'sweetalert2'
+import Confetti from 'react-confetti'
 
-import { BtnSuccess, CardSuccess, SuccessContainer } from './SuccessStyle.js'
+import NavBar from '../NavBar/NavBar.jsx'
+
+import { BtnSuccess, CardSuccess, ContentSuccess, SuccessContainer } from './SuccessStyle.js'
 
 /* const url = 'https://bookyou-production.up.railway.app' */
 const urlocal = 'http://localhost:3001'
 
 const Success = () => {
-  useEffect(() => {
-    Swal.fire({
-      title: 'Pagina en Construccion',
-      text: 'El diseño de esta pagina aun esta en proceso',
-      icon: 'info',
-      confirmButtonText: 'Ok',
-    })
-  }, [])
   useEffect(() => {
     try {
       axios
@@ -35,14 +29,21 @@ const Success = () => {
   }, [])
 
   return (
-    <SuccessContainer>
-      <CardSuccess>
-        <h1>YA ERES PREMIUM </h1>
-        <Link to="/home">
-          <BtnSuccess>INICIO</BtnSuccess>
-        </Link>
-      </CardSuccess>
-    </SuccessContainer>
+    <>
+      <Confetti height={window.innerHeight} width={window.innerWidth} />
+      <NavBar />
+      <SuccessContainer>
+        <CardSuccess>
+          <ContentSuccess>
+            <h1>Feliciades ya eres un usuario premium</h1>
+            <p> Gracias por unirte a la comunidad </p>
+            <Link to="/home">
+              <BtnSuccess>INICIO</BtnSuccess>
+            </Link>
+          </ContentSuccess>
+        </CardSuccess>
+      </SuccessContainer>
+    </>
   )
 }
 

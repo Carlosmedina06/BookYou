@@ -150,7 +150,7 @@ export const getUsers = () => async (dispatch) => {
 }
 
 /* -------------------- GET USUARIO POR ID ----------------- */
-export const getUserById = (id) => async (dispatch) => {
+export const getOneUser = (id) => async (dispatch) => {
   try {
     const info = await axios.get(`${urlocal}/user/${id}`, {
       headers: {
@@ -168,23 +168,24 @@ export const getUserById = (id) => async (dispatch) => {
     })
   }
 }
+
 /* ------------------GET USER POR ID ------------------- */
-export const getOneUser = (id) => async (dispatch) => {
-  try {
-    const info = await axios.get(`${urlocal}/user/${id}`)
+// export const getOneUser = (id) => async (dispatch) => {
+//   try {
+//     const info = await axios.get(`http://localhost:3001/user/${id}`)
 
-    return dispatch({
-      type: GET_ONE_USER,
+//     return dispatch({
+//       type: GET_ONE_USER,
 
-      payload: info.data,
-    })
-  } catch (error) {
-    dispatch({
-      type: ERROR,
-      payload: error.message,
-    })
-  }
-}
+//       payload: info.data,
+//     })
+//   } catch (error) {
+//     dispatch({
+//       type: ERROR,
+//       payload: error.message,
+//     })
+//   }
+// }
 /* ------------------GET BOOKS POR ID ------------------- */
 export const clearBookDetails = () => async (dispatch) => {
   try {

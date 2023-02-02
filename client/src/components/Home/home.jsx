@@ -2,6 +2,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
 import Pagination from '@mui/material/Pagination'
 import Stack from '@mui/material/Stack'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTrash } from '@fortawesome/free-solid-svg-icons'
 
 import { getBooks, getCategorys, getAutores, getUsers } from '../../redux/actions/index'
 import FiltradoGenero from '../FiltradoGenero/filtradoGenero'
@@ -24,6 +26,8 @@ export const Home = () => {
   const [bookInputtodos, setBookInputtodos] =
     useState('') /* actualizar estado genero 'value=todos' para serachbar por libro y autor*/
   const [filterLibros, setFilterLibros] = useState([])
+
+  const [didMount, setDidMount] = useState(false)
 
   const allBooks = useSelector((state) => state.books)
 
@@ -109,40 +113,65 @@ export const Home = () => {
     dispatch(getUsers())
   }, [dispatch])
 
+  //----------------------localStorage--------------------------
+  useEffect(() => {
+    const savedBookInput = localStorage.getItem('bookInput')
+    const savedAuthorInput = localStorage.getItem('authorInput')
+    const savedBookInputTodos = localStorage.getItem('bookInputtodos')
+
+    if (savedBookInput) {
+      setBookInput(savedBookInput)
+    }
+    if (savedAuthorInput) {
+      setAuthorInput(savedAuthorInput)
+    }
+    if (savedBookInputTodos) {
+      setBookInputtodos(savedBookInputTodos)
+    }
+    setDidMount(true)
+    localStorage.setItem('bookInput', bookInput)
+    localStorage.setItem('authorInput', authorInput)
+    localStorage.setItem('bookInputtodos', bookInputtodos)
+  }, [didMount, bookInput, authorInput, bookInputtodos])
+
+  useEffect(() => {
+    if (didMount) {
+      localStorage.setItem('bookInput', bookInput)
+      localStorage.setItem('authorInput', authorInput)
+      localStorage.setItem('bookInputtodos', bookInputtodos)
+    }
+  }, [bookInput, authorInput, bookInputtodos, didMount])
+  //----------------------localStorage--------------------------
+
+  const clearStates = () => {
+    setBooks(true)
+    setBookInput('')
+    setAuthorInput('')
+    setBookInputtodos('')
+  }
+
   return (
     <div style={{ backgroundColor: 'blue' }}>
       <div style={{ position: 'absolute', top: '0px' }}>
         <NavBar />
       </div>
 
-      <SearchBar
-        bookInput={bookInput}
-        setAuthorInput={setAuthorInput}
-        setBookInput={setBookInput}
-        setBookInputtodos={setBookInputtodos}
-      />
+      <div style={{ position: 'absolute', top: '20px', right: '45px' }}>
+        <button className={style.boton} onClick={clearStates}>
+          <FontAwesomeIcon icon={faTrash} />
+        </button>
+      </div>
+
+      <SearchBar bookInput={bookInput} setBookInput={setBookInput} />
 
       <div>
         <div>
-          <SearchByAutor
-            authorInput={authorInput}
-            setAuthorInput={setAuthorInput}
-            setBookInput={setBookInput}
-            setBookInputtodos={setBookInputtodos}
-          />
+          <SearchByAutor authorInput={authorInput} setAuthorInput={setAuthorInput} />
         </div>
         <div>
-          <FiltradoGenero
-            bookInput={bookInput}
-            bookInputtodos={bookInputtodos}
-            books={books}
-            setAuthorInput={setAuthorInput}
-            setBookInput={setBookInput}
-            setBookInputtodos={setBookInputtodos}
-            setBooks={setBooks}
-          />
+          <FiltradoGenero bookInputtodos={bookInputtodos} setBookInputtodos={setBookInputtodos} />
         </div>
-        <div style={{ position: 'absolute', top: '130px', left: '30px' }}>
+        <div style={{ position: 'absolute', top: '130px', left: '-70px' }}>
           <OrdAlfabetico books={books} setBooks={setBooks} />
         </div>
         <Bot />
