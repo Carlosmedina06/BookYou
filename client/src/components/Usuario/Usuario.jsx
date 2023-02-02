@@ -10,7 +10,7 @@ import { useParams } from 'react-router-dom'
 
 import Pagination from '../Pagination/Pagination'
 import NavBar from '../NavBar/NavBar'
-import { getOneUser, getUserById } from '../../redux/actions/index'
+import { getOneUser} from '../../redux/actions/index'
 
 import UserBookCard from './UserBookCard'
 import style from './Usuario.module.css'
@@ -23,24 +23,24 @@ export const Usuario = () => {
 
   var decoded = jwtDecode(window.localStorage.getItem('token'))
 
-  useEffect(() => {
-    dispatch(getUserById(decoded.id))
-  })
+  // useEffect(() => {
+  //   dispatch(getOneUser(decoded.id))
+  // })
 
-  const infoUser = useSelector((state) => state.userLogged)
+  // const infoUser = useSelector((state) => state.userLogged)
 
   const [books, setBooks] = useState(true) /* actualizar estado libros orden alf */
 
-  useEffect(() => {
-    dispatch(getOneUser(id))
-  }, [dispatch])
+  // useEffect(() => {
+  //   dispatch(getOneUser(id))
+  // }, [dispatch])
 
   const oneUser = useSelector((state) => state.oneUser)
 
   console.log(oneUser.books)
 
   useEffect(() => {
-    dispatch(getUserById(decoded.id))
+    dispatch(getOneUser(decoded.id))
     Swal.fire({
       title: 'Pagina en Construccion',
       text: 'Esta pagina esta en construccion, pronto estara disponible, podes mirar un poco de lo que se viene.',
@@ -80,17 +80,16 @@ export const Usuario = () => {
         <NavBar />
       </div>
 
-      <img alt="Mi imagen" className={style.perfil} src={infoUser.img || perfil} />
+      <img alt="Mi imagen" className={style.perfil} src={oneUser.img || perfil} />
       <div className={style.nombre}>
-        <h3 className={style.nombre1}>{infoUser.name}</h3>
-        <Link to="/usuario/cuenta">
-          <div className={style.editAccountLink}>
-            Editar cuenta <BiEdit className={style.editAccountLinkIcon} />
-          </div>
-        </Link>
+
+        <h3 className={style.nombre1}>{oneUser.name}</h3>
+        
+        
         <p className={style.p1}>Apodo</p>
       </div>
       <img alt="Mi imagen" className={style.perfil} src={oneUser.img} />
+      
       <div className={style.nombre}>
         <h3 className={style.nombre1}>{oneUser.name}</h3>
         <p className={style.p1}>{oneUser.username}</p>
@@ -103,6 +102,11 @@ export const Usuario = () => {
           tristes, pero todas son necesarias para completar la historia. - Paulo Coelho Autor
           brasileño
         </p>
+        <Link to="/cuenta">
+        <div className={style.editAccountLink}>
+            Editar cuenta <BiEdit className={style.editAccountLinkIcon} />
+          </div>
+        </Link>
       </div>
 
       <div style={{ position: 'absolute', top: '350px', left: '300px' }}>
