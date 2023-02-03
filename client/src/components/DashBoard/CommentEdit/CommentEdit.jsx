@@ -1,8 +1,8 @@
-import axios from 'axios'
 import { useState } from 'react'
 import { useSelector } from 'react-redux'
 
 import SideBar from '../../DashAdmin/sideBar/sideBar'
+import api from '../../../utils/axios/axios.js'
 
 import { CommentCard } from './CommentCard'
 import style from './CommentEdit.module.css'
@@ -35,7 +35,7 @@ export const CommentEdit = () => {
     const id = book[0].id
 
     console.log(input.searchBook)
-    const details = await axios.get('https://server-bookyou.onrender.com/book/' + id)
+    const details = await api.get('/book/' + id)
     const bookDetails = details.data
 
     console.log(bookDetails)
@@ -64,10 +64,7 @@ export const CommentEdit = () => {
 
     formData.append('name', editedUser.name)
 
-    const info = await axios.put(
-      'https://server-bookyou.onrender.com/user/update' + editedUser.id,
-      formData,
-    )
+    const info = await api.put('/user/update' + editedUser.id, formData)
 
     const res = info.data
   }
@@ -78,7 +75,7 @@ export const CommentEdit = () => {
     // const response = info.data;
     // return response;
 
-    const info = await axios.get('https://server-bookyou.onrender.com/comment/')
+    const info = await api.get('/comment/')
     const comments = info.data
 
     console.log(comments)

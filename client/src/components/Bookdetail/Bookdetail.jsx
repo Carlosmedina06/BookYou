@@ -2,12 +2,12 @@ import React, { useState } from 'react'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { NavLink, useParams } from 'react-router-dom'
-import axios from 'axios'
 import jwt_decode from 'jwt-decode'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronUp, faChevronDown } from '@fortawesome/free-solid-svg-icons'
 import { Navigate } from 'react-router-dom'
 
+import api from '../../utils/axios/axios.js'
 import { getBookById } from '../../redux/actions'
 import NavBar from '../NavBar/NavBar'
 import style from '../Bookdetail/Bookdetail.module.css'
@@ -55,8 +55,8 @@ const Bookdetail = () => {
 
   const handletDelete = (e) => {
     e.preventDefault()
-    axios
-      .delete(`https://server-bookyou.onrender.com/book/delete/${id}`, {
+    api
+      .delete(`/book/delete/${id}`, {
         headers: {
           authorization: `Bearer ${localStorage.getItem('token')}`,
         },
@@ -69,8 +69,8 @@ const Bookdetail = () => {
   }
   const handletEdit = (e) => {
     e.preventDefault()
-    axios
-      .delete(`https://server-bookyou.onrender.com/book/delete/${id}`, {
+    api
+      .delete(`/book/delete/${id}`, {
         headers: {
           authorization: `Bearer ${localStorage.getItem('token')}`,
         },

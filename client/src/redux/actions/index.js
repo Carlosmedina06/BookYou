@@ -2,7 +2,6 @@
 export const GET_USERS = 'GET_USERS'
 export const GET_USER_BY_ID = 'GET_USER_BY_ID'
 export const GET_ONE_USER = 'GET_ONE_USER'
-
 export const ERROR = 'ERROR'
 export const GET_BOOKBY_ID = 'GET_BOOKBY_ID'
 export const GET_BOOK_ID = 'GET_BOOKBY_ID'
@@ -14,7 +13,6 @@ export const LOGIN = 'LOGIN'
 export const REGISTER_LOCAL = 'REGISTER_LOCAL'
 export const CLEAR_BOOK_DETAILS = 'CLEAR_BOOK_DETAIL'
 export const SUBSCRIPTION = 'SUBSCRIPTION'
-import axios from 'axios'
 import {
   GoogleAuthProvider,
   signInWithPopup,
@@ -24,11 +22,10 @@ import {
 } from 'firebase/auth'
 
 import { auth } from '../../utils/FireBase/FireBase'
-
-const url = 'https://server-bookyou.onrender.com'
+import api from '../../utils/axios/axios.js'
 
 export const suscription = async () => {
-  const pago = await axios.get(`${url}/checkout'`, {
+  const pago = await api.get('/checkout', {
     headers: {
       Authorization: `Bearer ${window.localStorage.getItem('token')}`,
     },
@@ -42,7 +39,7 @@ export const loginGoogle = () => async (dispatch) => {
 
   const res = await signInWithPopup(auth, provider)
 
-  axios.post(`${url}/login`, res.user).then((res) => {
+  api.post('/login', res.user).then((res) => {
     window.localStorage.setItem('token', res.data.token)
 
     return dispatch({
@@ -67,7 +64,7 @@ export const registerLocal = (email, password, displayName) => async (dispatch) 
   const response = await createUserWithEmailAndPassword(auth, email, password)
 
   response.user.displayName = displayName
-  axios.post(`${url}/signup`, response.user).then((res) => {
+  api.post('/signup', response.user).then((res) => {
     return dispatch({
       type: REGISTER_LOCAL,
       payload: res.data.token,
@@ -78,7 +75,7 @@ export const registerLocal = (email, password, displayName) => async (dispatch) 
 export const loginLocal = (email, password) => async (dispatch) => {
   const response = await signInWithEmailAndPassword(auth, email, password)
 
-  axios.post(`${url}/login`, response.user).then((res) => {
+  api.post('/login', response.user).then((res) => {
     window.localStorage.setItem('token', res.data.token)
 
     return dispatch({
@@ -99,7 +96,7 @@ export const logout = () => async (dispatch) => {
 /* ------------- GET BOOKS SEARCH ----------*/
 export const getSearchBook = (name) => async (dispatch) => {
   try {
-    const info = await axios.get(`${url}/book`)
+    const info = await api.get('/book')
 
     // eslint-disable-next-line no-console
     console.log(info.data)
@@ -117,7 +114,7 @@ export const getSearchBook = (name) => async (dispatch) => {
 /* ----------------GET BOOKS-------------- */
 export const getBooks = () => async (dispatch) => {
   try {
-    const info = await axios.get(`${url}/book`)
+    const info = await api.get('/book')
 
     return dispatch({
       type: 'GET_BOOKS',
@@ -134,7 +131,7 @@ export const getBooks = () => async (dispatch) => {
 /* -------------------- GET USUARIOS ----------------- */
 export const getUsers = () => async (dispatch) => {
   try {
-    const info = await axios.get(`${url}/user`)
+    const info = await api.get('/user')
 
     return dispatch({
       type: GET_USERS,
@@ -151,7 +148,7 @@ export const getUsers = () => async (dispatch) => {
 /* -------------------- GET USUARIO POR ID ----------------- */
 export const getOneUser = (id) => async (dispatch) => {
   try {
-    const info = await axios.get(`${url}/user/${id}`, {
+    const info = await api.get(`/user/${id}`, {
       headers: {
         Authorization: `Bearer ${window.localStorage.getItem('token')}`,
       },
@@ -168,24 +165,7 @@ export const getOneUser = (id) => async (dispatch) => {
     })
   }
 }
-/* ------------------GET USER POR ID ------------------- */
-// export const getOneUser = (id) => async (dispatch) => {
-//   try {
-//     const info = await axios.get(`http://localhost:3001/user/${id}`)
 
-//     return dispatch({
-//       type: GET_ONE_USER,
-
-//       payload: info.data,
-//     })
-//   } catch (error) {
-//     dispatch({
-//       type: ERROR,
-//       payload: error.message,
-//     })
-//   }
-// }
-/* ------------------GET BOOKS POR ID ------------------- */
 export const clearBookDetails = () => async (dispatch) => {
   try {
     dispatch({ type: CLEAR_BOOK_DETAILS })
@@ -200,7 +180,7 @@ export const clearBookDetails = () => async (dispatch) => {
 
 export const getBookById = (id) => async (dispatch) => {
   try {
-    const info = await axios.get(`${url}/book/${id}`)
+    const info = await api.get(`/book/${id}`)
 
     dispatch({ type: GET_BOOKBY_ID, payload: info.data })
   } catch (error) {
@@ -214,7 +194,7 @@ export const getBookById = (id) => async (dispatch) => {
 /* ---------------GET GÉNEROS LITERARIOS------------------ */
 export const getCategorys = () => async (dispatch) => {
   try {
-    const info = await axios.get(`${url}/category`)
+    const info = await api.get(`/category`)
 
     return dispatch({
       type: 'GET_ALL_GENEROS',
@@ -231,7 +211,7 @@ export const getCategorys = () => async (dispatch) => {
 /* ----------------------- GET AUTORES LITERARIOS -------------------- */
 export const getAutores = () => async (dispatch) => {
   try {
-    const info = await axios.get(`${url}/book`)
+    const info = await api.get(`/book`)
 
     return dispatch({
       type: 'GET_SEARCH_AUTORES',
@@ -273,7 +253,7 @@ export const orderAlf = (payload) => {
 
 export const postBookReview = () => async (dispatch) => {
   try {
-    const info = await axios.get(`${url}/create/book`)
+    const info = await api.get(`/create/book`)
 
     return dispatch({
       type: 'GET_COMENTARIOS',

@@ -10,9 +10,7 @@ import { useParams } from 'react-router-dom'
 
 import Pagination from '../Pagination/Pagination'
 import NavBar from '../NavBar/NavBar'
-
-import { getOneUser} from '../../redux/actions/index'
-
+import { getOneUser } from '../../redux/actions/index'
 
 import UserBookCard from './UserBookCard'
 import style from './Usuario.module.css'
@@ -81,23 +79,18 @@ export const Usuario = () => {
         <NavBar />
       </div>
 
-
       <img alt="Mi imagen" className={style.perfil} src={oneUser.img || perfil} />
 
       <div className={style.nombre}>
-
         <h3 className={style.nombre1}>{oneUser.name}</h3>
-        
-        
-        <p className={style.p1}>Apodo</p>
 
+        <p className={style.p1}>Apodo</p>
       </div>
       <img alt="Mi imagen" className={style.perfil} src={oneUser.img} />
-      
+
       <div className={style.nombre}>
         <h3 className={style.nombre1}>{oneUser.name}</h3>
         <p className={style.p1}>{oneUser.username}</p>
-
 
         <p>
           Soy un amante de los libros, me encanta sumergirme en historias de todo tipo y viajar a
@@ -108,7 +101,7 @@ export const Usuario = () => {
           brasileño
         </p>
         <Link to="/cuenta">
-        <div className={style.editAccountLink}>
+          <div className={style.editAccountLink}>
             Editar cuenta <BiEdit className={style.editAccountLinkIcon} />
           </div>
         </Link>

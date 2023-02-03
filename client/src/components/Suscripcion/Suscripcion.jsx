@@ -2,8 +2,8 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import Swal from 'sweetalert2'
-import axios from 'axios'
 
+import api from '../../utils/axios/axios.js'
 import NavBar from '../NavBar/NavBar'
 
 import {
@@ -30,8 +30,8 @@ const Suscripcion = () => {
       })
       navigate('/login')
     } else {
-      axios
-        .get('https://server-bookyou.onrender.com/checkout', {
+      api
+        .get('/checkout', {
           headers: {
             Authorization: `Bearer ${window.localStorage.getItem('token')}`,
           },

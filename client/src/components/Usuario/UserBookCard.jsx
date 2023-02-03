@@ -2,6 +2,7 @@
 
 import { NavLink } from 'react-router-dom'
 
+import api from '../../utils/axios/axios.js'
 import loginUserVerification from '../../utils/Functions/LoginUserVerification'
 
 import styles from './UserBookCard.module.css'
@@ -10,8 +11,8 @@ import image from './libro-1.jpg'
 function UserBookCard({ key, title, description, subs, img, id, author }) {
   const handletDelete = (e) => {
     e.preventDefault()
-    axios
-      .delete(`https://server-bookyou.onrender.com/book/delete/${id}`, {
+    api
+      .delete(`/book/delete/${id}`, {
         headers: {
           authorization: `Bearer ${localStorage.getItem('token')}`,
         },
