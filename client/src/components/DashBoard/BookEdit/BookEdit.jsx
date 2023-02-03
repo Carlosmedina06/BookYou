@@ -1,7 +1,7 @@
-import axios from 'axios'
 import { useState } from 'react'
 import { useSelector } from 'react-redux'
 
+import rutaApi from '../../../../API/api'
 import SideBar from '../../DashAdmin/sideBar/sideBar'
 
 import style from './BookEdit.module.css'
@@ -69,7 +69,7 @@ export const BookEdit = () => {
   }
 
   const handleDelete = async () => {
-    const info = await axios.delete(`${url}/book/delete/${editedBook.id}`, {
+    const info = await rutaApi.delete(`/book/delete/${editedBook.id}`, {
       headers: {
         authorization: `bearer ${localStorage.getItem('token')}`,
       },

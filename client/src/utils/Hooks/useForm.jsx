@@ -1,5 +1,6 @@
-import axios from 'axios'
 import { useState } from 'react'
+
+import rutaApi from '../../../API/api'
 
 export const useForm = (initialForm, validationsForm) => {
   const [form, setForm] = useState(initialForm)

@@ -1,5 +1,6 @@
-import axios from 'axios'
 import { useSelector } from 'react-redux'
+
+import rutaApi from '../../../../API/api'
 
 export const getBookId = (name) => {
   const books = useSelector((state) => state.allbooks)

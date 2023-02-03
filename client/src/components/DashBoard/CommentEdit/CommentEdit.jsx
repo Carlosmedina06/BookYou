@@ -1,8 +1,8 @@
-import axios from 'axios'
 import { useState } from 'react'
 import { useSelector } from 'react-redux'
 
 import SideBar from '../../DashAdmin/sideBar/sideBar'
+import rutaApi from '../../../../API/api'
 
 import { CommentCard } from './CommentCard'
 import style from './CommentEdit.module.css'
@@ -53,7 +53,7 @@ export const CommentEdit = () => {
     })
     console.log(book)
   }
-  const handleClickSearchUser = (e) => { }
+  const handleClickSearchUser = (e) => {}
   const handleChange = (e) => {
     setEditedUser({ ...editedUser, [e.target.name]: e.target.value })
   }

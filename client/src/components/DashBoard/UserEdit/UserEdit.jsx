@@ -1,10 +1,10 @@
-import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
 import SideBar from '../../DashAdmin/sideBar/sideBar'
 import { getUsers } from '../../../redux/actions/index.js'
+import rutaApi from '../../../../API/api'
 
 import style from './UserEdit.module.css'
 
@@ -116,15 +116,8 @@ export const UserEdit = () => {
       subscription: '',
       role: '',
       id: '',
-      username: '',
-      email: '',
-      subscription: '',
-      role: '',
-      id: '',
     })
     setInput({
-      search: '',
-      select: '',
       search: '',
       select: '',
     })

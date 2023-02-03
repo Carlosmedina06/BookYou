@@ -2,8 +2,8 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import Swal from 'sweetalert2'
-import axios from 'axios'
 
+import rutaApi from '../../../API/api'
 import NavBar from '../NavBar/NavBar'
 
 import {

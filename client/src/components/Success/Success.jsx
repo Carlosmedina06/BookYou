@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import axios from 'axios'
 import Confetti from 'react-confetti'
 
+import rutaApi from '../../../API/api.jsx'
 import NavBar from '../NavBar/NavBar.jsx'
 
 import { BtnSuccess, CardSuccess, ContentSuccess, SuccessContainer } from './SuccessStyle.js'

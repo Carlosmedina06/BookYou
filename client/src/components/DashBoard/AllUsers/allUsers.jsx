@@ -5,6 +5,7 @@ import { useState } from 'react'
 export const ERROR = 'ERROR'
 import { useDispatch } from 'react-redux'
 
+import rutaApi from '../../../../API/api'
 import style from '../AllUsers/allUser.module.css'
 
 const columns = [

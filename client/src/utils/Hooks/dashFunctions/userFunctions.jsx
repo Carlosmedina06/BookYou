@@ -1,4 +1,3 @@
-import axios from 'axios'
 import { useSelector } from 'react-redux'
 
 export const getUserId = (name) => {
@@ -18,7 +17,7 @@ export const deleteUser = async (id) => {
   return response
 }
 
-export const updateUser = (id) => { }
+export const updateUser = (id) => {}
 export const quantityOfUsers = () => {
   const users = useSelector((state) => state.users)
   const usersLength = users.length
