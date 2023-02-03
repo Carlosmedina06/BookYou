@@ -6,7 +6,7 @@ import getFavorite from '../../controllers/Favorites/getFavorite.js'
 
 const favorites = Router()
 
-favorites.post('/addfavirite/:id', addFavorite)
+favorites.post('/addfavorite/:id', addFavorite)
 favorites.delete('/delete/:id', deleteFavorite)
 favorites.get('/', getFavorite)
 
