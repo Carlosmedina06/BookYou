@@ -13,9 +13,9 @@ import NavBar from '../NavBar/NavBar'
 import style from '../Bookdetail/Bookdetail.module.css'
 import loginUserVerification from '../../utils/Functions/LoginUserVerification'
 import { clearBookDetails } from '../../redux/actions'
+import GetRateStars from '../GetRateStars/GetRateStars.jsx'
 
 import Reviews from './Reviews'
-import GetRateStars from '../GetRateStars/GetRateStars.jsx'
 
 const Bookdetail = () => {
   const dispatch = useDispatch()
@@ -27,24 +27,21 @@ const Bookdetail = () => {
 
   const token = localStorage.getItem('token')
   let decoded = token ? jwt_decode(token) : null
-  
-  let avgRate;
-if (details.comment) {
-  let sum = 0;
-  for (let i = 0; i < details.comment.length; i++) {
-    sum += Number(details.comment[i].rate);
+
+  let avgRate
+
+  if (details.comment) {
+    let sum = 0
+
+    for (let i = 0; i < details.comment.length; i++) {
+      sum += Number(details.comment[i].rate)
+    }
+    const average = sum / details.comment.length
+
+    avgRate = Math.round(average * 10) / 10
+  } else {
+    console.error('Array not found')
   }
-  const average = sum / details.comment.length;
-  avgRate = Math.round(average * 10) / 10;
-  
-} else {
-  console.error('Array not found');
-}
-
-
-  
-  
- 
 
   useEffect(() => {
     dispatch(clearBookDetails())
@@ -73,7 +70,7 @@ if (details.comment) {
   const handletEdit = (e) => {
     e.preventDefault()
     axios
-      .delete(`https://bookyou-production.up.railway.app/book/delete/${id}`, {
+      .delete(`https://server-bookyou.onrender.com/book/delete/${id}`, {
         headers: {
           authorization: `Bearer ${localStorage.getItem('token')}`,
         },
@@ -169,7 +166,7 @@ if (details.comment) {
           <Reviews comment={details.comment} id={details.id} rata={rata} setRata={setRata} />
         )}
       </div>
-      <div  style={{ position: 'absolute', top: '445px',left:'330px', transform: 'scale(2)' }}>
+      <div style={{ position: 'absolute', top: '445px', left: '330px', transform: 'scale(2)' }}>
         <GetRateStars rate={avgRate} />
       </div>
     </div>
