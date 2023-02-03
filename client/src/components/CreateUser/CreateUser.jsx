@@ -1,14 +1,23 @@
 import { useState, useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux'
-import axios from 'axios'
+
 
 /* import { getUsers } from '../../redux/actions' */
 import NavBar from '../NavBar/NavBar'
-import rutaApi from '../../../API/api'
+import api from '../../utils/axios/axios.js'
+
 
 import { validate, check } from './utils'
 
 export const CreateUser = () => {
+  const dispatch = useDispatch()
+  const allUsers = useSelector((state) => state.users)
+  //======= si no hay nada en la db genera loop =======
+  // if(allUsers.length<1){
+  //     dispatch(getUsers())
+  // }
+
   const allUsers = useSelector((state) => state.users)
 
   const [user, setUser] = useState({
@@ -52,7 +61,7 @@ export const CreateUser = () => {
   const handleSubmit = async (e) => {
     e.preventDefault()
     setErrorForm(validate(user, available))
-    const info = await rutaApi.post(`/create`, userSend)
+    const info = await api.post('/user/create', userSend)
     const res = info.data
 
     setResponse(res)
@@ -113,8 +122,7 @@ export const CreateUser = () => {
           <NavBar />
         </div>
         <div className="grid bg-white mt-16 ml-16 col-span-7 px-32 pt-10 rounded">
-          <form
-            className=" grid  place-content-center grid px-16  bg-black "
+          <form clasName=" grid  place-content-center grid px-16  bg-black "
             onSubmit={handleSubmit}
           >
             <div>

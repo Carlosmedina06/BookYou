@@ -1,13 +1,10 @@
 import { useState } from 'react'
 import { useSelector } from 'react-redux'
 
-import rutaApi from '../../../../API/api'
 import SideBar from '../../DashAdmin/sideBar/sideBar'
+import api from '../../../utils/axios/axios.js'
 
 import style from './BookEdit.module.css'
-
-const url = 'https://server-bookyou.onrender.com'
-const urlocal = 'http://localhost:3001'
 
 export const BookEdit = () => {
   const books = useSelector((state) => state.allBooks)
@@ -69,7 +66,7 @@ export const BookEdit = () => {
   }
 
   const handleDelete = async () => {
-    const info = await rutaApi.delete(`/book/delete/${editedBook.id}`, {
+    const info = await api.delete(`/book/delete/${editedBook.id}`, {
       headers: {
         authorization: `bearer ${localStorage.getItem('token')}`,
       },
@@ -104,7 +101,7 @@ export const BookEdit = () => {
     formData.append('author', editedBook.author)
     formData.append('subscription', editedBook.subscription)
 
-    const info = await axios.put(`${url}/book/update/${editedBook.id}`, formData, {
+    const info = await api.put(`/book/update/${editedBook.id}`, formData, {
       headers: {
         authorization: `bearer ${localStorage.getItem('token')}`,
       },

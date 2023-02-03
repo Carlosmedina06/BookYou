@@ -4,7 +4,9 @@ import { useNavigate } from 'react-router-dom'
 
 import SideBar from '../../DashAdmin/sideBar/sideBar'
 import { getUsers } from '../../../redux/actions/index.js'
-import rutaApi from '../../../../API/api'
+
+import api from '../../../utils/axios/axios.js'
+
 
 import style from './UserEdit.module.css'
 
@@ -17,7 +19,6 @@ export const UserEdit = () => {
   useEffect(() => {
     dispatch(getUsers())
   }, [dispatch, rata])
-  console.log(users)
   const [input, setInput] = useState({
     search: '',
     select: '',
@@ -88,7 +89,7 @@ export const UserEdit = () => {
     formData.append('role', editedUser.role)
     formData.append('id', editedUser.id)
 
-    const info = await axios.put('https://server-bookyou.onrender.com/user/update', editedUser, {
+    const info = await api.put('/user/update', editedUser, {
       headers: {
         authorization: `bearer ${localStorage.getItem('token')}`,
       },
@@ -100,14 +101,11 @@ export const UserEdit = () => {
   }
 
   const handleDelete = async (e) => {
-    const info = await axios.delete(
-      'https://server-bookyou.onrender.com/user/delete/' + editedUser.id,
-      {
-        headers: {
-          authorization: `bearer ${localStorage.getItem('token')}`,
-        },
+    const info = await api.delete('/user/delete/' + editedUser.id, {
+      headers: {
+        authorization: `bearer ${localStorage.getItem('token')}`,
       },
-    )
+    })
 
     setEditedUser({
       name: '',

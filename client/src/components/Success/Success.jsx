@@ -2,7 +2,9 @@ import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import Confetti from 'react-confetti'
 
-import rutaApi from '../../../API/api.jsx'
+
+import api from '../../utils/axios/axios.js'
+
 import NavBar from '../NavBar/NavBar.jsx'
 
 import { BtnSuccess, CardSuccess, ContentSuccess, SuccessContainer } from './SuccessStyle.js'
@@ -10,8 +12,8 @@ import { BtnSuccess, CardSuccess, ContentSuccess, SuccessContainer } from './Suc
 const Success = () => {
   useEffect(() => {
     try {
-      axios
-        .put('https://server-bookyou.onrender.com/success', null, {
+      api
+        .put('/success', null, {
           headers: {
             authorization: `Bearer ${localStorage.getItem('token')}`,
           },

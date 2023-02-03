@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import axios from 'axios'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
 import Swal from 'sweetalert2'
@@ -7,9 +6,9 @@ import { BiUserCircle } from 'react-icons/bi'
 import { useSelector, useDispatch } from 'react-redux'
 import { useEffect } from 'react'
 
-import rutaApi from '../../../API/api'
 import GetRateStars from '../GetRateStars/GetRateStars'
 import style from '../Bookdetail/Reviews.module.css'
+import api from '../../utils/axios/axios.js'
 import { getPalabrasProhibidas } from '../../redux/actions'
 
 import { ImgContainer, ReviewContainer, ReviewContent, ReviewText, ReviewDate } from './ReviewStyle'
@@ -66,8 +65,8 @@ const Reviews = ({ id, comment, setRata, rata }) => {
       id: id,
     }
 
-    axios
-      .post('https://server-bookyou.onrender.com/comment/create/book', coment, {
+    api
+      .post('/comment/create/book', coment, {
         headers: {
           authorization: `Bearer ${localStorage.getItem('token')}`,
         },
