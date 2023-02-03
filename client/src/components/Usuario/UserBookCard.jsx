@@ -4,6 +4,7 @@ import { NavLink } from 'react-router-dom'
 
 import api from '../../utils/axios/axios.js'
 import loginUserVerification from '../../utils/Functions/LoginUserVerification'
+import rutaApi from '../../../API/api'
 
 import styles from './UserBookCard.module.css'
 import image from './libro-1.jpg'
@@ -31,6 +32,7 @@ function UserBookCard({ key, title, description, subs, img, id, author }) {
       <section className={styles.bookInfo}>
         <h3>{title}</h3>
         <p className={styles.author}>{author}</p>
+        <p>{description}</p>
         <p>{description}</p>
         <p>
           <span className={styles.statusBook}>{subs}</span>

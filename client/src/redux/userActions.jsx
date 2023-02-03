@@ -1,15 +1,10 @@
-import axios from 'axios'
+import rutaApi from '../../API/api'
 
 import { getAllUsers, getUserById, userError } from './userSlice'
 
-const url = 'http://localhost:3001'
-
-// http://localhost:3001
-//https://bookyou-production.up.railway.app
-
 export const getUsers = () => async (dispatch) => {
   try {
-    const info = await axios.get(`${url}/users`)
+    const info = await rutaApi.get(`/users`)
 
     dispatch(getAllUsers(info.data))
   } catch (error) {
@@ -18,7 +13,7 @@ export const getUsers = () => async (dispatch) => {
 }
 export const getUserId = (id) => async (dispatch) => {
   try {
-    const info = await axios.get(`${url}/users/${id}`)
+    const info = await rutaApi.get(`/users/${id}`)
 
     dispatch(getUserById(info.data))
   } catch (error) {

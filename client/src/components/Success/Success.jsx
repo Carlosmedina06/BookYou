@@ -2,7 +2,9 @@ import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import Confetti from 'react-confetti'
 
+
 import api from '../../utils/axios/axios.js'
+
 import NavBar from '../NavBar/NavBar.jsx'
 
 import { BtnSuccess, CardSuccess, ContentSuccess, SuccessContainer } from './SuccessStyle.js'

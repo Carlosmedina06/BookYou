@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronUp, faChevronDown } from '@fortawesome/free-solid-svg-icons'
 import { Navigate } from 'react-router-dom'
 
+
 import api from '../../utils/axios/axios.js'
 import { getBookById } from '../../redux/actions'
 import NavBar from '../NavBar/NavBar'
@@ -69,8 +70,7 @@ const Bookdetail = () => {
   }
   const handletEdit = (e) => {
     e.preventDefault()
-    api
-      .delete(`/book/delete/${id}`, {
+    api.delete(`/book/delete/${id}`, {
         headers: {
           authorization: `Bearer ${localStorage.getItem('token')}`,
         },

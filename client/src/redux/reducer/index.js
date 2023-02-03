@@ -24,6 +24,8 @@ const initialState = {
   error: [],
   loginUser: '',
   oneUser: {},
+  palabrasProhibidas: [],
+  comments: [],
 }
 
 function rootReducer(state = initialState, action) {
@@ -73,6 +75,12 @@ function rootReducer(state = initialState, action) {
         ...state,
       }
     }
+    case 'GET_COMENTARIOS': {
+      return {
+        ...state,
+        comments: action.payload,
+      }
+    }
     case 'GET_BOOKS':
       return {
         ...state,
@@ -88,6 +96,11 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         category: action.payload,
+      }
+    case 'GET_PALABRAS_PROHIBIDAS':
+      return {
+        ...state,
+        palabrasProhibidas: action.payload,
       }
     case 'GET_SEARCH_AUTORES':
       return {

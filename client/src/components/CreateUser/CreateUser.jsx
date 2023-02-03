@@ -1,9 +1,12 @@
 import { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
+import { useSelector } from 'react-redux'
 
-import { getUsers } from '../../redux/actions'
+
+/* import { getUsers } from '../../redux/actions' */
 import NavBar from '../NavBar/NavBar'
 import api from '../../utils/axios/axios.js'
+
 
 import { validate, check } from './utils'
 
@@ -14,6 +17,8 @@ export const CreateUser = () => {
   // if(allUsers.length<1){
   //     dispatch(getUsers())
   // }
+
+  const allUsers = useSelector((state) => state.users)
 
   const [user, setUser] = useState({
     name: '',
@@ -117,8 +122,7 @@ export const CreateUser = () => {
           <NavBar />
         </div>
         <div className="grid bg-white mt-16 ml-16 col-span-7 px-32 pt-10 rounded">
-          <form
-            clasName=" grid  place-content-center grid px-16  bg-black "
+          <form clasName=" grid  place-content-center grid px-16  bg-black "
             onSubmit={handleSubmit}
           >
             <div>

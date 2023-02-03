@@ -2,7 +2,9 @@ import { useState } from 'react'
 import { useSelector } from 'react-redux'
 
 import SideBar from '../../DashAdmin/sideBar/sideBar'
+
 import api from '../../../utils/axios/axios.js'
+
 
 import { CommentCard } from './CommentCard'
 import style from './CommentEdit.module.css'
@@ -53,7 +55,7 @@ export const CommentEdit = () => {
     })
     console.log(book)
   }
-  const handleClickSearchUser = (e) => { }
+  const handleClickSearchUser = (e) => {}
   const handleChange = (e) => {
     setEditedUser({ ...editedUser, [e.target.name]: e.target.value })
   }
@@ -69,8 +71,8 @@ export const CommentEdit = () => {
     const res = info.data
   }
   const handleDelete = async (e) => {
-    // const info = await axios.delete(
-    //   "https://bookyou-production.up.railway.app/comment/delete/" + editedUser.id
+    // const info = await api.delete(
+    //   "/comment/delete/" + editedUser.id
     // );
     // const response = info.data;
     // return response;
