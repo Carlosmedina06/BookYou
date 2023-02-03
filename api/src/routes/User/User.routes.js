@@ -4,7 +4,7 @@ import getAllUsers from '../../controllers/Users/getAllUsers.js'
 import getUserById from '../../controllers/Users/getUserById.js'
 import userDelete from '../../controllers/Users/userDelete.js'
 import userUpdate from '../../controllers/Users/userUpdate.js'
-import userActive from '../../controllers/Users/userActive.js'
+import userActive from '../../controllers/Users/UserActive.js'
 // import userPost from '../../controllers/Users/userPost.js'
 
 const userRouter = Router()

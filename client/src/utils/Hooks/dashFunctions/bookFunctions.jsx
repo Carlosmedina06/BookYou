@@ -1,5 +1,7 @@
-import axios from 'axios'
 import { useSelector } from 'react-redux'
+
+import api from '../../axios/axios.js'
+
 
 export const getBookId = (name) => {
   const books = useSelector((state) => state.allbooks)
@@ -12,21 +14,21 @@ export const getBookId = (name) => {
 }
 
 export const deleteBook = async (id) => {
-  const info = axios.delete('https://bookyou-production.up.railway.app/book/delete/' + id)
+  const info = api.delete('/book/delete/' + id)
   const response = info.data
 
   return response
 }
 
 export const getBookById = async (id) => {
-  const info = await axios.get('https://bookyou-production.up.railway.app/book/' + id)
+  const info = await api.get('/book/' + id)
   const book = info.data
 
   return book
 }
 
 export const updateBook = async (id, book) => {
-  const info = axios.put('https://bookyou-production.up.railway.app/book/update/' + id, book)
+  const info = api.put('/book/update/' + id, book)
   const response = info.data
 
   return response

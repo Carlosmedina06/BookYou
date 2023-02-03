@@ -86,7 +86,9 @@
 
 
 .readBookButton {
-
+  display: flex;
+  justify-content: center;
+  align-items: center;
   color: white;
   cursor: pointer;
   margin: 3%;
@@ -102,11 +104,9 @@
   text-align: center;
   box-shadow: #010326;
   background-color: #f1ac15;
-
   font-size: 1.4rem;
   padding: 1rem 0.5rem 1rem 0.5rem;
   border-radius: 3px;
-
 }
 
 .readBookButton:hover {

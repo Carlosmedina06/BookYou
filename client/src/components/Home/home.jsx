@@ -2,6 +2,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
 import Pagination from '@mui/material/Pagination'
 import Stack from '@mui/material/Stack'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTrash } from '@fortawesome/free-solid-svg-icons'
 
 import { getBooks, getCategorys, getAutores, getUsers } from '../../redux/actions/index'
 import FiltradoGenero from '../FiltradoGenero/filtradoGenero'
@@ -15,9 +17,6 @@ import Card from '../Card/Card'
 import style from '../Home/home.module.css'
 import Bot from '../chatbot/ChatBot'
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {faTrash} from '@fortawesome/free-solid-svg-icons';
-
 export const Home = () => {
   const dispatch = useDispatch()
 
@@ -25,11 +24,10 @@ export const Home = () => {
   const [bookInput, setBookInput] = useState('') /* actualizar estado searchbar por libro*/
   const [authorInput, setAuthorInput] = useState('') /* actualizar estado searchbar por autor */
   const [bookInputtodos, setBookInputtodos] =
-  useState('') /* actualizar estado genero 'value=todos' para serachbar por libro y autor*/
+    useState('') /* actualizar estado genero 'value=todos' para serachbar por libro y autor*/
   const [filterLibros, setFilterLibros] = useState([])
 
-
-  const [didMount, setDidMount] = useState(false);
+  const [didMount111, setDidMount] = useState(false)
 
   const allBooks = useSelector((state) => state.books)
 
@@ -72,7 +70,6 @@ export const Home = () => {
 
   /* ----------Condicional filtrado libros------------- */
   useEffect(() => {
- 
     setFilterLibros(
       allBooks.filter((b) => {
         if (bookInput.length > 0 && authorInput.length > 0 && bookInputtodos.length > 0) {
@@ -116,42 +113,42 @@ export const Home = () => {
     dispatch(getUsers())
   }, [dispatch])
 
-//----------------------localStorage--------------------------
-useEffect(() => {
-  const savedBookInput = localStorage.getItem('bookInput');
-  const savedAuthorInput = localStorage.getItem('authorInput');
-  const savedBookInputTodos = localStorage.getItem('bookInputtodos');
-  if (savedBookInput) {
-    setBookInput(savedBookInput);
-  }
-  if (savedAuthorInput) {
-    setAuthorInput(savedAuthorInput);
-  }
-  if (savedBookInputTodos) {
-    setBookInputtodos(savedBookInputTodos);
-  }
-  setDidMount(true);
-  console.log(savedBookInput);
-  localStorage.setItem('bookInput', bookInput);
-  localStorage.setItem('authorInput', authorInput);
-  localStorage.setItem('bookInputtodos', bookInputtodos);
-}, [didMount]);
+  //----------------------localStorage--------------------------
+  useEffect(() => {
+    const savedBookInput = localStorage.getItem('bookInput')
+    const savedAuthorInput = localStorage.getItem('authorInput')
+    const savedBookInputTodos = localStorage.getItem('bookInputtodos')
 
-useEffect(() => {
-  if (didMount) {
-    localStorage.setItem('bookInput', bookInput);
-    localStorage.setItem('authorInput', authorInput);
-    localStorage.setItem('bookInputtodos', bookInputtodos);
-  }
-}, [bookInput, authorInput,bookInputtodos]);
-//----------------------localStorage--------------------------
+    if (savedBookInput) {
+      setBookInput(savedBookInput)
+    }
+    if (savedAuthorInput) {
+      setAuthorInput(savedAuthorInput)
+    }
+    if (savedBookInputTodos) {
+      setBookInputtodos(savedBookInputTodos)
+    }
+    setDidMount(true)
+    localStorage.setItem('bookInput', bookInput)
+    localStorage.setItem('authorInput', authorInput)
+    localStorage.setItem('bookInputtodos', bookInputtodos)
+  }, [didMount111])
 
-const clearStates = () => {
-  setBooks(true);
-  setBookInput('');
-  setAuthorInput('');
-  setBookInputtodos('');
-}
+  useEffect(() => {
+    if (didMount111) {
+      localStorage.setItem('bookInput', bookInput)
+      localStorage.setItem('authorInput', authorInput)
+      localStorage.setItem('bookInputtodos', bookInputtodos)
+    }
+  }, [bookInput, authorInput, bookInputtodos])
+  //----------------------localStorage--------------------------
+
+  const clearStates = () => {
+    setBooks(true)
+    setBookInput('')
+    setAuthorInput('')
+    setBookInputtodos('')
+  }
 
   return (
     <div style={{ backgroundColor: 'blue' }}>
@@ -159,34 +156,23 @@ const clearStates = () => {
         <NavBar />
       </div>
 
-      <div style={{ position:'absolute',top: '20px', right: '45px' }}>
-        <button className={style.boton}  onClick={clearStates}>
-        <FontAwesomeIcon icon={faTrash}/>
+      <div style={{ position: 'absolute', top: '20px', right: '45px' }}>
+        <button className={style.boton} onClick={clearStates}>
+          <FontAwesomeIcon icon={faTrash} />
         </button>
       </div>
 
-      <SearchBar
-        bookInput={bookInput}
-        setBookInput={setBookInput}
-      />
+      <SearchBar bookInput={bookInput} setBookInput={setBookInput} />
 
       <div>
         <div>
-          <SearchByAutor
-            authorInput={authorInput}
-            setAuthorInput={setAuthorInput}
-          />
+          <SearchByAutor authorInput={authorInput} setAuthorInput={setAuthorInput} />
         </div>
         <div>
-          <FiltradoGenero
-            bookInputtodos= {bookInputtodos}
-            setBookInputtodos={setBookInputtodos}
-          />
+          <FiltradoGenero bookInputtodos={bookInputtodos} setBookInputtodos={setBookInputtodos} />
         </div>
         <div style={{ position: 'absolute', top: '130px', left: '-70px' }}>
-          <OrdAlfabetico 
-            books={books} 
-            setBooks={setBooks} />
+          <OrdAlfabetico books={books} setBooks={setBooks} />
         </div>
         <Bot />
         <div>

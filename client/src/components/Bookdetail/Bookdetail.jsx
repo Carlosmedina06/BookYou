@@ -2,17 +2,19 @@ import React, { useState } from 'react'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { NavLink, useParams } from 'react-router-dom'
-import axios from 'axios'
 import jwt_decode from 'jwt-decode'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronUp, faChevronDown } from '@fortawesome/free-solid-svg-icons'
 import { Navigate } from 'react-router-dom'
 
+
+import api from '../../utils/axios/axios.js'
 import { getBookById } from '../../redux/actions'
 import NavBar from '../NavBar/NavBar'
 import style from '../Bookdetail/Bookdetail.module.css'
 import loginUserVerification from '../../utils/Functions/LoginUserVerification'
 import { clearBookDetails } from '../../redux/actions'
+import GetRateStars from '../GetRateStars/GetRateStars.jsx'
 
 import Reviews from './Reviews'
 
@@ -27,6 +29,21 @@ const Bookdetail = () => {
   const token = localStorage.getItem('token')
   let decoded = token ? jwt_decode(token) : null
 
+  let avgRate
+
+  if (details.comment) {
+    let sum = 0
+
+    for (let i = 0; i < details.comment.length; i++) {
+      sum += Number(details.comment[i].rate)
+    }
+    const average = sum / details.comment.length
+
+    avgRate = Math.round(average * 10) / 10
+  } else {
+    console.error('Array not found')
+  }
+
   useEffect(() => {
     dispatch(clearBookDetails())
     dispatch(getBookById(id))
@@ -39,8 +56,8 @@ const Bookdetail = () => {
 
   const handletDelete = (e) => {
     e.preventDefault()
-    axios
-      .delete(`https://bookyou-production.up.railway.app/book/delete/${id}`, {
+    api
+      .delete(`/book/delete/${id}`, {
         headers: {
           authorization: `Bearer ${localStorage.getItem('token')}`,
         },
@@ -53,8 +70,7 @@ const Bookdetail = () => {
   }
   const handletEdit = (e) => {
     e.preventDefault()
-    axios
-      .delete(`https://bookyou-production.up.railway.app/book/delete/${id}`, {
+    api.delete(`/book/delete/${id}`, {
         headers: {
           authorization: `Bearer ${localStorage.getItem('token')}`,
         },
@@ -149,6 +165,9 @@ const Bookdetail = () => {
         {books && (
           <Reviews comment={details.comment} id={details.id} rata={rata} setRata={setRata} />
         )}
+      </div>
+      <div style={{ position: 'absolute', top: '445px', left: '330px', transform: 'scale(2)' }}>
+        <GetRateStars rate={avgRate} />
       </div>
     </div>
   )

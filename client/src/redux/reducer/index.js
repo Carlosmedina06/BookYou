@@ -10,7 +10,7 @@ import {
   LOGOUT,
   REGISTER_LOCAL,
   CLEAR_BOOK_DETAILS,
-GET_USER_BY_ID,
+  GET_USER_BY_ID,
 } from '../actions'
 
 const initialState = {
@@ -23,7 +23,9 @@ const initialState = {
   userLogged: [],
   error: [],
   loginUser: '',
-  oneUser: {}
+  oneUser: {},
+  palabrasProhibidas: [],
+  comments: [],
 }
 
 function rootReducer(state = initialState, action) {
@@ -73,6 +75,12 @@ function rootReducer(state = initialState, action) {
         ...state,
       }
     }
+    case 'GET_COMENTARIOS': {
+      return {
+        ...state,
+        comments: action.payload,
+      }
+    }
     case 'GET_BOOKS':
       return {
         ...state,
@@ -88,6 +96,11 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         category: action.payload,
+      }
+    case 'GET_PALABRAS_PROHIBIDAS':
+      return {
+        ...state,
+        palabrasProhibidas: action.payload,
       }
     case 'GET_SEARCH_AUTORES':
       return {
@@ -118,11 +131,11 @@ function rootReducer(state = initialState, action) {
         users: action.payload,
       }
 
-      case GET_USER_BY_ID:
-        return{
+    case GET_USER_BY_ID:
+      return {
         ...state,
-        userLogged: action.payload
-        }
+        userLogged: action.payload,
+      }
 
     case GET_ONE_USER:
       return {
@@ -139,36 +152,14 @@ function rootReducer(state = initialState, action) {
         ...state,
         detail: action.payload,
       }
-      case CLEAR_BOOK_DETAILS:
-        return{
-          ...state,
-          detail: '',
-        }
+    case CLEAR_BOOK_DETAILS:
+      return {
+        ...state,
+        detail: '',
+      }
     default:
       return state
   }
 }
 
 export default rootReducer
-
-/* export const usersSlice = createSlice({
-  name: 'users',
-  initialState: {
-    USERS: [],
-    users: [],
-    user: {},
-    error: {},
-  },
-  reducers: {
-    getAllUsers: (state, action) => {
-      state.users = action.payload
-      state.USERS = action.payload
-    },
-    getUserById: (state, action) => {
-      state.user = action.payload
-    },
-    userError: (state, action) => {
-      state.error = action.payload
-    },
-  },
-}) */
