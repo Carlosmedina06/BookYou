@@ -31,7 +31,6 @@ export default function Card({ name, id, autor, img, estado }) {
 
     avgRate = Math.round(average * 10) / 10
   } else {
-    console.error('Array not found')
   }
 
   return (
