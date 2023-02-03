@@ -5,18 +5,28 @@ import Swal from 'sweetalert2'
 import { BiUserCircle } from 'react-icons/bi'
 import { useSelector, useDispatch } from 'react-redux'
 import { useEffect } from 'react'
+import jwt_decode from 'jwt-decode'
 
 import GetRateStars from '../GetRateStars/GetRateStars'
 import style from '../Bookdetail/Reviews.module.css'
 import api from '../../utils/axios/axios.js'
 import { getPalabrasProhibidas } from '../../redux/actions'
 
-import { ImgContainer, ReviewContainer, ReviewContent, ReviewText, ReviewDate } from './ReviewStyle'
+import {
+  ImgContainer,
+  ReviewContainer,
+  ReviewContent,
+  ReviewText,
+  ReviewDate,
+  ButtonReport,
+  ButtonContent,
+} from './ReviewStyle'
 
 const Reviews = ({ id, comment, setRata, rata }) => {
   const [Review, setReview] = useState({
     rate: '',
     comment: '',
+    report: 0,
   })
 
   const allPalabras = useSelector((state) => state.palabrasProhibidas)
@@ -25,6 +35,16 @@ const Reviews = ({ id, comment, setRata, rata }) => {
   useEffect(() => {
     dispatch(getPalabrasProhibidas())
   }, [dispatch])
+
+  const userVerification = (token, item) => {
+    if (!token) return false
+    let decoded = jwt_decode(token)
+
+    if (decoded.role === 'admin') return true
+    if (decoded.id === item.user) return true
+
+    return false
+  }
 
   const handleReview = (e) => {
     setReview({
@@ -47,15 +67,53 @@ const Reviews = ({ id, comment, setRata, rata }) => {
           setReview({ ...Review, comment: '' })
         }
       })
-    } /* else {
-      Swal.fire({
-        icon: 'success',
-        title: 'Gracias por tu comentario',
-        showConfirmButton: false,
-        timer: 1500,
-      })
-    } */
+    }
   })
+
+  const handleDelete = (id) => {
+    api
+      .put(`/comment/delete/${id}`, null, {
+        headers: {
+          authorization: `Bearer ${localStorage.getItem('token')}`,
+        },
+      })
+      .then((_res) => {
+        // eslint-disable-next-line no-console
+        console.log(_res.data)
+        setRata(rata - 1)
+      })
+      .then(
+        Swal.fire({
+          icon: 'success',
+          title: 'Comentario eliminado',
+          showConfirmButton: false,
+          timer: 1500,
+        }),
+      )
+  }
+
+  const handleReport = (id) => {
+    const newReport = {
+      ...Review,
+      report: Review.report++,
+    }
+
+    api
+      .put(`/comment/update/${id}`, newReport, {
+        headers: {
+          authorization: `Bearer ${localStorage.getItem('token')}`,
+        },
+      })
+      .then((_res) => {
+        // eslint-disable-next-line no-console
+        Swal.fire({
+          icon: 'success',
+          title: 'Gracias por tu reporte',
+          showConfirmButton: false,
+          timer: 1500,
+        })
+      })
+  }
 
   const handleSubmitReview = async (e) => {
     e.preventDefault()
@@ -147,27 +205,35 @@ const Reviews = ({ id, comment, setRata, rata }) => {
         <div>Aun no hay Comentarios para este libro</div>
       ) : (
         comment
-          ?.map((item, index) => (
-            <ReviewContainer key={index}>
-              <ImgContainer>
-                <BiUserCircle />
-              </ImgContainer>
-              <ReviewContent>
-                <ReviewText>
-                  <div>
-                    <h2>{item.username ? item.username : 'username'}</h2>
-                  </div>
-                  <div>
-                    <p>{item.comment}</p>
-                  </div>
-                  <GetRateStars rate={item.rate} />
-                </ReviewText>
-                <ReviewDate>
-                  <p>{item.createdAt.slice(0, 10)}</p>
-                </ReviewDate>
-              </ReviewContent>
-            </ReviewContainer>
-          ))
+          ?.map((item) =>
+            item.available ? (
+              <ReviewContainer key={item.id}>
+                <ImgContainer>
+                  <BiUserCircle />
+                </ImgContainer>
+                <ReviewContent>
+                  <ReviewText>
+                    <div>
+                      <h2>{item.username ? item.username : 'username'}</h2>
+                    </div>
+                    <div>
+                      <p>{item.comment}</p>
+                    </div>
+                    <GetRateStars rate={item.rate} />
+                  </ReviewText>
+                  <ReviewDate>
+                    <ButtonContent>
+                      <ButtonReport onClick={() => handleReport(item.id)}>Reportar</ButtonReport>
+                      {userVerification(window.localStorage.getItem('token'), item) && (
+                        <ButtonReport onClick={() => handleDelete(item.id)}>Eliminar</ButtonReport>
+                      )}
+                      <p>{item.createdAt.slice(0, 10)}</p>
+                    </ButtonContent>
+                  </ReviewDate>
+                </ReviewContent>
+              </ReviewContainer>
+            ) : null,
+          )
           .reverse()
       )}
     </div>
