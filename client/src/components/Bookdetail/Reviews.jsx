@@ -4,10 +4,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
 import Swal from 'sweetalert2'
 import { BiUserCircle } from 'react-icons/bi'
+import { useSelector, useDispatch } from 'react-redux'
+import { useEffect } from 'react'
 
 import rutaApi from '../../../API/api'
 import GetRateStars from '../GetRateStars/GetRateStars'
 import style from '../Bookdetail/Reviews.module.css'
+import { getPalabrasProhibidas } from '../../redux/actions'
 
 import { ImgContainer, ReviewContainer, ReviewContent, ReviewText, ReviewDate } from './ReviewStyle'
 
@@ -17,12 +20,45 @@ const Reviews = ({ id, comment, setRata, rata }) => {
     comment: '',
   })
 
+  const allPalabras = useSelector((state) => state.palabrasProhibidas)
+  const dispatch = useDispatch()
+
+  console.log('soy palabras:', allPalabras)
+
+  useEffect(() => {
+    dispatch(getPalabrasProhibidas())
+  }, [dispatch])
+
   const handleReview = (e) => {
     setReview({
       ...Review,
       [e.target.name]: e.target.value,
     })
   }
+
+  allPalabras.forEach((palabra) => {
+    if (Review.comment.toLowerCase().includes(palabra.toLowerCase())) {
+      Swal.fire({
+        title: 'Are you sure?',
+        text: 'El mensaje contiene palabras inapropiadas',
+        icon: 'warning',
+        confirmButtonColor: '#3085d6',
+        confirmButtonText: 'Yes, delete it!',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          Swal.fire('Deleted!', 'Your file has been deleted.', 'success')
+          setReview({ ...Review, comment: '' })
+        }
+      })
+    } /* else {
+      Swal.fire({
+        icon: 'success',
+        title: 'Gracias por tu comentario',
+        showConfirmButton: false,
+        timer: 1500,
+      })
+    } */
+  })
 
   const handleSubmitReview = async (e) => {
     e.preventDefault()
@@ -43,10 +79,10 @@ const Reviews = ({ id, comment, setRata, rata }) => {
         console.log(res.data)
         setRata(rata + 1)
       })
-    await setReview({
+    /*     await setReview({
       rate: '',
       comment: '',
-    })
+    }) */
     Swal.fire({
       icon: 'success',
       title: 'Gracias por tu comentario',

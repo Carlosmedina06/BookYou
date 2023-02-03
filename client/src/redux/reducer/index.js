@@ -25,6 +25,7 @@ const initialState = {
   loginUser: '',
   oneUser: {},
   palabrasProhibidas: [],
+  comments: [],
 }
 
 function rootReducer(state = initialState, action) {
@@ -72,6 +73,12 @@ function rootReducer(state = initialState, action) {
     case REGISTER_LOCAL: {
       return {
         ...state,
+      }
+    }
+    case 'GET_COMENTARIOS': {
+      return {
+        ...state,
+        comments: action.payload,
       }
     }
     case 'GET_BOOKS':

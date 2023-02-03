@@ -23,13 +23,13 @@ import {
   createUserWithEmailAndPassword,
 } from 'firebase/auth'
 
-import rutaApi from '../../../API/api'
 import { auth } from '../../utils/FireBase/FireBase'
 
-const url = 'https://server-bookyou.onrender.com'
+/* const url = 'https://server-bookyou.onrender.com' */
+const urlLocal = 'http://localhost:3001'
 
 export const suscription = async () => {
-  const pago = await rutaApi.get(`/checkout'`, {
+  const pago = await axios.get(`${urlLocal}/checkout'`, {
     headers: {
       Authorization: `Bearer ${window.localStorage.getItem('token')}`,
     },
@@ -43,7 +43,7 @@ export const loginGoogle = () => async (dispatch) => {
 
   const res = await signInWithPopup(auth, provider)
 
-  rutaApi.post(`/login`, res.user).then((res) => {
+  axios.post(`${urlLocal}/login`, res.user).then((res) => {
     window.localStorage.setItem('token', res.data.token)
 
     return dispatch({
@@ -68,7 +68,7 @@ export const registerLocal = (email, password, displayName) => async (dispatch) 
   const response = await createUserWithEmailAndPassword(auth, email, password)
 
   response.user.displayName = displayName
-  rutaApi.post(`/signup`, response.user).then((res) => {
+  axios.post(`${urlLocal}/signup`, response.user).then((res) => {
     return dispatch({
       type: REGISTER_LOCAL,
       payload: res.data.token,
@@ -79,7 +79,7 @@ export const registerLocal = (email, password, displayName) => async (dispatch) 
 export const loginLocal = (email, password) => async (dispatch) => {
   const response = await signInWithEmailAndPassword(auth, email, password)
 
-  rutaApi.post(`/login`, response.user).then((res) => {
+  axios.post(`${urlLocal}/login`, response.user).then((res) => {
     window.localStorage.setItem('token', res.data.token)
 
     return dispatch({
@@ -100,7 +100,7 @@ export const logout = () => async (dispatch) => {
 /* ------------- GET BOOKS SEARCH ----------*/
 export const getSearchBook = (name) => async (dispatch) => {
   try {
-    const info = await rutaApi.get(`/book`)
+    const info = await axios.get(`${urlLocal}/book`)
 
     // eslint-disable-next-line no-console
     console.log(info.data)
@@ -118,7 +118,7 @@ export const getSearchBook = (name) => async (dispatch) => {
 /* ----------------GET BOOKS-------------- */
 export const getBooks = () => async (dispatch) => {
   try {
-    const info = await rutaApi.get(`/book`)
+    const info = await axios.get(`${urlLocal}/book`)
 
     return dispatch({
       type: 'GET_BOOKS',
@@ -135,7 +135,7 @@ export const getBooks = () => async (dispatch) => {
 /* -------------------- GET USUARIOS ----------------- */
 export const getUsers = () => async (dispatch) => {
   try {
-    const info = await rutaApi.get(`/user`)
+    const info = await axios.get(`${urlLocal}/user`)
 
     return dispatch({
       type: GET_USERS,
@@ -152,7 +152,7 @@ export const getUsers = () => async (dispatch) => {
 /* -------------------- GET USUARIO POR ID ----------------- */
 export const getOneUser = (id) => async (dispatch) => {
   try {
-    const info = await rutaApi.get(`/user/${id}`, {
+    const info = await axios.get(`${urlLocal}/user/${id}`, {
       headers: {
         Authorization: `Bearer ${window.localStorage.getItem('token')}`,
       },
@@ -184,7 +184,7 @@ export const clearBookDetails = () => async (dispatch) => {
 
 export const getBookById = (id) => async (dispatch) => {
   try {
-    const info = await rutaApi.get(`/book/${id}`)
+    const info = await axios.get(`${urlLocal}/book/${id}`)
 
     dispatch({ type: GET_BOOKBY_ID, payload: info.data })
   } catch (error) {
@@ -198,7 +198,7 @@ export const getBookById = (id) => async (dispatch) => {
 /* ---------------GET GÉNEROS LITERARIOS------------------ */
 export const getCategorys = () => async (dispatch) => {
   try {
-    const info = await rutaApi.get(`/category`)
+    const info = await axios.get(`${urlLocal}/category`)
 
     return dispatch({
       type: 'GET_ALL_GENEROS',
@@ -215,7 +215,7 @@ export const getCategorys = () => async (dispatch) => {
 /* ----------------------- GET AUTORES LITERARIOS -------------------- */
 export const getAutores = () => async (dispatch) => {
   try {
-    const info = await rutaApi.get(`/book`)
+    const info = await axios.get(`${urlLocal}/book`)
 
     return dispatch({
       type: 'GET_SEARCH_AUTORES',
@@ -249,7 +249,7 @@ export const orderAlf = (payload) => {
 
 export const postBookReview = () => async (dispatch) => {
   try {
-    const info = await rutaApi.get(`/create/book`)
+    const info = await axios.get(`${urlLocal}/create/book`)
 
     return dispatch({
       type: 'GET_COMENTARIOS',
@@ -267,7 +267,9 @@ export const postBookReview = () => async (dispatch) => {
 
 export const getPalabrasProhibidas = () => async (dispatch) => {
   try {
-    const info = await rutaApi.get(`/bannedwords?array=true`)
+    const info = await axios.get(`${urlLocal}/bannedwords?array=true`)
+
+    /*  const palabras = info.data.filter((b) => b.word.toLowerCase().includes(name.toLowerCase())) */
 
     return dispatch({
       type: 'GET_PALABRAS_PROHIBIDAS',
