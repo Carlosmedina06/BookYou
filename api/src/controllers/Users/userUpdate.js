@@ -3,10 +3,9 @@ import jwt from 'jsonwebtoken'
 import User from '../../models/User.js'
 const userUpdate = async (req, res) => {
   try {
-    console.log('aqui__________________________________________________')
     const authorization = req.get('authorization')
 
-    const { name, username, email, subscription, role, id } = req.body
+    const { name, username, email, subscription, role, id, strike } = req.body
 
     if (authorization.length <= 7) {
       res.status(401).json('token missing')
@@ -30,6 +29,7 @@ const userUpdate = async (req, res) => {
           email,
           role: role || 'user',
           subscription,
+          strike,
         })
         res.status(200).json(`El usuario fue modificado con éxito`)
       } else {
@@ -42,9 +42,3 @@ const userUpdate = async (req, res) => {
 }
 
 export default userUpdate
-// name: '',
-// username: '',
-// email: '',
-// subscription: '',
-// role: '',
-// id: '',

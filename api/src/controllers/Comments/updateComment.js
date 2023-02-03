@@ -6,7 +6,7 @@ import User from '../../models/User.js'
 const updateComment = async (req, res, next) => {
   try {
     const { id } = req.params
-    const { comment, rate } = req.body
+    const { comment, rate, report } = req.body
     const targetComment = await Comment.findById(id)
     const authorization = req.get('authorization')
 
@@ -26,6 +26,7 @@ const updateComment = async (req, res, next) => {
       if (decodedToken.role === 'admin' || user.id.toString() === targetComment.user.toString()) {
         targetComment.comment = comment
         targetComment.rate = rate
+        targetComment.report = report
         targetComment.save()
         res.status(200).json('comentario actualizado ')
       } else {
