@@ -4,7 +4,7 @@ import Book from '../../models/Book.js'
 const getUserById = async (req, res) => {
   const { id } = req.params
 
-  const user = await User.findById(id).populate('comment')
+  const user = await User.findById(id).populate('comment').populate('favorites')
   const books = await Book.find({ user: { $eq: id } }).populate('comment')
 
   user.books = books
