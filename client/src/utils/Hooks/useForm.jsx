@@ -1,5 +1,5 @@
 import { useState } from 'react'
-
+import Swal from 'sweetalert2'
 
 import api from '../axios/axios.js'
 
@@ -13,6 +13,11 @@ export const useForm = (initialForm, validationsForm) => {
   const handleSubmit = async (evt) => {
     evt.preventDefault()
     try {
+      Swal.fire({
+        title: 'Cargando...',
+        showConfirmButton: false,
+        timer: 10000,
+      })
       setErrors(validationsForm(form))
       if (Object.keys(errors).length === 0) {
         const formData = new FormData()
