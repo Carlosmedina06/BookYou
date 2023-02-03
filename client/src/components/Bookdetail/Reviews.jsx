@@ -23,8 +23,6 @@ const Reviews = ({ id, comment, setRata, rata }) => {
   const allPalabras = useSelector((state) => state.palabrasProhibidas)
   const dispatch = useDispatch()
 
-  console.log('soy palabras:', allPalabras)
-
   useEffect(() => {
     dispatch(getPalabrasProhibidas())
   }, [dispatch])
