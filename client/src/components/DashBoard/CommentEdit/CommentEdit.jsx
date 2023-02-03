@@ -34,7 +34,8 @@ export const CommentEdit = () => {
     })
     const id = book[0].id
 
-    const details = await rutaApi.get(`/book/` + id)
+    console.log(input.searchBook)
+    const details = await axios.get('https://server-bookyou.onrender.com/book/' + id)
     const bookDetails = details.data
 
     console.log(bookDetails)
@@ -63,7 +64,10 @@ export const CommentEdit = () => {
 
     formData.append('name', editedUser.name)
 
-    const info = await rutaApi.put(`/user/update` + editedUser.id, formData)
+    const info = await axios.put(
+      'https://server-bookyou.onrender.com/user/update' + editedUser.id,
+      formData,
+    )
 
     const res = info.data
   }
@@ -74,7 +78,7 @@ export const CommentEdit = () => {
     // const response = info.data;
     // return response;
 
-    const info = await rutaApi.get(`/comment/`)
+    const info = await axios.get('https://server-bookyou.onrender.com/comment/')
     const comments = info.data
 
     console.log(comments)

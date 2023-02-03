@@ -88,7 +88,7 @@ export const UserEdit = () => {
     formData.append('role', editedUser.role)
     formData.append('id', editedUser.id)
 
-    const info = await rutaApi.put('/user/update', editedUser, {
+    const info = await axios.put('https://server-bookyou.onrender.com/user/update', editedUser, {
       headers: {
         authorization: `bearer ${localStorage.getItem('token')}`,
       },
@@ -100,11 +100,14 @@ export const UserEdit = () => {
   }
 
   const handleDelete = async (e) => {
-    const info = await rutaApi.delete('/user/delete/' + editedUser.id, {
-      headers: {
-        authorization: `bearer ${localStorage.getItem('token')}`,
+    const info = await axios.delete(
+      'https://server-bookyou.onrender.com/user/delete/' + editedUser.id,
+      {
+        headers: {
+          authorization: `bearer ${localStorage.getItem('token')}`,
+        },
       },
-    })
+    )
 
     setEditedUser({
       name: '',

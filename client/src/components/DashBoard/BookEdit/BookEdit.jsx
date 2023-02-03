@@ -6,6 +6,9 @@ import SideBar from '../../DashAdmin/sideBar/sideBar'
 
 import style from './BookEdit.module.css'
 
+const url = 'https://server-bookyou.onrender.com'
+const urlocal = 'http://localhost:3001'
+
 export const BookEdit = () => {
   const books = useSelector((state) => state.allBooks)
   const categories = useSelector((state) => state.category)
@@ -101,7 +104,7 @@ export const BookEdit = () => {
     formData.append('author', editedBook.author)
     formData.append('subscription', editedBook.subscription)
 
-    const info = await rutaApi.put(`/book/update/${editedBook.id}`, formData, {
+    const info = await axios.put(`${url}/book/update/${editedBook.id}`, formData, {
       headers: {
         authorization: `bearer ${localStorage.getItem('token')}`,
       },

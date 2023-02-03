@@ -40,8 +40,8 @@ const Bookdetail = () => {
 
   const handletDelete = (e) => {
     e.preventDefault()
-    rutaApi
-      .delete(`/book/delete/${id}`, {
+    axios
+      .delete(`https://server-bookyou.onrender.com/book/delete/${id}`, {
         headers: {
           authorization: `Bearer ${localStorage.getItem('token')}`,
         },

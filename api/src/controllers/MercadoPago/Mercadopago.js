@@ -37,7 +37,8 @@ export const createPago = async (req, res) => {
                 unit_price: 385,
               },
             ],
-            auto_return: 'approved',
+            auto_return: 'all',
+
             back_urls: {
               success: 'https://book-you-rho.vercel.app/#/success',
               fallure: 'http://www.fallure.com',

@@ -26,6 +26,8 @@ import {
 import rutaApi from '../../../API/api'
 import { auth } from '../../utils/FireBase/FireBase'
 
+const url = 'https://server-bookyou.onrender.com'
+
 export const suscription = async () => {
   const pago = await rutaApi.get(`/checkout'`, {
     headers: {

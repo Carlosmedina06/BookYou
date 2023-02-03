@@ -24,7 +24,7 @@ export const useForm = (initialForm, validationsForm) => {
         formData.append('author', form.author)
         formData.append('subscription', form.subscription)
 
-        const info = await rutaApi.post('/book/create', formData, {
+        const info = await axios.post('https://server-bookyou.onrender.com/book/create', formData, {
           headers: {
             authorization: `Bearer ${localStorage.getItem('token')}`,
           },

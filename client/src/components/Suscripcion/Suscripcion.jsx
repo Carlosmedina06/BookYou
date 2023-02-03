@@ -30,8 +30,8 @@ const Suscripcion = () => {
       })
       navigate('/login')
     } else {
-      rutaApi
-        .get(`/checkout`, {
+      axios
+        .get('https://server-bookyou.onrender.com/checkout', {
           headers: {
             Authorization: `Bearer ${window.localStorage.getItem('token')}`,
           },

@@ -47,7 +47,7 @@ export const AllUsers = () => {
   useEffect(() => {
     async function fetchData() {
       try {
-        const t = await rutaApi.get(`/user/`, {
+        const t = await fetch(`https://server-bookyou.onrender.com/user/`, {
           method: 'GET',
           headers: {
             'Content-type': 'application/json',

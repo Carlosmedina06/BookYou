@@ -32,8 +32,8 @@ const Reviews = ({ id, comment, setRata, rata }) => {
       id: id,
     }
 
-    rutaApi
-      .post(`/comment/create/book`, coment, {
+    axios
+      .post('https://server-bookyou.onrender.com/comment/create/book', coment, {
         headers: {
           authorization: `Bearer ${localStorage.getItem('token')}`,
         },

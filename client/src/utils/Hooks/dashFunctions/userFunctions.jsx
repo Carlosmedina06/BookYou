@@ -1,7 +1,5 @@
 import { useSelector } from 'react-redux'
 
-import rutaApi from '../../../../API/api'
-
 export const getUserId = (name) => {
   const users = useSelector((state) => state.users)
   const user = users.filter((el) => {
@@ -13,7 +11,7 @@ export const getUserId = (name) => {
 }
 
 export const deleteUser = async (id) => {
-  const info = await rutaApi.delete('/delete/' + id)
+  const info = await axios.delete('https://server-bookyou.onrender.com/delete/' + id)
   const response = info.data
 
   return response

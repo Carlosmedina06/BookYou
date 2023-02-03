@@ -10,8 +10,8 @@ import { BtnSuccess, CardSuccess, ContentSuccess, SuccessContainer } from './Suc
 const Success = () => {
   useEffect(() => {
     try {
-      rutaApi
-        .put(`/success`, null, {
+      axios
+        .put('https://server-bookyou.onrender.com/success', null, {
           headers: {
             authorization: `Bearer ${localStorage.getItem('token')}`,
           },

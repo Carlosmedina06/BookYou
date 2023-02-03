@@ -42,7 +42,7 @@ export const AllBooksUsers = () => {
   useEffect(() => {
     async function fetchData() {
       try {
-        const t = await rutaApi.get(`/book/`, {
+        const t = await fetch(`https://server-bookyou.onrender.com/book/`, {
           method: 'GET',
           headers: {
             authorization: `bearer ${localStorage.getItem('token')}`,
