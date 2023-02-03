@@ -76,10 +76,10 @@ const Reviews = ({ id, comment, setRata, rata }) => {
         console.log(res.data)
         setRata(rata + 1)
       })
-    /*     await setReview({
+    await setReview({
       rate: '',
       comment: '',
-    }) */
+    })
     Swal.fire({
       icon: 'success',
       title: 'Gracias por tu comentario',
