@@ -1,5 +1,6 @@
-import axios from 'axios'
 import { useSelector } from 'react-redux'
+
+import api from '../../axios/axios.js'
 
 export const getUserId = (name) => {
   const users = useSelector((state) => state.users)
@@ -12,13 +13,13 @@ export const getUserId = (name) => {
 }
 
 export const deleteUser = async (id) => {
-  const info = await axios.delete('https://server-bookyou.onrender.com/delete/' + id)
+  const info = await api.delete('/delete/' + id)
   const response = info.data
 
   return response
 }
 
-export const updateUser = (id) => { }
+export const updateUser = (id) => {}
 export const quantityOfUsers = () => {
   const users = useSelector((state) => state.users)
   const usersLength = users.length

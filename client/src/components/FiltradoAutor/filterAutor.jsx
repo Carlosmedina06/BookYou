@@ -1,7 +1,7 @@
 import style from '../FiltradoAutor/filterAutor.module.css'
 import CssGenerico from '../CssGenerico/CssGenerico.module.css'
 
-function SearchByAutor({ setAuthorInput,authorInput }) {
+function SearchByAutor({ setAuthorInput, authorInput }) {
   const handleInputChange = (e) => {
     setAuthorInput(e.target.value)
   }
