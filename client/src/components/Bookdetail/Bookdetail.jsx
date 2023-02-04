@@ -5,8 +5,7 @@ import { NavLink, useParams } from 'react-router-dom'
 import jwt_decode from 'jwt-decode'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronUp, faChevronDown } from '@fortawesome/free-solid-svg-icons'
-import { useNavigate } from 'react-router-dom'
-import axios from 'axios'
+import { useNavigate, Link } from 'react-router-dom'
 
 import api from '../../utils/axios/axios.js'
 import { getBookById } from '../../redux/actions'
@@ -73,6 +72,8 @@ const Bookdetail = () => {
     navigation(`/book/edit/${id}`)
   }
 
+  console.log(details)
+
   return (
     <div className={style.mainGridContainer}>
       <div>
@@ -81,7 +82,7 @@ const Bookdetail = () => {
       <div>
         <div className={style.Bookdetails}>
           <div className={style.bookImage}>
-            <img alt="" src={details.img} />
+            <img alt={details.title} src={details.img} />
           </div>
           <div className={style.bookTextDetail}>
             <div>
@@ -94,6 +95,9 @@ const Bookdetail = () => {
             <div className={style.buttonCategorycontainer}>
               <button className={style.buttonCategory}>{details.category}</button>
             </div>
+            <Link to={`/usuario/${details.user?.id}`}>
+              <p className={style.perfilBoton}>{details.user?.username}</p>
+            </Link>
             <div className={style.readBookButtonContainer}>
               {details.subscription === 'free' ? (
                 <button className={style.readBookButton} onClick={handleReadButton}>

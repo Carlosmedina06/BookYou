@@ -26,7 +26,7 @@ export const Usuario = () => {
   useEffect(() => {
     dispatch(getOneUser(id))
     dispatch(getOneUser())
-  }, [])
+  }, [dispatch, id])
 
   const oneUser = useSelector((state) => state.oneUser)
 
@@ -38,6 +38,15 @@ export const Usuario = () => {
     misFavoritoSection: false,
   })
 
+  const userVerification = (token, item) => {
+    if (!token) return false
+    let decoded = jwt_decode(token)
+
+    if (decoded.role === 'admin') return true
+    if (decoded.id === item.id) return true
+
+    return false
+  }
   //data pagination-----------------------
   const totalPages = oneUser.books ? Math.ceil(oneUser.books.length / 5) : 0
 
@@ -68,11 +77,13 @@ export const Usuario = () => {
       <div className={style.nombre}>
         <h3 className={style.nombre1}>{oneUser.name}</h3>
         <p className={style.p1}>{oneUser.username}</p>
-        <Link to="/cuenta">
-          <div className={style.editAccountLink}>
-            Editar cuenta <BiEdit className={style.editAccountLinkIcon} />
-          </div>
-        </Link>
+        {userVerification(token, oneUser) && (
+          <Link to="/cuenta">
+            <div className={style.editAccountLink}>
+              Editar cuenta <BiEdit className={style.editAccountLinkIcon} />
+            </div>
+          </Link>
+        )}
       </div>
 
       <div style={{ position: 'absolute', top: '230px', left: '300px' }}>
@@ -87,7 +98,7 @@ export const Usuario = () => {
               fontSize: '31px',
             }}
           >
-            Mis Libros
+            {userVerification(token, oneUser) ? 'Mis Libros' : 'Libros'}
           </h2>
         </button>
         <button className={style.boton} onClick={() => setBooks(!books)}>
@@ -108,14 +119,15 @@ export const Usuario = () => {
             <div>
               <div>
                 {oneUser.books && oneUser.books.length > 0 ? (
-                  filterBooks().map((book, i) => (
+                  filterBooks().map((book) => (
                     <UserBookCard
-                      key={i}
+                      key={book.id}
                       author={book.author}
-                      description={book.description}
+                      book={book}
                       id={book.id}
                       img={book.img}
-                      subs={book.subs}
+                      rate={book.rate}
+                      subs={book.subscription}
                       title={book.title}
                     />
                   ))
