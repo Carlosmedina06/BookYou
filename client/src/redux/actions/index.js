@@ -77,7 +77,14 @@ export const loginLocal = (email, password) => async (dispatch) => {
 
   api.post('/login', response.user).then((res) => {
     window.localStorage.setItem('token', res.data.token)
-
+    Swal.fire({
+      position: 'center',
+      icon: 'success',
+      title: 'Ingresando...',
+      showConfirmButton: false,
+      timer: 1500,
+    })
+    navigation('/home')
     return dispatch({
       type: LOGIN_LOCAL,
       payload: res.data.token,
