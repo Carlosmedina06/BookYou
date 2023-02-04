@@ -95,9 +95,11 @@ const Bookdetail = () => {
             <div className={style.buttonCategorycontainer}>
               <button className={style.buttonCategory}>{details.category}</button>
             </div>
-            <Link to={`/usuario/${details.user?.id}`}>
-              <p className={style.perfilBoton}>{details.user?.username}</p>
-            </Link>
+            {window.localStorage.getItem('token') && (
+              <Link to={`/usuario/${details.user?.id}`}>
+                <p className={style.perfilBoton}>{details.user?.username}</p>
+              </Link>
+            )}
             <div className={style.readBookButtonContainer}>
               {details.subscription === 'free' ? (
                 <button className={style.readBookButton} onClick={handleReadButton}>
