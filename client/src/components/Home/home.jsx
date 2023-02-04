@@ -168,7 +168,12 @@ export const Home = () => {
           <SearchByAutor authorInput={authorInput} setAuthorInput={setAuthorInput} />
         </div>
         <div>
-          <FiltradoGenero bookInputtodos={bookInputtodos} setBookInputtodos={setBookInputtodos} />
+          <FiltradoGenero
+            bookInputtodos={bookInputtodos}
+            setBookInputtodos={setBookInputtodos}
+            setCountOne={setCountOne}
+            setCurrentPage={setCurrentPage}
+          />
         </div>
         <div style={{ position: 'absolute', top: '130px', left: '-70px' }}>
           <OrdAlfabetico books={books} setBooks={setBooks} />
