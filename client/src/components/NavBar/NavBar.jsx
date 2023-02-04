@@ -6,7 +6,7 @@ import { faSignOut } from '@fortawesome/free-solid-svg-icons'
 import { BiLogIn, BiLogOut } from 'react-icons/bi'
 import jwt_decode from 'jwt-decode'
 import Swal from 'sweetalert2'
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 
 import { loginUser, logout } from '../../redux/actions'
 
@@ -14,6 +14,7 @@ import style from './NavBar.module.css'
 
 const NavBar = () => {
   const user = useSelector((state) => state.loginUser)
+  const navigate = useNavigate()
   const dispatch = useDispatch()
 
   const { id } = useParams()
@@ -26,13 +27,15 @@ const NavBar = () => {
   let decoded = token ? jwt_decode(token) : null
 
   const handleLogOut = (e) => {
-    dispatch(logout(e))
-    Swal.fire({
-      position: 'center',
-      icon: 'success',
-      title: 'Cerrando Sesión...',
-      showConfirmButton: false,
-      timer: 1500,
+    dispatch(logout(e)).then(() => {
+      Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: 'Cerrando Sesión...',
+        showConfirmButton: false,
+        timer: 1500,
+      })
+      navigate('/home')
     })
   }
 

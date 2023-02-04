@@ -223,7 +223,9 @@ const Reviews = ({ id, comment, setRata, rata }) => {
                   </ReviewText>
                   <ReviewDate>
                     <ButtonContent>
-                      <ButtonReport onClick={() => handleReport(item.id)}>Reportar</ButtonReport>
+                      {window.localStorage.getItem('token') && (
+                        <ButtonReport onClick={() => handleReport(item.id)}>Reportar</ButtonReport>
+                      )}
                       {userVerification(window.localStorage.getItem('token'), item) && (
                         <ButtonReport onClick={() => handleDelete(item.id)}>Eliminar</ButtonReport>
                       )}
