@@ -162,7 +162,8 @@ export const getOneUser = (id) => async (dispatch) => {
     })
 
     return dispatch({
-      type: GET_USER_BY_ID,
+      type: GET_ONE_USER,
+      payload: info.data
     })
   } catch (error) {
     dispatch({

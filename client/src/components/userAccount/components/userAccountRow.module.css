@@ -195,7 +195,6 @@ width: 60%;
     text-align: center;
     box-shadow: #010326;
     background-color: #f1ac15;
-    margin-top: 10%;
 }
 
     .buttonRegistrer:hover {
@@ -232,74 +231,36 @@ width: 60%;
       margin-right: 15px;
       }
 
-      .signBack{
-        font-size: 2rem;
-       width: 30px;
-       margin-left: 15px;
+      
+    .changeDataContainer{
+
+      display: flex;
+      flex-direction: column;
      
-   
-       }
+      width: 100%;
+      justify-items: center;
+     
+      height: auto
+     
+  }
 
-       .changeDataContainer{
 
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        width: 100%;
-        justify-items: center;
-       
-        height: auto
-       
+
+  .formTitle {
+    align-self: center;
+    font-size: 1.5rem;
+    color: black;
+    font-weight: 700;
+
+     /* padding: 3% */
     }
 
+    .changeDataContainerText{
+    display: flex;
+    align-self: center;
+    margin-top: 10%;
 
 
-    .formTitle {
-      align-self: center;
-      font-size: 1.5rem;
-      margin-top: 3%;
-      color: black;
-      font-weight: 700;
 
-       /* padding: 3% */
-      }
-
-      .changeDataContainerText{
-      display: flex;
-      align-self: center;
-      margin-top: 8%;
-      margin-bottom: 3%;
-      justify-items: center;
-      text-align: center;
-      width: 70%;
-
-      }
-
-      .BackButtonUserAccountChangedCard{
-      display: flex;
-      width: auto;
-      flex-direction: row;
-      font-size: 18px;
-      font-weight: 300;
-      align-items: center;
-      justify-items: left;
-      justify-content: left;
-      justify-self: left;
-      
-      }
-
-      .BackButtonUserAccountChangedCardSign{
-      font-size: 2rem;
-       margin-right: 5px;
-
-      }
-
-      .BackButtonUserAccountContainer{
-       display: flex;
-       justify-content: left;
-       align-self: left;
-  
-      width: 100%;
+    }
     
-      
-      }

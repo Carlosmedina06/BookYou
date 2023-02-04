@@ -23,7 +23,7 @@ const initialState = {
   userLogged: [],
   error: [],
   loginUser: '',
-  oneUser: {},
+  oneUser: [],
   palabrasProhibidas: [],
   comments: [],
 }
@@ -137,11 +137,11 @@ function rootReducer(state = initialState, action) {
         userLogged: action.payload,
       }
 
-    case GET_ONE_USER:
-      return {
-        ...state,
-        oneUser: action.payload,
-      }
+      case GET_ONE_USER:
+        return {
+          ...state,
+          oneUser: action.payload,
+        }
     case ERROR:
       return {
         ...state,
