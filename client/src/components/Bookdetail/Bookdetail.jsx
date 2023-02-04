@@ -28,6 +28,7 @@ const Bookdetail = () => {
   const token = localStorage.getItem('token')
   let decoded = token ? jwt_decode(token) : null
   
+  console.log(decoded);
   let avgRate;
 if (details.comment) {
   let sum = 0;
