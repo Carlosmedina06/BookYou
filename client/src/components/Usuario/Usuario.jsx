@@ -102,7 +102,7 @@ export const Usuario = () => {
         </p>
         <Link to="/cuenta">
           <div className={style.editAccountLink}>
-            Editar cuenta <BiEdit className={style.editAccountLinkIcon} />
+            Configurar cuenta <BiEdit className={style.editAccountLinkIcon} />
           </div>
         </Link>
       </div>

@@ -30,15 +30,25 @@ const Login = () => {
   }
   const submitLogin = async (e) => {
     e.preventDefault()
-    await dispatch(loginLocal(login.email, login.password))
-    await Swal.fire({
-      position: 'center',
-      icon: 'success',
-      title: 'Ingresando...',
-      showConfirmButton: false,
-      timer: 1500,
-    })
-    navigation('/home')
+    try {
+      await dispatch(loginLocal(login.email, login.password))
+      await Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: 'Ingresando...',
+        showConfirmButton: false,
+        timer: 1500,
+      })
+      navigation('/home')
+    } catch (error) {
+      await Swal.fire({
+        position: 'center',
+        title: 'Error de inicio de session ',
+        text: 'Asegúrese que su email y contraseña sean los correctos ',
+        icon: 'error',
+        confirmButtonText: 'Ok',
+      })
+    }
   }
 
   const handleGoogle = async (e) => {
