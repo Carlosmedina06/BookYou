@@ -21,10 +21,11 @@ export const OrdAlfabetico = ({ books, setBooks }) => {
 
   return (
     <div className={style.contenedor}>
-      <select 
-      className={CssGenerico.selectAZ} 
-      onChange={(e) => handleSortBooks(e)}
-      >
+      <select className={CssGenerico.selectAZ} onChange={(e) => handleSortBooks(e)}>
+        <option className={style.roundedSelect} value="todos">
+          {' '}
+          Orden Alf{' '}
+        </option>
         <option className={style.roundedSelect} value="asc">
           {' '}
           A-Z{' '}

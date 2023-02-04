@@ -13,7 +13,6 @@ import Carousel from '../Carouseles/CarouselRecomendados/Carousel'
 import SearchBar from '../SearchBar/SearchBar'
 import SearchByAutor from '../FiltradoAutor/filterAutor'
 import Card from '../Card/Card'
-/* import Pagination from '../Pagination/Pagination' */
 import style from '../Home/home.module.css'
 import Bot from '../chatbot/ChatBot'
 
@@ -33,7 +32,7 @@ export const Home = () => {
 
   /* ----------Paginacion------------- */
 
-  const [currentPage, setCurrentPage] = useState(0)
+  const [currentPage, setCurrentPage] = useState(1)
   const [countOne, setCountOne] = useState(1)
   const [countTwo, setCountTwo] = useState(1)
 
@@ -169,7 +168,12 @@ export const Home = () => {
           <SearchByAutor authorInput={authorInput} setAuthorInput={setAuthorInput} />
         </div>
         <div>
-          <FiltradoGenero bookInputtodos={bookInputtodos} setBookInputtodos={setBookInputtodos} />
+          <FiltradoGenero
+            bookInputtodos={bookInputtodos}
+            setBookInputtodos={setBookInputtodos}
+            setCountOne={setCountOne}
+            setCurrentPage={setCurrentPage}
+          />
         </div>
         <div style={{ position: 'absolute', top: '130px', left: '-70px' }}>
           <OrdAlfabetico books={books} setBooks={setBooks} />
@@ -177,40 +181,42 @@ export const Home = () => {
         <Bot />
         <div>
           {(bookInput.length > 0 && filterLibros.length === 0) ||
-            (bookInputtodos.length > 0 && filterLibros.length === 0) ||
-            (authorInput.length > 0 && filterLibros.length === 0) ? (
+          (bookInputtodos.length > 0 && filterLibros.length === 0) ||
+          (authorInput.length > 0 && filterLibros.length === 0) ? (
             <p className={style.p}>No se encontro ningun libro</p>
           ) : (
             <>
               <div className={style.mover1}>
                 <div className={style.mover}>
                   {filterLibros.length > 0
-                    ? filterLibros.map((book) => (
-                      <Card
-                        key={book.id}
-                        autor={book.author}
-                        className={style.filterCard}
-                        comentarios={book.content}
-                        estado={book.subscription}
-                        id={book.id}
-                        img={book.img}
-                        name={book.title}
-                      />
-                    ))
+                    ? filterLibros
+                        .slice(currentPage, currentPage + 8)
+                        .map((book) => (
+                          <Card
+                            key={book.id}
+                            autor={book.author}
+                            className={style.filterCard}
+                            comentarios={book.content}
+                            estado={book.subscription}
+                            id={book.id}
+                            img={book.img}
+                            name={book.title}
+                          />
+                        ))
                     : allBooks
-                      .slice(currentPage, currentPage + 8)
-                      .map((book) => (
-                        <Card
-                          key={book.id}
-                          autor={book.author}
-                          className={style.cards}
-                          comentarios={book.content}
-                          estado={book.subscription}
-                          id={book.id}
-                          img={book.img}
-                          name={book.title}
-                        />
-                      ))}
+                        .slice(currentPage, currentPage + 8)
+                        .map((book) => (
+                          <Card
+                            key={book.id}
+                            autor={book.author}
+                            className={style.cards}
+                            comentarios={book.content}
+                            estado={book.subscription}
+                            id={book.id}
+                            img={book.img}
+                            name={book.title}
+                          />
+                        ))}
                 </div>
               </div>
             </>
@@ -222,7 +228,9 @@ export const Home = () => {
         <Stack spacing={2}>
           <Pagination
             className={style.pagination}
-            count={Math.ceil(allBooks.length / 8)}
+            count={Math.ceil(
+              filterLibros.length === 0 ? allBooks.length / 8 : filterLibros.length / 8,
+            )}
             page={countOne}
             size="large"
             onChange={onChangePagination}
