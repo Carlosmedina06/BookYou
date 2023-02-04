@@ -59,15 +59,25 @@ const Signup = () => {
 
   const handleGoogle = async (e) => {
     e.preventDefault()
-    await dispatch(loginGoogle())
-    await Swal.fire({
-      position: 'center',
-      icon: 'success',
-      title: 'Usuario creado con Google',
-      showConfirmButton: false,
-      timer: 1500,
-    })
-    navigate('/home')
+    try {
+      await dispatch(loginGoogle())
+      await Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: 'Usuario creado con Google',
+        showConfirmButton: false,
+        timer: 1500,
+      })
+      navigate('/home')
+    } catch (error) {
+      await Swal.fire({
+        position: 'center',
+        title: 'Error de registro ',
+        text: 'El email ingreado ya se encuentra en uso',
+        icon: 'error',
+        confirmButtonText: 'Ok',
+      })
+    }
   }
 
   return (
