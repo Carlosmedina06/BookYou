@@ -5,7 +5,8 @@ import { NavLink, useParams } from 'react-router-dom'
 import jwt_decode from 'jwt-decode'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronUp, faChevronDown } from '@fortawesome/free-solid-svg-icons'
-import { Navigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
+import axios from 'axios'
 
 import api from '../../utils/axios/axios.js'
 import { getBookById } from '../../redux/actions'
@@ -21,6 +22,7 @@ const Bookdetail = () => {
   const dispatch = useDispatch()
   const { id } = useParams()
   const details = useSelector((state) => state.detail)
+  const navigation = useNavigate()
 
   const [rata, setRata] = useState(0) // NO TOCAR 🐭
   const [books, setBooks] = useState(true) /* actualizar estado libros orden alf */
@@ -56,7 +58,7 @@ const Bookdetail = () => {
   const handletDelete = (e) => {
     e.preventDefault()
     api
-      .delete(`/book/delete/${id}`, {
+      .put(`/book/delete/${id}`, null, {
         headers: {
           authorization: `Bearer ${localStorage.getItem('token')}`,
         },
@@ -64,21 +66,11 @@ const Bookdetail = () => {
       .then((res) => {
         // eslint-disable-next-line no-console
         console.log(res.data)
-        Navigate('/home')
+        navigation('/home')
       })
   }
-  const handletEdit = (e) => {
-    e.preventDefault()
-    api
-      .delete(`/book/delete/${id}`, {
-        headers: {
-          authorization: `Bearer ${localStorage.getItem('token')}`,
-        },
-      })
-      .then((res) => {
-        // eslint-disable-next-line no-console
-        console.log(res.data)
-      })
+  const handletEdit = (id) => {
+    navigation(`/book/edit/${id}`)
   }
 
   return (
@@ -135,7 +127,7 @@ const Bookdetail = () => {
                   <button className={style.boton} onClick={handletDelete}>
                     <span className={style.btnText}>Eliminar</span>
                   </button>
-                  <button className={style.boton} onClick={handletEdit}>
+                  <button className={style.boton} onClick={() => handletEdit(details.id)}>
                     <span className={style.btnText}>Editar</span>
                   </button>
                 </>
