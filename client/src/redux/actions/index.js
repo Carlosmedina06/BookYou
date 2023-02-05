@@ -58,6 +58,7 @@ export const loginUser = () => async dispatch => {
       payload: token,
     });
   }
+
 };
 
 export const registerLocal =
@@ -200,7 +201,9 @@ export const getBookById = id => async dispatch => {
 /* ---------------GET GÉNEROS LITERARIOS------------------ */
 export const getCategorys = () => async dispatch => {
   try {
+
     const info = await api.get(`/category`);
+
 
     return dispatch({
       type: 'GET_ALL_GENEROS',
@@ -217,7 +220,9 @@ export const getCategorys = () => async dispatch => {
 /* ----------------------- GET AUTORES LITERARIOS -------------------- */
 export const getAutores = () => async dispatch => {
   try {
+
     const info = await api.get(`/book`);
+
 
     return dispatch({
       type: 'GET_SEARCH_AUTORES',
@@ -251,6 +256,7 @@ export const orderAlf = payload => {
 
 export const postBookReview = () => async dispatch => {
   try {
+
     const info = await api.get(`/create/book`);
 
     return dispatch({
@@ -269,7 +275,9 @@ export const postBookReview = () => async dispatch => {
 
 export const getPalabrasProhibidas = () => async dispatch => {
   try {
+
     const info = await axios.get(`${urlLocal}/bannedwords?array=true`);
+
 
     /*  const palabras = info.data.filter((b) => b.word.toLowerCase().includes(name.toLowerCase())) */
 

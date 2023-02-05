@@ -1,3 +1,4 @@
+
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import Pagination from '@mui/material/Pagination';
@@ -24,6 +25,7 @@ import Bot from '../chatbot/ChatBot';
 import CarouselFreeBooks from '../Carouseles/CarouselFreeBooks/CarouselFreeBooks';
 import CarouselBooksPremium from '../Carouseles/CarouselBooksPremium/CarouselBooksPremium';
 
+
 export const Home = () => {
   const dispatch = useDispatch();
 
@@ -48,6 +50,7 @@ export const Home = () => {
   const [currentPage, setCurrentPage] = useState(0);
   const [countOne, setCountOne] = useState(1);
   const [countTwo, setCountTwo] = useState(1);
+
 
   const onChangePagination = (event, value) => {
     setCountOne(value);
@@ -209,6 +212,7 @@ export const Home = () => {
               <div className={style.mover1}>
                 <div className={style.mover}>
                   {filterLibros.length > 0
+
                     ? filterLibros.map(book => (
                         <Card
                           key={book.id}
@@ -246,7 +250,9 @@ export const Home = () => {
         <Stack spacing={2}>
           <Pagination
             className={style.pagination}
-            count={Math.ceil(allBooks.length / 8)}
+            count={Math.ceil(
+              filterLibros.length === 0 ? allBooks.length / 8 : filterLibros.length / 8,
+            )}
             page={countOne}
             size="large"
             onChange={onChangePagination}

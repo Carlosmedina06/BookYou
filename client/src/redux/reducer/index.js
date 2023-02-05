@@ -23,7 +23,7 @@ const initialState = {
   userLogged: [],
   error: [],
   loginUser: '',
-  oneUser: {},
+  oneUser: [],
   palabrasProhibidas: [],
   comments: [],
   topBooks: [],
