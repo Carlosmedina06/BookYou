@@ -15,6 +15,7 @@ import SearchByAutor from '../FiltradoAutor/filterAutor'
 import Card from '../Card/Card'
 import style from '../Home/home.module.css'
 import Bot from '../chatbot/ChatBot'
+import PruebaRate from '../Carouseles/PruebaRate'
 
 export const Home = () => {
   const dispatch = useDispatch()
@@ -236,6 +237,9 @@ export const Home = () => {
             onChange={onChangePagination}
           />
         </Stack>
+      </div>
+      <div>
+        <PruebaRate />
       </div>
       <div>
         <div style={{ position: 'absolute', left: '290px', top: '65rem' }}>

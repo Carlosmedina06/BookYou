@@ -1,18 +1,38 @@
+import React, { useState, useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons'
 
-import React, { useState } from 'react'
-import { useSelector } from 'react-redux'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {faChevronLeft,faChevronRight} from '@fortawesome/free-solid-svg-icons';
-
+import { rateLibros } from '../../../redux/actions'
 import Card from '../../Card/Card'
-
-import style from '../../CssGenerico/Carousel.module.css';
+import style from '../../CssGenerico/Carousel.module.css'
 
 const Carousel = () => {
+  const dispatch = useDispatch()
+
   const libros = useSelector((state) => state.allBooks)
+  const ratesComments = useSelector((state) => state.rate)
+
+  useEffect(() => {
+    dispatch(rateLibros())
+  }, [dispatch])
+
   const [currentIndex, setCurrentIndex] = useState(0)
 
   const librosPorPagina = 4
+
+  let librosFiltrados = libros.filter((r) => {
+    let recomendados = false
+
+    ratesComments.forEach((c) => {
+      if (r.id === c.id) recomendados = true
+    })
+
+    return recomendados
+  })
+
+  console.log(librosFiltrados)
+
   const librosAMostrar = libros.slice(
     currentIndex * librosPorPagina,
     currentIndex * librosPorPagina + librosPorPagina,
@@ -37,7 +57,7 @@ const Carousel = () => {
   }
 
   //-------------------
-  const prevLibros = libros.slice(
+  /*   const prevLibros = libros.slice(
     currentIndex === 0 ? libros.length - librosPorPagina : currentIndex - 1,
     currentIndex === 0 ? libros.length : currentIndex,
   )
@@ -46,7 +66,7 @@ const Carousel = () => {
     currentIndex + librosPorPagina * 2,
   )
   const currentLibros = libros.slice(currentIndex, currentIndex + librosPorPagina)
-  const allLibros = [...prevLibros, ...currentLibros, ...nextLibros]
+  const allLibros = [...prevLibros, ...currentLibros, ...nextLibros] */
   //-----------------------
 
   return (
@@ -54,7 +74,7 @@ const Carousel = () => {
       <div className={style.librocarousel}>
         <div className={style.contenedorprincipal}>
           <button className={style.izquierda} onClick={handleLeftArrowClick}>
-          <FontAwesomeIcon icon={faChevronLeft}/>
+            <FontAwesomeIcon icon={faChevronLeft} />
           </button>
           <div className={style.contenedorcarousel}>
             <div className={style.carousel}>
@@ -62,7 +82,6 @@ const Carousel = () => {
                 <Card
                   key={index}
                   autor={libro.author}
-                  comentarios={libro.content}
                   estado={libro.subscription}
                   id={libro.id}
                   img={libro.img}
@@ -72,7 +91,7 @@ const Carousel = () => {
             </div>
           </div>
           <button className={style.derecha} onClick={handleRightArrowClick}>
-          <FontAwesomeIcon icon={faChevronRight}/>
+            <FontAwesomeIcon icon={faChevronRight} />
           </button>
         </div>
       </div>

@@ -85,6 +85,7 @@ export const loginLocal = (email, password) => async (dispatch) => {
       timer: 1500,
     })
     navigation('/home')
+
     return dispatch({
       type: LOGIN_LOCAL,
       payload: res.data.token,
@@ -163,7 +164,7 @@ export const getOneUser = (id) => async (dispatch) => {
 
     return dispatch({
       type: GET_ONE_USER,
-      payload: info.data
+      payload: info.data,
     })
   } catch (error) {
     dispatch({
@@ -258,6 +259,32 @@ export const postBookReview = () => async (dispatch) => {
     return dispatch({
       type: 'GET_COMENTARIOS',
       payload: info.data,
+    })
+  } catch (error) {
+    dispatch({
+      type: ERROR,
+      payload: error.message,
+    })
+  }
+}
+
+/* ----------------- GET TODO LOS COMENTARIOS  UN LIBRO----------------- */
+
+export const rateLibros = () => async (dispatch) => {
+  try {
+    const info = await api.get(`/comment/0`)
+    const comments = info.data
+      .filter((c) => c.rate == 5)
+      .map((c) => {
+        return {
+          rate: c.rate,
+          id: c.book,
+        }
+      })
+
+    return dispatch({
+      type: 'GET_COMENTARIOS_RATE',
+      payload: comments,
     })
   } catch (error) {
     dispatch({
