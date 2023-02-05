@@ -28,7 +28,7 @@ const initialState = {
   oneUser: [],
   palabrasProhibidas: [],
   comments: [],
-  pageviews: []
+  pageviews: [],
   topBooks: [],
 };
 
