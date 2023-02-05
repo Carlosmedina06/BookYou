@@ -1,7 +1,7 @@
-.container{
+/* .container{
 
     padding: 30px;
-    background-color: #fff;
+    background-color: blue;
     border: #F28322 2px solid;
     border-radius: 20px;
     display: flex;
@@ -19,7 +19,7 @@
     width: 100%;
     
     }
-    .container input, select{
+    /* .container input, select{
     background-color: #e4e6f8 ;
     width: 70%;
     height: 25px;
@@ -42,4 +42,4 @@
     }
     .container label{
         color: #010326;
-    }
+    } */ 

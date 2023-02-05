@@ -163,6 +163,7 @@ export const getOneUser = (id) => async (dispatch) => {
       type: GET_USER_BY_ID,
       payload: info.data,
     })
+
   } catch (error) {
     dispatch({
       type: ERROR,
@@ -316,7 +317,6 @@ export const getPalabrasProhibidas = () => async (dispatch) => {
 export const getPageViews = () => async (dispatch) => {
   try {
     const info = await api.get('/pageviews')
-
     return dispatch({
       type: 'GET_PAGE_VIEWS',
       payload: info.data,
