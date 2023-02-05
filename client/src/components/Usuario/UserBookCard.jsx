@@ -1,15 +1,11 @@
-// import { AiOutlineSearch, AiOutlineDelete, AiOutlineEdit } from 'react-icons/Ai'
-
-import { NavLink } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 import api from '../../utils/axios/axios.js'
-import loginUserVerification from '../../utils/Functions/LoginUserVerification'
-import rutaApi from '../../../API/api'
+import GetRateStars from '../GetRateStars/GetRateStars.jsx'
 
 import styles from './UserBookCard.module.css'
-import image from './libro-1.jpg'
 
-function UserBookCard({ key, title, description, subs, img, id, author }) {
+function UserBookCard({ title, subs, img, id, author, rate, book }) {
   const handletDelete = (e) => {
     e.preventDefault()
     api
@@ -24,6 +20,19 @@ function UserBookCard({ key, title, description, subs, img, id, author }) {
       })
   }
 
+  let avgRate
+
+  if (book.comment) {
+    let sum = 0
+
+    for (let i = 0; i < book.comment.length; i++) {
+      sum += Number(book.comment[i].rate)
+    }
+    const average = sum / book.comment.length
+
+    avgRate = Math.round(average * 10) / 10
+  }
+
   return (
     <div className={styles.container}>
       <figure className={styles.bookCover}>
@@ -32,20 +41,18 @@ function UserBookCard({ key, title, description, subs, img, id, author }) {
       <section className={styles.bookInfo}>
         <h3>{title}</h3>
         <p className={styles.author}>{author}</p>
-        <p>{description}</p>
-        <p>{description}</p>
+        <div>{avgRate ? <GetRateStars rate={avgRate} /> : <p>Aún sin calificar</p>}</div>
         <p>
           <span className={styles.statusBook}>{subs}</span>
         </p>
       </section>
       <section className={styles.options}>
         <div>
-          <NavLink to={`/bookdetail/${id}`}>
+          <Link to={`/bookdetail/${id}`}>
             <button className={styles.optionButton}>
-              <span>Ver</span>
-              <span>{/* <AiOutlineSearch /> */}</span>
+              <span>Detalle</span>
             </button>
-          </NavLink>
+          </Link>
         </div>
       </section>
     </div>
