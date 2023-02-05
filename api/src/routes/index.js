@@ -13,6 +13,7 @@ import successRouter from './Success/Success.routes.js'
 import ticketRouter from './tickets/Ticket.routes.js'
 import bannedWordsRouter from './BannedWords/bannedWords.js'
 import favorites from './Favorites/Favorites.routes.js'
+import getViewsRouter from './PageViews/PageViews.routes.js'
 
 const router = Router()
 
@@ -48,6 +49,9 @@ router.use('/bannedwords', bannedWordsRouter)
 
 //= =====================Tickets Routes================================
 router.use('/favorites', favorites)
+
+//= =====================Pageviews Route================================
+router.use('/pageviews', getViewsRouter)
 
 //= =====================Error Middlewares================================
 
