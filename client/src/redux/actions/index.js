@@ -289,7 +289,7 @@ export const rateLibros = () => async (dispatch) => {
 
 export const getPalabrasProhibidas = () => async (dispatch) => {
   try {
-    const info = await axios.get(`${urlLocal}/bannedwords?array=true`)
+    const info = await api.get(`/bannedwords?array=true`)
 
     /*  const palabras = info.data.filter((b) => b.word.toLowerCase().includes(name.toLowerCase())) */
 
