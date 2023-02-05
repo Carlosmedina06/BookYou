@@ -13,6 +13,8 @@ export const LOGIN = 'LOGIN'
 export const REGISTER_LOCAL = 'REGISTER_LOCAL'
 export const CLEAR_BOOK_DETAILS = 'CLEAR_BOOK_DETAIL'
 export const SUBSCRIPTION = 'SUBSCRIPTION'
+export const GET_PAGE_VIEWS = 'GET_PAGE_VIEWS'
+
 import {
   GoogleAuthProvider,
   signInWithPopup,
@@ -23,6 +25,7 @@ import {
 
 import { auth } from '../../utils/FireBase/FireBase'
 import api from '../../utils/axios/axios.js'
+import axios from 'axios'
 
 export const suscription = async () => {
   const pago = await api.get('/checkout', {
@@ -282,3 +285,22 @@ export const getPalabrasProhibidas = () => async (dispatch) => {
     })
   }
 }
+
+/* ----------------- GET PageViews ---------------- */
+
+export const getPageViews= () => async (dispatch) => {
+  try {
+    const info = await api.get("http://localhost:3001/pageviews")
+
+    return dispatch({
+      type: 'GET_PAGE_VIEWS',
+      payload: info.data,
+    })
+  } catch (error) {
+    dispatch({
+      type: ERROR,
+      payload: error.message,
+    })
+  }
+}
+

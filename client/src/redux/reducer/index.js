@@ -11,6 +11,7 @@ import {
   REGISTER_LOCAL,
   CLEAR_BOOK_DETAILS,
   GET_USER_BY_ID,
+  GET_PAGE_VIEWS
 } from '../actions'
 
 const initialState = {
@@ -26,6 +27,7 @@ const initialState = {
   oneUser: [],
   palabrasProhibidas: [],
   comments: [],
+  pageviews: []
 }
 
 function rootReducer(state = initialState, action) {
@@ -156,6 +158,12 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         detail: '',
+      }
+    case GET_PAGE_VIEWS:
+      return{
+     ...state,
+      pageviews: action.payload,
+
       }
     default:
       return state
