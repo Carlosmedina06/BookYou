@@ -17,8 +17,6 @@ export const CLEAR_BOOK_DETAILS = 'CLEAR_BOOK_DETAIL'
 export const SUBSCRIPTION = 'SUBSCRIPTION'
 
 export const GET_PAGE_VIEWS = 'GET_PAGE_VIEWS'
-export const SUBSCRIPTION = 'SUBSCRIPTION';
-
 
 import {
   GoogleAuthProvider,
@@ -28,11 +26,8 @@ import {
   createUserWithEmailAndPassword,
 } from 'firebase/auth'
 
-
 import { auth } from '../../utils/FireBase/FireBase'
 import api from '../../utils/axios/axios.js'
-
-
 
 export const suscription = async () => {
   const pago = await api.get('/checkout', {
@@ -315,14 +310,13 @@ export const getPalabrasProhibidas = () => async (dispatch) => {
       payload: error.message,
     })
   }
-
+}
 
 /* ----------------- GET PageViews ---------------- */
 
-export const getPageViews= () => async (dispatch) => {
+export const getPageViews = () => async (dispatch) => {
   try {
-    // const info = await api.get("http://localhost:3001/pageviews")
-    const info = await api.get(`${urlLocal}/pageviews`)
+    const info = await api.get('/pageviews')
     return dispatch({
       type: 'GET_PAGE_VIEWS',
       payload: info.data,
@@ -334,6 +328,3 @@ export const getPageViews= () => async (dispatch) => {
     })
   }
 }
-
-
-

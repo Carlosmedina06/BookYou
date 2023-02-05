@@ -2,7 +2,7 @@ import {
   ERROR,
   GET_BOOKBY_ID,
   GET_USERS,
-  GET_ONE_USER,
+  /* GET_ONE_USER, */
   //GET_SEARCH_BOOK,
   LOGIN,
   LOGIN_GOOGLE,
@@ -11,10 +11,8 @@ import {
   REGISTER_LOCAL,
   CLEAR_BOOK_DETAILS,
   GET_USER_BY_ID,
-  GET_PAGE_VIEWS
+  GET_PAGE_VIEWS,
 } from '../actions'
-
-
 
 const initialState = {
   books: [],
@@ -33,7 +31,6 @@ const initialState = {
   topBooks: [],
   rate: [],
 }
-
 
 function rootReducer(state = initialState, action) {
   let allCateg = state.allBooks
@@ -170,15 +167,12 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         detail: '',
-
       }
 
-      }
     case GET_PAGE_VIEWS:
-      return{
-     ...state,
-      pageviews: action.payload,
-
+      return {
+        ...state,
+        pageviews: action.payload,
       }
 
     default:
