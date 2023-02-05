@@ -68,7 +68,7 @@ export function GraphicUsersFreeToSubs() {
       const { ctx, data } = chart
 
       ctx.save()
-      ctx.font = 'bolder 30px sans serif'
+      ctx.font = 'bolder 24px sans serif'
       ctx.fillStyle = 'orange'
       ctx.textAlign = 'center'
       ctx.textBaseline = 'middle'
@@ -86,8 +86,8 @@ export function GraphicUsersFreeToSubs() {
         {
           label: 'Users',
           data: [usersPremium, usersFree],
-          backgroundColor: ['rgba(255, 99, 132, 0.6)', 'rgba(54, 162, 235, 0.6)'],
-          borderColor: ['rgba(255, 99, 132, 1)', 'rgba(54, 162, 235, 1)'],
+          backgroundColor: ['#BC2EF2', '#2EF29D'],
+          borderColor: ['#BC2EF2', '#2EF29D'],
 
           borderWidth: 1,
         },
