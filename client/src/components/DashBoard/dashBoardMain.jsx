@@ -30,28 +30,19 @@ export const DashBoardMain = () => {
                 <h2 className={style.titleEstadistics}>Estadisticas</h2>
               </div>
               <div className={style.homeHeaderGraphs}>
-                <div className={style.graphCardStadistics}>
-                  {/* <img src="https://res.cloudinary.com/dn8jxsqka/image/upload/v1674958273/grafica_3_ghpcmm.png" alt="" /> */}
-                  <div className={style.graphBooksStadistics}>
-                    {' '}
-                    <GraphicBooksFreeToSubs />
-                  </div>
-                </div>
-                <div className={style.graphCardStadistics}>
-                  {/* <img src="https://res.cloudinary.com/dn8jxsqka/image/upload/v1674958273/grafica_3_ghpcmm.png" alt="" /> */}
-                  <div className={style.graphUsersStadistics}>
-                    <GraphicUsersFreeToSubs />
-                  </div>
-                </div>
-                <div className={style.graphCardStadistics}>
-                  {/* <img src="https://res.cloudinary.com/dn8jxsqka/image/upload/v1674958273/grafica_3_ghpcmm.png" alt="" /> */}
-                  <div className={style.graphCommentsStadistics}>
-                    {' '}
+                <div className={style.comments}>
                     <GraphicCommentsQuantity />
-                  </div>
                 </div>
+                <div className={style.usergraphic}>
+                    <GraphicUsersFreeToSubs />
+                </div>
+                <div className={style.bookgraphic}>
+                    <GraphicBooksFreeToSubs />
+                  
+                </div>
+                                
               </div>
-              {/* <div className={style.arrowText}> <Link to="/dashboard/">Ver todas las estadisticas </Link> <AiOutlineRight/> </div>  */}
+              
             </div>
           )}
           {select === 'books' && (

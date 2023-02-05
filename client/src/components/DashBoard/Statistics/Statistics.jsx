@@ -7,13 +7,13 @@ import style from './Statistics.module.css'
 export const Statistics = () => {
   return (
     <div className={style.container}>
-      <div>
-        <GraphicUsersFreeToSubs />
-      </div>
-      <div>
+      <div className={style.comment}>
         <GraphicCommentsQuantity />
       </div>
-      <div>
+      <div className={style.users}>
+        <GraphicUsersFreeToSubs />
+      </div>
+      <div className={style.books}>
         <GraphicBooksFreeToSubs />
       </div>
     </div>
