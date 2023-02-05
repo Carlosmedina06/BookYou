@@ -167,7 +167,7 @@ export const getOneUser = id => async dispatch => {
     });
 
     return dispatch({
-      type: GET_USER_BY_ID,
+      type: GET_ONE_USER,
     });
   } catch (error) {
     dispatch({
@@ -303,8 +303,8 @@ export const getPalabrasProhibidas = () => async dispatch => {
 
 export const getPageViews= () => async (dispatch) => {
   try {
-    const info = await api.get("http://localhost:3001/pageviews")
-
+    // const info = await api.get("http://localhost:3001/pageviews")
+    const info = await api.get(`${urlLocal}/pageviews`)
     return dispatch({
       type: 'GET_PAGE_VIEWS',
       payload: info.data,
