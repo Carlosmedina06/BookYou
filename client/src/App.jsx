@@ -23,7 +23,6 @@ import Suscripcion from './components/Suscripcion/Suscripcion'
 import UserAccount from './components/userAccount/userAccount'
 
 import PageViews from './components/DashBoard/PageViews/visitCounter'
-=======
 import FormBookUpdate from './components/FormBookUpdate/FormBookUpdate'
 
 
@@ -118,6 +117,7 @@ const App = createHashRouter([
         path: '/pageviews',
         element: <PageViews />,
       },
+    
     ],
   },
 ])

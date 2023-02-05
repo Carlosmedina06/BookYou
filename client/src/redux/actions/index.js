@@ -13,23 +13,7 @@ export const LOGOUT = 'LOGOUT'
 export const LOGIN = 'LOGIN'
 export const REGISTER_LOCAL = 'REGISTER_LOCAL'
 export const CLEAR_BOOK_DETAILS = 'CLEAR_BOOK_DETAIL'
-export const SUBSCRIPTION = 'SUBSCRIPTION'
 export const GET_PAGE_VIEWS = 'GET_PAGE_VIEWS'
-
-
-export const GET_USERS = 'GET_USERS';
-export const GET_USER_BY_ID = 'GET_USER_BY_ID';
-export const GET_ONE_USER = 'GET_ONE_USER';
-export const ERROR = 'ERROR';
-export const GET_BOOKBY_ID = 'GET_BOOKBY_ID';
-export const GET_BOOK_ID = 'GET_BOOKBY_ID';
-export const GET_SEARCH_BOOK = 'GET_SEARCH_BOOK';
-export const LOGIN_GOOGLE = 'LOGIN_GOOGLE';
-export const LOGIN_LOCAL = 'LOGIN_LOCAL';
-export const LOGOUT = 'LOGOUT';
-export const LOGIN = 'LOGIN';
-export const REGISTER_LOCAL = 'REGISTER_LOCAL';
-export const CLEAR_BOOK_DETAILS = 'CLEAR_BOOK_DETAIL';
 export const SUBSCRIPTION = 'SUBSCRIPTION';
 
 import {
