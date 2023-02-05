@@ -139,14 +139,14 @@ function rootReducer(state = initialState, action) {
         ...state,
         users: action.payload,
       }
-
+    /* 
     case GET_USER_BY_ID:
       return {
         ...state,
         userLogged: action.payload,
-      }
+      } */
 
-    case GET_ONE_USER:
+    case GET_USER_BY_ID:
       return {
         ...state,
         oneUser: action.payload,

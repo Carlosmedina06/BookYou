@@ -156,6 +156,7 @@ export const getOneUser = (id) => async (dispatch) => {
 
     return dispatch({
       type: GET_USER_BY_ID,
+      payload: info.data,
     })
   } catch (error) {
     dispatch({
