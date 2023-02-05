@@ -1,4 +1,5 @@
 /* ACA ESTA TODA LA CONEXION BACK Y FRONT!! */
+
 export const GET_USERS = 'GET_USERS'
 export const GET_USER_BY_ID = 'GET_USER_BY_ID'
 export const GET_ONE_USER = 'GET_ONE_USER'
@@ -12,7 +13,13 @@ export const LOGOUT = 'LOGOUT'
 export const LOGIN = 'LOGIN'
 export const REGISTER_LOCAL = 'REGISTER_LOCAL'
 export const CLEAR_BOOK_DETAILS = 'CLEAR_BOOK_DETAIL'
+
 export const SUBSCRIPTION = 'SUBSCRIPTION'
+
+export const GET_PAGE_VIEWS = 'GET_PAGE_VIEWS'
+export const SUBSCRIPTION = 'SUBSCRIPTION';
+
+
 import {
   GoogleAuthProvider,
   signInWithPopup,
@@ -21,8 +28,11 @@ import {
   createUserWithEmailAndPassword,
 } from 'firebase/auth'
 
+
 import { auth } from '../../utils/FireBase/FireBase'
 import api from '../../utils/axios/axios.js'
+
+
 
 export const suscription = async () => {
   const pago = await api.get('/checkout', {
@@ -304,4 +314,25 @@ export const getPalabrasProhibidas = () => async (dispatch) => {
       payload: error.message,
     })
   }
+
+
+/* ----------------- GET PageViews ---------------- */
+
+export const getPageViews= () => async (dispatch) => {
+  try {
+    const info = await api.get("http://localhost:3001/pageviews")
+
+    return dispatch({
+      type: 'GET_PAGE_VIEWS',
+      payload: info.data,
+    })
+  } catch (error) {
+    dispatch({
+      type: ERROR,
+      payload: error.message,
+    })
+  }
 }
+
+
+
