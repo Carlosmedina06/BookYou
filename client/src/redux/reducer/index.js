@@ -11,7 +11,7 @@ import {
   REGISTER_LOCAL,
   CLEAR_BOOK_DETAILS,
   GET_USER_BY_ID,
-} from '../actions'
+} from '../actions';
 
 const initialState = {
   books: [],
@@ -26,19 +26,24 @@ const initialState = {
   oneUser: [],
   palabrasProhibidas: [],
   comments: [],
-}
+  topBooks: [],
+};
 
 function rootReducer(state = initialState, action) {
-  let allCateg = state.allBooks
+  let allCateg = state.allBooks;
   let categFilter =
     action.payload === 'todos'
       ? allCateg
-      : allCateg.filter((c) => c.category?.includes(action.payload))
+      : allCateg.filter(c => c.category?.includes(action.payload));
 
   let bookSort =
     action.payload === 'asc'
-      ? state.books.sort((a, b) => (a.title > b.title ? 1 : a.title < b.title ? -1 : 0))
-      : state.books.sort((a, b) => (a.title > b.title ? -1 : a.title < b.title ? 1 : 0))
+      ? state.books.sort((a, b) =>
+          a.title > b.title ? 1 : a.title < b.title ? -1 : 0
+        )
+      : state.books.sort((a, b) =>
+          a.title > b.title ? -1 : a.title < b.title ? 1 : 0
+        );
   /*   let allAutores = state.allBooks
     let autorFilter =
     action.payload === 'todos'
@@ -50,69 +55,69 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         loginUser: action.payload,
-      }
+      };
 
     case LOGIN_LOCAL:
       return {
         ...state,
         loginUser: action.payload,
-      }
+      };
 
     case LOGOUT:
       return {
         ...state,
         loginUser: '',
-      }
+      };
 
     case LOGIN:
       return {
         ...state,
         loginUser: action.payload,
-      }
+      };
 
     case REGISTER_LOCAL: {
       return {
         ...state,
-      }
+      };
     }
     case 'GET_COMENTARIOS': {
       return {
         ...state,
         comments: action.payload,
-      }
+      };
     }
     case 'GET_BOOKS':
       return {
         ...state,
         books: action.payload,
         allBooks: action.payload,
-      }
+      };
     case 'GET_SEARCH_BOOK':
       return {
         ...state,
         books: action.payload,
-      }
+      };
     case 'GET_ALL_GENEROS':
       return {
         ...state,
         category: action.payload,
-      }
+      };
     case 'GET_PALABRAS_PROHIBIDAS':
       return {
         ...state,
         palabrasProhibidas: action.payload,
-      }
+      };
     case 'GET_SEARCH_AUTORES':
       return {
         ...state,
         autor: action.payload,
-      }
+      };
 
     case 'FILTER_CATEGORY':
       return {
         ...state,
         books: categFilter,
-      }
+      };
 
     /*  case 'FILTER_AUTOR':
       return {
@@ -124,42 +129,42 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         books: bookSort,
-      }
+      };
     case GET_USERS:
       return {
         ...state,
         users: action.payload,
-      }
+      };
 
     case GET_USER_BY_ID:
       return {
         ...state,
         userLogged: action.payload,
-      }
+      };
 
-      case GET_ONE_USER:
-        return {
-          ...state,
-          oneUser: action.payload,
-        }
+    case GET_ONE_USER:
+      return {
+        ...state,
+        oneUser: action.payload,
+      };
     case ERROR:
       return {
         ...state,
         error: action.payload,
-      }
+      };
     case GET_BOOKBY_ID:
       return {
         ...state,
         detail: action.payload,
-      }
+      };
     case CLEAR_BOOK_DETAILS:
       return {
         ...state,
         detail: '',
-      }
+      };
     default:
-      return state
+      return state;
   }
 }
 
-export default rootReducer
+export default rootReducer;
