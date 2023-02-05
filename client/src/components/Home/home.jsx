@@ -14,13 +14,15 @@ import {
 import FiltradoGenero from '../FiltradoGenero/filtradoGenero';
 import OrdAlfabetico from '../OrderAlfab/orderAlfabetico';
 import NavBar from '../NavBar/NavBar';
-import Carousel from '../Carouseles/CarouselRecomendados/Carousel';
+import Carousel from '../Carouseles/CarouselComments/Carousel';
 import SearchBar from '../SearchBar/SearchBar';
 import SearchByAutor from '../FiltradoAutor/filterAutor';
 import Card from '../Card/Card';
 /* import Pagination from '../Pagination/Pagination' */
 import style from '../Home/home.module.css';
 import Bot from '../chatbot/ChatBot';
+import CarouselFreeBooks from '../Carouseles/CarouselFreeBooks/CarouselFreeBooks';
+import CarouselBooksPremium from '../Carouseles/CarouselBooksPremium/CarouselBooksPremium';
 
 export const Home = () => {
   const dispatch = useDispatch();
@@ -262,9 +264,37 @@ export const Home = () => {
               fontSize: '30px',
             }}
           >
-            Recomendado
+            Los mas comentados
           </h3>
           <Carousel />
+        </div>
+        <div style={{ position: 'absolute', left: '290px', top: '95rem' }}>
+          <h3
+            style={{
+              color: '#010326',
+              position: 'absolute',
+              top: '-20px',
+              left: '20px',
+              fontSize: '30px',
+            }}
+          >
+            Libros Free
+          </h3>
+          <CarouselFreeBooks />
+        </div>
+        <div style={{ position: 'absolute', left: '290px', top: '125rem' }}>
+          <h3
+            style={{
+              color: '#010326',
+              position: 'absolute',
+              top: '-20px',
+              left: '20px',
+              fontSize: '30px',
+            }}
+          >
+            Libros Premium
+          </h3>
+          <CarouselBooksPremium />
         </div>
       </div>
     </div>
