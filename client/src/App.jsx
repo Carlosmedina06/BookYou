@@ -21,9 +21,12 @@ import { AllBooksUsers } from './components/DashBoard/AllBooks/allBooks'
 import DashBoardMain from './components/DashBoard/dashBoardMain/'
 import Suscripcion from './components/Suscripcion/Suscripcion'
 import UserAccount from './components/userAccount/userAccount'
-import ReactGa from 'react-ga'
-import { useEffect } from 'react'
+
 import PageViews from './components/DashBoard/PageViews/visitCounter'
+=======
+import FormBookUpdate from './components/FormBookUpdate/FormBookUpdate'
+
+
 const App = createHashRouter([
   {
     path: '/',
@@ -82,6 +85,10 @@ const App = createHashRouter([
       {
         path: '/bookdetail/:id',
         element: <Bookdetail />,
+      },
+      {
+        path: '/book/edit/:id',
+        element: <FormBookUpdate />,
       },
       {
         path: '/createbook',

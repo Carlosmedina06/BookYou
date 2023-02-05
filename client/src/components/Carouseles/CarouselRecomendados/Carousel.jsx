@@ -1,52 +1,65 @@
-
-import React, { useState } from 'react'
-import { useSelector } from 'react-redux'
+import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {faChevronLeft,faChevronRight} from '@fortawesome/free-solid-svg-icons';
+import {
+  faChevronLeft,
+  faChevronRight,
+} from '@fortawesome/free-solid-svg-icons';
 
-import Card from '../../Card/Card'
+import Card from '../../Card/Card';
 
 import style from '../../CssGenerico/Carousel.module.css';
 
-const Carousel = () => {
-  const libros = useSelector((state) => state.allBooks)
-  const [currentIndex, setCurrentIndex] = useState(0)
+import { getTopBooks } from '../../../utils/Functions/topEight.js';
 
-  const librosPorPagina = 4
-  const librosAMostrar = libros.slice(
+const Carousel = () => {
+  const libros = useSelector(state => state.allBooks);
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const mostCommented = getTopBooks(libros);
+
+  const librosPorPagina = 4;
+  const librosAMostrar = mostCommented.slice(
     currentIndex * librosPorPagina,
-    currentIndex * librosPorPagina + librosPorPagina,
-  )
-  const librosFaltantes = librosPorPagina - librosAMostrar.length
-  const librosAMostrarCompletos = librosAMostrar.concat(libros.slice(0, librosFaltantes))
+    currentIndex * librosPorPagina + librosPorPagina
+  );
+  const librosFaltantes = librosPorPagina - librosAMostrar.length;
+  const librosAMostrarCompletos = librosAMostrar.concat(
+    mostCommented.slice(0, librosFaltantes)
+  );
 
   const handleLeftArrowClick = () => {
     if (currentIndex === 0) {
-      setCurrentIndex(Math.floor(libros.length / librosPorPagina))
+      setCurrentIndex(Math.floor(mostCommented.length / librosPorPagina));
     } else {
-      setCurrentIndex(currentIndex - 1)
+      setCurrentIndex(currentIndex - 1);
     }
-  }
+  };
 
   const handleRightArrowClick = () => {
-    if (currentIndex === Math.floor(libros.length / librosPorPagina)) {
-      setCurrentIndex(0)
+    if (currentIndex === Math.floor(mostCommented.length / librosPorPagina)) {
+      setCurrentIndex(0);
     } else {
-      setCurrentIndex(currentIndex + 1)
+      setCurrentIndex(currentIndex + 1);
     }
-  }
+  };
 
   //-------------------
-  const prevLibros = libros.slice(
-    currentIndex === 0 ? libros.length - librosPorPagina : currentIndex - 1,
-    currentIndex === 0 ? libros.length : currentIndex,
-  )
-  const nextLibros = libros.slice(
+  const prevLibros = mostCommented.slice(
+    currentIndex === 0
+      ? mostCommented.length - librosPorPagina
+      : currentIndex - 1,
+    currentIndex === 0 ? mostCommented.length : currentIndex
+  );
+  const nextLibros = mostCommented.slice(
     currentIndex + librosPorPagina,
-    currentIndex + librosPorPagina * 2,
-  )
-  const currentLibros = libros.slice(currentIndex, currentIndex + librosPorPagina)
-  const allLibros = [...prevLibros, ...currentLibros, ...nextLibros]
+    currentIndex + librosPorPagina * 2
+  );
+  const currentLibros = mostCommented.slice(
+    currentIndex,
+    currentIndex + librosPorPagina
+  );
+  const allLibros = [...prevLibros, ...currentLibros, ...nextLibros];
   //-----------------------
 
   return (
@@ -54,7 +67,7 @@ const Carousel = () => {
       <div className={style.librocarousel}>
         <div className={style.contenedorprincipal}>
           <button className={style.izquierda} onClick={handleLeftArrowClick}>
-          <FontAwesomeIcon icon={faChevronLeft}/>
+            <FontAwesomeIcon icon={faChevronLeft} />
           </button>
           <div className={style.contenedorcarousel}>
             <div className={style.carousel}>
@@ -72,12 +85,12 @@ const Carousel = () => {
             </div>
           </div>
           <button className={style.derecha} onClick={handleRightArrowClick}>
-          <FontAwesomeIcon icon={faChevronRight}/>
+            <FontAwesomeIcon icon={faChevronRight} />
           </button>
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Carousel
+export default Carousel;

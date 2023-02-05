@@ -1,5 +1,7 @@
 import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
+import Confetti from 'react-confetti'
+import { Link } from 'react-router-dom'
 
 import { getCategorys } from '../../redux/actions'
 import { useForm } from '../../utils/Hooks/useForm'
@@ -52,9 +54,10 @@ const PostBook = () => {
             <NavBar />
           </div>
           <div>
-            <h1 className={style.h1}>Created succesfully!</h1>
+            <Confetti height={window.innerHeight} width={window.innerWidth} />
+            <h1 className={style.h1}>Libro Creado con Exito</h1>
             <button className={style.button} type="button" onClick={handleClear}>
-              Noted
+              <Link to="/home">Inicio</Link>
             </button>
           </div>
         </section>
@@ -189,8 +192,8 @@ const PostBook = () => {
                     }}
                   />
                 </div>
-                <button className={style.buttonSubmit} type="submit" onSubmit={handleSubmit}>
-                  CREATE BOOK!
+                <button className={style.buttonSubmit} type="submit">
+                  Crear Libro
                 </button>
               </div>
             </form>

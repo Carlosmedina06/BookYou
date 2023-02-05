@@ -53,3 +53,19 @@ export const ReviewDate = styled.div`
   font-weight: 400;
   color: #010326;
 `
+export const ButtonContent = styled.div`
+  display: flex;
+  flex-direction: column;
+`
+
+export const ButtonReport = styled.button`
+  border: solid 1px #f28322;
+  padding: 1px 5px;
+  margin-bottom: 10px;
+  font-weight: bold;
+  transition: all 0.2s ease-in-out;
+  &:hover {
+    background-color: #f28322;
+    color: #fff;
+  }
+`
