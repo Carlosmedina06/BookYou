@@ -77,14 +77,6 @@ export const loginLocal = (email, password) => async (dispatch) => {
 
   api.post('/login', response.user).then((res) => {
     window.localStorage.setItem('token', res.data.token)
-    Swal.fire({
-      position: 'center',
-      icon: 'success',
-      title: 'Ingresando...',
-      showConfirmButton: false,
-      timer: 1500,
-    })
-    navigation('/home')
 
     return dispatch({
       type: LOGIN_LOCAL,
@@ -163,8 +155,7 @@ export const getOneUser = (id) => async (dispatch) => {
     })
 
     return dispatch({
-      type: GET_ONE_USER,
-      payload: info.data,
+      type: GET_USER_BY_ID,
     })
   } catch (error) {
     dispatch({
@@ -298,7 +289,7 @@ export const rateLibros = () => async (dispatch) => {
 
 export const getPalabrasProhibidas = () => async (dispatch) => {
   try {
-    const info = await api.get(`/bannedwords?array=true`)
+    const info = await axios.get(`${urlLocal}/bannedwords?array=true`)
 
     /*  const palabras = info.data.filter((b) => b.word.toLowerCase().includes(name.toLowerCase())) */
 

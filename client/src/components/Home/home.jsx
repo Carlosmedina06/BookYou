@@ -13,9 +13,9 @@ import Carousel from '../Carouseles/CarouselRecomendados/Carousel'
 import SearchBar from '../SearchBar/SearchBar'
 import SearchByAutor from '../FiltradoAutor/filterAutor'
 import Card from '../Card/Card'
+/* import Pagination from '../Pagination/Pagination' */
 import style from '../Home/home.module.css'
 import Bot from '../chatbot/ChatBot'
-import PruebaRate from '../Carouseles/PruebaRate'
 
 export const Home = () => {
   const dispatch = useDispatch()
@@ -31,9 +31,10 @@ export const Home = () => {
 
   const allBooks = useSelector((state) => state.books)
 
+  console.log(allBooks)
   /* ----------Paginacion------------- */
 
-  const [currentPage, setCurrentPage] = useState(1)
+  const [currentPage, setCurrentPage] = useState(0)
   const [countOne, setCountOne] = useState(1)
   const [countTwo, setCountTwo] = useState(1)
 
@@ -169,12 +170,7 @@ export const Home = () => {
           <SearchByAutor authorInput={authorInput} setAuthorInput={setAuthorInput} />
         </div>
         <div>
-          <FiltradoGenero
-            bookInputtodos={bookInputtodos}
-            setBookInputtodos={setBookInputtodos}
-            setCountOne={setCountOne}
-            setCurrentPage={setCurrentPage}
-          />
+          <FiltradoGenero bookInputtodos={bookInputtodos} setBookInputtodos={setBookInputtodos} />
         </div>
         <div style={{ position: 'absolute', top: '130px', left: '-70px' }}>
           <OrdAlfabetico books={books} setBooks={setBooks} />
@@ -190,20 +186,18 @@ export const Home = () => {
               <div className={style.mover1}>
                 <div className={style.mover}>
                   {filterLibros.length > 0
-                    ? filterLibros
-                        .slice(currentPage, currentPage + 8)
-                        .map((book) => (
-                          <Card
-                            key={book.id}
-                            autor={book.author}
-                            className={style.filterCard}
-                            comentarios={book.content}
-                            estado={book.subscription}
-                            id={book.id}
-                            img={book.img}
-                            name={book.title}
-                          />
-                        ))
+                    ? filterLibros.map((book) => (
+                        <Card
+                          key={book.id}
+                          autor={book.author}
+                          className={style.filterCard}
+                          comentarios={book.content}
+                          estado={book.subscription}
+                          id={book.id}
+                          img={book.img}
+                          name={book.title}
+                        />
+                      ))
                     : allBooks
                         .slice(currentPage, currentPage + 8)
                         .map((book) => (

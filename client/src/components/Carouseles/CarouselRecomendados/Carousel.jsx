@@ -1,55 +1,36 @@
-import React, { useState, useEffect } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import React, { useState } from 'react'
+import { useSelector } from 'react-redux'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons'
 
-import { rateLibros } from '../../../redux/actions'
 import Card from '../../Card/Card'
 import style from '../../CssGenerico/Carousel.module.css'
+import { getTopBooks } from '../../../utils/Functions/topEight.js'
 
 const Carousel = () => {
-  const dispatch = useDispatch()
-
   const libros = useSelector((state) => state.allBooks)
-  const ratesComments = useSelector((state) => state.rate)
-
-  useEffect(() => {
-    dispatch(rateLibros())
-  }, [dispatch])
-
   const [currentIndex, setCurrentIndex] = useState(0)
 
+  const mostCommented = getTopBooks(libros)
+
   const librosPorPagina = 4
-
-  let librosFiltrados = libros.filter((r) => {
-    let recomendados = false
-
-    ratesComments.forEach((c) => {
-      if (r.id === c.id) recomendados = true
-    })
-
-    return recomendados
-  })
-
-  console.log(librosFiltrados)
-
-  const librosAMostrar = libros.slice(
+  const librosAMostrar = mostCommented.slice(
     currentIndex * librosPorPagina,
     currentIndex * librosPorPagina + librosPorPagina,
   )
   const librosFaltantes = librosPorPagina - librosAMostrar.length
-  const librosAMostrarCompletos = librosAMostrar.concat(libros.slice(0, librosFaltantes))
+  const librosAMostrarCompletos = librosAMostrar.concat(mostCommented.slice(0, librosFaltantes))
 
   const handleLeftArrowClick = () => {
     if (currentIndex === 0) {
-      setCurrentIndex(Math.floor(libros.length / librosPorPagina))
+      setCurrentIndex(Math.floor(mostCommented.length / librosPorPagina))
     } else {
       setCurrentIndex(currentIndex - 1)
     }
   }
 
   const handleRightArrowClick = () => {
-    if (currentIndex === Math.floor(libros.length / librosPorPagina)) {
+    if (currentIndex === Math.floor(mostCommented.length / librosPorPagina)) {
       setCurrentIndex(0)
     } else {
       setCurrentIndex(currentIndex + 1)
@@ -57,16 +38,16 @@ const Carousel = () => {
   }
 
   //-------------------
-  /*   const prevLibros = libros.slice(
-    currentIndex === 0 ? libros.length - librosPorPagina : currentIndex - 1,
-    currentIndex === 0 ? libros.length : currentIndex,
+  const prevLibros = mostCommented.slice(
+    currentIndex === 0 ? mostCommented.length - librosPorPagina : currentIndex - 1,
+    currentIndex === 0 ? mostCommented.length : currentIndex,
   )
-  const nextLibros = libros.slice(
+  const nextLibros = mostCommented.slice(
     currentIndex + librosPorPagina,
     currentIndex + librosPorPagina * 2,
   )
-  const currentLibros = libros.slice(currentIndex, currentIndex + librosPorPagina)
-  const allLibros = [...prevLibros, ...currentLibros, ...nextLibros] */
+  const currentLibros = mostCommented.slice(currentIndex, currentIndex + librosPorPagina)
+  const allLibros = [...prevLibros, ...currentLibros, ...nextLibros]
   //-----------------------
 
   return (

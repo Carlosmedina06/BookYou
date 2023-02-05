@@ -26,6 +26,7 @@ const initialState = {
   oneUser: [],
   palabrasProhibidas: [],
   comments: [],
+  topBooks: [],
   rate: [],
 }
 
@@ -88,6 +89,7 @@ function rootReducer(state = initialState, action) {
         rate: action.payload,
       }
     }
+
     case 'GET_BOOKS':
       return {
         ...state,
@@ -120,6 +122,12 @@ function rootReducer(state = initialState, action) {
         ...state,
         books: categFilter,
       }
+
+    /*  case 'FILTER_AUTOR':
+      return {
+        ...state,
+        autor: autorFilter,
+      } */
 
     case 'ORDER_ALF':
       return {
