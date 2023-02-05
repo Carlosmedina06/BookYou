@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css2?family=Bitter:wght@700&family=Poppins:wght@400;500;600;700;800&display=swap');
+
+.footerContainer {
+  background-color: #010326;
+  color: rgb(87, 87, 87);
+  max-width: 2000px;
+  /* height: auto; */
+  max-height: auto;
+  margin: 0 auto;
+  padding: 2rem;
+  display: flex;
+}
+
+.infoContainer {
+  width: 20%;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  border-right: 1px solid #333;
+}
+
+.logoApp {
+  color: #f28322;
+  font-family: 'Bitter', serif;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.wrapperImage {
+  width: 170px;
+  height: auto;
+}
+
+.logoHenry {
+  object-fit: cover;
+}
+
+.membersContainer {
+  color: rgb(87, 87, 87);
+  width: 100%;
+  height: auto;
+  padding: 1rem;
+  display: grid;
+  grid-template-columns: 180px 180px 180px 180px;
+  grid-template-rows: auto 200px 200px;
+  justify-content: center;
+  column-gap: 3rem;
+  row-gap: 1rem;
+}
+
+.box-1 {
+  grid-column-start: 1;
+  grid-column-end: 5;
+}
+
+.box-1 h3 {
+  font-weight: bold;
+}
+
+.developerBox {
+  height: 160px;
+  width: 130px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.imgContainer {
+  width: 100%;
+  height: 80%;
+}
+
+.imgContainer img {
+  width: 90%;
+  height: 90%;
+  object-fit: cover;
+  border-radius: 50%;
+  margin: 0 auto;
+}
+
+.devData {
+  height: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+}
