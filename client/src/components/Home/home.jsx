@@ -232,9 +232,7 @@ export const Home = () => {
           />
         </Stack>
       </div>
-      <div>
-        <PruebaRate />
-      </div>
+      <div />
       <div>
         <div style={{ position: 'absolute', left: '290px', top: '65rem' }}>
           <h3
