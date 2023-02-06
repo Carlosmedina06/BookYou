@@ -1,12 +1,8 @@
-
-
-
 import React, { useState,  useEffect } from 'react'
 
 import { useSelector } from 'react-redux'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons'
-
 
 import Card from '../../Card/Card';
 import style from '../../CssGenerico/Carousel.module.css';
@@ -34,9 +30,9 @@ const librosOrdenados = dataReady
     .slice(0, 8)
   : [];
 
-  console.log(librosOrdenados)
+  console.log(librosOrdenados,"---------")
 
-  const mostCommented = getTopBooks(libros)
+
   const librosPorPagina = 4
 
   const librosAMostrar = librosOrdenados.slice(
