@@ -8,6 +8,8 @@ export const ERROR = 'ERROR'
 
 export const GET_BOOKS = "GET_BOOKS"
 export const GET_BOOKS_CAROUSEL = "GET_BOOKS_CAROUSEL"
+export const GET_BOOKS_FREE = "GET_BOOKS_FREE"
+export const GET_BOOKS_PREMIUM = "GET_BOOKS_PREMIUM"
 export const GET_BOOKBY_ID = 'GET_BOOKBY_ID'
 export const GET_BOOK_ID = 'GET_BOOKBY_ID'
 export const GET_SEARCH_BOOK = 'GET_SEARCH_BOOK'
@@ -363,7 +365,7 @@ export const getFreeBooks = () => async dispatch => {
     const booksFree = info.data.filter(b => b.subscription === 'free');
 
     return dispatch({
-      type: 'GET_BOOKS_FREE',
+      type: GET_BOOKS_FREE,
       payload: booksFree,
     });
   } catch (error) {
@@ -381,7 +383,7 @@ export const getPremiumBooks = () => async dispatch => {
     const booksPremium = info.data.filter(b => b.subscription === 'premium');
 
     return dispatch({
-      type: 'GET_BOOKS_PREMIUM',
+      type: GET_BOOKS_PREMIUM,
       payload: booksPremium,
     });
   } catch (error) {

@@ -11,6 +11,7 @@ import CarouselBooksPremium from '../Carouseles/CarouselBooksPremium/CarouselBoo
 
 import {
   getBooks,
+  getBooksCarousel,
   getCategorys,
   getAutores,
   getUsers,
@@ -27,8 +28,7 @@ import Card from '../Card/Card';
 /* import Pagination from '../Pagination/Pagination' */
 import style from '../Home/home.module.css'
 import Bot from '../chatbot/ChatBot'
-import CarouselFreeBooks from '../Carouseles/CarouselFreeBooks/CarouselFreeBooks'
-import CarouselBooksPremium from '../Carouseles/CarouselBooksPremium/CarouselBooksPremium'
+
 import CarouselComentados from '../Carouseles/CarouselComments/Carousel'
 
 export const Home = () => {
@@ -131,6 +131,7 @@ export const Home = () => {
     dispatch(getUsers());
     dispatch(getFreeBooks());
     dispatch(getPremiumBooks());
+    dispatch(getBooksCarousel());
   }, [dispatch]);
 
 
