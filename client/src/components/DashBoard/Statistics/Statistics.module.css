@@ -1,14 +1,17 @@
 .container{
     border: blue solid 2px;
-    display:flex;
+    display:grid;
+    flex-direction: column;
+    justify-content: center;
     width: 100%;
     height: 100%;
         
 
 }
-.container div{
-    flex: 1;
-    margin-top: 40rem;
+.container .div{
+    /* flex: 2;
+    margin-top: 40rem; */
 /* margin: 10px; */
-
+background-color: rgb(255, 0, 200) !important;
+border: pink solid 3px;
 }

@@ -1,0 +1,264 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:500);
+
+.mainContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #EBF2ED;
+  height: 130vh;
+  line-height:10px;
+}
+
+.cardContainer {
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  border-radius: 10px;
+  width: 700px;
+  max-width: 700px;
+  height: auto;
+
+  flex-direction: column;
+  margin: 0 auto;
+  background: #fff;
+  border-radius: 10px;
+  padding: 30px;
+  box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.1), 0 0 0 2px #f28322,
+    0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
+}
+
+.contentformCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+
+}
+
+.formTitle {
+  display: flex;
+  font-size: 1.2rem;
+  justify-content: center;
+  font-weight: 700;
+  /* margin-bottom: 1%; */
+  margin-top: 3%;
+  width: auto;
+}
+
+.SignInGoogleButtons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+.formInputBox {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+ 
+  margin: 0;
+
+}
+
+.formInputBox input {
+  border-radius: 10px;
+  background-color: #EBF2ED;
+  font-weight: 500;
+  font-size: 14px;
+  height: 45px;
+  border-radius: 10px;
+  /* padding-top: 10px; */
+  padding-left: 10px;
+  border: none;
+  border-bottom: 1px solid #e5e5e5;
+  outline: none;
+}
+
+.formInputBox input:focus {
+  border-bottom: 1px solid #d97823;
+  -webkit-transition: 0.1s;
+  transition: 0.5s;
+}
+
+
+.formInputBox label {
+  align-self: center;
+  margin: 5px
+}
+
+/* BOTON DE GOOGLE  */
+
+
+.googleBtn {
+
+  width: 15rem;
+  height: 42px;
+  /* margin: 0 0 0 0; */
+  background-color: #4285f4;
+  border-radius: 5px;
+  box-shadow: 0 3px 4px 0 rgba(0, 0, 0, .25);
+  box-shadow: 1px 5px 5px 2px rgb(0 0 0 / 40%);
+
+}
+
+.googleIconWrapper {
+  position: absolute;
+  margin-top: 1px;
+  margin-left: 1px;
+  width: 40px;
+  height: 40px;
+  border-radius: 2px;
+  background-color: #fff;
+
+}
+
+.googleIcon {
+  position: absolute;
+  margin-top: 11px;
+  margin-left: 11px;
+  width: 18px;
+  height: 18px;
+}
+
+.btnText {
+  float: right;
+  margin: 11px 30px 0 0;
+  color: #fff;
+  font-size: 14px;
+  letter-spacing: 0.2px;
+  font-family: "Roboto";
+}
+
+&:hover {
+  box-shadow: 0 0 6px #1669F2;
+}
+
+&:active {
+  background: #1669F2;
+}
+
+
+.formTitle {
+  padding: 3%
+}
+
+.googleBtn:active {
+  transform: scale(1.02)
+}
+
+/* boton de iniciar sesion */
+
+.buttonSubmit {
+  
+  color: white;
+  cursor: pointer;
+  padding: 10px;
+  width: 15rem;
+  word-wrap: break-word;
+  padding-top: 2%;
+  border-radius: 5px;
+  /* border: 2px solid #00a3fe; */
+  height: 35px;
+  border-color: transparent;
+  box-shadow: 1px 5px 5px 2px rgb(0 0 0 / 40%);
+  outline: none;
+  transition: 0.15s;
+  text-align: center;
+  box-shadow: #010326;
+  background-color: #f1ac15;
+   
+}
+
+.buttonSubmit:hover {
+  background-color: #f1ac15;
+  color: #fff
+}
+
+.buttonSubmit:active {
+  transform: scale(1.02)
+}
+
+
+.formInputBox input button {
+  padding: 10px;
+  color: black;
+  cursor: pointer;
+  margin-bottom: 0;
+  width: 50%;
+  word-wrap: break-word;
+  border-radius: 5px;
+  /*  border: 2px solid #00a3fe; */
+  height: 35px;
+  /* border-color: transparent; */
+  background-color: #ffffff;
+  border: none;
+  box-shadow: 0px;
+  outline: none;
+  transition: 0.15s;
+  text-align: center;
+}
+
+
+.fileUploadButton::after {
+  content: 'Upload';
+}
+
+.fileUploadButton:active {
+  background-color: #f1ac15;
+}
+
+.formSelect {
+
+  font-weight: 500;
+  font-size: 14px;
+  height: 45px;
+  width: 85%;
+  margin-left: 7%;
+  border-radius: 10px;
+  padding-left: 10px;
+  
+  border: none;
+  border-bottom: 1px solid #e5e5e5;
+  outline: none;
+  background-color: #ebf2ed;
+
+}
+
+.formSelect:focus {
+  border-bottom: 1px solid #f1ac15;
+  -webkit-transition: 0.1s;
+  transition: 0.5s;
+}
+
+.h1 {
+  margin-top: 10rem;
+  margin-left: 38rem;
+  font-size: 40px;
+  color: #010326;
+}
+
+.button {
+  margin-left: 45rem;
+  margin-top: 5rem;
+  color: #010326;
+  font-size: 20px;
+  background: #07484a;
+  color: #07484a;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 10px 30px 10px 30px;
+
+  box-shadow: 1px 5px 50px 10px rgba(0, 0, 0, 0.4);
+  border-radius: 10px;
+  margin-bottom: 20px;
+  transition: all 0.4s ease-in-out;
+
+}
+
+.button:hover {
+  background: #F28322;
+  color: #fff;
+
+}

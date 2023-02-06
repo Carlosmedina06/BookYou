@@ -2,7 +2,7 @@ import {
   ERROR,
   GET_BOOKBY_ID,
   GET_USERS,
-  GET_ONE_USER,
+  /* GET_ONE_USER, */
   //GET_SEARCH_BOOK,
   LOGIN,
   LOGIN_GOOGLE,
@@ -11,6 +11,7 @@ import {
   REGISTER_LOCAL,
   CLEAR_BOOK_DETAILS,
   GET_USER_BY_ID,
+  GET_PAGE_VIEWS,
 } from '../actions'
 
 const initialState = {
@@ -26,6 +27,9 @@ const initialState = {
   oneUser: [],
   palabrasProhibidas: [],
   comments: [],
+  pageviews: [],
+  topBooks: [],
+  rate: [],
 }
 
 function rootReducer(state = initialState, action) {
@@ -37,8 +41,20 @@ function rootReducer(state = initialState, action) {
 
   let bookSort =
     action.payload === 'asc'
-      ? state.books.sort((a, b) => (a.title > b.title ? 1 : a.title < b.title ? -1 : 0))
-      : state.books.sort((a, b) => (a.title > b.title ? -1 : a.title < b.title ? 1 : 0))
+      ? state.books.sort((a, b) =>
+          a.title.toLowerCase() > b.title.toLowerCase()
+            ? 1
+            : a.title.toLowerCase() < b.title.toLowerCase()
+            ? -1
+            : 0,
+        )
+      : state.books.sort((a, b) =>
+          a.title.toLowerCase() > b.title.toLowerCase()
+            ? -1
+            : a.title.toLowerCase() < b.title.toLowerCase()
+            ? 1
+            : 0,
+        )
   /*   let allAutores = state.allBooks
     let autorFilter =
     action.payload === 'todos'
@@ -81,6 +97,13 @@ function rootReducer(state = initialState, action) {
         comments: action.payload,
       }
     }
+    case 'GET_COMENTARIOS_RATE': {
+      return {
+        ...state,
+        rate: action.payload,
+      }
+    }
+
     case 'GET_BOOKS':
       return {
         ...state,
@@ -130,18 +153,18 @@ function rootReducer(state = initialState, action) {
         ...state,
         users: action.payload,
       }
-
+    /* 
     case GET_USER_BY_ID:
       return {
         ...state,
         userLogged: action.payload,
-      }
+      } */
 
-      case GET_ONE_USER:
-        return {
-          ...state,
-          oneUser: action.payload,
-        }
+    case GET_USER_BY_ID:
+      return {
+        ...state,
+        oneUser: action.payload,
+      }
     case ERROR:
       return {
         ...state,
@@ -157,6 +180,13 @@ function rootReducer(state = initialState, action) {
         ...state,
         detail: '',
       }
+
+    case GET_PAGE_VIEWS:
+      return {
+        ...state,
+        pageviews: action.payload,
+      }
+
     default:
       return state
   }

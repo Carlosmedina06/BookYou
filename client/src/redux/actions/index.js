@@ -1,4 +1,5 @@
 /* ACA ESTA TODA LA CONEXION BACK Y FRONT!! */
+
 export const GET_USERS = 'GET_USERS'
 export const GET_USER_BY_ID = 'GET_USER_BY_ID'
 export const GET_ONE_USER = 'GET_ONE_USER'
@@ -12,7 +13,11 @@ export const LOGOUT = 'LOGOUT'
 export const LOGIN = 'LOGIN'
 export const REGISTER_LOCAL = 'REGISTER_LOCAL'
 export const CLEAR_BOOK_DETAILS = 'CLEAR_BOOK_DETAIL'
+
 export const SUBSCRIPTION = 'SUBSCRIPTION'
+
+export const GET_PAGE_VIEWS = 'GET_PAGE_VIEWS'
+
 import {
   GoogleAuthProvider,
   signInWithPopup,
@@ -77,14 +82,7 @@ export const loginLocal = (email, password) => async (dispatch) => {
 
   api.post('/login', response.user).then((res) => {
     window.localStorage.setItem('token', res.data.token)
-    Swal.fire({
-      position: 'center',
-      icon: 'success',
-      title: 'Ingresando...',
-      showConfirmButton: false,
-      timer: 1500,
-    })
-    navigation('/home')
+
     return dispatch({
       type: LOGIN_LOCAL,
       payload: res.data.token,
@@ -162,9 +160,10 @@ export const getOneUser = (id) => async (dispatch) => {
     })
 
     return dispatch({
-      type: GET_ONE_USER,
-      payload: info.data
+      type: GET_USER_BY_ID,
+      payload: info.data,
     })
+
   } catch (error) {
     dispatch({
       type: ERROR,
@@ -267,6 +266,32 @@ export const postBookReview = () => async (dispatch) => {
   }
 }
 
+/* ----------------- GET TODO LOS COMENTARIOS  UN LIBRO----------------- */
+
+export const rateLibros = () => async (dispatch) => {
+  try {
+    const info = await api.get(`/comment/0`)
+    const comments = info.data
+      .filter((c) => c.rate == 5)
+      .map((c) => {
+        return {
+          rate: c.rate,
+          id: c.book,
+        }
+      })
+
+    return dispatch({
+      type: 'GET_COMENTARIOS_RATE',
+      payload: comments,
+    })
+  } catch (error) {
+    dispatch({
+      type: ERROR,
+      payload: error.message,
+    })
+  }
+}
+
 /* ----------------- GET PALABRAS PROHIBIDAS ---------------- */
 
 export const getPalabrasProhibidas = () => async (dispatch) => {
@@ -277,6 +302,23 @@ export const getPalabrasProhibidas = () => async (dispatch) => {
 
     return dispatch({
       type: 'GET_PALABRAS_PROHIBIDAS',
+      payload: info.data,
+    })
+  } catch (error) {
+    dispatch({
+      type: ERROR,
+      payload: error.message,
+    })
+  }
+}
+
+/* ----------------- GET PageViews ---------------- */
+
+export const getPageViews = () => async (dispatch) => {
+  try {
+    const info = await api.get('/pageviews')
+    return dispatch({
+      type: 'GET_PAGE_VIEWS',
       payload: info.data,
     })
   } catch (error) {

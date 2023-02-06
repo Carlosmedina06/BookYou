@@ -12,7 +12,7 @@ export const CommentEdit = () => {
   const [rata, setRata] = useState(true)
 
   useEffect(()=>{
-    
+
 
   },[rata])
 
@@ -38,6 +38,7 @@ export const CommentEdit = () => {
   const getAllComments = async(numero) => {
     const info = await api.get(`/comment/${numero}`)
     const comments = info.data
+    
     return comments
   }
   const handleSearchUserInput = async (e )=>{
