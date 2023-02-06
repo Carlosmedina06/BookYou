@@ -1,4 +1,5 @@
 /* ACA ESTA TODA LA CONEXION BACK Y FRONT!! */
+
 export const GET_USERS = 'GET_USERS'
 export const GET_USER_BY_ID = 'GET_USER_BY_ID'
 export const GET_ONE_USER = 'GET_ONE_USER'
@@ -15,7 +16,11 @@ export const LOGOUT = 'LOGOUT'
 export const LOGIN = 'LOGIN'
 export const REGISTER_LOCAL = 'REGISTER_LOCAL'
 export const CLEAR_BOOK_DETAILS = 'CLEAR_BOOK_DETAIL'
+
 export const SUBSCRIPTION = 'SUBSCRIPTION'
+
+export const GET_PAGE_VIEWS = 'GET_PAGE_VIEWS'
+
 import {
   GoogleAuthProvider,
   signInWithPopup,
@@ -77,7 +82,6 @@ export const registerLocal = (email, password, displayName) => async (dispatch) 
 
 export const loginLocal = (email, password) => async (dispatch) => {
   const response = await signInWithEmailAndPassword(auth, email, password)
-
 
   api.post('/login', response.user).then((res) => {
     window.localStorage.setItem('token', res.data.token)
@@ -152,6 +156,7 @@ export const getBooksCarousel = () => async (dispatch) => {
 export const getUsers = () => async (dispatch) => {
   try {
     const info = await api.get('/user')
+
     return dispatch({
       type: GET_USERS,
       payload: info.data,
@@ -175,7 +180,9 @@ export const getOneUser = (id) => async (dispatch) => {
 
     return dispatch({
       type: GET_USER_BY_ID,
+      payload: info.data,
     })
+
   } catch (error) {
     dispatch({
       type: ERROR,
@@ -213,7 +220,6 @@ export const getBookById = (id) => async (dispatch) => {
 /* ---------------GET GÉNEROS LITERARIOS------------------ */
 export const getCategorys = () => async (dispatch) => {
   try {
-
     const info = await api.get(`/category`)
 
     return dispatch({
@@ -231,7 +237,6 @@ export const getCategorys = () => async (dispatch) => {
 /* ----------------------- GET AUTORES LITERARIOS -------------------- */
 export const getAutores = () => async (dispatch) => {
   try {
-
     const info = await api.get(`/book`)
 
     return dispatch({
@@ -266,7 +271,6 @@ export const orderAlf = (payload) => {
 
 export const postBookReview = () => async (dispatch) => {
   try {
-
     const info = await api.get(`/create/book`)
 
     return dispatch({
@@ -281,16 +285,59 @@ export const postBookReview = () => async (dispatch) => {
   }
 }
 
+/* ----------------- GET TODO LOS COMENTARIOS  UN LIBRO----------------- */
+
+export const rateLibros = () => async (dispatch) => {
+  try {
+    const info = await api.get(`/comment/0`)
+    const comments = info.data
+      .filter((c) => c.rate == 5)
+      .map((c) => {
+        return {
+          rate: c.rate,
+          id: c.book,
+        }
+      })
+
+    return dispatch({
+      type: 'GET_COMENTARIOS_RATE',
+      payload: comments,
+    })
+  } catch (error) {
+    dispatch({
+      type: ERROR,
+      payload: error.message,
+    })
+  }
+}
+
 /* ----------------- GET PALABRAS PROHIBIDAS ---------------- */
 
 export const getPalabrasProhibidas = () => async (dispatch) => {
   try {
-    const info = await axios.get(`${urlLocal}/bannedwords?array=true`)
+    const info = await api.get(`/bannedwords?array=true`)
 
     /*  const palabras = info.data.filter((b) => b.word.toLowerCase().includes(name.toLowerCase())) */
 
     return dispatch({
       type: 'GET_PALABRAS_PROHIBIDAS',
+      payload: info.data,
+    })
+  } catch (error) {
+    dispatch({
+      type: ERROR,
+      payload: error.message,
+    })
+  }
+}
+
+/* ----------------- GET PageViews ---------------- */
+
+export const getPageViews = () => async (dispatch) => {
+  try {
+    const info = await api.get('/pageviews')
+    return dispatch({
+      type: 'GET_PAGE_VIEWS',
       payload: info.data,
     })
   } catch (error) {

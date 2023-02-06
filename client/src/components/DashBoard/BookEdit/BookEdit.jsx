@@ -9,6 +9,14 @@ import style from './BookEdit.module.css'
 export const BookEdit = () => {
   const books = useSelector((state) => state.allBooks)
   const categories = useSelector((state) => state.category)
+  const [editedBook, setEditedBook] = useState({
+    title: '',
+    description: '',
+    author: '',
+    category: '',
+    subscription: '',
+    id: '',
+  })
 
   const [input, setInput] = useState({
     search: '',
@@ -38,14 +46,7 @@ export const BookEdit = () => {
       id: book[0].id,
     })
   }
-  const [editedBook, setEditedBook] = useState({
-    title: '',
-    description: '',
-    author: '',
-    category: '',
-    subscription: '',
-    id: '',
-  })
+
   const handleClickSearch = () => {
     const book = books.filter((el) => {
       return el.title.toLowerCase().trim() === input.search.toLowerCase().trim()
