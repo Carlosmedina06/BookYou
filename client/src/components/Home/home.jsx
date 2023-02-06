@@ -5,7 +5,7 @@ import Stack from '@mui/material/Stack'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
 
-import { getBooks, getCategorys, getAutores, getUsers } from '../../redux/actions/index'
+import { getBooks,getBooksCarousel, getCategorys, getAutores, getUsers } from '../../redux/actions/index'
 import FiltradoGenero from '../FiltradoGenero/filtradoGenero'
 import OrdAlfabetico from '../OrderAlfab/orderAlfabetico'
 import NavBar from '../NavBar/NavBar'
@@ -108,6 +108,7 @@ export const Home = () => {
 
   useEffect(() => {
     dispatch(getBooks())
+    dispatch(getBooksCarousel())
     dispatch(getCategorys())
     dispatch(getAutores())
     dispatch(getUsers())

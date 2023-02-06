@@ -3,6 +3,9 @@ export const GET_USERS = 'GET_USERS'
 export const GET_USER_BY_ID = 'GET_USER_BY_ID'
 export const GET_ONE_USER = 'GET_ONE_USER'
 export const ERROR = 'ERROR'
+
+export const GET_BOOKS = "GET_BOOKS"
+export const GET_BOOKS_CAROUSEL = "GET_BOOKS_CAROUSEL"
 export const GET_BOOKBY_ID = 'GET_BOOKBY_ID'
 export const GET_BOOK_ID = 'GET_BOOKBY_ID'
 export const GET_SEARCH_BOOK = 'GET_SEARCH_BOOK'
@@ -118,7 +121,23 @@ export const getBooks = () => async (dispatch) => {
     const info = await api.get('/book')
 
     return dispatch({
-      type: 'GET_BOOKS',
+      type: GET_BOOKS,
+      payload: info.data,
+    })
+  } catch (error) {
+    dispatch({
+      type: ERROR,
+      payload: error.message,
+    })
+  }
+}
+
+export const getBooksCarousel = () => async (dispatch) => {
+  try {
+    const info = await api.get('/book')
+
+    return dispatch({
+      type: GET_BOOKS_CAROUSEL,
       payload: info.data,
     })
   } catch (error) {
