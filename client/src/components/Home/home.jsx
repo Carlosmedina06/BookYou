@@ -29,6 +29,7 @@ import style from '../Home/home.module.css'
 import Bot from '../chatbot/ChatBot'
 import CarouselFreeBooks from '../Carouseles/CarouselFreeBooks/CarouselFreeBooks'
 import CarouselBooksPremium from '../Carouseles/CarouselBooksPremium/CarouselBooksPremium'
+import CarouselComentados from '../Carouseles/CarouselComments/Carousel'
 
 export const Home = () => {
   const dispatch = useDispatch()
@@ -123,6 +124,7 @@ export const Home = () => {
   }, [bookInputtodos, authorInput, bookInput, allBooks, books])
 
   useEffect(() => {
+
     dispatch(getBooks());
     dispatch(getCategorys());
     dispatch(getAutores());
@@ -259,6 +261,20 @@ export const Home = () => {
       </div>
       <div />
       <div>
+        <div style={{ position: 'absolute', left: '290px', top: '65rem' }}>
+          <h3
+            style={{
+              color: '#010326',
+              position: 'absolute',
+              top: '-20px',
+              left: '20px',
+              fontSize: '30px',
+            }}
+          >
+            Los mas comentados
+          </h3>
+          <CarouselComentados />
+        </div>
 
         <div style={{ position: 'absolute', left: '290px', top: '95rem' }}>
           <h3

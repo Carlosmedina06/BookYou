@@ -144,8 +144,8 @@ const Bookdetail = () => {
         <div
           style={{
             position: 'absolute',
-            top: '480px',
-            left: '300px',
+            top: '695px',
+            left: '900px',
           }}
         >
           <button className={style.boton} onClick={() => setBooks(!books)}>

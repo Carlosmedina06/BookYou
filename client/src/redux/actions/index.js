@@ -1,24 +1,27 @@
 /* ACA ESTA TODA LA CONEXION BACK Y FRONT!! */
 
-export const GET_USERS = 'GET_USERS';
-export const GET_USER_BY_ID = 'GET_USER_BY_ID';
-export const GET_ONE_USER = 'GET_ONE_USER';
-export const ERROR = 'ERROR';
-export const GET_BOOKBY_ID = 'GET_BOOKBY_ID';
-export const GET_BOOK_ID = 'GET_BOOKBY_ID';
-export const GET_SEARCH_BOOK = 'GET_SEARCH_BOOK';
-export const LOGIN_GOOGLE = 'LOGIN_GOOGLE';
-export const LOGIN_LOCAL = 'LOGIN_LOCAL';
-export const LOGOUT = 'LOGOUT';
-export const LOGIN = 'LOGIN';
-export const REGISTER_LOCAL = 'REGISTER_LOCAL';
-export const CLEAR_BOOK_DETAILS = 'CLEAR_BOOK_DETAIL';
-export const GET_BOOKS_FREE = 'GET_BOOKS_FREE';
-export const GET_BOOKS_PREMIUM = 'GET_BOOKS_PREMIUM';
 
-export const SUBSCRIPTION = 'SUBSCRIPTION';
+export const GET_USERS = 'GET_USERS'
+export const GET_USER_BY_ID = 'GET_USER_BY_ID'
+export const GET_ONE_USER = 'GET_ONE_USER'
+export const ERROR = 'ERROR'
 
-export const GET_PAGE_VIEWS = 'GET_PAGE_VIEWS';
+export const GET_BOOKS = "GET_BOOKS"
+export const GET_BOOKS_CAROUSEL = "GET_BOOKS_CAROUSEL"
+export const GET_BOOKBY_ID = 'GET_BOOKBY_ID'
+export const GET_BOOK_ID = 'GET_BOOKBY_ID'
+export const GET_SEARCH_BOOK = 'GET_SEARCH_BOOK'
+export const LOGIN_GOOGLE = 'LOGIN_GOOGLE'
+export const LOGIN_LOCAL = 'LOGIN_LOCAL'
+export const LOGOUT = 'LOGOUT'
+export const LOGIN = 'LOGIN'
+export const REGISTER_LOCAL = 'REGISTER_LOCAL'
+export const CLEAR_BOOK_DETAILS = 'CLEAR_BOOK_DETAIL'
+
+export const SUBSCRIPTION = 'SUBSCRIPTION'
+
+export const GET_PAGE_VIEWS = 'GET_PAGE_VIEWS'
+
 
 import {
   GoogleAuthProvider,
@@ -131,7 +134,23 @@ export const getBooks = () => async dispatch => {
     const info = await api.get('/book');
 
     return dispatch({
-      type: 'GET_BOOKS',
+      type: GET_BOOKS,
+      payload: info.data,
+    })
+  } catch (error) {
+    dispatch({
+      type: ERROR,
+      payload: error.message,
+    })
+  }
+}
+
+export const getBooksCarousel = () => async (dispatch) => {
+  try {
+    const info = await api.get('/book')
+
+    return dispatch({
+      type: GET_BOOKS_CAROUSEL,
       payload: info.data,
     });
   } catch (error) {

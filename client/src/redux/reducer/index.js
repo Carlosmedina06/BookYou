@@ -4,6 +4,8 @@ import {
   GET_USERS,
   /* GET_ONE_USER, */
   //GET_SEARCH_BOOK,
+  GET_BOOKS,
+  GET_BOOKS_CAROUSEL,
   LOGIN,
   LOGIN_GOOGLE,
   LOGIN_LOCAL,
@@ -19,6 +21,7 @@ import {
 const initialState = {
   books: [],
   allBooks: [],
+  allBooksCarousel: [],
   detail: [],
   category: [],
   autor: [],
@@ -103,6 +106,7 @@ function rootReducer(state = initialState, action) {
         comments: action.payload,
       };
     }
+
     case 'GET_COMENTARIOS_RATE': {
       return {
         ...state,
@@ -122,12 +126,20 @@ function rootReducer(state = initialState, action) {
       };
     }
 
-    case 'GET_BOOKS':
+    case GET_BOOKS:
+
       return {
         ...state,
         books: action.payload,
         allBooks: action.payload,
-      };
+
+      }
+    case GET_BOOKS_CAROUSEL:
+      return {
+        ...state,
+        allBooksCarousel: action.payload,
+      }
+
     case 'GET_SEARCH_BOOK':
       return {
         ...state,
