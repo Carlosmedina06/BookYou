@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faChevronLeft,
@@ -10,7 +9,6 @@ import Card from '../../Card/Card';
 import style from '../../CssGenerico/Carousel.module.css';
 
 const CarouselFreeBooks = ({ booksOpen }) => {
-  // const libros = useSelector(state => state.allBooks);
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const booksFree = booksOpen?.filter(b => b.subscription === 'free');

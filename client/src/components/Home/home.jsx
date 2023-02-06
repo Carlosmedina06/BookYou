@@ -5,7 +5,6 @@ import Stack from '@mui/material/Stack';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
-import Carousel from '../Carouseles/CarouselComments/Carousel';
 import CarouselFreeBooks from '../Carouseles/CarouselFreeBooks/CarouselFreeBooks';
 import CarouselBooksPremium from '../Carouseles/CarouselBooksPremium/CarouselBooksPremium';
 
@@ -14,7 +13,6 @@ import {
   getCategorys,
   getAutores,
   getUsers,
-  // getMostComments,
   getFreeBooks,
   getPremiumBooks,
 } from '../../redux/actions/index';
@@ -46,12 +44,9 @@ export const Home = () => {
   const [didMount111, setDidMount] = useState(false);
 
   const allBooks = useSelector(state => state.books);
-  // const mostCommented = useSelector(state => state.mostCommentsBooks);
   const booksOpen = useSelector(state => state.booksFree);
   const booksPaid = useSelector(state => state.booksPremium);
 
-  // console.log(mostCommented);
-  console.log(allBooks);
   /* ----------Paginacion------------- */
 
   const [currentPage, setCurrentPage] = useState(0);
@@ -138,7 +133,6 @@ export const Home = () => {
     dispatch(getCategorys());
     dispatch(getAutores());
     dispatch(getUsers());
-    // dispatch(getMostComments());
     dispatch(getFreeBooks());
     dispatch(getPremiumBooks());
   }, [dispatch]);
@@ -271,20 +265,6 @@ export const Home = () => {
       </div>
       <div />
       <div>
-        {/* <div style={{ position: 'absolute', left: '290px', top: '65rem' }}>
-          <h3
-            style={{
-              color: '#010326',
-              position: 'absolute',
-              top: '-20px',
-              left: '20px',
-              fontSize: '30px',
-            }}
-          >
-            Los mas comentados
-          </h3>
-          <Carousel mostCommented={mostCommented} />
-        </div> */}
         <div style={{ position: 'absolute', left: '290px', top: '95rem' }}>
           <h3
             style={{

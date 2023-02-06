@@ -12,7 +12,6 @@ import {
   CLEAR_BOOK_DETAILS,
   GET_USER_BY_ID,
   GET_PAGE_VIEWS,
-  // GET_MOST_COMMENTS,
   GET_BOOKS_FREE,
   GET_BOOKS_PREMIUM,
 } from '../actions';
@@ -33,7 +32,6 @@ const initialState = {
   pageviews: [],
   topBooks: [],
   rate: [],
-  // mostCommentsBooks: [],
   booksFree: [],
   booksPremium: [],
 };
@@ -196,16 +194,6 @@ function rootReducer(state = initialState, action) {
         ...state,
         pageviews: action.payload,
       };
-    // case GET_MOST_COMMENTS:
-    //   let newArr = [].concat(state.allBooks);
-    //   let booksSort = newArr.sort((a, b) => {
-    //     return b.comment.length - a.comment.length;
-    //   });
-    //   console.log(booksSort);
-    //   return {
-    //     ...state,
-    //     mostCommentsBooks: booksSort,
-    //   };
 
     default:
       return { ...state };

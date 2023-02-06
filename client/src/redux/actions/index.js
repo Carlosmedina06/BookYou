@@ -15,7 +15,6 @@ export const REGISTER_LOCAL = 'REGISTER_LOCAL';
 export const CLEAR_BOOK_DETAILS = 'CLEAR_BOOK_DETAIL';
 export const GET_BOOKS_FREE = 'GET_BOOKS_FREE';
 export const GET_BOOKS_PREMIUM = 'GET_BOOKS_PREMIUM';
-// export const GET_MOST_COMMENTS = 'GET_MOST_COMMENTS';
 
 export const SUBSCRIPTION = 'SUBSCRIPTION';
 
@@ -338,21 +337,11 @@ export const getPageViews = () => async dispatch => {
   }
 };
 
-// ============= Carrousel Most Comments ==========
-
-// export const getMostComments = () => {
-//   return {
-//     type: GET_MOST_COMMENTS,
-//   };
-// };
-
 // ========== Carrousel Books Free ===============
 export const getFreeBooks = () => async dispatch => {
   try {
     const info = await api.get(`https://server-bookyou.onrender.com/book/`);
-    console.log(info.data);
     const booksFree = info.data.filter(b => b.subscription === 'free');
-    console.log(booksFree);
 
     return dispatch({
       type: 'GET_BOOKS_FREE',
@@ -370,9 +359,7 @@ export const getFreeBooks = () => async dispatch => {
 export const getPremiumBooks = () => async dispatch => {
   try {
     const info = await api.get(`https://server-bookyou.onrender.com/book/`);
-    console.log(info.data);
     const booksPremium = info.data.filter(b => b.subscription === 'premium');
-    console.log(booksPremium);
 
     return dispatch({
       type: 'GET_BOOKS_PREMIUM',

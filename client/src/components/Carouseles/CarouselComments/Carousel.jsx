@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faChevronLeft,
@@ -8,21 +7,9 @@ import {
 
 import Card from '../../Card/Card';
 import style from '../../CssGenerico/Carousel.module.css';
-import { useEffect } from 'react';
-// import { getTopBooks } from '../../../utils/Functions/topEight.js';
-// import { getMostComments } from '../../../redux/actions';
 
 const Carousel = ({ mostCommented }) => {
-  // const mostCommented = useSelector(state => state.mostCommentsBooks);
   const [currentIndex, setCurrentIndex] = useState(0);
-
-  // const dispatch = useDispatch();
-
-  // useEffect(() => {
-  //   dispatch(getMostComments());
-  // }, [dispatch]);
-
-  // console.log(mostCommented);
 
   const librosPorPagina = 4;
   const librosAMostrar = mostCommented.slice(
