@@ -13,7 +13,7 @@ export const FiltradoGenero = ({
 
   function handleFilterCategorys(e) {
     setBookInputtodos(e.target.value)
-    setCurrentPage(1)
+    setCurrentPage(0)
     setCountOne(1)
   }
 

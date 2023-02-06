@@ -46,11 +46,21 @@ function rootReducer(state = initialState, action) {
   let bookSort =
     action.payload === 'asc'
       ? state.books.sort((a, b) =>
-          a.title > b.title ? 1 : a.title < b.title ? -1 : 0
+
+          a.title.toLowerCase() > b.title.toLowerCase()
+            ? 1
+            : a.title.toLowerCase() < b.title.toLowerCase()
+            ? -1
+            : 0,
         )
       : state.books.sort((a, b) =>
-          a.title > b.title ? -1 : a.title < b.title ? 1 : 0
-        );
+          a.title.toLowerCase() > b.title.toLowerCase()
+            ? -1
+            : a.title.toLowerCase() < b.title.toLowerCase()
+            ? 1
+            : 0,
+        )
+
   /*   let allAutores = state.allBooks
     let autorFilter =
     action.payload === 'todos'
