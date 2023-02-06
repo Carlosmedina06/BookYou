@@ -14,6 +14,9 @@ import {
   getCategorys,
   getAutores,
   getUsers,
+  // getMostComments,
+  getFreeBooks,
+  getPremiumBooks,
 } from '../../redux/actions/index';
 import FiltradoGenero from '../FiltradoGenero/filtradoGenero';
 import OrdAlfabetico from '../OrderAlfab/orderAlfabetico';
@@ -43,7 +46,11 @@ export const Home = () => {
   const [didMount111, setDidMount] = useState(false);
 
   const allBooks = useSelector(state => state.books);
+  // const mostCommented = useSelector(state => state.mostCommentsBooks);
+  const booksOpen = useSelector(state => state.booksFree);
+  const booksPaid = useSelector(state => state.booksPremium);
 
+  // console.log(mostCommented);
   console.log(allBooks);
   /* ----------Paginacion------------- */
 
@@ -131,6 +138,9 @@ export const Home = () => {
     dispatch(getCategorys());
     dispatch(getAutores());
     dispatch(getUsers());
+    // dispatch(getMostComments());
+    dispatch(getFreeBooks());
+    dispatch(getPremiumBooks());
   }, [dispatch]);
 
   //----------------------localStorage--------------------------
@@ -261,7 +271,7 @@ export const Home = () => {
       </div>
       <div />
       <div>
-        <div style={{ position: 'absolute', left: '290px', top: '65rem' }}>
+        {/* <div style={{ position: 'absolute', left: '290px', top: '65rem' }}>
           <h3
             style={{
               color: '#010326',
@@ -273,8 +283,8 @@ export const Home = () => {
           >
             Los mas comentados
           </h3>
-          <Carousel />
-        </div>
+          <Carousel mostCommented={mostCommented} />
+        </div> */}
         <div style={{ position: 'absolute', left: '290px', top: '95rem' }}>
           <h3
             style={{
@@ -287,7 +297,7 @@ export const Home = () => {
           >
             Libros Free
           </h3>
-          <CarouselFreeBooks />
+          <CarouselFreeBooks booksOpen={booksOpen} />
         </div>
         <div style={{ position: 'absolute', left: '290px', top: '125rem' }}>
           <h3
@@ -301,7 +311,7 @@ export const Home = () => {
           >
             Libros Premium
           </h3>
-          <CarouselBooksPremium />
+          <CarouselBooksPremium booksPaid={booksPaid} />
         </div>
       </div>
     </div>

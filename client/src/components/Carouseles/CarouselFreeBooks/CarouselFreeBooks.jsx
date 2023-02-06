@@ -9,14 +9,14 @@ import Card from '../../Card/Card';
 
 import style from '../../CssGenerico/Carousel.module.css';
 
-const CarouselFreeBooks = () => {
-  const libros = useSelector(state => state.allBooks);
+const CarouselFreeBooks = ({ booksOpen }) => {
+  // const libros = useSelector(state => state.allBooks);
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  const booksFree = libros.filter(b => b.subscription === 'free');
+  const booksFree = booksOpen?.filter(b => b.subscription === 'free');
 
   const librosPorPagina = 4;
-  const librosAMostrar = booksFree.slice(
+  const librosAMostrar = booksFree?.slice(
     currentIndex * librosPorPagina,
     currentIndex * librosPorPagina + librosPorPagina
   );
