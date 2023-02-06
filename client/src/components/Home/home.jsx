@@ -31,7 +31,8 @@ export const Home = () => {
 
   const allBooks = useSelector((state) => state.books)
 
-  console.log(allBooks)
+  console.log('filtro libros', filterLibros)
+
   /* ----------Paginacion------------- */
 
   const [currentPage, setCurrentPage] = useState(0)
@@ -170,7 +171,12 @@ export const Home = () => {
           <SearchByAutor authorInput={authorInput} setAuthorInput={setAuthorInput} />
         </div>
         <div>
-          <FiltradoGenero bookInputtodos={bookInputtodos} setBookInputtodos={setBookInputtodos} />
+          <FiltradoGenero
+            bookInputtodos={bookInputtodos}
+            setBookInputtodos={setBookInputtodos}
+            setCountOne={setCountOne}
+            setCurrentPage={setCurrentPage}
+          />
         </div>
         <div style={{ position: 'absolute', top: '130px', left: '-70px' }}>
           <OrdAlfabetico books={books} setBooks={setBooks} />
@@ -186,18 +192,20 @@ export const Home = () => {
               <div className={style.mover1}>
                 <div className={style.mover}>
                   {filterLibros.length > 0
-                    ? filterLibros.map((book) => (
-                        <Card
-                          key={book.id}
-                          autor={book.author}
-                          className={style.filterCard}
-                          comentarios={book.content}
-                          estado={book.subscription}
-                          id={book.id}
-                          img={book.img}
-                          name={book.title}
-                        />
-                      ))
+                    ? filterLibros
+                        .slice(currentPage, currentPage + 8)
+                        .map((book) => (
+                          <Card
+                            key={book.id}
+                            autor={book.author}
+                            className={style.filterCard}
+                            comentarios={book.content}
+                            estado={book.subscription}
+                            id={book.id}
+                            img={book.img}
+                            name={book.title}
+                          />
+                        ))
                     : allBooks
                         .slice(currentPage, currentPage + 8)
                         .map((book) => (
