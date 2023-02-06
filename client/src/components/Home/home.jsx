@@ -5,12 +5,9 @@ import Stack from '@mui/material/Stack';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
-import { useDispatch, useSelector } from 'react-redux';
-import { useEffect, useState } from 'react';
-import Pagination from '@mui/material/Pagination';
-import Stack from '@mui/material/Stack';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import Carousel from '../Carouseles/CarouselComments/Carousel';
+import CarouselFreeBooks from '../Carouseles/CarouselFreeBooks/CarouselFreeBooks';
+import CarouselBooksPremium from '../Carouseles/CarouselBooksPremium/CarouselBooksPremium';
 
 import {
   getBooks,
@@ -21,7 +18,6 @@ import {
 import FiltradoGenero from '../FiltradoGenero/filtradoGenero';
 import OrdAlfabetico from '../OrderAlfab/orderAlfabetico';
 import NavBar from '../NavBar/NavBar';
-import Carousel from '../Carouseles/CarouselRecomendados/Carousel';
 import SearchBar from '../SearchBar/SearchBar';
 import SearchByAutor from '../FiltradoAutor/filterAutor';
 import Card from '../Card/Card';
