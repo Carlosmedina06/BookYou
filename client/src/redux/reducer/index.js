@@ -12,7 +12,9 @@ import {
   CLEAR_BOOK_DETAILS,
   GET_USER_BY_ID,
   GET_PAGE_VIEWS,
-} from '../actions'
+  GET_BOOKS_FREE,
+  GET_BOOKS_PREMIUM,
+} from '../actions';
 
 const initialState = {
   books: [],
@@ -30,18 +32,21 @@ const initialState = {
   pageviews: [],
   topBooks: [],
   rate: [],
-}
+  booksFree: [],
+  booksPremium: [],
+};
 
 function rootReducer(state = initialState, action) {
-  let allCateg = state.allBooks
+  let allCateg = state.allBooks;
   let categFilter =
     action.payload === 'todos'
       ? allCateg
-      : allCateg.filter((c) => c.category?.includes(action.payload))
+      : allCateg.filter(c => c.category?.includes(action.payload));
 
   let bookSort =
     action.payload === 'asc'
       ? state.books.sort((a, b) =>
+
           a.title.toLowerCase() > b.title.toLowerCase()
             ? 1
             : a.title.toLowerCase() < b.title.toLowerCase()
@@ -55,6 +60,7 @@ function rootReducer(state = initialState, action) {
             ? 1
             : 0,
         )
+
   /*   let allAutores = state.allBooks
     let autorFilter =
     action.payload === 'todos'
@@ -66,42 +72,54 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         loginUser: action.payload,
-      }
+      };
 
     case LOGIN_LOCAL:
       return {
         ...state,
         loginUser: action.payload,
-      }
+      };
 
     case LOGOUT:
       return {
         ...state,
         loginUser: '',
-      }
+      };
 
     case LOGIN:
       return {
         ...state,
         loginUser: action.payload,
-      }
+      };
 
     case REGISTER_LOCAL: {
       return {
         ...state,
-      }
+      };
     }
     case 'GET_COMENTARIOS': {
       return {
         ...state,
         comments: action.payload,
-      }
+      };
     }
     case 'GET_COMENTARIOS_RATE': {
       return {
         ...state,
         rate: action.payload,
-      }
+      };
+    }
+    case GET_BOOKS_FREE: {
+      return {
+        ...state,
+        booksFree: action.payload,
+      };
+    }
+    case GET_BOOKS_PREMIUM: {
+      return {
+        ...state,
+        booksPremium: action.payload,
+      };
     }
 
     case 'GET_BOOKS':
@@ -109,33 +127,33 @@ function rootReducer(state = initialState, action) {
         ...state,
         books: action.payload,
         allBooks: action.payload,
-      }
+      };
     case 'GET_SEARCH_BOOK':
       return {
         ...state,
         books: action.payload,
-      }
+      };
     case 'GET_ALL_GENEROS':
       return {
         ...state,
         category: action.payload,
-      }
+      };
     case 'GET_PALABRAS_PROHIBIDAS':
       return {
         ...state,
         palabrasProhibidas: action.payload,
-      }
+      };
     case 'GET_SEARCH_AUTORES':
       return {
         ...state,
         autor: action.payload,
-      }
+      };
 
     case 'FILTER_CATEGORY':
       return {
         ...state,
         books: categFilter,
-      }
+      };
 
     /*  case 'FILTER_AUTOR':
       return {
@@ -147,12 +165,12 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         books: bookSort,
-      }
+      };
     case GET_USERS:
       return {
         ...state,
         users: action.payload,
-      }
+      };
     /* 
     case GET_USER_BY_ID:
       return {
@@ -164,32 +182,32 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         oneUser: action.payload,
-      }
+      };
     case ERROR:
       return {
         ...state,
         error: action.payload,
-      }
+      };
     case GET_BOOKBY_ID:
       return {
         ...state,
         detail: action.payload,
-      }
+      };
     case CLEAR_BOOK_DETAILS:
       return {
         ...state,
         detail: '',
-      }
+      };
 
     case GET_PAGE_VIEWS:
       return {
         ...state,
         pageviews: action.payload,
-      }
+      };
 
     default:
-      return state
+      return { ...state };
   }
 }
 
-export default rootReducer
+export default rootReducer;
