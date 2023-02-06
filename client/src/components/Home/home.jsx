@@ -1,3 +1,9 @@
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect, useState } from 'react';
+import Pagination from '@mui/material/Pagination';
+import Stack from '@mui/material/Stack';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
@@ -15,16 +21,13 @@ import {
 import FiltradoGenero from '../FiltradoGenero/filtradoGenero';
 import OrdAlfabetico from '../OrderAlfab/orderAlfabetico';
 import NavBar from '../NavBar/NavBar';
-import Carousel from '../Carouseles/CarouselComments/Carousel';
+import Carousel from '../Carouseles/CarouselRecomendados/Carousel';
 import SearchBar from '../SearchBar/SearchBar';
 import SearchByAutor from '../FiltradoAutor/filterAutor';
 import Card from '../Card/Card';
 /* import Pagination from '../Pagination/Pagination' */
 import style from '../Home/home.module.css';
 import Bot from '../chatbot/ChatBot';
-import CarouselFreeBooks from '../Carouseles/CarouselFreeBooks/CarouselFreeBooks';
-import CarouselBooksPremium from '../Carouseles/CarouselBooksPremium/CarouselBooksPremium';
-
 
 export const Home = () => {
   const dispatch = useDispatch();
@@ -44,13 +47,13 @@ export const Home = () => {
   const [didMount111, setDidMount] = useState(false);
 
   const allBooks = useSelector(state => state.books);
+
   console.log(allBooks);
   /* ----------Paginacion------------- */
 
   const [currentPage, setCurrentPage] = useState(0);
   const [countOne, setCountOne] = useState(1);
   const [countTwo, setCountTwo] = useState(1);
-
 
   const onChangePagination = (event, value) => {
     setCountOne(value);
@@ -212,7 +215,6 @@ export const Home = () => {
               <div className={style.mover1}>
                 <div className={style.mover}>
                   {filterLibros.length > 0
-
                     ? filterLibros.map(book => (
                         <Card
                           key={book.id}
@@ -251,7 +253,9 @@ export const Home = () => {
           <Pagination
             className={style.pagination}
             count={Math.ceil(
-              filterLibros.length === 0 ? allBooks.length / 8 : filterLibros.length / 8,
+              filterLibros.length === 0
+                ? allBooks.length / 8
+                : filterLibros.length / 8
             )}
             page={countOne}
             size="large"
@@ -259,6 +263,7 @@ export const Home = () => {
           />
         </Stack>
       </div>
+      <div />
       <div>
         <div style={{ position: 'absolute', left: '290px', top: '65rem' }}>
           <h3
