@@ -1,14 +1,16 @@
 
 
+
 import React, { useState,  useEffect } from 'react'
 
 import { useSelector } from 'react-redux'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons'
 
-import Card from '../../Card/Card'
-import style from '../../CssGenerico/Carousel.module.css'
-import { getTopBooks } from '../../../utils/Functions/topEight.js'
+
+import Card from '../../Card/Card';
+import style from '../../CssGenerico/Carousel.module.css';
+
 
 const Carousel = () => {
   const libros = useSelector((state) => state.allBooksCarousel)
@@ -47,18 +49,21 @@ const librosOrdenados = dataReady
   const handleLeftArrowClick = () => {
     if (currentIndex === 0) {
       setCurrentIndex(Math.floor(librosOrdenados.length / librosPorPagina))
+
     } else {
-      setCurrentIndex(currentIndex - 1)
+      setCurrentIndex(currentIndex - 1);
     }
-  }
+  };
 
   const handleRightArrowClick = () => {
+
     if (currentIndex === Math.floor(librosOrdenados.length / librosPorPagina)) {
       setCurrentIndex(0)
+
     } else {
-      setCurrentIndex(currentIndex + 1)
+      setCurrentIndex(currentIndex + 1);
     }
-  }
+  };
 
   //-------------------
 
@@ -72,6 +77,7 @@ const librosOrdenados = dataReady
   )
   const currentLibros = librosOrdenados.slice(currentIndex, currentIndex + librosPorPagina)
   const allLibros = [...prevLibros, ...currentLibros, ...nextLibros]
+
   //-----------------------
 
   return (
@@ -101,7 +107,7 @@ const librosOrdenados = dataReady
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Carousel
+export default Carousel;
