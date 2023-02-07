@@ -11,7 +11,7 @@ import axios from 'axios'
 import { getOneUser, suscription } from '../../redux/actions'
 import NavBar from '../NavBar/NavBar'
 
-import UserAccountRow from './components/userAccountRow'
+import userAccountRow from './components/userAccountRow'
 import style from './UserAccount.module.css'
 import UserAccountChangedDataCard from './components/UserAccountChangedDataCard'
 const UserAccount = () => {
