@@ -13,7 +13,8 @@ import { GraphicUsersFreeToSubs } from './UserGraph/UserGraph'
 import { GraphicCommentsQuantity } from './CommentGraph/CommentGraph'
 import { AllUsers } from './AllUsers/allUsers'
 import { AllBooksUsers } from './AllBooks/allBooks'
-
+import { MoneyHandled } from './MoneyHandled/MoneyHandled'
+import PageViews from './PageViews/visitCounter.jsx'
 export const DashBoardMain = () => {
   const { select } = useParams()
 
@@ -26,49 +27,50 @@ export const DashBoardMain = () => {
         <div className={style.mainContent}>
           {select === 'stadistics' && (
             <div className={style.homeHeaderGraphscontainer}>
-              <div className={style.ContainerTitle}>
-                <h2 className={style.titleEstadistics}>Estadisticas</h2>
+              <div className={style.title}>
+                <h2 className={style.titleEstadistics}>Estadísticas</h2>
               </div>
               <div className={style.homeHeaderGraphs}>
-                <div className={style.graphCardStadistics}>
-                  {/* <img src="https://res.cloudinary.com/dn8jxsqka/image/upload/v1674958273/grafica_3_ghpcmm.png" alt="" /> */}
-                  <div className={style.graphBooksStadistics}>
-                    {' '}
-                    <GraphicBooksFreeToSubs />
-                  </div>
-                </div>
-                <div className={style.graphCardStadistics}>
-                  {/* <img src="https://res.cloudinary.com/dn8jxsqka/image/upload/v1674958273/grafica_3_ghpcmm.png" alt="" /> */}
-                  <div className={style.graphUsersStadistics}>
-                    <GraphicUsersFreeToSubs />
-                  </div>
-                </div>
-                <div className={style.graphCardStadistics}>
-                  {/* <img src="https://res.cloudinary.com/dn8jxsqka/image/upload/v1674958273/grafica_3_ghpcmm.png" alt="" /> */}
-                  <div className={style.graphCommentsStadistics}>
-                    {' '}
+                <div className={style.comments}>
                     <GraphicCommentsQuantity />
-                  </div>
                 </div>
+                <div className={style.counter}>
+                   <PageViews/>
+                </div>
+                
               </div>
-              {/* <div className={style.arrowText}> <Link to="/dashboard/">Ver todas las estadisticas </Link> <AiOutlineRight/> </div>  */}
+              <div className={style.secondRow}>
+                <div className={style.usergraphic}>
+                    <GraphicUsersFreeToSubs />
+                </div>
+                <div className={style.bookgraphic}>
+                    <GraphicBooksFreeToSubs />
+                  
+                </div>
+                <div className={style.money}>
+                   <MoneyHandled/>
+                </div>
+                               
+              </div>
+              
             </div>
           )}
           {select === 'books' && (
             <div className={style.bookContainer}>
               <div className={style.graphBooks}>
-                {' '}
+                
                 <GraphicBooksFreeToSubs />
               </div>
-              <div>
+              
+              <div className={style.AllBooksUsers}>
                 <AllBooksUsers />
               </div>
             </div>
           )}
 
           {select === 'usuarios' && (
-            <div className={style.userContainer}>
-              <div className={style.graphCardUser}>
+            <div className={style.userGraphContainer}>
+              <div className={style.usersCardUser}>
                 <GraphicUsersFreeToSubs />
               </div>
 
@@ -79,12 +81,12 @@ export const DashBoardMain = () => {
           )}
           {select === 'comentarios' && (
             <div className={style.userContainer}>
-              <NavLink to="/dashboard/comentarios/commentEdit">
-                <button className={style.bookListEdit}>Edit</button>
-              </NavLink>
               <div className={style.graphCardUser}>
                 <GraphicCommentsQuantity />
               </div>
+              <NavLink to="/dashboard/comentarios/commentEdit">
+                <button className={style.bookListEdit}>Gestionar Comentarios</button>
+              </NavLink>
             </div>
           )}
         </div>

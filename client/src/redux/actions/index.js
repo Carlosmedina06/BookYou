@@ -1,8 +1,14 @@
 /* ACA ESTA TODA LA CONEXION BACK Y FRONT!! */
+
 export const GET_USERS = 'GET_USERS'
 export const GET_USER_BY_ID = 'GET_USER_BY_ID'
 export const GET_ONE_USER = 'GET_ONE_USER'
 export const ERROR = 'ERROR'
+
+export const GET_BOOKS = 'GET_BOOKS'
+export const GET_BOOKS_CAROUSEL = 'GET_BOOKS_CAROUSEL'
+export const GET_BOOKS_FREE = 'GET_BOOKS_FREE'
+export const GET_BOOKS_PREMIUM = 'GET_BOOKS_PREMIUM'
 export const GET_BOOKBY_ID = 'GET_BOOKBY_ID'
 export const GET_BOOK_ID = 'GET_BOOKBY_ID'
 export const GET_SEARCH_BOOK = 'GET_SEARCH_BOOK'
@@ -12,7 +18,13 @@ export const LOGOUT = 'LOGOUT'
 export const LOGIN = 'LOGIN'
 export const REGISTER_LOCAL = 'REGISTER_LOCAL'
 export const CLEAR_BOOK_DETAILS = 'CLEAR_BOOK_DETAIL'
+
 export const SUBSCRIPTION = 'SUBSCRIPTION'
+
+export const SET_LOADER = 'SET_LOADER'
+
+export const GET_PAGE_VIEWS = 'GET_PAGE_VIEWS'
+
 import {
   GoogleAuthProvider,
   signInWithPopup,
@@ -75,7 +87,6 @@ export const registerLocal = (email, password, displayName) => async (dispatch) 
 export const loginLocal = (email, password) => async (dispatch) => {
   const response = await signInWithEmailAndPassword(auth, email, password)
 
-
   api.post('/login', response.user).then((res) => {
     window.localStorage.setItem('token', res.data.token)
 
@@ -118,7 +129,23 @@ export const getBooks = () => async (dispatch) => {
     const info = await api.get('/book')
 
     return dispatch({
-      type: 'GET_BOOKS',
+      type: GET_BOOKS,
+      payload: info.data,
+    })
+  } catch (error) {
+    dispatch({
+      type: ERROR,
+      payload: error.message,
+    })
+  }
+}
+
+export const getBooksCarousel = () => async (dispatch) => {
+  try {
+    const info = await api.get('/book')
+
+    return dispatch({
+      type: GET_BOOKS_CAROUSEL,
       payload: info.data,
     })
   } catch (error) {
@@ -133,6 +160,7 @@ export const getBooks = () => async (dispatch) => {
 export const getUsers = () => async (dispatch) => {
   try {
     const info = await api.get('/user')
+
     return dispatch({
       type: GET_USERS,
       payload: info.data,
@@ -156,6 +184,7 @@ export const getOneUser = (id) => async (dispatch) => {
 
     return dispatch({
       type: GET_USER_BY_ID,
+      payload: info.data,
     })
   } catch (error) {
     dispatch({
@@ -194,7 +223,6 @@ export const getBookById = (id) => async (dispatch) => {
 /* ---------------GET GÉNEROS LITERARIOS------------------ */
 export const getCategorys = () => async (dispatch) => {
   try {
-
     const info = await api.get(`/category`)
 
     return dispatch({
@@ -212,7 +240,6 @@ export const getCategorys = () => async (dispatch) => {
 /* ----------------------- GET AUTORES LITERARIOS -------------------- */
 export const getAutores = () => async (dispatch) => {
   try {
-
     const info = await api.get(`/book`)
 
     return dispatch({
@@ -247,7 +274,6 @@ export const orderAlf = (payload) => {
 
 export const postBookReview = () => async (dispatch) => {
   try {
-
     const info = await api.get(`/create/book`)
 
     return dispatch({
@@ -262,17 +288,103 @@ export const postBookReview = () => async (dispatch) => {
   }
 }
 
+/* ----------------- GET TODO LOS COMENTARIOS  UN LIBRO----------------- */
+
+export const rateLibros = () => async (dispatch) => {
+  try {
+    const info = await api.get(`/comment/0`)
+    const comments = info.data
+      .filter((c) => c.rate == 5)
+      .map((c) => {
+        return {
+          rate: c.rate,
+          id: c.book,
+        }
+      })
+
+    return dispatch({
+      type: 'GET_COMENTARIOS_RATE',
+      payload: comments,
+    })
+  } catch (error) {
+    dispatch({
+      type: ERROR,
+      payload: error.message,
+    })
+  }
+}
+
 /* ----------------- GET PALABRAS PROHIBIDAS ---------------- */
 
 export const getPalabrasProhibidas = () => async (dispatch) => {
   try {
-    const info = await axios.get(`${urlLocal}/bannedwords?array=true`)
+    const info = await api.get(`/bannedwords?array=true`)
 
     /*  const palabras = info.data.filter((b) => b.word.toLowerCase().includes(name.toLowerCase())) */
 
     return dispatch({
       type: 'GET_PALABRAS_PROHIBIDAS',
       payload: info.data,
+    })
+  } catch (error) {
+    dispatch({
+      type: ERROR,
+      payload: error.message,
+    })
+  }
+}
+
+/* ----------------- LOADER---------------- */
+
+export const setLoader = (payload) => {
+  return { type: SET_LOADER, payload: payload }
+}
+
+/* ----------------- GET PageViews ---------------- */
+
+export const getPageViews = () => async (dispatch) => {
+  try {
+    const info = await api.get('/pageviews')
+
+    return dispatch({
+      type: 'GET_PAGE_VIEWS',
+      payload: info.data,
+    })
+  } catch (error) {
+    dispatch({
+      type: ERROR,
+      payload: error.message,
+    })
+  }
+}
+
+// ========== Carrousel Books Free ===============
+export const getFreeBooks = () => async (dispatch) => {
+  try {
+    const info = await api.get(`https://server-bookyou.onrender.com/book/`)
+    const booksFree = info.data.filter((b) => b.subscription === 'free')
+
+    return dispatch({
+      type: GET_BOOKS_FREE,
+      payload: booksFree,
+    })
+  } catch (error) {
+    dispatch({
+      type: ERROR,
+      payload: error.message,
+    })
+  }
+}
+
+// ============ Carrousel Books Premium ===========
+export const getPremiumBooks = () => async (dispatch) => {
+  try {
+    const info = await api.get(`https://server-bookyou.onrender.com/book/`)
+    const booksPremium = info.data.filter((b) => b.subscription === 'premium')
+
+    return dispatch({
+      type: GET_BOOKS_PREMIUM,
+      payload: booksPremium,
     })
   } catch (error) {
     dispatch({

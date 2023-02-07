@@ -83,20 +83,37 @@
   
   } */
 
+.perfilBoton {
+  display: flex;
+  margin-top: 20px;
+  margin-left: 1rem;
+  width: max-content;
+  padding: 5px;
+  background-color: none;
+  color: #010326;
+  font-size: 16px;
+  border-radius: 4px;
+  border: #010326 solid 1px;
+  transition: all 0.3s ease;
+}
+
+.perfilBoton:hover {
+  background-color: #010326;
+  color: #fff;
+}
 
 
 .readBookButton {
   display: flex;
   justify-content: center;
   align-items: center;
-  color: white;
+  color: #fff;
   cursor: pointer;
   margin: 3%;
-  width: 10rem;
+  width: 6rem;
   word-wrap: break-word;
   border-radius: 5px;
   border: 2px solid #00a3fe;
-  height: 50px;
   border-color: transparent;
   box-shadow: 1px 5px 5px 2px rgb(0 0 0 / 40%);
   outline: none;
@@ -104,8 +121,8 @@
   text-align: center;
   box-shadow: #010326;
   background-color: #f1ac15;
-  font-size: 1.4rem;
-  padding: 1rem 0.5rem 1rem 0.5rem;
+  font-size: 1rem;
+  padding: 10px;
   border-radius: 3px;
 }
 
@@ -178,4 +195,9 @@
   font-size: 16px;
 }
 
-/*---------------//Boton//---------------------*/
+.loaderContainer{
+display: flex;
+align-self: center;
+justify-content: center;
+width: 100%;
+}
