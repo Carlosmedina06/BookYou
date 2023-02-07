@@ -1,7 +1,7 @@
 
 
 
-.PageViewsCardContainer{
+/* .PageViewsCardContainer{
     display: flex;
     flex-direction: column;
     max-width: 200px;
@@ -11,7 +11,7 @@
   align-items: center;
   justify-content: center
 
-}
+} */
 
 .PageViewsNumber{
 color: orange;
@@ -23,4 +23,29 @@ margin: 3rem;
 .PageViewsCardTitle{
 font-size: 2rem;
 font-weight: 600;
+}
+
+.PageViewsCardContainer{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  width: 254px;
+  height: 254px;
+  border-radius: 30px;
+  background: #e0e0e0;
+  box-shadow: 15px 15px 30px #bebebe,
+           -15px -15px 30px #ffffff;
+}
+.title{
+  font-size: 22px;
+  font-weight: 400;
+  color: black;
+  
+}
+.content{
+  font-size: 24px;
+  font-weight: bolder;
+  color: orange;
 }
