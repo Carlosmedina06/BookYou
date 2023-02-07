@@ -1,96 +1,116 @@
-import { useState } from 'react'
+import axios from 'axios'
+import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
-
+import api from '../../../utils/axios/axios'
 import SideBar from '../../DashAdmin/sideBar/sideBar'
-
-import api from '../../../utils/axios/axios.js'
-
 
 import { CommentCard } from './CommentCard'
 import style from './CommentEdit.module.css'
 
 export const CommentEdit = () => {
-  const users = useSelector((state) => state.users)
-  const books = useSelector((state) => state.allBooks)
+  
+  const [rata, setRata] = useState(true)
+
+  useEffect(()=>{
+
+
+  },[rata])
+
+  const users = useSelector((state) => state.users);
+  // const books = useSelector((state)=> state.allBooks)
+  
 
   const [input, setInput] = useState({
-    searchUser: '',
-    searchBook: '',
-    select: '',
-  })
-
+    searchUser: "",
+    searchBook:"",
+    select:"",
+    userSelectId:""
+  });
+  const [commentsPerUser, setCommentsPerUser] = useState([])
+  const [markedComments, setMarkedComments] = useState([])
+  
   const handleSearch = (e) => {
     setInput({
       ...input,
       [e.target.name]: e.target.value,
-    })
-  }
-
-  const [book, setBook] = useState({
-    comments: [],
-  })
-
-  const handleClickSearchBook = async () => {
-    const book = books.filter((el) => {
-      return el.title.toLowerCase().trim() === input.searchBook.toLowerCase().trim()
-    })
-    const id = book[0].id
-
-    console.log(input.searchBook)
-    const details = await api.get('/book/' + id)
-    const bookDetails = details.data
-
-    console.log(bookDetails)
-    // const endpoints = book[0].comment.map((id)=> ('https://bookyou-production.up.railway.app/comment/user/'+id))
-    // //console.log(endpoints)
-    // Promise.all(endpoints.map((endpoint) => axios.get(endpoint))).then(
-    //     axios.spread((...allData) => {
-    //       console.log({ allData });
-    //     })
-    //   );
-
-    setBook({
-      //comments: bookDetails.comment
-      comments: book.comment,
-    })
-    console.log(book)
-  }
-  const handleClickSearchUser = (e) => {}
-  const handleChange = (e) => {
-    setEditedUser({ ...editedUser, [e.target.name]: e.target.value })
-  }
-  const handleSubmit = async (e) => {
-    e.preventDefault()
-
-    const formData = new FormData()
-
-    formData.append('name', editedUser.name)
-
-    const info = await api.put('/user/update' + editedUser.id, formData)
-
-    const res = info.data
-  }
-  const handleDelete = async (e) => {
-    // const info = await api.delete(
-    //   "/comment/delete/" + editedUser.id
-    // );
-    // const response = info.data;
-    // return response;
-
-    const info = await api.get('/comment/')
+    });
+  };
+  const getAllComments = async(numero) => {
+    const info = await api.get(`/comment/${numero}`)
     const comments = info.data
+    
+    return comments
+  }
+  const handleSearchUserInput = async (e )=>{
+    setMarkedComments([])
+    setInput({
+      ...input,
+      select: ''
+    })
+    
+    const commentsAvailable = await getAllComments(0)
+    const allCommentsUser = commentsAvailable?.filter((el)=>{
+     if(el.available){
+      return el.username.toLowerCase() === input.searchUser.toLowerCase()}
+    })
+    
+    setRata(!rata)
+    setCommentsPerUser(allCommentsUser)
+  }
+  
+ 
+  const handleUserSelect = async (e) =>{
+    setMarkedComments([])
+    setInput({
+      ...input,
+      select: e.target.value,
+      searchUser:''
+    })
+    
+    const commentsAvailable = await getAllComments(0)
+    const allCommentsUser = commentsAvailable?.filter((el)=>{
+     if(el.available){
+      return el.username.toLowerCase() === e.target.value.toLowerCase()}
+    })
+    
+    setRata(!rata)
+    setCommentsPerUser(allCommentsUser)
 
-    console.log(comments)
+  }
+  
+  const handleClickFindMarkedComments = async () =>{
+    setInput({
+      ...input,
+      select:'',
+      searchUser:''
+    })
+    setCommentsPerUser([])
+
+    // const info = await api.get(`/comment/1`)
+    // const allComments = info.data
+    const allComments = await getAllComments(1)
+    const allMarkedComments = allComments.filter((elem)=>{
+      if(elem.available){return elem.report > 0}
+    })
+    const allMarkedCommentsAscendingOrder = allMarkedComments.sort((a, b) => (a.report > b.report) ? -1 : 1)
+    setMarkedComments([
+      ...allMarkedCommentsAscendingOrder
+    ])
+    setRata(!rata)
   }
 
+  
   return (
     <>
+      
       <SideBar />
 
       <div className={style.container}>
-        <label>Search User Comments</label>
-        <input name="searchUser" value={input.search} onChange={(e) => handleSearch(e)} />
+        <label>Search comment by user</label>
+        <input name="searchUser" value={input.searchUser} onChange={(e) => handleSearch(e)} />
+        <button type='button' onClick={handleSearchUserInput}>Search</button>
         <br />
+        <label>Or select a user from the list</label>
         <select name="usersSelect" value={input.select} onChange={(e) => handleUserSelect(e)}>
           <option value="none" />
           {users?.map((element) => {
@@ -101,19 +121,21 @@ export const CommentEdit = () => {
             )
           })}
         </select>
-        <label>Search Book Comments</label>
-        <input name="searchBook" value={input.search} onChange={(e) => handleSearch(e)} />
-        <button type="button" onClick={handleClickSearchUser}>
-          Buscar
+        
+        <button type="button" onClick={handleClickFindMarkedComments}>
+          Search for Warnings
         </button>
-        {book.comments.map((el) => {
-          return <CommentCard key={el} comment={el} />
+        {markedComments.map((el)=>{
+          return <CommentCard comment={(el)} /> 
         })}
-
-        <button type="button" onClick={handleDelete}>
-          Delete Comment
-        </button>
+        
+        {commentsPerUser.map((el) => {
+          return <CommentCard comment={(el)} />
+        })}
+       
       </div>
+      
+            
     </>
   )
 }

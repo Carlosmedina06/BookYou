@@ -22,6 +22,10 @@ import DashBoardMain from './components/DashBoard/dashBoardMain/'
 import Suscripcion from './components/Suscripcion/Suscripcion'
 import UserAccount from './components/userAccount/userAccount'
 
+import PageViews from './components/DashBoard/PageViews/visitCounter'
+import FormBookUpdate from './components/FormBookUpdate/FormBookUpdate'
+
+
 const App = createHashRouter([
   {
     path: '/',
@@ -82,6 +86,10 @@ const App = createHashRouter([
         element: <Bookdetail />,
       },
       {
+        path: '/book/edit/:id',
+        element: <FormBookUpdate />,
+      },
+      {
         path: '/createbook',
         element: <PostBook />,
       },
@@ -105,6 +113,11 @@ const App = createHashRouter([
         path: '/dashboard/:select',
         element: <DashBoardMain />,
       },
+      {
+        path: '/pageviews',
+        element: <PageViews />,
+      },
+    
     ],
   },
 ])

@@ -21,7 +21,7 @@ const loginController = async (req, res) => {
         available: user.available,
         strike: user.strike,
       }
-      const token = jwt.sign(userForToken, process.env.SECRET, { expiresIn: '1h' })
+      const token = jwt.sign(userForToken, process.env.SECRET, { expiresIn: '24h' })
 
       return res.status(200).json({
         token,
@@ -44,7 +44,7 @@ const loginController = async (req, res) => {
         available: results.available,
         strike: results.strike,
       }
-      const token = jwt.sign(userForToken, process.env.SECRET, { expiresIn: '1h' })
+      const token = jwt.sign(userForToken, process.env.SECRET, { expiresIn: '24h' })
 
       res.status(200).json({
         token,

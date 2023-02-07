@@ -1,8 +1,8 @@
 import { useState } from 'react'
+
 import { useDispatch, useSelector } from 'react-redux'
 import { setLoader } from '../../redux/actions/index.js'
-
-
+import Swal from 'sweetalert2'
 import api from '../axios/axios.js'
 
 export const useForm = (initialForm, validationsForm) => {
@@ -19,6 +19,11 @@ export const useForm = (initialForm, validationsForm) => {
   /  dispatch(setLoader(true))      
     evt.preventDefault()
     try {
+      Swal.fire({
+        title: 'Cargando...',
+        showConfirmButton: false,
+        timer: 10000,
+      })
       setErrors(validationsForm(form))
       if (Object.keys(errors).length === 0) {
         const formData = new FormData()

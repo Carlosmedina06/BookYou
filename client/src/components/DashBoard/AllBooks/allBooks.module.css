@@ -1,7 +1,7 @@
 .cuadro{
-  margin-top: -4rem;
-  margin-left: -8rem;
-  position: absolute;
+  width:fit-content;
+  height: fit-content;
+  margin-top: -60px;
   }
 
 .bookListEdit{
