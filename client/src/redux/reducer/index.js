@@ -13,10 +13,12 @@ import {
   REGISTER_LOCAL,
   CLEAR_BOOK_DETAILS,
   GET_USER_BY_ID,
+  SET_LOADER,
   GET_PAGE_VIEWS,
   GET_BOOKS_FREE,
   GET_BOOKS_PREMIUM,
 } from '../actions';
+
 
 const initialState = {
   books: [],
@@ -32,12 +34,14 @@ const initialState = {
   oneUser: [],
   palabrasProhibidas: [],
   comments: [],
+  loading: false,
   pageviews: [],
   topBooks: [],
   rate: [],
   booksFree: [],
   booksPremium: [],
 };
+
 
 function rootReducer(state = initialState, action) {
   let allCateg = state.allBooks;
@@ -204,13 +208,22 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         detail: action.payload,
+        loading: false
+      }
       };
+
     case CLEAR_BOOK_DETAILS:
       return {
         ...state,
         detail: '',
-      };
 
+      }
+      case SET_LOADER:
+        return{
+         ...state,
+         loading: action.payload,
+
+        }
     case GET_PAGE_VIEWS:
       return {
         ...state,

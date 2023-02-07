@@ -22,6 +22,9 @@ export const CLEAR_BOOK_DETAILS = 'CLEAR_BOOK_DETAIL'
 
 export const SUBSCRIPTION = 'SUBSCRIPTION'
 
+export const SET_LOADER = 'SET_LOADER'
+
+
 export const GET_PAGE_VIEWS = 'GET_PAGE_VIEWS'
 
 
@@ -339,6 +342,18 @@ export const getPalabrasProhibidas = () => async dispatch => {
       payload: error.message,
     });
   }
+
+}
+
+
+/* ----------------- LOADER---------------- */
+
+export const setLoader = (payload ) =>{
+
+return ({type: SET_LOADER, payload: payload })
+
+}
+
 };
 
 /* ----------------- GET PageViews ---------------- */
@@ -393,3 +408,4 @@ export const getPremiumBooks = () => async dispatch => {
     });
   }
 };
+
