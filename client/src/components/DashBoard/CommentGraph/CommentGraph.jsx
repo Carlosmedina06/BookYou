@@ -12,7 +12,7 @@ import {
 import { Line } from 'react-chartjs-2'
 import { useState } from 'react'
 
-import api from '../../../../API/api'
+import api from '../../../utils/axios/axios'
 
 import style from './CommentGraph.module.css'
 

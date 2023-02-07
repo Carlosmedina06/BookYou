@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useEffect } from 'react'
 
-import api from '../../../../API/api'
+import api from '../../../utils/axios/axios'
 
 import style from './MoneyHandled.module.css'
 
