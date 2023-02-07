@@ -1,5 +1,6 @@
 import { GraphicBooksFreeToSubs } from '../BookGraph/BookGraph'
 import { GraphicCommentsQuantity } from '../CommentGraph/CommentGraph'
+import { MoneyHandled } from '../MoneyHandled/MoneyHandled'
 import { GraphicUsersFreeToSubs } from '../UserGraph/UserGraph'
 
 import style from './Statistics.module.css'
@@ -16,6 +17,7 @@ export const Statistics = () => {
       <div className={style.books}>
         <GraphicBooksFreeToSubs />
       </div>
+      
     </div>
   )
 }
