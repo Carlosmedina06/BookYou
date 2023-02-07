@@ -4,7 +4,7 @@ import { AiOutlineRight } from 'react-icons/ai'
 
 import style from './userAccountRow.module.css'
 
-const userAccountRow = ({ name, value, onClick, label, data, sign }) => {
+const UserAccountRow = ({ name, value, onClick, label, data, sign }) => {
   return (
     <button className={style.detailAccountItem} name={name} value={value} onClick={onClick}>
       <div className={style.detailAccountItemName}>
@@ -19,4 +19,4 @@ const userAccountRow = ({ name, value, onClick, label, data, sign }) => {
   )
 }
 
-export default userAccountRow
+export default UserAccountRow

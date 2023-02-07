@@ -8,7 +8,7 @@ import axios from 'axios'
 
 import { getOneUser } from '../../redux/actions'
 import NavBar from '../NavBar/NavBar'
-import userAccountRow from '../userAccount/userAccountRow'
+import UserAccountRow from '../userAccount/userAccountRow'
 
 import style from './UserAccount.module.css'
 import UserAccountChangedDataCard from './UserAccountChangedDataCard'
@@ -173,7 +173,7 @@ const UserAccount = () => {
                   <p>Informacion de cuenta </p>
                 </div>
                 {/* <button  name="nameEdit"  value="true" onClick={handleDisplaySelect}>w */}
-                <userAccountRow
+                <UserAccountRow
                   data={infoUser.name}
                   label={'Nombre'}
                   name={'nameEdit'}
@@ -182,7 +182,7 @@ const UserAccount = () => {
                   onClick={handleDisplaySelect}
                 />
                 {/* </button> */}
-                <userAccountRow
+                <UserAccountRow
                   data={infoUser.email}
                   label={'Email'}
                   name={'emailEdit'}
@@ -190,7 +190,7 @@ const UserAccount = () => {
                   value={'true'}
                   onClick={handleDisplaySelect}
                 />
-                <userAccountRow
+                <UserAccountRow
                   data={infoUser.username}
                   label={'Usuario'}
                   name={'usernameEdit'}
@@ -198,7 +198,7 @@ const UserAccount = () => {
                   value={'true'}
                   onClick={handleDisplaySelect}
                 />
-                <userAccountRow
+                <UserAccountRow
                   data={infoUser.subscription}
                   label={'Suscripcion'}
                   name={'suscripcionEdit'}
@@ -206,7 +206,7 @@ const UserAccount = () => {
                   value={'true'}
                   onClick={handleDisplaySelect}
                 />
-                <userAccountRow
+                <UserAccountRow
                   label={'Borrar cuenta'}
                   name={'accountDeleteEdit'}
                   sign={'delete'}
