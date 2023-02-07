@@ -4,6 +4,8 @@ import {
   GET_USERS,
   /* GET_ONE_USER, */
   //GET_SEARCH_BOOK,
+  GET_BOOKS,
+  GET_BOOKS_CAROUSEL,
   LOGIN,
   LOGIN_GOOGLE,
   LOGIN_LOCAL,
@@ -12,11 +14,14 @@ import {
   CLEAR_BOOK_DETAILS,
   GET_USER_BY_ID,
   GET_PAGE_VIEWS,
+  GET_BOOKS_FREE,
+  GET_BOOKS_PREMIUM,
 } from '../actions'
 
 const initialState = {
   books: [],
   allBooks: [],
+  allBooksCarousel: [],
   detail: [],
   category: [],
   autor: [],
@@ -30,6 +35,8 @@ const initialState = {
   pageviews: [],
   topBooks: [],
   rate: [],
+  booksFree: [],
+  booksPremium: [],
 }
 
 function rootReducer(state = initialState, action) {
@@ -92,19 +99,38 @@ function rootReducer(state = initialState, action) {
         comments: action.payload,
       }
     }
+
     case 'GET_COMENTARIOS_RATE': {
       return {
         ...state,
         rate: action.payload,
       }
     }
+    case GET_BOOKS_FREE: {
+      return {
+        ...state,
+        booksFree: action.payload,
+      }
+    }
+    case GET_BOOKS_PREMIUM: {
+      return {
+        ...state,
+        booksPremium: action.payload,
+      }
+    }
 
-    case 'GET_BOOKS':
+    case GET_BOOKS:
       return {
         ...state,
         books: action.payload,
         allBooks: action.payload,
       }
+    case GET_BOOKS_CAROUSEL:
+      return {
+        ...state,
+        allBooksCarousel: action.payload,
+      }
+
     case 'GET_SEARCH_BOOK':
       return {
         ...state,
@@ -177,7 +203,7 @@ function rootReducer(state = initialState, action) {
       }
 
     default:
-      return state
+      return { ...state }
   }
 }
 
