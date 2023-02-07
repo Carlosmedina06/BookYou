@@ -72,8 +72,6 @@ const Bookdetail = () => {
     navigation(`/book/edit/${id}`)
   }
 
-  console.log(details)
-
   return (
     <div className={style.mainGridContainer}>
       <div>

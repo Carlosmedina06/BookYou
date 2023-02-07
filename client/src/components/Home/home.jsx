@@ -33,7 +33,6 @@ export const Home = () => {
 
   const allBooks = useSelector((state) => state.books)
 
-  console.log(allBooks)
   /* ----------Paginacion------------- */
 
   const [currentPage, setCurrentPage] = useState(0)

@@ -63,7 +63,7 @@ const Reviews = ({ id, comment, setRata, rata }) => {
         confirmButtonText: 'Yes, delete it!',
       }).then((result) => {
         if (result.isConfirmed) {
-          Swal.fire('Deleted!', 'Your file has been deleted.', 'success')
+          Swal.fire('Deleted!', 'Your comment has been deleted.', 'success')
           setReview({ ...Review, comment: '' })
         }
       })

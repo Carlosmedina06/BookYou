@@ -55,11 +55,6 @@ function rootReducer(state = initialState, action) {
             ? 1
             : 0,
         )
-  /*   let allAutores = state.allBooks
-    let autorFilter =
-    action.payload === 'todos'
-      ? allAutores
-      : allAutores.filter((c) => c.author?.includes(action.payload)) */
 
   switch (action.type) {
     case LOGIN_GOOGLE:
@@ -136,12 +131,6 @@ function rootReducer(state = initialState, action) {
         ...state,
         books: categFilter,
       }
-
-    /*  case 'FILTER_AUTOR':
-      return {
-        ...state,
-        autor: autorFilter,
-      } */
 
     case 'ORDER_ALF':
       return {
