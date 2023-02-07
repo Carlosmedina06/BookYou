@@ -11,6 +11,7 @@ import {
   REGISTER_LOCAL,
   CLEAR_BOOK_DETAILS,
   GET_USER_BY_ID,
+  SET_LOADER,
 } from '../actions'
 
 const initialState = {
@@ -26,6 +27,7 @@ const initialState = {
   oneUser: {},
   palabrasProhibidas: [],
   comments: [],
+  loading: false,
 }
 
 function rootReducer(state = initialState, action) {
@@ -151,12 +153,19 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         detail: action.payload,
+        loading: false
       }
     case CLEAR_BOOK_DETAILS:
       return {
         ...state,
         detail: '',
       }
+      case SET_LOADER:
+        return{
+         ...state,
+         loading: action.payload,
+
+        }
     default:
       return state
   }

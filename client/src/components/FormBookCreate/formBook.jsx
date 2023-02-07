@@ -3,6 +3,8 @@ import { useSelector, useDispatch } from 'react-redux'
 
 import { getCategorys } from '../../redux/actions'
 import { useForm } from '../../utils/Hooks/useForm'
+import Loader from '../Loader/Loader'
+import Loading from '../Loading/loading'
 import NavBar from '../NavBar/NavBar'
 /* import Loading from '../Loading/loading' */
 
@@ -11,9 +13,9 @@ import validationsForm from './ValidationForm'
 
 const PostBook = () => {
   const category = useSelector((state) => state.category)
-
-  const dispatch = useDispatch()
-
+   const loading = useSelector(state => state.loading)
+   const dispatch = useDispatch()
+  //  const loading = true
   const initialForm = {
     title: '',
     description: '',
@@ -44,6 +46,8 @@ const PostBook = () => {
   }
 
   // -------------------------
+  
+  
   if (response !== '') {
     if (!response.message) {
       return (
@@ -77,11 +81,24 @@ const PostBook = () => {
           <NavBar />
         </div>
         <div>
+
+          
           <div className={style.cardContainer}>
+          {
+            loading && 
+            
+            <div className={style.contentCardLoader}>
+              <div><Loader/></div>
+          
+          </div>
+           
+          }
+          { !loading && 
             <form onSubmit={handleSubmit}>
               <div className={style.contentformCard}>
                 <div className={style.formTitle}>
                   <p>Crear Libro</p>
+                  {/* <Loader/> */}
                 </div>
                 <div className={style.formInputBox}>
                   <label htmlFor="title">Titulo</label>
@@ -193,7 +210,7 @@ const PostBook = () => {
                   CREATE BOOK!
                 </button>
               </div>
-            </form>
+            </form>}
           </div>
         </div>
       </div>

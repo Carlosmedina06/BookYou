@@ -13,6 +13,7 @@ export const LOGIN = 'LOGIN'
 export const REGISTER_LOCAL = 'REGISTER_LOCAL'
 export const CLEAR_BOOK_DETAILS = 'CLEAR_BOOK_DETAIL'
 export const SUBSCRIPTION = 'SUBSCRIPTION'
+export const SET_LOADER = 'SET_LOADER'
 import {
   GoogleAuthProvider,
   signInWithPopup,
@@ -280,4 +281,13 @@ export const getPalabrasProhibidas = () => async (dispatch) => {
       payload: error.message,
     })
   }
+}
+
+
+/* ----------------- LOADER---------------- */
+
+export const setLoader = (payload ) =>{
+
+return ({type: SET_LOADER, payload: payload })
+
 }

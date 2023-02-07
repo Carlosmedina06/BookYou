@@ -1,4 +1,6 @@
 import { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { setLoader } from '../../redux/actions/index.js'
 
 
 import api from '../axios/axios.js'
@@ -9,8 +11,12 @@ export const useForm = (initialForm, validationsForm) => {
   const [content, setContent] = useState()
   const [img, setImg] = useState()
   const [response, setResponse] = useState('')
-
+  
+  
+  // const loading = useSelector(state => state.loader)
   const handleSubmit = async (evt) => {
+  const dispatch = useDispatch()
+  /  dispatch(setLoader(true))      
     evt.preventDefault()
     try {
       setErrors(validationsForm(form))
@@ -32,11 +38,12 @@ export const useForm = (initialForm, validationsForm) => {
         })
 
         const res = info.data
-
+        if(res){dispatch(setLoader(false))}
         setResponse(res)
       }
     } catch (error) {
       // eslint-disable-next-line no-console
+      dispatch(setLoader(false))
       console.log({ error: error.response.data })
     }
   }
