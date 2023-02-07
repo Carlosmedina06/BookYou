@@ -1,6 +1,3 @@
-import react from 'react'
-import { Link } from 'react-router-dom'
-
 import style from './UserAccountChangedDataCard.module.css'
 
 const UserAccountChangedDataCard = ({

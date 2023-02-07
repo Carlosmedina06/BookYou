@@ -1,0 +1,117 @@
+.formInputBox {
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+  margin-top: 5%;
+  align-self: center;
+
+}
+
+.formInputBox input {
+  border-radius: 10px;
+  background-color: #EBF2ED;
+  font-weight: 500;
+  font-size: 14px;
+  height: 40px;
+  border-radius: 10px;
+  padding-left: 10px;
+  border: none;
+  border-bottom: 1px solid #e5e5e5;
+  outline: none;
+
+
+}
+
+.formInputBox input:focus {
+  border-bottom: 1px solid #d97823;
+  -webkit-transition: 0.1s;
+  transition: 0.5s;
+}
+
+
+.formInputBox label {
+  align-self: center;
+  margin: 5px
+}
+
+
+.changeDataContainer {
+
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+  justify-items: center;
+
+  height: auto
+}
+
+
+
+.formTitle {
+  align-self: center;
+  font-size: 1.5rem;
+  color: black;
+  font-weight: 700;
+
+  /* padding: 3% */
+}
+
+.changeDataContainerText {
+  display: flex;
+  align-self: center;
+  margin-top: 10%;
+
+
+
+}
+
+
+
+
+/* button register */
+
+
+.buttonRegistrerChangeCard {
+
+  align-self: center;
+  color: white;
+  background-color: #f1ac15;
+  cursor: pointer;
+  margin: 3% 0 3% 0;
+  width: 15rem;
+  word-wrap: break-word;
+  border-radius: 5px;
+  border: 2px solid #00a3fe;
+  height: 35px;
+  border-color: transparent;
+  box-shadow: 1px 5px 5px 2px rgb(0 0 0 / 40%);
+  outline: none;
+  padding-top: 1%;
+  transition: 0.15s;
+  text-align: center;
+  box-shadow: #010326;
+  margin-top: 10%;
+}
+
+.buttonRegistrerChangeCard:hover {
+  background-color: white;
+  color: black
+}
+
+.buttonRegistrerChangeCard:active {
+  transform: scale(1.02)
+}
+
+.accountChangeCardForm {
+  display: flex;
+  justify-content: center;
+
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: center;
+  justify-items: center;
+
+}
