@@ -5,11 +5,13 @@ export const ReviewContainer = styled.div`
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
-  width: 40%;
+  width: 50%;
   margin: 2px;
-  background-color: none;
+  background-color: #ffffff;
   border-bottom: 2px solid orange;
   padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 20px;
 `
 export const ImgContainer = styled.div`
   height: 100%;

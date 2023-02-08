@@ -24,7 +24,7 @@ const Bookdetail = () => {
   const navigation = useNavigate()
 
   const [rata, setRata] = useState(0) // NO TOCAR 🐭
-  const [books, setBooks] = useState(true) /* actualizar estado libros orden alf */
+  const [books, setBooks] = useState(false) /* actualizar estado libros orden alf */
 
   const token = localStorage.getItem('token')
   let decoded = token ? jwt_decode(token) : null
@@ -144,15 +144,15 @@ const Bookdetail = () => {
         <div
           style={{
             position: 'absolute',
-            top: '480px',
+            top: '520px',
             left: '300px',
           }}
         >
           <button className={style.boton} onClick={() => setBooks(!books)}>
             {books ? (
-              <span className={style.btnText}>Ocultar</span>
+              <span className={style.btnText}>Ocultar Comentarios</span>
             ) : (
-              <span className={style.btnText}>Mostrar</span>
+              <span className={style.btnText}>Mostrar Comentarios</span>
             )}
             <FontAwesomeIcon
               icon={books ? faChevronUp : faChevronDown}
@@ -164,7 +164,7 @@ const Bookdetail = () => {
           <Reviews comment={details.comment} id={details.id} rata={rata} setRata={setRata} />
         )}
       </div>
-      <div style={{ position: 'absolute', top: '445px', left: '330px', transform: 'scale(2)' }}>
+      <div style={{ position: 'absolute', top: '110px', left: '530px', transform: 'scale(1.5)' }}>
         <GetRateStars rate={avgRate} />
       </div>
     </div>
