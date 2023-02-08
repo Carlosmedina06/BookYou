@@ -52,7 +52,7 @@ export const CommentCard = ({comment}) =>{
             <h3 className={style.report}>{comment.report} reportes</h3>
             </div>
             <div className={style.message}>
-            <p>Mensaje: {comment.comment}</p>
+            <p>{comment.comment}</p>
             </div>  
           </div>
           <div className={style.buttons}>

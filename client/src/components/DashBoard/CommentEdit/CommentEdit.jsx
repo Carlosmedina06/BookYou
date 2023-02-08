@@ -102,7 +102,7 @@ export const CommentEdit = () => {
   
   return (
     <>
-      
+      <div className={style.all}>
       <SideBar />
 
       <div className={style.container}>
@@ -135,7 +135,7 @@ export const CommentEdit = () => {
        
       </div>
       
-            
+      </div>      
     </>
   )
 }
