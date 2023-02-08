@@ -14,6 +14,12 @@ import {
   ContentSuscripcion,
   SuscripcionContainer,
   ContentChecks,
+  SuscriptionBanner,
+  SuscriptionBannerText,
+  SuscriptionBannerTitle,
+  SuscripcionBannerTextSide,
+  SuscriptionBannerImg
+
 } from './SuscripcionStyle'
 
 const Suscripcion = () => {
@@ -48,6 +54,25 @@ const Suscripcion = () => {
     <>
       <NavBar />
       <SuscripcionContainer>
+      <SuscriptionBanner>
+        
+        <SuscripcionBannerTextSide>
+        <SuscriptionBannerTitle>
+        SUSCRIBETE A BOOKYOU
+        </SuscriptionBannerTitle>
+      <SuscriptionBannerText>
+         
+        Accede a un ampio catalogo
+               de libros
+
+      </SuscriptionBannerText>
+        </SuscripcionBannerTextSide>
+        <SuscriptionBannerImg>
+          <img src="https://res.cloudinary.com/dn8jxsqka/image/upload/v1675757159/undraw_reading_time_re_phf7_fapbqg.svg" alt="" />
+        </SuscriptionBannerImg>
+
+
+      </SuscriptionBanner>
         <CardSuscripcion>
           <ContentSuscripcion>
             <h1>PREMIUM</h1>

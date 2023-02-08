@@ -34,6 +34,18 @@
 
 }
 
+
+.contentCardLoader{
+  display: flex;
+  /* align-content: center;
+ justify-self: center;
+ align-items: center;
+ justify-items: center;
+ justify-content: center; */
+height: 700px;
+
+
+}
 .formTitle {
   font-size: 1.2rem;
   font-weight: 700;

@@ -8,7 +8,7 @@ import { faChevronUp, faChevronDown } from '@fortawesome/free-solid-svg-icons'
 import { useNavigate, Link } from 'react-router-dom'
 
 import api from '../../utils/axios/axios.js'
-import { getBookById } from '../../redux/actions'
+import { getBookById, setLoader } from '../../redux/actions'
 import NavBar from '../NavBar/NavBar'
 import style from '../Bookdetail/Bookdetail.module.css'
 import loginUserVerification from '../../utils/Functions/LoginUserVerification'
@@ -16,15 +16,20 @@ import { clearBookDetails } from '../../redux/actions'
 import GetRateStars from '../GetRateStars/GetRateStars.jsx'
 
 import Reviews from './Reviews'
+import Loader from '../Loader/Loader.jsx'
 
 const Bookdetail = () => {
+ 
   const dispatch = useDispatch()
   const { id } = useParams()
   const details = useSelector((state) => state.detail)
   const navigation = useNavigate()
 
+
   const [rata, setRata] = useState(0) // NO TOCAR 🐭
+
   const [books, setBooks] = useState(false) /* actualizar estado libros orden alf */
+  const loading = useSelector(state => state.loading)
 
   const token = localStorage.getItem('token')
   let decoded = token ? jwt_decode(token) : null
@@ -45,8 +50,11 @@ const Bookdetail = () => {
   }
 
   useEffect(() => {
+    dispatch(setLoader(true))
     dispatch(clearBookDetails())
     dispatch(getBookById(id))
+    
+    // if(details.length === 0) setLoader(true) 
   }, [dispatch, id, rata])
 
   const handleReadButton = (e) => {
@@ -79,8 +87,19 @@ const Bookdetail = () => {
       <div>
         <NavBar />
       </div>
+      {
+            loading && 
+            <Loader/>
+
+          }
+          {!loading &&  
       <div>
+      
+          
         <div className={style.Bookdetails}>
+         
+          
+         
           <div className={style.bookImage}>
             <img alt={details.title} src={details.img} />
           </div>
@@ -140,7 +159,8 @@ const Bookdetail = () => {
               ) : null}
             </div>
           </div>
-        </div>
+         </div> 
+         {/* } */}
         <div
           style={{
             position: 'absolute',
