@@ -4,9 +4,7 @@ import { useNavigate } from 'react-router-dom'
 
 import SideBar from '../../DashAdmin/sideBar/sideBar'
 import { getUsers } from '../../../redux/actions/index.js'
-
 import api from '../../../utils/axios/axios.js'
-
 
 import style from './UserEdit.module.css'
 
@@ -100,8 +98,8 @@ export const UserEdit = () => {
     setRata(!rata)
   }
 
-  const handleDelete = async (e) => {
-    const info = await api.delete('/user/delete/' + editedUser.id, {
+  const handleDelete = async () => {
+    const info = await api.put(`/user/delete/${editedUser.id}`, null, {
       headers: {
         authorization: `bearer ${localStorage.getItem('token')}`,
       },

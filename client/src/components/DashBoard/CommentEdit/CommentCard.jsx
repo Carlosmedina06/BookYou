@@ -9,7 +9,6 @@ export const CommentCard = ({ comment }) => {
       },
     })
     const response = info.data
-
   }
 
   const handleBan = async () => {
@@ -35,27 +34,30 @@ export const CommentCard = ({ comment }) => {
       },
     })
     const response = info.data
-
-
   }
 
-  return(
-      <div className={style.container} key=''>
-          <div className={style.content}>
-            <div className={style.title}>
-            <h1>Usuario {comment.username}</h1>
-            <h3 className={style.report}>{comment.report} reportes</h3>
-            </div>
-            <div className={style.message}>
-            <p>{comment.comment}</p>
-            </div>  
-          </div>
-          <div className={style.buttons}>
-            <button type='button' onClick={handleDelete}>Borrar</button>
-            <button type='button' onClick={handleBan}>Ban</button>
-            <button type='button' onClick={handleClear}>Limpiar</button>
-          </div>
-      </div>  
-
+  return (
+    <div key="" className={style.container}>
+      <div className={style.content}>
+        <div className={style.title}>
+          <h1>Usuario {comment.username}</h1>
+          <h3 className={style.report}>{comment.report} reportes</h3>
+        </div>
+        <div className={style.message}>
+          <p>{comment.comment}</p>
+        </div>
+      </div>
+      <div className={style.buttons}>
+        <button type="button" onClick={handleDelete}>
+          Borrar
+        </button>
+        <button type="button" onClick={handleBan}>
+          Ban
+        </button>
+        <button type="button" onClick={handleClear}>
+          Limpiar
+        </button>
+      </div>
+    </div>
   )
 }
