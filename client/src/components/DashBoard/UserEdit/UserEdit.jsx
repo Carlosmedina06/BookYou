@@ -96,7 +96,7 @@ export const UserEdit = () => {
     })
 
     const res = info.data
-
+    
     setRata(!rata)
   }
 

@@ -21,8 +21,9 @@
 }
 
 .bookImage img {
-  background-color: blueviolet;
-  width: 15rem;
+  
+  width: 180px;
+  height: 276px;
   margin-top: 1rem;
 
 }
@@ -69,8 +70,9 @@
 
 
 .readBookButtonContainer {
-  margin-left: 0.2rem;
-  margin-top: 2rem;
+  position: absolute;
+  top: 380px;
+  left:300px;
 }
 
 /*   
@@ -171,12 +173,13 @@
 /*---------------//Boton//---------------------*/
 
 .boton {
+ 
   margin-top: 10px;
   border: 2px solid #010326;
   border-radius: 10px;
   display: flex;
   height: 30px;
-  width: 100px;
+  width: auto;
   padding: 15px;
   gap: 10px;
   align-items: center;

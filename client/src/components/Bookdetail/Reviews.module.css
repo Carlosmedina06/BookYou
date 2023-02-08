@@ -54,6 +54,7 @@ input:checked~form {
 }
 
 .commentsContainer {
+  
   color: #010326;
   display: flex;
   width: 100%;
@@ -78,6 +79,7 @@ input:checked~form {
 
 
 .postedCommentsBox {
+  
   display: flex;
   flex-direction: row;
   width: 70%;
