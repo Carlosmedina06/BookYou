@@ -4,9 +4,7 @@ import { useNavigate } from 'react-router-dom'
 
 import SideBar from '../../DashAdmin/sideBar/sideBar'
 import { getUsers } from '../../../redux/actions/index.js'
-
 import api from '../../../utils/axios/axios.js'
-
 
 import style from './UserEdit.module.css'
 
@@ -80,28 +78,34 @@ export const UserEdit = () => {
   const handleSubmit = async (e) => {
     e.preventDefault()
 
-    const formData = new FormData()
+    try {
+      const formData = new FormData()
 
-    formData.append('name', editedUser.name)
-    formData.append('username', editedUser.username)
-    formData.append('email', editedUser.email)
-    formData.append('subscription', editedUser.subscription)
-    formData.append('role', editedUser.role)
-    formData.append('id', editedUser.id)
+      formData.append('name', editedUser.name)
+      formData.append('username', editedUser.username)
+      formData.append('email', editedUser.email)
+      formData.append('subscription', editedUser.subscription)
+      formData.append('role', editedUser.role)
+      formData.append('id', editedUser.id)
 
-    const info = await api.put('/user/update', editedUser, {
-      headers: {
-        authorization: `bearer ${localStorage.getItem('token')}`,
-      },
-    })
+      const info = await api.put('/user/update', editedUser, {
+        headers: {
+          authorization: `bearer ${localStorage.getItem('token')}`,
+        },
+      })
 
-    const res = info.data
+      const res = info.data
 
-    setRata(!rata)
+      console.log(res)
+
+      setRata(!rata)
+    } catch (error) {
+      console.log(error)
+    }
   }
 
-  const handleDelete = async (e) => {
-    const info = await api.delete('/user/delete/' + editedUser.id, {
+  const handleDelete = async () => {
+    const info = await api.put(`/user/delete/${editedUser.id}`, null, {
       headers: {
         authorization: `bearer ${localStorage.getItem('token')}`,
       },
@@ -148,7 +152,7 @@ export const UserEdit = () => {
         <button type="button" onClick={handleClickSearch}>
           Search User
         </button>
-        <form className={style.form}>
+        <form className={style.form} onSubmit={handleSubmit}>
           <label>Name</label>
           <input name="name" value={editedUser.name} onChange={(e) => handleChange(e)} />
           <label>Username</label>
@@ -172,9 +176,7 @@ export const UserEdit = () => {
             <option value="admin">Admin</option>
           </select>
           <br />
-          <button type="submit" onSubmit={handleSubmit}>
-            Update
-          </button>
+          <button type="submit">Update</button>
         </form>
         <button type="button" onClick={handleDelete}>
           Delete User

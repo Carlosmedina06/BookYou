@@ -1,6 +1,7 @@
-import axios from 'axios'
 import { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+
+import { getUsers } from '../../../redux/actions'
 import api from '../../../utils/axios/axios'
 import SideBar from '../../DashAdmin/sideBar/sideBar'
 
@@ -8,134 +9,134 @@ import { CommentCard } from './CommentCard'
 import style from './CommentEdit.module.css'
 
 export const CommentEdit = () => {
-  
   const [rata, setRata] = useState(true)
+  const dispatch = useDispatch()
 
-  useEffect(()=>{
+  useEffect(() => {
+    dispatch(getUsers())
+  }, [dispatch])
 
+  const users = useSelector((state) => state.users)
 
-  },[rata])
-
-  const users = useSelector((state) => state.users);
   // const books = useSelector((state)=> state.allBooks)
-  
-
   const [input, setInput] = useState({
-    searchUser: "",
-    searchBook:"",
-    select:"",
-    userSelectId:""
-  });
+    searchUser: '',
+    searchBook: '',
+    select: '',
+    userSelectId: '',
+  })
   const [commentsPerUser, setCommentsPerUser] = useState([])
   const [markedComments, setMarkedComments] = useState([])
-  
+
   const handleSearch = (e) => {
     setInput({
       ...input,
       [e.target.name]: e.target.value,
-    });
-  };
-  const getAllComments = async(numero) => {
+    })
+  }
+  const getAllComments = async (numero) => {
     const info = await api.get(`/comment/${numero}`)
     const comments = info.data
-    
+
     return comments
   }
-  const handleSearchUserInput = async (e )=>{
+  const handleSearchUserInput = async (_e) => {
     setMarkedComments([])
     setInput({
       ...input,
-      select: ''
+      select: '',
     })
-    
+
     const commentsAvailable = await getAllComments(0)
-    const allCommentsUser = commentsAvailable?.filter((el)=>{
-     if(el.available){
-      return el.username.toLowerCase() === input.searchUser.toLowerCase()}
+    const allCommentsUser = commentsAvailable?.filter((el) => {
+      if (el.available) {
+        return el.username.toLowerCase() === input.searchUser.toLowerCase()
+      }
     })
-    
+
     setRata(!rata)
     setCommentsPerUser(allCommentsUser)
   }
-  
- 
-  const handleUserSelect = async (e) =>{
+
+  const handleUserSelect = async (e) => {
     setMarkedComments([])
     setInput({
       ...input,
       select: e.target.value,
-      searchUser:''
+      searchUser: '',
     })
-    
+
     const commentsAvailable = await getAllComments(0)
-    const allCommentsUser = commentsAvailable?.filter((el)=>{
-     if(el.available){
-      return el.username.toLowerCase() === e.target.value.toLowerCase()}
+    const allCommentsUser = commentsAvailable?.filter((el) => {
+      if (el.available) {
+        return el.username.toLowerCase() === e.target.value.toLowerCase()
+      }
     })
-    
+
     setRata(!rata)
     setCommentsPerUser(allCommentsUser)
-
   }
-  
-  const handleClickFindMarkedComments = async () =>{
+
+  const handleClickFindMarkedComments = async () => {
     setInput({
       ...input,
-      select:'',
-      searchUser:''
+      select: '',
+      searchUser: '',
     })
     setCommentsPerUser([])
 
     // const info = await api.get(`/comment/1`)
     // const allComments = info.data
     const allComments = await getAllComments(1)
-    const allMarkedComments = allComments.filter((elem)=>{
-      if(elem.available){return elem.report > 0}
+    const allMarkedComments = allComments.filter((elem) => {
+      if (elem.available) {
+        return elem.report > 0
+      }
     })
-    const allMarkedCommentsAscendingOrder = allMarkedComments.sort((a, b) => (a.report > b.report) ? -1 : 1)
-    setMarkedComments([
-      ...allMarkedCommentsAscendingOrder
-    ])
+    const allMarkedCommentsAscendingOrder = allMarkedComments.sort((a, b) =>
+      a.report > b.report ? -1 : 1,
+    )
+
+    setMarkedComments([...allMarkedCommentsAscendingOrder])
     setRata(!rata)
   }
 
-  
   return (
     <>
-      
-      <SideBar />
+      <div className={style.all}>
+        <SideBar />
 
-      <div className={style.container}>
-        <label>Search comment by user</label>
-        <input name="searchUser" value={input.searchUser} onChange={(e) => handleSearch(e)} />
-        <button type='button' onClick={handleSearchUserInput}>Search</button>
-        <br />
-        <label>Or select a user from the list</label>
-        <select name="usersSelect" value={input.select} onChange={(e) => handleUserSelect(e)}>
-          <option value="none" />
-          {users?.map((element) => {
-            return (
-              <option key={element.id} value={element.name}>
-                {element.name}
-              </option>
-            )
+        <div className={style.container}>
+          <label>Buscar Comentario por Usuario</label>
+          <input name="searchUser" value={input.searchUser} onChange={(e) => handleSearch(e)} />
+          <button type="button" onClick={handleSearchUserInput}>
+            Buscar
+          </button>
+          <br />
+          <label>O elegir Usuario de la lista</label>
+          <select name="usersSelect" value={input.select} onChange={(e) => handleUserSelect(e)}>
+            <option value="none" />
+            {users?.map((element) => {
+              return (
+                <option key={element.id} value={element.name}>
+                  {element.name}
+                </option>
+              )
+            })}
+          </select>
+
+          <button type="button" onClick={handleClickFindMarkedComments}>
+            Buscar Alertas
+          </button>
+          {markedComments.map((el, i) => {
+            return <CommentCard key={i} comment={el} />
           })}
-        </select>
-        
-        <button type="button" onClick={handleClickFindMarkedComments}>
-          Search for Warnings
-        </button>
-        {markedComments.map((el)=>{
-          return <CommentCard comment={(el)} /> 
-        })}
-        
-        {commentsPerUser.map((el) => {
-          return <CommentCard comment={(el)} />
-        })}
-       
+
+          {commentsPerUser.map((el, i) => {
+            return <CommentCard key={i} comment={el} />
+          })}
+        </div>
       </div>
-      
-            
     </>
   )
 }

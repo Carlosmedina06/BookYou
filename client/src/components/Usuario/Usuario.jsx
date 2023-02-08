@@ -31,6 +31,7 @@ export const Usuario = () => {
   const oneUser = useSelector((state) => state.oneUser)
 
   console.log(oneUser)
+
   const [books, setBooks] = useState(true) /* actualizar estado libros orden alf */
 
   const [profileSection, setProfileSection] = useState({
@@ -72,7 +73,11 @@ export const Usuario = () => {
         <NavBar />
       </div>
 
-      <img alt="Mi imagen" className={style.perfil} src={oneUser.img || perfil} />
+      <img
+        alt="Mi imagen"
+        className={style.perfil}
+        src="https://s1.eestatic.com/2019/07/01/como/libros-estudiantes-universidad_410470522_127023887_1706x960.jpg"
+      />
 
       <div className={style.nombre}>
         <h3 className={style.nombre1}>{oneUser.name}</h3>

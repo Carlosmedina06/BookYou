@@ -15,7 +15,7 @@ const columns = [
   {
     field: 'role',
     headerName: 'Role',
-    width: 190,
+    width: 80,
   },
   { field: 'subscription', headerName: 'Subscription', width: 130 },
   {
@@ -87,7 +87,7 @@ export const AllUsers = () => {
           pageSize={10}
           rows={rows}
           rowsPerPageOptions={[10]}
-          style={{ height: 400, width: '550%', top: '10rem' }}
+          style={{ height: 400, width: '500%', /*top: '10rem'*/ }}
         />
       </div>
     </div>
