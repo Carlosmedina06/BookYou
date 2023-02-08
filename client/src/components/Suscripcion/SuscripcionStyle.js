@@ -85,3 +85,52 @@ export const BtnSuscripcion = styled.button`
     color: #fff;
   }
 `
+
+export const SuscriptionBanner = styled.div `
+display: flex;
+align-items: center;
+margin-top: 5rem;
+margin-left: 38rem;
+display: flex;
+flex-direction: row;
+
+color: black;
+width: 100%;
+
+
+`
+
+export const SuscriptionBannerTitle = styled.div `
+font-size: 3.7rem;
+width: 100%;
+line-height: 4.2rem;
+font-weight: 600;
+color: #222130
+
+`
+
+export const SuscriptionBannerText = styled.div  `
+
+font-size: 2.5rem;
+margin-top: 1rem;
+color: #3f3d56;
+font-weight: 500;
+width: 70%; 
+line-height: 2.8rem
+
+`
+export const SuscripcionBannerTextSide = styled.div `
+display: flex;
+flex-direction: column;
+width: 38%;
+height: 300px;
+margin-top: 4rem
+
+
+`
+export const SuscriptionBannerImg = styled.div `
+width: 37%;
+max-width: 800px
+
+
+`
