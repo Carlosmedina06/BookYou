@@ -67,7 +67,7 @@ export const BookEdit = () => {
   }
 
   const handleDelete = async () => {
-    const info = await api.delete(`/book/delete/${editedBook.id}`, {
+    const info = await api.put(`/book/delete/${editedBook.id}`, null, {
       headers: {
         authorization: `bearer ${localStorage.getItem('token')}`,
       },
@@ -168,9 +168,7 @@ export const BookEdit = () => {
             })}
           </select>
           <br />
-          <button type="submit" onSubmit={handleSubmit}>
-            Update
-          </button>
+          <button type="submit">Update</button>
         </form>
         <button type="button" onClick={handleDelete}>
           Delete Book

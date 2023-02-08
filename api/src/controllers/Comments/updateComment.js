@@ -1,13 +1,14 @@
 import jwt from 'jsonwebtoken'
 
 import Comment from '../../models/Comment.js'
-import User from '../../models/User.js'
 
 const updateComment = async (req, res, next) => {
   try {
     const { id } = req.params
+
     const { report } = req.body
-    const targetComment = await Comment.findById(id)
+    const targetComment = await Comment.findOne({ _id: id })
+
     const authorization = req.get('authorization')
 
     if (authorization.length <= 7) {
@@ -21,10 +22,9 @@ const updateComment = async (req, res, next) => {
       if (!token || !decodedToken.id) {
         return res.status(401).json({ error: 'token missing or invalid' })
       }
-      const user = await User.findById(decodedToken.id)
 
-      if (decodedToken.role === 'admin' || user.id.toString() !== targetComment.user.toString()) {
-        targetComment.report = report || targetComment.report
+      if (decodedToken.role === 'admin') {
+        targetComment.report = report
         targetComment.save()
         res.status(200).json('comentario actualizado ')
       } else {

@@ -1,6 +1,6 @@
 import nodemailer from 'nodemailer'
 import dotenv from 'dotenv'
-// import nodemailerSendgrid from 'nodemailer-sendgrid'
+import nodemailerSendgrid from 'nodemailer-sendgrid'
 
 import { templateWelcome } from './templateWelcome.js'
 import { templateNewBook } from './templateNewBook.js'
@@ -9,26 +9,26 @@ import { templateNewComment } from './templateNewComment.js'
 dotenv.config()
 
 const creatTrans = () => {
-  // const transport = nodemailer.createTransport(
-  //   nodemailerSendgrid({
-  //     apiKey: process.env.SENDGRID_KEY,
-  //   }),
-  // )
-  const transport = nodemailer.createTransport({
-    // mailtrap de carlos
-    // host: 'smtp.mailtrap.io',
-    // port: 2525,
-    // auth: {
-    //   user: 'baaa4e1294db2a',
-    //   pass: 'd45867fd72fdb0',
-    // mailtrap de andres
-    host: 'smtp.mailtrap.io',
-    port: 2525,
-    auth: {
-      user: '6a9235ed0dc342',
-      pass: '4a97d7e4aab7a9',
-    },
-  })
+  const transport = nodemailer.createTransport(
+    nodemailerSendgrid({
+      apiKey: process.env.SENDGRID_KEY,
+    }),
+  )
+  // const transport = nodemailer.createTransport({
+  //   // mailtrap de carlos
+  //   // host: 'smtp.mailtrap.io',
+  //   // port: 2525,
+  //   // auth: {
+  //   //   user: 'baaa4e1294db2a',
+  //   //   pass: 'd45867fd72fdb0',
+  //   // mailtrap de andres
+  //   host: 'smtp.mailtrap.io',
+  //   port: 2525,
+  //   auth: {
+  //     user: '6a9235ed0dc342',
+  //     pass: '4a97d7e4aab7a9',
+  //   },
+  // })
 
   return transport
 }
