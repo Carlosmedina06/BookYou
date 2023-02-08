@@ -46,16 +46,20 @@ export const CommentCard = ({comment}) =>{
   
   return(
       <div className={style.container} key=''>
-          <div>
-            <h1>User {comment.username}</h1>
-            <h3>Number of reports {comment.report}</h3>
-              <p>Content: {comment.comment}</p>
-              
+          <div className={style.content}>
+            <div className={style.title}>
+            <h1>Usuario {comment.username}</h1>
+            <h3 className={style.report}>{comment.report} reportes</h3>
+            </div>
+            <div className={style.message}>
+            <p>{comment.comment}</p>
+            </div>  
           </div>
-          <button type='button' onClick={handleDelete}>Delete</button>
-          <button type='button' onClick={handleBan}>Ban</button>
-          <button type='button' onClick={handleClear}>Clear</button>
-          
+          <div className={style.buttons}>
+            <button type='button' onClick={handleDelete}>Borrar</button>
+            <button type='button' onClick={handleBan}>Ban</button>
+            <button type='button' onClick={handleClear}>Limpiar</button>
+          </div>
       </div>  
   )
 }
