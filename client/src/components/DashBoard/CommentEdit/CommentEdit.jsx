@@ -102,15 +102,15 @@ export const CommentEdit = () => {
   
   return (
     <>
-      
+      <div className={style.all}>
       <SideBar />
 
       <div className={style.container}>
-        <label>Search comment by user</label>
+        <label>Buscar Comentario por Usuario</label>
         <input name="searchUser" value={input.searchUser} onChange={(e) => handleSearch(e)} />
-        <button type='button' onClick={handleSearchUserInput}>Search</button>
+        <button type='button' onClick={handleSearchUserInput}>Buscar</button>
         <br />
-        <label>Or select a user from the list</label>
+        <label>O elegir Usuario de la lista</label>
         <select name="usersSelect" value={input.select} onChange={(e) => handleUserSelect(e)}>
           <option value="none" />
           {users?.map((element) => {
@@ -123,7 +123,7 @@ export const CommentEdit = () => {
         </select>
         
         <button type="button" onClick={handleClickFindMarkedComments}>
-          Search for Warnings
+          Buscar Alertas
         </button>
         {markedComments.map((el)=>{
           return <CommentCard comment={(el)} /> 
@@ -135,7 +135,7 @@ export const CommentEdit = () => {
        
       </div>
       
-            
+      </div>      
     </>
   )
 }
