@@ -6,19 +6,19 @@ import api from '../../../utils/axios/axios'
 import style from './CommentCard.module.css'
 export const CommentCard = ({ comment }) => {
   const [comentario, setComentario] = useState({})
+  const [response, setResponse] = useState('')
   const handleDelete = async () => {
     const info = await api.put(`/comment/delete/${comentario.id}`, null, {
       headers: {
         authorization: `bearer ${localStorage.getItem('token')}`,
       },
     })
-    const response = info.data
+    const r = info.data
   }
 
   useEffect(() => {
     setComentario(comment)
-  }, [comentario, comment])
-
+  }, [comentario, comment, response])
   const handleBan = async () => {
     const banned = await api.get(`/user/${comentario.user}`)
     const bannedUser = banned.data
@@ -30,18 +30,19 @@ export const CommentCard = ({ comment }) => {
       },
     })
   }
-  const handleClear = () => {
-    setComentario({ ...comentario, report: 0 })
+  const handleClear = async () => {
+    const clearComment = comentario
 
+    clearComment.report = 0
     try {
-      api
-        .put(`/comment/update/${comentario.id}`, comentario, {
+      await api
+        .put(`/comment/update/${clearComment.id}`, clearComment, {
           headers: {
             authorization: `bearer ${localStorage.getItem('token')}`,
           },
         })
         .then((res) => {
-          console.log(res.data)
+          setResponse(res.data)
         })
     } catch (error) {
       console.log(error)
