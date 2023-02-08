@@ -1,19 +1,17 @@
-import react, { useState } from 'react'
+import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { AiOutlineRight } from 'react-icons/ai'
 import { BiArrowBack } from 'react-icons/bi'
-import { TiDeleteOutline } from 'react-icons/ti'
 import { useDispatch, useSelector } from 'react-redux'
 import jwtDecode from 'jwt-decode'
 import { useEffect } from 'react'
 import axios from 'axios'
 
-import { getOneUser, suscription } from '../../redux/actions'
+import { getOneUser } from '../../redux/actions'
 import NavBar from '../NavBar/NavBar'
+import UserAccountRow from '../userAccount/userAccountRow'
 
-import UserAccountRow from './components/userAccountRow'
 import style from './UserAccount.module.css'
-import UserAccountChangedDataCard from './components/UserAccountChangedDataCard'
+import UserAccountChangedDataCard from './UserAccountChangedDataCard'
 const UserAccount = () => {
   const dispatch = useDispatch()
 
@@ -25,7 +23,6 @@ const UserAccount = () => {
 
   const infoUser = useSelector((state) => state.oneUser)
 
-  const [NameCard, showNameCard] = useState(true)
   const [display, setDisplay] = useState({
     main: true,
     nameEdit: false,
@@ -121,7 +118,7 @@ const UserAccount = () => {
     setRata(!rata)
   }
 
-  const handleDelete = async (e) => {
+  const handleDelete = async () => {
     const info = await axios.delete(
       'https://server-bookyou.onrender.com/user/delete/' + editedUser.id,
       {

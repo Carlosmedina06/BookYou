@@ -5,10 +5,8 @@ import Stack from '@mui/material/Stack'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
 
-
-import CarouselFreeBooks from '../Carouseles/CarouselFreeBooks/CarouselFreeBooks';
-import CarouselBooksPremium from '../Carouseles/CarouselBooksPremium/CarouselBooksPremium';
-
+import CarouselFreeBooks from '../Carouseles/CarouselFreeBooks/CarouselFreeBooks'
+import CarouselBooksPremium from '../Carouseles/CarouselBooksPremium/CarouselBooksPremium'
 import {
   getBooks,
   getBooksCarousel,
@@ -17,18 +15,17 @@ import {
   getUsers,
   getFreeBooks,
   getPremiumBooks,
-} from '../../redux/actions/index';
-import FiltradoGenero from '../FiltradoGenero/filtradoGenero';
-import OrdAlfabetico from '../OrderAlfab/orderAlfabetico';
-import NavBar from '../NavBar/NavBar';
-import SearchBar from '../SearchBar/SearchBar';
-import SearchByAutor from '../FiltradoAutor/filterAutor';
-import Card from '../Card/Card';
+} from '../../redux/actions/index'
+import FiltradoGenero from '../FiltradoGenero/filtradoGenero'
+import OrdAlfabetico from '../OrderAlfab/orderAlfabetico'
+import NavBar from '../NavBar/NavBar'
+import SearchBar from '../SearchBar/SearchBar'
+import SearchByAutor from '../FiltradoAutor/filterAutor'
+import Card from '../Card/Card'
 
 /* import Pagination from '../Pagination/Pagination' */
 import style from '../Home/home.module.css'
 import Bot from '../chatbot/ChatBot'
-
 import CarouselComentados from '../Carouseles/CarouselComments/Carousel'
 
 export const Home = () => {
@@ -43,10 +40,9 @@ export const Home = () => {
 
   const [didMount111, setDidMount] = useState(false)
 
-
-  const allBooks = useSelector(state => state.books);
-  const booksOpen = useSelector(state => state.booksFree);
-  const booksPaid = useSelector(state => state.booksPremium);
+  const allBooks = useSelector((state) => state.books)
+  const booksOpen = useSelector((state) => state.booksFree)
+  const booksPaid = useSelector((state) => state.booksPremium)
 
   /* ----------Paginacion------------- */
 
@@ -124,16 +120,14 @@ export const Home = () => {
   }, [bookInputtodos, authorInput, bookInput, allBooks, books])
 
   useEffect(() => {
-
-    dispatch(getBooks());
-    dispatch(getCategorys());
-    dispatch(getAutores());
-    dispatch(getUsers());
-    dispatch(getFreeBooks());
-    dispatch(getPremiumBooks());
-    dispatch(getBooksCarousel());
-  }, [dispatch]);
-
+    dispatch(getBooks())
+    dispatch(getCategorys())
+    dispatch(getAutores())
+    dispatch(getUsers())
+    dispatch(getFreeBooks())
+    dispatch(getPremiumBooks())
+    dispatch(getBooksCarousel())
+  }, [dispatch])
 
   //----------------------localStorage--------------------------
   useEffect(() => {
@@ -204,8 +198,8 @@ export const Home = () => {
         <Bot />
         <div>
           {(bookInput.length > 0 && filterLibros.length === 0) ||
-          (bookInputtodos.length > 0 && filterLibros.length === 0) ||
-          (authorInput.length > 0 && filterLibros.length === 0) ? (
+            (bookInputtodos.length > 0 && filterLibros.length === 0) ||
+            (authorInput.length > 0 && filterLibros.length === 0) ? (
             <p className={style.p}>No se encontro ningun libro</p>
           ) : (
             <>
@@ -213,33 +207,33 @@ export const Home = () => {
                 <div className={style.mover}>
                   {filterLibros.length > 0
                     ? filterLibros
-                        .slice(currentPage, currentPage + 8)
-                        .map((book) => (
-                          <Card
-                            key={book.id}
-                            autor={book.author}
-                            className={style.filterCard}
-                            comentarios={book.content}
-                            estado={book.subscription}
-                            id={book.id}
-                            img={book.img}
-                            name={book.title}
-                          />
-                        ))
+                      .slice(currentPage, currentPage + 8)
+                      .map((book) => (
+                        <Card
+                          key={book.id}
+                          autor={book.author}
+                          className={style.filterCard}
+                          comentarios={book.content}
+                          estado={book.subscription}
+                          id={book.id}
+                          img={book.img}
+                          name={book.title}
+                        />
+                      ))
                     : allBooks
-                        .slice(currentPage, currentPage + 8)
-                        .map((book) => (
-                          <Card
-                            key={book.id}
-                            autor={book.author}
-                            className={style.cards}
-                            comentarios={book.content}
-                            estado={book.subscription}
-                            id={book.id}
-                            img={book.img}
-                            name={book.title}
-                          />
-                        ))}
+                      .slice(currentPage, currentPage + 8)
+                      .map((book) => (
+                        <Card
+                          key={book.id}
+                          autor={book.author}
+                          className={style.cards}
+                          comentarios={book.content}
+                          estado={book.subscription}
+                          id={book.id}
+                          img={book.img}
+                          name={book.title}
+                        />
+                      ))}
                 </div>
               </div>
             </>
