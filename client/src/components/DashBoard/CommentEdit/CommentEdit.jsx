@@ -1,7 +1,7 @@
-import axios from 'axios'
 import { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 
+import { getUsers } from '../../../redux/actions'
 import api from '../../../utils/axios/axios'
 import SideBar from '../../DashAdmin/sideBar/sideBar'
 
@@ -10,10 +10,15 @@ import style from './CommentEdit.module.css'
 
 export const CommentEdit = () => {
   const [rata, setRata] = useState(true)
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(getUsers())
+  }, [dispatch])
 
   const users = useSelector((state) => state.users)
-  // const books = useSelector((state)=> state.allBooks)
 
+  // const books = useSelector((state)=> state.allBooks)
   const [input, setInput] = useState({
     searchUser: '',
     searchBook: '',
