@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
+import Swal from 'sweetalert2'
 
 import SideBar from '../../DashAdmin/sideBar/sideBar'
 import { getUsers } from '../../../redux/actions/index.js'
@@ -10,13 +11,20 @@ import style from './UserEdit.module.css'
 
 export const UserEdit = () => {
   const users = useSelector((state) => state.users)
+  const [editedUser, setEditedUser] = useState({
+    name: '',
+    username: '',
+    email: '',
+    subscription: '',
+    role: '',
+    id: '',
+  })
   const dispatch = useDispatch()
-  const [rata, setRata] = useState(true)
   const navigate = useNavigate()
 
   useEffect(() => {
     dispatch(getUsers())
-  }, [dispatch, rata])
+  }, [dispatch, editedUser])
   const [input, setInput] = useState({
     search: '',
     select: '',
@@ -27,15 +35,6 @@ export const UserEdit = () => {
       select: '',
     })
   }
-
-  const [editedUser, setEditedUser] = useState({
-    name: '',
-    username: '',
-    email: '',
-    subscription: '',
-    role: '',
-    id: '',
-  })
   const handleUserSelect = (e) => {
     setInput({
       search: '',
@@ -88,27 +87,46 @@ export const UserEdit = () => {
       formData.append('role', editedUser.role)
       formData.append('id', editedUser.id)
 
-      const info = await api.put('/user/update', editedUser, {
-        headers: {
-          authorization: `bearer ${localStorage.getItem('token')}`,
-        },
+      const info = await api
+        .put('/user/update', editedUser, {
+          headers: {
+            authorization: `bearer ${localStorage.getItem('token')}`,
+          },
+        })
+        .then((res) => {
+          Swal.fire({
+            title: res.data,
+            icon: 'success',
+            timer: 3000,
+          })
+        })
+
+      setEditedUser({
+        name: '',
+        username: '',
+        email: '',
+        subscription: '',
+        role: '',
+        id: '',
       })
-      const res = info.data
-
-      console.log(res)
-
-      setRata(!rata)
     } catch (error) {
       console.log(error)
     }
   }
 
   const handleDelete = async () => {
-    const info = await api.put(`/user/delete/${editedUser.id}`, null, {
-      headers: {
-        authorization: `bearer ${localStorage.getItem('token')}`,
-      },
-    })
+    const info = await api
+      .put(`/user/delete/${editedUser.id}`, null, {
+        headers: {
+          authorization: `bearer ${localStorage.getItem('token')}`,
+        },
+      })
+      .then((res) => {
+        Swal.fire({
+          title: res.data,
+          icon: 'error',
+        })
+      })
 
     setEditedUser({
       name: '',
@@ -124,7 +142,6 @@ export const UserEdit = () => {
     })
     const response = info.data
 
-    setRata(!rata)
     navigate('/dashboard/usuarios')
 
     return response
@@ -134,7 +151,7 @@ export const UserEdit = () => {
     <>
       <SideBar />
       <div className={style.container}>
-        <h1>Update Users</h1>
+        <h1>Actualizar Usuarios</h1>
         <br />
         <input name="search" value={input.search} onChange={(e) => handleSearch(e)} />
         <br />
@@ -149,16 +166,16 @@ export const UserEdit = () => {
           })}
         </select>
         <button type="button" onClick={handleClickSearch}>
-          Search User
+          Buscar Usuario
         </button>
         <form className={style.form} onSubmit={handleSubmit}>
-          <label>Name</label>
+          <label>Nombre</label>
           <input name="name" value={editedUser.name} onChange={(e) => handleChange(e)} />
-          <label>Username</label>
+          <label>Nombre de Usuario</label>
           <input name="username" value={editedUser.username} onChange={(e) => handleChange(e)} />
           <label>Email</label>
           <input name="email" value={editedUser.email} onChange={(e) => handleChange(e)} />
-          <label>Subscription</label>
+          <label>Suscripción</label>
           <select
             name="subscription"
             value={editedUser.subscription}
@@ -168,17 +185,17 @@ export const UserEdit = () => {
             <option value="free">Free</option>
             <option value="premium">Premium</option>
           </select>
-          <label>Role</label>
+          <label>Rol</label>
           <select name="role" value={editedUser.role} onChange={(e) => handleChange(e)}>
             <option value="none" />
-            <option value="user">User</option>
-            <option value="admin">Admin</option>
+            <option value="user">Usuario</option>
+            <option value="admin">Administrador</option>
           </select>
           <br />
-          <button type="submit">Update</button>
+          <button type="submit">Actualizar</button>
         </form>
         <button type="button" onClick={handleDelete}>
-          Delete User
+          Eliminar Usuario
         </button>
       </div>
     </>

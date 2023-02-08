@@ -40,7 +40,7 @@ const SideBar = () => {
               <span>BOOKYOU</span>
             </Link>
           </div>
-          <h3 className={style.sidebarTitle}>Dashboard</h3>
+          <h3 className={style.sidebarTitle}>Panel de Admin.</h3>
 
           <ul className={style.sidebarList}>
             <li className={style.sidebarListItem}>

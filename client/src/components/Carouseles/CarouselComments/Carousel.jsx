@@ -1,37 +1,34 @@
-import React, { useState,  useEffect } from 'react'
-
+import React, { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons'
 
-import Card from '../../Card/Card';
-import style from '../../CssGenerico/Carousel.module.css';
-
+import Card from '../../Card/Card'
+import style from '../../CssGenerico/Carousel.module.css'
 
 const Carousel = () => {
   const libros = useSelector((state) => state.allBooksCarousel)
   const [currentIndex, setCurrentIndex] = useState(0)
-  const [dataReady, setDataReady] = useState(false);
+  const [dataReady, setDataReady] = useState(false)
 
-useEffect(() => {
-  if (libros.length > 0 ) {
-    setDataReady(true);
-  } else if (libros.length === 0) {
-    setDataReady(false);
-  }
-}, [libros]);
+  useEffect(() => {
+    if (libros.length > 0) {
+      setDataReady(true)
+    } else if (libros.length === 0) {
+      setDataReady(false)
+    }
+  }, [libros])
 
-const librosOrdenados = dataReady
-  ? [...libros].sort((a, b) => {
-      const aComments = a.comment ? a.comment.length : 0;
-      const bComments = b.comment ? b.comment.length : 0;
-      return bComments - aComments;
-    })
-    .slice(0, 8)
-  : [];
+  const librosOrdenados = dataReady
+    ? [...libros]
+      .sort((a, b) => {
+        const aComments = a.comment ? a.comment.length : 0
+        const bComments = b.comment ? b.comment.length : 0
 
-  console.log(librosOrdenados,"---------")
-
+        return bComments - aComments
+      })
+      .slice(0, 8)
+    : []
 
   const librosPorPagina = 4
 
@@ -45,21 +42,18 @@ const librosOrdenados = dataReady
   const handleLeftArrowClick = () => {
     if (currentIndex === 0) {
       setCurrentIndex(Math.floor(librosOrdenados.length / librosPorPagina))
-
     } else {
-      setCurrentIndex(currentIndex - 1);
+      setCurrentIndex(currentIndex - 1)
     }
-  };
+  }
 
   const handleRightArrowClick = () => {
-
     if (currentIndex === Math.floor(librosOrdenados.length / librosPorPagina)) {
       setCurrentIndex(0)
-
     } else {
-      setCurrentIndex(currentIndex + 1);
+      setCurrentIndex(currentIndex + 1)
     }
-  };
+  }
 
   //-------------------
 
@@ -103,7 +97,7 @@ const librosOrdenados = dataReady
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Carousel;
+export default Carousel

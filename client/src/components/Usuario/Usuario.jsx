@@ -30,8 +30,6 @@ export const Usuario = () => {
 
   const oneUser = useSelector((state) => state.oneUser)
 
-  console.log(oneUser)
-
   const [books, setBooks] = useState(true) /* actualizar estado libros orden alf */
 
   const [profileSection, setProfileSection] = useState({
@@ -105,17 +103,6 @@ export const Usuario = () => {
           >
             {userVerification(token, oneUser) ? 'Mis Libros' : 'Libros'}
           </h2>
-        </button>
-        <button className={style.boton} onClick={() => setBooks(!books)}>
-          {books ? (
-            <span className={style.btnText}>Ocultar</span>
-          ) : (
-            <span className={style.btnText}>Mostrar</span>
-          )}
-          <FontAwesomeIcon
-            icon={books ? faChevronUp : faChevronDown}
-            style={{ fontSize: '0.7em' }}
-          />
         </button>
 
         {/* seccion mis libros */}

@@ -1,6 +1,8 @@
-import { useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useEffect, useState } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import Swal from 'sweetalert2'
 
+import { getBooks } from '../../../redux/actions'
 import SideBar from '../../DashAdmin/sideBar/sideBar'
 import api from '../../../utils/axios/axios.js'
 
@@ -9,6 +11,7 @@ import style from './BookEdit.module.css'
 export const BookEdit = () => {
   const books = useSelector((state) => state.allBooks)
   const categories = useSelector((state) => state.category)
+  const dispatch = useDispatch()
   const [editedBook, setEditedBook] = useState({
     title: '',
     description: '',
@@ -22,6 +25,10 @@ export const BookEdit = () => {
     search: '',
     select: '',
   })
+
+  useEffect(() => {
+    dispatch(getBooks())
+  }, [dispatch, editedBook])
   const handleSearch = (e) => {
     setInput({
       search: e.target.value,
@@ -67,11 +74,18 @@ export const BookEdit = () => {
   }
 
   const handleDelete = async () => {
-    const info = await api.put(`/book/delete/${editedBook.id}`, null, {
-      headers: {
-        authorization: `bearer ${localStorage.getItem('token')}`,
-      },
-    })
+    const info = await api
+      .put(`/book/delete/${editedBook.id}`, null, {
+        headers: {
+          authorization: `bearer ${localStorage.getItem('token')}`,
+        },
+      })
+      .then((res) => {
+        Swal.fire({
+          title: res.data,
+          icon: 'Error',
+        })
+      })
 
     const response = await info
 
@@ -102,28 +116,45 @@ export const BookEdit = () => {
     formData.append('author', editedBook.author)
     formData.append('subscription', editedBook.subscription)
 
-    const info = await api.put(`/book/update/${editedBook.id}`, formData, {
-      headers: {
-        authorization: `bearer ${localStorage.getItem('token')}`,
-      },
-    })
+    const info = await api
+      .put(`/book/update/${editedBook.id}`, formData, {
+        headers: {
+          authorization: `bearer ${localStorage.getItem('token')}`,
+        },
+      })
+      .then((res) => {
+        Swal.fire({
+          title: res.data,
+          timer: 2000,
+        })
+        setEditedBook({
+          title: '',
+          description: '',
+          author: '',
+          category: '',
+          subscription: '',
+          id: '',
+        })
+      })
   }
 
   return (
     <>
       <SideBar />
       <div className={style.container}>
-        <h1>Update Books</h1>
+        <h1>Modificar Libro</h1>
         <br />
+        <label htmlFor="search">Nombre del libro</label>
         <input
           name="search"
-          placeholder="Enter book name"
+          placeholder="Nombre del libro"
           value={input.search}
           onChange={(e) => handleSearch(e)}
         />
         <br />
+        <label htmlFor="books">Selecciona el libro</label>
         <select name="books" value={input.select} onChange={(e) => handleBookSelect(e)}>
-          <option value="none" />
+          <option value="none">Selecciona el libro</option>
           {books?.map((element) => {
             return (
               <option key={element.id} value={element.title}>
@@ -133,20 +164,23 @@ export const BookEdit = () => {
           })}
         </select>
         <button type="button" onClick={handleClickSearch}>
-          Search
+          Buscar
         </button>
         <form className={style.form} onSubmit={handleSubmit}>
-          <label>Title</label>
+          <label>Título</label>
           <input name="title" value={editedBook.title} onChange={(e) => handleChange(e)} />
-          <label>Description</label>
-          <input
+          <label>Descripción</label>
+          <textarea
+            className={style.textArea}
+            cols={39}
             name="description"
+            rows={10}
             value={editedBook.description}
             onChange={(e) => handleChange(e)}
           />
-          <label>Author</label>
+          <label>Autor</label>
           <input name="author" value={editedBook.author} onChange={(e) => handleChange(e)} />
-          <label>Subscription</label>
+          <label>Subscripción</label>
           <select
             name="subscription"
             value={editedBook.subscription}
@@ -156,7 +190,7 @@ export const BookEdit = () => {
             <option value="free">Free</option>
             <option value="premium">Premium</option>
           </select>
-          <label>Category</label>
+          <label>Categoría</label>
           <select name="category" value={editedBook.category} onChange={(e) => handleChange(e)}>
             <option value="none" />
             {categories?.map((element) => {
@@ -168,10 +202,10 @@ export const BookEdit = () => {
             })}
           </select>
           <br />
-          <button type="submit">Update</button>
+          <button type="submit">Actualizar</button>
         </form>
         <button type="button" onClick={handleDelete}>
-          Delete Book
+          Borrar Libro
         </button>
       </div>
     </>

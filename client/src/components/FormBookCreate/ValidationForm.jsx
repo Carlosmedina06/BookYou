@@ -1,17 +1,22 @@
 const validationsForm = (form) => {
+  let caracteresDescription = /^.{1,5}$/
   let errors = {}
 
   if (!form.title) {
-    errors.title = 'El  titulo es requerido'
+    errors.title = 'El  título es requerido'
   }
+
   if (!form.description) {
-    errors.description = 'La descripcion es requerida 😠'
+    errors.description = 'La descripción es requerida'
+  } else if (!caracteresDescription.test(form.description.trim())) {
+    errors.description = 'No puedo superar los 500 caracteres'
   }
+
   if (!form.author) {
     errors.author = 'El nombre del autor es requerido'
   }
   if (!form.category) {
-    errors.category = 'La Categoria es requerida'
+    errors.category = 'La Categoría es requerida'
   }
 
   return errors

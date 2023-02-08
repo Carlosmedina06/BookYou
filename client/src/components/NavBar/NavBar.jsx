@@ -95,7 +95,7 @@ const NavBar = () => {
         <div>
           {user && (
             <button className={style.buttonLogOut} onClick={handleLogOut}>
-              <FontAwesomeIcon className={style.buttonLogOutIcon} icon={faSignOut} /> Cerrar Sesíon
+              <FontAwesomeIcon className={style.buttonLogOutIcon} icon={faSignOut} /> Cerrar Sesión
             </button>
           )}
         </div>

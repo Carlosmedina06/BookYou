@@ -1,35 +1,56 @@
 import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
+import Swal from 'sweetalert2'
 
 import api from '../../../utils/axios/axios'
 
 import style from './CommentCard.module.css'
-export const CommentCard = ({ comment }) => {
+export const CommentCard = ({ comment, rata, setRata }) => {
   const [comentario, setComentario] = useState({})
   const [response, setResponse] = useState('')
-  const handleDelete = async () => {
-    const info = await api.put(`/comment/delete/${comentario.id}`, null, {
-      headers: {
-        authorization: `bearer ${localStorage.getItem('token')}`,
-      },
-    })
-    const r = info.data
-  }
 
   useEffect(() => {
     setComentario(comment)
   }, [comentario, comment, response])
+
   const handleBan = async () => {
     const banned = await api.get(`/user/${comentario.user}`)
     const bannedUser = banned.data
     const dataUserForBan = { ...bannedUser, strike: bannedUser.strike + 1 }
 
-    await api.put(`/user/update`, dataUserForBan, {
-      headers: {
-        authorization: `bearer ${localStorage.getItem('token')}`,
-      },
-    })
+    await api
+      .put(`/user/update`, dataUserForBan, {
+        headers: {
+          authorization: `bearer ${localStorage.getItem('token')}`,
+        },
+      })
+      .then((res) => {
+        Swal.fire({
+          title: res.data,
+          icon: 'success',
+          timer: 3000,
+        })
+        setRata(!rata)
+      })
   }
+  const handleDelete = async () => {
+    const info = await api
+      .put(`/comment/delete/${comentario.id}`, null, {
+        headers: {
+          authorization: `bearer ${localStorage.getItem('token')}`,
+        },
+      })
+      .then((res) => {
+        Swal.fire({
+          title: res.data,
+          icon: 'info',
+        })
+        setResponse(res.data)
+        setRata(!rata)
+      })
+    const r = info.data
+  }
+
   const handleClear = async () => {
     const clearComment = comentario
 
@@ -42,6 +63,11 @@ export const CommentCard = ({ comment }) => {
           },
         })
         .then((res) => {
+          Swal.fire({
+            title: res.data,
+            icon: 'success',
+            timer: 3000,
+          })
           setResponse(res.data)
         })
     } catch (error) {

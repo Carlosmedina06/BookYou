@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import Pagination from '@mui/material/Pagination'
 import Stack from '@mui/material/Stack'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTrash } from '@fortawesome/free-solid-svg-icons'
+import { faRefresh } from '@fortawesome/free-solid-svg-icons'
 
 import CarouselFreeBooks from '../Carouseles/CarouselFreeBooks/CarouselFreeBooks'
 import CarouselBooksPremium from '../Carouseles/CarouselBooksPremium/CarouselBooksPremium'
@@ -172,9 +172,9 @@ export const Home = () => {
         <NavBar />
       </div>
 
-      <div style={{ position: 'absolute', top: '20px', right: '45px' }}>
+      <div style={{ position: 'absolute', top: '20px', left: '85%' }}>
         <button className={style.boton} onClick={clearStates}>
-          <FontAwesomeIcon icon={faTrash} />
+          <FontAwesomeIcon icon={faRefresh} />
         </button>
       </div>
 
@@ -200,7 +200,7 @@ export const Home = () => {
           {(bookInput.length > 0 && filterLibros.length === 0) ||
             (bookInputtodos.length > 0 && filterLibros.length === 0) ||
             (authorInput.length > 0 && filterLibros.length === 0) ? (
-            <p className={style.p}>No se encontro ningun libro</p>
+            <p className={style.p}>No se encontró ningún libro.</p>
           ) : (
             <>
               <div className={style.mover1}>
@@ -266,7 +266,7 @@ export const Home = () => {
               fontSize: '30px',
             }}
           >
-            Los mas comentados
+            Los más comentados
           </h3>
           <CarouselComentados />
         </div>
@@ -281,7 +281,7 @@ export const Home = () => {
               fontSize: '30px',
             }}
           >
-            Libros Free
+            Libros Gratuitos
           </h3>
           <CarouselFreeBooks booksOpen={booksOpen} />
         </div>

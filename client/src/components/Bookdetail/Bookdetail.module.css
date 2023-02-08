@@ -21,7 +21,7 @@
 }
 
 .bookImage img {
-  
+
   width: 180px;
   height: 276px;
   margin-top: 1rem;
@@ -72,18 +72,8 @@
 .readBookButtonContainer {
   position: absolute;
   top: 380px;
-  left:300px;
+  left: 300px;
 }
-
-/*   
-  .readBookButton{
-  background-color: black;
-  font-size: 1.4rem;
-  padding: 0.5rem 1rem 0.5rem 1rem;
-  border-radius: 3px;
-  
-  
-  } */
 
 .perfilBoton {
   display: flex;
@@ -173,7 +163,7 @@
 /*---------------//Boton//---------------------*/
 
 .boton {
- 
+
   margin-top: 10px;
   border: 2px solid #010326;
   border-radius: 10px;
@@ -198,9 +188,9 @@
   font-size: 16px;
 }
 
-.loaderContainer{
-display: flex;
-align-self: center;
-justify-content: center;
-width: 100%;
+.loaderContainer {
+  display: flex;
+  align-self: center;
+  justify-content: center;
+  width: 100%;
 }

@@ -14,7 +14,7 @@ export const CommentEdit = () => {
 
   useEffect(() => {
     dispatch(getUsers())
-  }, [dispatch])
+  }, [dispatch, rata])
 
   const users = useSelector((state) => state.users)
 
@@ -85,8 +85,6 @@ export const CommentEdit = () => {
     })
     setCommentsPerUser([])
 
-    // const info = await api.get(`/comment/1`)
-    // const allComments = info.data
     const allComments = await getAllComments(1)
     const allMarkedComments = allComments.filter((elem) => {
       if (elem.available) {
@@ -129,11 +127,11 @@ export const CommentEdit = () => {
             Buscar Alertas
           </button>
           {markedComments.map((el, i) => {
-            return <CommentCard key={i} comment={el} />
+            return <CommentCard key={i} comment={el} rata={rata} setRata={setRata} />
           })}
 
           {commentsPerUser.map((el, i) => {
-            return <CommentCard key={i} comment={el} />
+            return <CommentCard key={i} comment={el} rata={rata} setRata={setRata} />
           })}
         </div>
       </div>

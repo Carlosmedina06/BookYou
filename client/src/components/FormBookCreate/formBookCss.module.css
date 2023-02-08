@@ -35,17 +35,18 @@
 }
 
 
-.contentCardLoader{
+.contentCardLoader {
   display: flex;
   /* align-content: center;
  justify-self: center;
  align-items: center;
  justify-items: center;
  justify-content: center; */
-height: 700px;
+  height: 700px;
 
 
 }
+
 .formTitle {
   font-size: 1.2rem;
   font-weight: 700;
@@ -194,7 +195,7 @@ height: 700px;
   /*  border: 2px solid #00a3fe; */
   height: 35px;
   /* border-color: transparent; */
-  background-color: #ffffff;
+  background-color: red;
   border: none;
   box-shadow: 0px;
   outline: none;
@@ -202,6 +203,31 @@ height: 700px;
   text-align: center;
 }
 
+.inputFile {
+  cursor: pointer;
+}
+
+.inputFile::-webkit-file-upload-button {
+  color: #f28322;
+  background-color: transparent;
+  border-radius: 3px;
+  border: 1px solid #f28322;
+  cursor: pointer;
+  margin-right: 10px;
+  transition: all 0.2s ease-in-out;
+}
+
+.small {
+  font-weight: bold;
+  color: red;
+  font-size: 16px;
+  margin-top: 5px;
+}
+
+.inputFile::-webkit-file-upload-button:hover {
+  color: #fff;
+  background-color: #f28322;
+}
 
 .fileUploadButton::after {
   content: 'Upload';

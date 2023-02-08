@@ -127,7 +127,6 @@ export function GraphicCommentsQuantity() {
       }
       setMonth([monthForCalculate])
       setMonthDisplayGraph(monthDisplay)
-      console.log(monthDisplay)
     }
   }
 
@@ -137,8 +136,6 @@ export function GraphicCommentsQuantity() {
       const response = info.data
 
       setAllComments(response)
-
-      console.log(response)
     }
     load()
     loadComments()
@@ -190,7 +187,7 @@ export function GraphicCommentsQuantity() {
         {
           label: 'Válidos',
           data: monthForGraphicData,
-          
+
           borderColor: 'orange',
           backgroundColor: 'orange',
         },

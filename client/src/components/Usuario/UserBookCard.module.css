@@ -13,8 +13,8 @@
 }
 
 .bookCover {
-  height: 100%;
-  width: 45%;
+  height: 250px;
+  width: 300px;
 }
 
 .bookCover img {

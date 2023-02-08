@@ -18,10 +18,7 @@ export const ImgContainer = styled.div`
   font-size: 40px;
   margin: 20px;
   color: gray;
-  // img {
-  //   width: 40px;
-  //   height: 40px;
-  // }
+  margin-bottom: 25%;
 `
 export const ReviewContent = styled.div`
   display: flex;
@@ -57,12 +54,13 @@ export const ReviewDate = styled.div`
 `
 export const ButtonContent = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: row-reverse;
 `
 
 export const ButtonReport = styled.button`
   border: solid 1px #f28322;
   padding: 1px 5px;
+  margin-left: 10px;
   margin-bottom: 10px;
   font-weight: bold;
   transition: all 0.2s ease-in-out;

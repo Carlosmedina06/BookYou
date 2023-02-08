@@ -32,7 +32,7 @@ function MainPage() {
               <div className={style.info}>
                 <p className={style.paragraphLeft}>
                   Únete a nuestra comunidad de amantes de los libros. Descubre una amplia selección
-                  de títulos y haz un buen negocio vendiendo tus obras. Registrate y comienza a
+                  de títulos y haz un buen negocio vendiendo tus obras. Regístrate y comienza a
                   compartir tu pasión por la lectura.
                 </p>
                 <p className={style.paragraphLeft}>
@@ -55,8 +55,8 @@ function MainPage() {
                     <span className={style.numbers}>1</span>Crea una cuenta.
                   </li>
                   <li>
-                    <span className={style.numbers}>2</span>Entra a tu perfil y haz clic en "Añadir
-                    libro"
+                    <span className={style.numbers}>2</span>Entra a tu perfil y haz clic en "Crear
+                    libro".
                   </li>
                   <li>
                     <span className={style.numbers}>3</span>Sube una foto del libro y proporciona
@@ -64,8 +64,8 @@ function MainPage() {
                     publica el libro.
                   </li>
                   <li>
-                    Eso es todo! Ahora estás listo para vender tus libros y descubrir nuevos títulos
-                    interesantes.
+                    ¡Eso es todo! Ahora estás listo para vender tus libros y descubrir nuevos
+                    títulos interesantes.
                   </li>
                 </ol>
               </div>
@@ -74,11 +74,11 @@ function MainPage() {
         </section>
         <div className={`${style.main_container}`}>
           <div className={`${style.main_left_container}`}>
-            <h2 className={`${style.titleApp}`}>COMIENZA</h2>
+            <h2 className={`${style.titleApp}`}>BIENVENIDO</h2>
             <div className={`${style.left_paragraph}`}>
               <p>
                 Ingresa y conéctate con miles de personas alrededor del mundo que comparten tu
-                pasion por la lectura. ❤️
+                pasión por la lectura. ❤️
               </p>
             </div>
             <div className={`${style.LinkContainer}`}>
@@ -88,19 +88,19 @@ function MainPage() {
                 <>
                   <Link to="/login">
                     <div className={style.buttonContainer}>
-                      <button className="button_home">Inicia Sesion</button>
+                      <button className="button_home">Inicia Sesión</button>
                     </div>
                   </Link>
                   <Link to="/signup">
                     <div className={style.buttonContainer}>
-                      <button className="button_home">Registrate</button>
+                      <button className="button_home">Regístrate</button>
                     </div>
                   </Link>
                 </>
               )}
               <Link className={`${style.LinkHome}`} to="/home">
                 <BtnHome>
-                  <p>Home</p>
+                  <p>Inicio</p>
                   <svg
                     fill="none"
                     stroke="currentColor"

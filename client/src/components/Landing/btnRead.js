@@ -32,11 +32,11 @@ export const BtnHome = styled.button`
     &::before {
       position: absolute;
       /*   box-sizing: border-box; */
-      content: 'Home';
+      content: 'Inicio';
       width: 0%;
       inset: 0;
       text-align: center;
-      color: #f28322;
+      color: #c84747;
       overflow: hidden;
       transition: 0.3s ease - out;
     }

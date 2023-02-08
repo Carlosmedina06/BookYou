@@ -25,7 +25,7 @@ const bookDelete = async (req, res, next) => {
       if (decodedToken.id.toString() === book.user.toString() || decodedToken.role === 'admin') {
         book.available = false
         book.save()
-        res.status(200).json('Book deleted')
+        res.status(200).json('El libro fue borrado con éxito')
       } else {
         res.status(401).json('Unauthorized')
       }

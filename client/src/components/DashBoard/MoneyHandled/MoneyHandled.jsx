@@ -18,18 +18,14 @@ export const MoneyHandled = () => {
         return el.subscription === 'premium'
       })
 
-      console.log(subscribedUsers)
       const money = subscribedUsers.length * 385
 
-      console.log(money)
       setMoneyThisMonth(money)
       setAllUsersInDb(response)
     }
     getInfo()
   }, [])
 
-  console.log(allUsersInDb)
-  console.log(moneyThisMonth)
   //   const subscribedUsers = allUsersInDb.filter((el) => {
   //     return el.subscription === "premium";
   //   });
@@ -38,9 +34,9 @@ export const MoneyHandled = () => {
 
   return (
     <div className={style.container}>
-        <h1 className={style.content}>$ {moneyThisMonth} </h1>
-        <br/>
-        <div className={style.title}>Ingresos mensuales</div>
+      <h1 className={style.content}>$ {moneyThisMonth} </h1>
+      <br />
+      <div className={style.title}>Ingresos mensuales</div>
     </div>
   )
 }

@@ -14,10 +14,10 @@ import style from './UserGraph.module.css'
 ChartJS.register(ArcElement, Tooltip, Legend)
 
 export const data = {
-  labels: ['Subscription', 'Free'],
+  labels: ['Premium', 'Free'],
   datasets: [
     {
-      label: 'Users',
+      label: 'Usuarios',
       data: [7, 20],
       backgroundColor: ['rgba(255, 99, 132, 0.6)', 'rgba(54, 162, 235, 0.6)'],
       borderColor: ['rgba(255, 99, 132, 1)', 'rgba(54, 162, 235, 1)'],
@@ -40,7 +40,7 @@ export const textCenter = {
     ctx.fillStyle = 'orange'
     ctx.textAlign = 'center'
     ctx.textBaseline = 'middle'
-    ctx.fillText('Users', chart.getDatasetMeta(0).data[0].x, chart.getDatasetMeta(0).data[0].y)
+    ctx.fillText('Usuarios', chart.getDatasetMeta(0).data[0].x, chart.getDatasetMeta(0).data[0].y)
   },
 }
 export function GraphicUsersFreeToSubs() {
@@ -52,7 +52,7 @@ export function GraphicUsersFreeToSubs() {
   const [data, setData] = useState({
     datasets: [
       {
-        label: 'Users',
+        label: 'Usuarios',
         data: [2, 8],
         backgroundColor: ['rgba(255, 99, 132, 0.6)', 'rgba(54, 162, 235, 0.6)'],
         borderColor: ['rgba(255, 99, 132, 1)', 'rgba(54, 162, 235, 1)'],
@@ -73,7 +73,7 @@ export function GraphicUsersFreeToSubs() {
       ctx.textAlign = 'center'
       ctx.textBaseline = 'middle'
       ctx.fillText(
-        allUsers + ' Users',
+        allUsers + ' Usuarios',
         chart.getDatasetMeta(0).data[0].x,
         chart.getDatasetMeta(0).data[0].y,
       )
@@ -84,7 +84,7 @@ export function GraphicUsersFreeToSubs() {
     setData({
       datasets: [
         {
-          label: 'Users',
+          label: 'Usuarios',
           data: [usersPremium, usersFree],
           backgroundColor: ['orange', '#010326'],
           borderColor: ['orange', '#010326'],
@@ -105,7 +105,7 @@ export function GraphicUsersFreeToSubs() {
         ctx.textAlign = 'center'
         ctx.textBaseline = 'middle'
         ctx.fillText(
-          allUsers + ' Users',
+          allUsers + ' Usuarios',
           chart.getDatasetMeta(0).data[0].x,
           chart.getDatasetMeta(0).data[0].y,
         )

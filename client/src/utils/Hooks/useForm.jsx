@@ -1,8 +1,6 @@
 import { useState } from 'react'
-
-import { useDispatch, useSelector } from 'react-redux'
-import { setLoader } from '../../redux/actions/index.js'
 import Swal from 'sweetalert2'
+
 import api from '../axios/axios.js'
 
 export const useForm = (initialForm, validationsForm) => {
@@ -11,19 +9,16 @@ export const useForm = (initialForm, validationsForm) => {
   const [content, setContent] = useState()
   const [img, setImg] = useState()
   const [response, setResponse] = useState('')
-  
-  
-  // const loading = useSelector(state => state.loader)
+
   const handleSubmit = async (evt) => {
-  const dispatch = useDispatch()
-  /  dispatch(setLoader(true))      
     evt.preventDefault()
     try {
       Swal.fire({
         title: 'Cargando...',
-        showConfirmButton: false,
+        icon: 'warning',
         timer: 10000,
       })
+
       setErrors(validationsForm(form))
       if (Object.keys(errors).length === 0) {
         const formData = new FormData()
@@ -35,7 +30,6 @@ export const useForm = (initialForm, validationsForm) => {
         formData.append('category', form.category)
         formData.append('author', form.author)
         formData.append('subscription', form.subscription)
-
         const info = await api.post('/book/create', formData, {
           headers: {
             authorization: `Bearer ${localStorage.getItem('token')}`,
@@ -43,12 +37,11 @@ export const useForm = (initialForm, validationsForm) => {
         })
 
         const res = info.data
-        if(res){dispatch(setLoader(false))}
+
         setResponse(res)
       }
     } catch (error) {
       // eslint-disable-next-line no-console
-      dispatch(setLoader(false))
       console.log({ error: error.response.data })
     }
   }

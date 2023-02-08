@@ -31,7 +31,7 @@ const userDelete = async (req, res, next) => {
 
         user.available = false
         user.save()
-        res.status(200).json(`The  ${user.username} was deleted`)
+        res.status(200).json(`El usuario ${user.username} fue eliminado`)
       }
 
       return res.status(401).json({ error: 'only admin can delete users' })

@@ -14,10 +14,10 @@ import style from './BookGraph.module.css'
 ChartJS.register(ArcElement, Tooltip, Legend)
 
 export const data = {
-  labels: ['Subscription', 'Free'],
+  labels: ['Premium', 'Free'],
   datasets: [
     {
-      label: 'Books',
+      label: 'Libros',
       data: [2, 8],
       backgroundColor: ['rgba(255, 99, 132, 0.6)', 'rgba(54, 162, 235, 0.6)'],
       borderColor: ['rgba(255, 99, 132, 1)', 'rgba(54, 162, 235, 1)'],
@@ -40,7 +40,7 @@ export const textCenter = {
     ctx.fillStyle = 'orange'
     ctx.textAlign = 'center'
     ctx.textBaseline = 'middle'
-    ctx.fillText('Books', chart.getDatasetMeta(0).data[0].x, chart.getDatasetMeta(0).data[0].y)
+    ctx.fillText('Libros', chart.getDatasetMeta(0).data[0].x, chart.getDatasetMeta(0).data[0].y)
   },
 }
 export function GraphicBooksFreeToSubs() {
@@ -50,7 +50,7 @@ export function GraphicBooksFreeToSubs() {
   const [data, setData] = useState({
     datasets: [
       {
-        label: 'Books',
+        label: 'Libros',
         data: [2, 8],
         backgroundColor: ['#BC2EF2', '#2EF29D'],
         borderColor: ['#BC2EF2', '#2EF29D'],
@@ -58,7 +58,7 @@ export function GraphicBooksFreeToSubs() {
         borderWidth: 1,
       },
     ],
-    labels: ['Subscription', 'Free'],
+    labels: ['Premium', 'Free'],
   })
   const [textCenter, setTextCenter] = useState({
     id: 'textCenter',
@@ -71,7 +71,7 @@ export function GraphicBooksFreeToSubs() {
       ctx.textAlign = 'center'
       ctx.textBaseline = 'middle'
       ctx.fillText(
-        allBooks + ' Books',
+        allBooks + ' Libros',
         chart.getDatasetMeta(0).data[0].x,
         chart.getDatasetMeta(0).data[0].y,
       )
@@ -82,7 +82,7 @@ export function GraphicBooksFreeToSubs() {
     setData({
       datasets: [
         {
-          label: 'Books',
+          label: 'Libros',
           data: [booksSubs, booksFree],
           backgroundColor: ['orange', '#010326'],
           borderColor: ['orange', '#010326'],
@@ -90,7 +90,7 @@ export function GraphicBooksFreeToSubs() {
           borderWidth: 1,
         },
       ],
-      labels: ['Subscription', 'Free'],
+      labels: ['Premium', 'Free'],
     })
     setTextCenter({
       id: 'textCenter',
@@ -103,7 +103,7 @@ export function GraphicBooksFreeToSubs() {
         ctx.textAlign = 'center'
         ctx.textBaseline = 'middle'
         ctx.fillText(
-          'Books 4' + allBooks,
+          'Libros 4' + allBooks,
           chart.getDatasetMeta(0).data[0].x,
           chart.getDatasetMeta(0).data[0].y,
         )

@@ -27,8 +27,7 @@ const Bookdetail = () => {
   const [rata, setRata] = useState(0) // NO TOCAR 🐭
 
   const [books, setBooks] = useState(false) /* actualizar estado libros orden alf */
-  const loading = useSelector(state => state.loading)
-
+  const loading = useSelector((state) => state.loading)
 
   const token = localStorage.getItem('token')
   let decoded = token ? jwt_decode(token) : null
@@ -80,96 +79,77 @@ const Bookdetail = () => {
   }
 
   return (
-    <div className={style.mainGridContainer}>
-      <div>
-        <NavBar />
-      </div>
-      {loading && <Loader />}
-      {!loading && (
+    <>
+      <div className={style.mainGridContainer}>
         <div>
-          <div className={style.Bookdetails}>
-            <div className={style.bookImage}>
-              <img alt={details.title} src={details.img} />
-            </div>
-            <div className={style.bookTextDetail}>
-              <div>
-                <h1>{details.title}</h1>
+          <NavBar />
+        </div>
+        {loading && <Loader />}
+        {!loading && (
+          <div>
+            <div className={style.Bookdetails}>
+              <div className={style.bookImage}>
+                <img alt={details.title} src={details.img} />
               </div>
-              <div>
-                <h2>Acerca del libro</h2>
-                <p>{details.description}</p>
-              </div>
-              <div className={style.buttonCategorycontainer}>
-                <button className={style.buttonCategory}>{details.category}</button>
-              </div>
-              {window.localStorage.getItem('token') && (
-                <Link to={`/usuario/${details.user?.id}`}>
-                  <p className={style.perfilBoton}>{details.user?.username}</p>
-                </Link>
-              )}
-              <div className={style.readBookButtonContainer}>
-                {details.subscription === 'free' ? (
-                  <button className={style.readBookButton} onClick={handleReadButton}>
-                    Leer libro
-                  </button>
-                ) : decoded ? (
-                  loginUserVerification(localStorage.getItem('token'), details) ? (
+              <div className={style.bookTextDetail}>
+                <div>
+                  <h1>{details.title}</h1>
+                </div>
+                <div>
+                  <h2>Acerca del libro</h2>
+                  <p>{details.description}</p>
+                </div>
+                <div className={style.buttonCategorycontainer}>
+                  <button className={style.buttonCategory}>{details.category}</button>
+                </div>
+                {window.localStorage.getItem('token') && (
+                  <Link to={`/usuario/${details.user?.id}`}>
+                    <p className={style.perfilBoton}>{details.user?.username}</p>
+                  </Link>
+                )}
+                <div className={style.readBookButtonContainer}>
+                  {details.subscription === 'free' ? (
                     <button className={style.readBookButton} onClick={handleReadButton}>
                       Leer libro
                     </button>
-                  ) : decoded.subsscription === 'premium' ? (
-                    <button className={style.readBookButton} onClick={handleReadButton}>
-                      Leer libro
-                    </button>
+                  ) : decoded ? (
+                    loginUserVerification(localStorage.getItem('token'), details) ? (
+                      <button className={style.readBookButton} onClick={handleReadButton}>
+                        Leer libro
+                      </button>
+                    ) : decoded.subsscription === 'premium' ? (
+                      <button className={style.readBookButton} onClick={handleReadButton}>
+                        Leer libro
+                      </button>
+                    ) : (
+                      <div>
+                        <NavLink to="/suscripcion">
+                          <button className={style.buttonSuscribe}>Suscribirse</button>
+                        </NavLink>
+                      </div>
+                    )
                   ) : (
                     <div>
                       <NavLink to="/suscripcion">
                         <button className={style.buttonSuscribe}>Suscribirse</button>
                       </NavLink>
                     </div>
-                  )
-                ) : (
-                  <div>
-                    <NavLink to="/suscripcion">
-                      <button className={style.buttonSuscribe}>Suscribirse</button>
-                    </NavLink>
-                  </div>
-                )}
-                {loginUserVerification(localStorage.getItem('token'), details) ? (
-                  <>
-                    <button className={style.boton} onClick={handletDelete}>
-                      <span className={style.btnText}>Eliminar</span>
-                    </button>
-                    <button className={style.boton} onClick={() => handletEdit(details.id)}>
-                      <span className={style.btnText}>Editar</span>
-                    </button>
-                  </>
-                ) : null}
+                  )}
+                  {loginUserVerification(localStorage.getItem('token'), details) ? (
+                    <>
+                      <button className={style.boton} onClick={handletDelete}>
+                        <span className={style.btnText}>Eliminar</span>
+                      </button>
+                      <button className={style.boton} onClick={() => handletEdit(details.id)}>
+                        <span className={style.btnText}>Editar</span>
+                      </button>
+                    </>
+                  ) : null}
+                </div>
               </div>
             </div>
           </div>
-          {/* } */}
-          <div
-            style={{
-              position: 'absolute',
-              top: '695px',
-              left: '500px',
-            }}
-          >
-            <button className={style.boton} onClick={() => setBooks(!books)}>
-              {books ? (
-                <span className={style.btnText}>Ocultar</span>
-              ) : (
-                <span className={style.btnText}>Mostrar</span>
-              )}
-              <FontAwesomeIcon
-                icon={books ? faChevronUp : faChevronDown}
-                style={{ fontSize: '0.7em' }}
-              />
-            </button>
-          </div>
-         </div> 
-         {/* } */}
+        )}
         <div
           style={{
             position: 'absolute',
@@ -196,7 +176,7 @@ const Bookdetail = () => {
       <div style={{ position: 'absolute', top: '110px', left: '530px', transform: 'scale(1.5)' }}>
         <GetRateStars rate={avgRate} />
       </div>
-    </div>
+    </>
   )
 }
 

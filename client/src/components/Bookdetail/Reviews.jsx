@@ -229,7 +229,7 @@ const Reviews = ({ id, comment, setRata, rata }) => {
                       {userVerification(window.localStorage.getItem('token'), item) && (
                         <ButtonReport onClick={() => handleDelete(item.id)}>Eliminar</ButtonReport>
                       )}
-                      <p>{item.createdAt.slice(0, 10)}</p>
+                      <p style={{ 'margin-right': '250px' }}>{item.createdAt.slice(0, 10)}</p>
                     </ButtonContent>
                   </ReviewDate>
                 </ReviewContent>
