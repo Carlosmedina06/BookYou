@@ -38,9 +38,9 @@ export const MoneyHandled = () => {
 
   return (
     <div className={style.container}>
-      <h1 className={style.content}>$ {moneyThisMonth} </h1>
-      <br />
-      <h1 className={style.title}>Ingresos mensuales</h1>
+        <h1 className={style.content}>$ {moneyThisMonth} </h1>
+        <br/>
+        <div className={style.title}>Ingresos mensuales</div>
     </div>
   )
 }

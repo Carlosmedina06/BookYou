@@ -190,14 +190,15 @@ export function GraphicCommentsQuantity() {
         {
           label: 'Válidos',
           data: monthForGraphicData,
-          borderColor: '#2EF29D',
-          backgroundColor: '#2EF29D',
+          
+          borderColor: 'orange',
+          backgroundColor: 'orange',
         },
         {
           label: 'No válidos',
           data: monthStatusFalse,
-          borderColor: '#BC2EF2',
-          backgroundColor: '#BC2EF2',
+          borderColor: '#010326',
+          backgroundColor: '#010326',
         },
       ],
     })

@@ -69,7 +69,7 @@ export function GraphicUsersFreeToSubs() {
 
       ctx.save()
       ctx.font = 'bolder 24px sans serif'
-      ctx.fillStyle = 'orange'
+      ctx.fillStyle = 'black'
       ctx.textAlign = 'center'
       ctx.textBaseline = 'middle'
       ctx.fillText(
@@ -86,8 +86,8 @@ export function GraphicUsersFreeToSubs() {
         {
           label: 'Users',
           data: [usersPremium, usersFree],
-          backgroundColor: ['#BC2EF2', '#2EF29D'],
-          borderColor: ['#BC2EF2', '#2EF29D'],
+          backgroundColor: ['orange', '#010326'],
+          borderColor: ['orange', '#010326'],
 
           borderWidth: 1,
         },

@@ -93,7 +93,6 @@ export const UserEdit = () => {
           authorization: `bearer ${localStorage.getItem('token')}`,
         },
       })
-
       const res = info.data
 
       console.log(res)

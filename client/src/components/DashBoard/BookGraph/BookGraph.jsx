@@ -67,7 +67,7 @@ export function GraphicBooksFreeToSubs() {
 
       ctx.save()
       ctx.font = 'bolder 24px sans serif'
-      ctx.fillStyle = 'orange'
+      ctx.fillStyle = 'black'
       ctx.textAlign = 'center'
       ctx.textBaseline = 'middle'
       ctx.fillText(
@@ -84,8 +84,8 @@ export function GraphicBooksFreeToSubs() {
         {
           label: 'Books',
           data: [booksSubs, booksFree],
-          backgroundColor: ['#BC2EF2', '#2EF29D'],
-          borderColor: ['#BC2EF2', '#2EF29D'],
+          backgroundColor: ['orange', '#010326'],
+          borderColor: ['orange', '#010326'],
 
           borderWidth: 1,
         },
