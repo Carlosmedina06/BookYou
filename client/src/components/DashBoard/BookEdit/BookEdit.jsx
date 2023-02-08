@@ -168,9 +168,7 @@ export const BookEdit = () => {
             })}
           </select>
           <br />
-          <button type="submit" onSubmit={handleSubmit}>
-            Update
-          </button>
+          <button type="submit">Update</button>
         </form>
         <button type="button" onClick={handleDelete}>
           Delete Book
