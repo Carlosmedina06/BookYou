@@ -266,7 +266,7 @@ export const Home = () => {
               fontSize: '30px',
             }}
           >
-            Los más comentados
+            Los más populares
           </h3>
           <CarouselComentados />
         </div>
