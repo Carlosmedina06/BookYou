@@ -1,5 +1,5 @@
 const validationsForm = (form) => {
-  let caracteresDescription = /^.{1,5}$/
+  let caracteresDescription = /^.{1,500}$/
   let errors = {}
 
   if (!form.title) {
